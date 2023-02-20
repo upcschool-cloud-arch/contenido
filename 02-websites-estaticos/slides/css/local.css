@@ -1,0 +1,13 @@
+.dense {
+  font-size: 80%; }
+  .dense > p + ul {
+    list-style: inside; }
+    .dense > p + ul li {
+      line-height: 0.5; }
+
+#pyramid > p {
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  width: 50%;
+  margin-left: 1em; }

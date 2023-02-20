@@ -2,12 +2,12 @@
 .slidedeck {
   font-family: Open Sans, sans-serif;
   font-weight: 400;
-  font-size: 24pt;
+  font-size: 32pt;
   /*
         General slide color, fonts, etc.
     */ }
   .slidedeck.aspect-ratio-4-3 {
-    font-size: 16.8pt; }
+    font-size: 22.4pt; }
   .slidedeck section {
     background-color: white;
     color: black; }
@@ -88,7 +88,7 @@
   .slidedeck .blocks > p {
     margin: 0 100px 0 100px; }
   .slidedeck .blocks > ul {
-    margin: 28.8pt 48pt;
+    margin: 38.4pt 64pt;
     padding: 0;
     display: grid;
     grid-auto-flow: column; }
