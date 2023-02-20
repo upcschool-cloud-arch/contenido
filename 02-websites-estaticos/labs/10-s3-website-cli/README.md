@@ -111,7 +111,7 @@ aws s3 cp --cache-control max-age=3600 --recursive public/ s3://$BLOG_NAME
 * ¡Accede a tu bucket!
 
 ```bash
-REGION=$(aws configure get region)
+REGION=us-east-1
 echo The website url is: http://$BLOG_NAME.s3-website-$REGION.amazonaws.com
 ```
 
