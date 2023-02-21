@@ -75,6 +75,12 @@ aws s3api put-bucket-website --bucket $BLOG_NAME --website-configuration file://
 
 ## Publicación del blog
 
+* Fija la región de trabajo
+
+```bash
+REGION=us-east-1
+```
+
 * Instala [Hugo](https://gohugo.io), el generador de websites que utilizaremos
 
 ```bash
@@ -93,7 +99,7 @@ git clone https://github.com/themefisher/airspace-hugo
 
 ```bash
 cd airspace-hugo/exampleSite
-~/hugo --themesDir ../..
+~/hugo --themesDir ../.. --baseURL http://$BLOG_NAME.s3-website-$REGION.amazonaws.com
 ```
 
 * Revisa el contenido (estará en la carpeta public)
@@ -111,7 +117,6 @@ aws s3 cp --cache-control max-age=3600 --recursive public/ s3://$BLOG_NAME
 * ¡Accede a tu bucket!
 
 ```bash
-REGION=us-east-1
 echo The website url is: http://$BLOG_NAME.s3-website-$REGION.amazonaws.com
 ```
 
