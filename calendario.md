@@ -9,7 +9,7 @@
 | 4  | Introducción al Networking                                                      | Aplicaciones cloud native                     | 6     | Ester         | 1/mar  |
 |    |                                                                                 |                                               |       | Ester         | 2/mar  |
 | 3  | Arquitectura de aplicaciones Serverless                                         | Aplicaciones cloud native                     |       | Marcia [R]    | 6/mar  |
-|**5**|                                                                                |                                               |       | **Marcia [R]**| 8/mar  |
+|**5[R]**|                                                                                |                                               |       | **Marcia [R]**| 8/mar  |
 | 6  | Arquitectura de aplicaciones tradicionales                                      | Aplicaciones cloud native                     | 6     | Ester         | 13/mar |
 |    |                                                                                 |                                               |       | Ester         | 15/mar |
 | 7  | Arquitectura de aplicaciones tradicionales - Proyecto final                     | Proyecto final                                | 3     | Ester         | 20/mar |
@@ -21,7 +21,7 @@
 | 11 | Alta disponibilidad y elasticidad en computación clásica                        | Aplicaciones cloud native                     | 9     | Santos [R]    | 17/abr |
 | 9  | Introducción a la infraestructura como código y GitOps                          | Delivery engineering, DevOps y observabilidad |       | Javi          | 19/abr |
 | 11 | Alta disponibilidad y elasticidad en computación clásica                        | Aplicaciones cloud native                     |       | Santos [R]    | 24/abr |
-|**11**|                                                                               |                                               |       |**Santos [R]** | 26/abr |
+|**11[R]**|                                                                               |                                               |       |**Santos [R]** | 26/abr |
 | A  | Charla Pau                                                                      | Aplicaciones cloud native                     | 3     | Pau           | 3/may  |
 | 12 | Patching de Sistemas Operativos y administración de servidores                  | Delivery engineering, DevOps y observabilidad | 3     | Tasia  [R]    | 4/may  |
 | 13 | Patching de Sistemas Operativos y administración de servidores - Proyecto final | Proyecto final                                | 3     | Tasia  [R]    | 8/may  |
