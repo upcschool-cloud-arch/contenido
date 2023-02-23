@@ -5,3 +5,4 @@
 - [🇪🇸#3.12 - Construyendo un Metaverso Serverless (Charlas Técnicas de AWS)](https://youtu.be/ayxV3Lq1iSA) -[🇪🇸#3.14 - Mentorías y Serverless en Lego (Charlas Técnicas de AWS)](https://youtu.be/X_D0NXaNj48)
 - [🇪🇸#3.16 - Cómo gestionar aplicaciones a gran escala (Charlas Técnicas de AWS)](https://youtu.be/IhQTD5TKDXE)
 - [🇪🇸 #2.19 - Qué son las aplicaciones modernas? (Charlas Técnicas de AWS)](https://youtu.be/cev-JJSMKdM)
+- [Ramp up guide to serverless](https://d1.awsstatic.com/training-and-certification/ramp-up_guides/Ramp-Up_Guide_Serverless.pdf)
