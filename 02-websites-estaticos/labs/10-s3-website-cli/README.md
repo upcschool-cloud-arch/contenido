@@ -99,7 +99,7 @@ git clone https://github.com/themefisher/airspace-hugo
 
 ```bash
 cd airspace-hugo/exampleSite
-~/hugo --themesDir ../.. --baseURL http://$BLOG_NAME.s3-website-$REGION.amazonaws.com
+~/hugo --themesDir ../.. --baseURL /
 ```
 
 * Revisa el contenido (estará en la carpeta public)
