@@ -8,7 +8,7 @@
 
 ![World map showing AWS locations](images/aws-global-infra-map.png)
 
-* **Region**: a deployment of AWS techonlogy in a particular location of the world.
+* **Region**: a deployment of AWS technology in a particular location of the world.
 * **Availability Zone**: One or more adjacent datacenters, working as unit. Often, a region
 is made by at least three AZs, working together under a single control plane with a latency
 smaller than 1ms.
