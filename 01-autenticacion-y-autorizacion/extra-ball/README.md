@@ -1,6 +1,6 @@
 # Extra ball
 
-## Resources for learning more
+## Additional learning resources
 
 * [Getting started with AWS identity services](https://www.youtube.com/watch?v=YQsK4MtsELU) is a gentle (and quick!) introduction to IAM services
 * [Become an IAM Policy Master in 60 Minutes or Less ](https://www.youtube.com/watch?v=YQsK4MtsELU) is easily one of the best sessions run on each edition of Re:Invent.
