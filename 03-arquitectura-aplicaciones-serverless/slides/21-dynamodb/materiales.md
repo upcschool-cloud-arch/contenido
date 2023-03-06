@@ -8,3 +8,6 @@
 - [START CODING A SERVERLESS APP USING DYNAMODB - Using Infrastructure as Code, AWS SDK and AWS SAM](https://youtu.be/0OF5EhxyeQk)
 - [CODING A SERVERLESS APP USING GLOBAL SECONDARY INDEXES DYNAMODB - AWS SDK, AWS SAM and IaC](https://youtu.be/SXmgSXtEk9k)
 - [Introducción a DynamoDB](https://youtu.be/ybG2Qnucmts)
+- [Read consistency](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html)
+- [DynamoDB book](https://www.dynamodbbook.com/)
+- [DynamoDB expressions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.html)
