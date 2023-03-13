@@ -82,3 +82,5 @@ systemctl enable httpd
 curl http://<ip pública>
 ```
 Ojo con la IP, está habrá cambiando respecto al momento previo a parar la instancia.
+
+38. Cuando hayas finalizado el lab, puedes parar la EC2 o terminarla.
