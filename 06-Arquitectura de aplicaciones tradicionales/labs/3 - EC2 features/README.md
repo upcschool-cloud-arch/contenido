@@ -10,7 +10,7 @@ En esta primera parte del lab, vamos a ver qué cambios en frío (parada de EC2)
 2. En el dashboard principal de aws buscamos el servicio EC2 en la barra del buscador o bien a través del menu _Services_
 3. Clicamos sobre el botón _Launch instance_
 4. Nuestra nueva EC2 tendrá el nombre _lab3_
-5. En este caso, utilizaremos la AMI de ubuntu
+5. En este caso, utilizaremos la AMI Amazon Linux
 6. Selecciona el tipo de instancia más grande que encuentres en free-tier (gratuita). Tip: ayúdate de la opción _Compare Instance Type_ que te aparece a la derecha.
 7. En Key pair, clica sobre el menú desplegable y selecciona lab1 (creado en el módulo de Introducción al Networking). Si has perdido este fichero, crea un nuevo key pair con el mismo nombre _lab1_ y guárdalo.
 8. Editaremos los Networking settings para que nuestra nueva instancia se cree dentro de nuestra vpc <main_vpc_yourname>, en la subnet pública <main_subnet_a> y habilitar la IP pública.
@@ -37,9 +37,9 @@ curl http://<Ip pública>
 16. Accedemos por ssh a nuestra instancia ec2 _lab3_
 * Linux:
 ```bash 
-ssh -i "lab1.pem" ubuntu@<IP publica>
+ssh -i "lab1.pem" ec2-user@<IP publica>
 ````
-* Windows: a través de putty y con el usuario _ubuntu_
+* Windows: a través de putty y con el usuario ec2-user
 
 17. Una vez dentro comprobamos si httpd está levantado
 ```bash 
