@@ -1,4 +1,4 @@
-# LAB 5: ARQUITECTIRA TRADICIONAL
+# LAB 5: ARQUITECTURA TRADICIONAL
 
 En este lab, crearemos una pequeña arquitectura basada el un ELB que nos permitirá distribuir las peticiones entre las instancias que formarán el TG:
 
