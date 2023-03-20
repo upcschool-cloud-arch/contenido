@@ -27,12 +27,12 @@ module "ec2_instance" {
   instance_type          = "t2.micro"
   key_name               = "lab1"
   user_data = << EOF
-#! /bin/bash
-sudo apt-get update
-sudo apt-get install -y apache2
-sudo systemctl start apache2
-sudo systemctl enable apache2
-echo "<h1>Deployed via Terraform</h1>" | sudo tee /var/www/html/index.html
+#!/bin/bash
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+echo "<h1>Hello I'm  $(hostname -f) ! </h1>" > /var/www/html/index.html
 	EOF
   monitoring             = true
   vpc_security_group_ids = ["sg-xxxxxxxxxxx"]  
