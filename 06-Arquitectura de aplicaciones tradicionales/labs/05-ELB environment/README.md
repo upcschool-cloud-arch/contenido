@@ -58,7 +58,7 @@ terraform apply
 7. Comprobamos que nuestras 3 EC2 se han levantado correctamente desde el dashboard de AWS.
 8. Dentro del panel de EC2, abajo a la izquierda, clicaremos sobre ELB
 9. Clicamos sobre la _Create load balancer_ y seleccionamos Network Load Balancer
-10. Indicamos _mifirstLB_ en load balancer name y dejamos el resto de parámetros por defecto de _Basic Configurations_
+10. Indicamos _myfirstLB_ en load balancer name y dejamos el resto de parámetros por defecto de _Basic Configurations_
 11. En el apartado _Networking mapping_ seleccionamos nuestra vpc principal _main_vpc_yourname_ y em mapping seleccionamos la az-a
 12. En el apartado Listener and Routing, indicamos el protocolo:
 * HTTP: 80
