@@ -14,21 +14,24 @@ Arquitectura de aplicaciones tradicionales
 * Identificar las métricas clave a monitorizar
 * Familiarizarse con el Uso de Cloudtrail para monitorizar las llamadas a la API de AWS
 * Saber diferenciar entre métricas, logs y trazas
-* Aprender acerca de la monitorización de arquitecturas de microservicios con trazas
+* Aprender acerca de la monitorización de arquitecturas de aplicaciones y microservicios con trazas
 
 ### Conceptos tratados
 
 - [x] Cloudwatch Metrics
 - [x] Cloudwatch Alarms
 - [x] Cloudwatch Logs
+- [x] EventBridge
 - [X] Athena
 - [x] SNS
-- [ ] CloudTrail 
-- [ ] X-ray
+- [X] CloudTrail 
+- [ ] X-Ray
+- [ ] Cloudwatch Synthetics
+- [ ] AWS Managed Grafana
 
 ### Storytelling
 
-*Hace unos meses, el cliente adoptó un modelo de despliegue ágil, aplicando políticas y buenas practicas GitOps. Esto ha incrementado el número de despliegues a producción, ya que nuestra confianza en cada versión ha incrementado notablemente. Aunque, recientemente se están incrementando el número de quejas de los usuarios, dado un aumento significativo de errores y fallos de rendimiento. El problema, es que actualmente, no disponemos de ningún sistema de monitorización que nos permita evaluar y detectar errores en tiempo real, solo tenemos el feedback del usuario final.*
+*Hace unos meses, el cliente adoptó un modelo de despliegue ágil, aplicando políticas y buenas prácticas GitOps. Esto ha incrementado el número de despliegues a producción, ya que nuestra confianza en cada versión ha incrementado notablemente. Aunque, recientemente se están incrementando el número de quejas de los usuarios, dado un aumento significativo de errores y fallos de rendimiento. El problema es que actualmente, no disponemos de ningún sistema de monitorización que nos permita evaluar y detectar errores en tiempo real, solo tenemos el feedback del usuario final.*
 
-*Dada esta problematica, el cliente nos encarga crear un sistema de monitorización y implementar una mejor trazabilidad del flujo de peticiones*
+*Dada esta problemática, el cliente nos encarga crear un sistema de monitorización e implementar una mejor trazabilidad del flujo de peticiones*
 

@@ -21,7 +21,7 @@ Primero, clonaremos el repositorio con la aplicación:
 
 ```bash
 $ git clone https://github.com/TheMatrix97/pokedex-tf-app
-$ cd ./src
+$ cd ./pokedex-tf-app/src
 ```
 
 Desplegamos nuestra aplicación con Terraform

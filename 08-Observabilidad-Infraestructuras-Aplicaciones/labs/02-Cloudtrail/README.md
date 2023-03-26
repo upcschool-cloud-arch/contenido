@@ -1,11 +1,11 @@
 # Lab 8.2 - CloudTrail
 
 ## Objetivos
-Es esta práctica, aprenderemos a monitorizar la utilización de la API de AWS, utilizando CloudTrail. 
-Aprenderemos los principios básicos de CloudTrail y herramientas asociadas para lanzar consultas contra el servicio.
+En esta práctica, aprenderemos a monitorizar la utilización de la API de AWS, mediante CloudTrail. 
+Aprenderemos los principios básicos de CloudTrail y herramientas asociadas para lanzar consultas contra el servicio. Finalmente, aprenderemos como crear un pipeline de eventos con EventBridge, para que se nos notifique vía Slack cada vez que ocurra cierto evento.
 
 ## Storytelling
-En el equipo de la empresa se ha detectado un gran número de bajas por depresión. A raiz de este hecho, el departamento de RRHH ha pedido instalar una pantalla en la oficina que proyecte imágenes aleatorias de gatitos 24/7. Según un estudio de la Universidad de Leeds, ver videos e imágenes de animales puede ayudar a reducir el estrés hasta un 50% (https://biologicalsciences.leeds.ac.uk/school-biomedical-sciences/news/article/273/what-are-the-health-benefits-of-watching-cute-animals).
+En el equipo de la empresa se ha detectado un gran número de bajas por depresión y estrés. A raíz de este hecho, el departamento de RRHH ha pedido instalar una pantalla en la oficina que proyecte imágenes aleatorias de gatitos 24/7. Según un estudio de la Universidad de Leeds, ver videos e imágenes de animales puede ayudar a reducir el estrés hasta un 50% (https://biologicalsciences.leeds.ac.uk/school-biomedical-sciences/news/article/273/what-are-the-health-benefits-of-watching-cute-animals).
 Para este caso de uso, se ha manifestado la necesidad de desplegar una API que nos proporcione imágenes de gatitos aleatorias. 
 
 Nuestro compañero Juan ha encontrado una API en GitHub que parece que cumple con el caso de uso (https://github.com/TheMatrix97/suspicious-api-js). La despliegan y pasado unos meses, descubren que el coste operativo de AWS se ha duplicado. ¿De quién ha sido la culpa? ¿Está relacionado con la API que desplegó Juan? No lo sabemos. ¿Cómo podemos prepararnos para estas situaciones y evitar que se vuelvan a repetir? En esta práctica aprenderemos como utilizar CloudTrail para poder monitorizar el uso que hacen usuarios y aplicaciones de nuestro entorno de AWS.
@@ -49,7 +49,7 @@ Por ejemplo, podemos consultar los eventos que hagan referencia a un Login de la
 ```bash
 aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=ConsoleLogin
 ```
-Recuerda que podemos filtrar la petición con el parámetro `query`, para que nos devuelva solo los campos que nos interesan. Por ejemplo:
+Ten en cuenta que podemos filtrar la petición con el parámetro `query`, para que nos devuelva solo los campos que nos interesan. Por ejemplo:
 
 ```bash
 aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=ConsoleLogin --query 'Events[].[Username,EventTime,CloudTrailEvent]'
@@ -57,9 +57,7 @@ aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,Attribut
 Para cada evento devuelve la persona que ha hecho login, el timestamp y el evento de cloudtrail en string, con formato JSON.
 
 
-
-
-Revisa la documentacion de AWS referente al método lookup-events (https://docs.aws.amazon.com/cli/latest/reference/cloudtrail/lookup-events.html) y intenta escribir un comando de CLI que devuelva información referente a los eventos de creación de un bucket S3 (`CreateBucket`), con el siguiente formato de salida:
+Revisa la documentación de AWS referente al método `lookup-events` (https://docs.aws.amazon.com/cli/latest/reference/cloudtrail/lookup-events.html) e intenta escribir un comando de CLI que devuelva información referente a los eventos de creación de un bucket S3 (`CreateBucket`), con el siguiente formato de salida:
 ```json
 [
     [
@@ -124,15 +122,14 @@ Primero, desplegaremos la API mediante Terraform
 4.1 - Clonaremos el repositorio de Terraform
 
 ```bash
-git clone https://github.com/TheMatrix97/suspicious-api-tf
+$ git clone https://github.com/TheMatrix97/suspicious-api-tf
 ```
 
 4.2 - Desplegamos la aplicación
 
 ```bash
-cd src
-terraform init
-terraform apply
+$ cd ./suspicious-api-tf/src
+$ terraform init && terraform apply
 ```
 Podremos ver el DNS público de esta instancia en la salida del Terraform: `instance_public_dns = "ecx-x-xxx-xx-xxx.compute-1.amazonaws.com"`
 
@@ -178,7 +175,77 @@ Crea una VM EC2, con el nombre de `CryptoMiner` junto a un Bucket S3 que contien
 
 4.7 - Para deshacer los cambios que ha ocasionado la API, accederemos al endpoint `/enough`. Revisa que efectivamente se han deshecho los cambios que has detectado anteriormente.
 
-4.8 - Limpia el entorno de AWS con el comando `terraform destroy` para eliminar la VM y recursos asociados que hemos creado para servir la API.
+#### **Notificaciones con EventBridge**
+
+5.1 - El CEO está **muy enfadado**, no entiende como se nos puede haber escapado esto, y nos ha pedido crear algún mecanismo para detectar y avisar cada vez que se despliegue una VM EC2, evento que ocurre poco en nuestra empresa. Para ello, hemos propuesto crear una regla de **EventBridge** que detecte los cambios de estado en EC2 y nos reporte al momento vía Slack, ya que nuestro servidor de mail no acaba de funcionar bien.
+
+A continuación, se muestra un ejemplo del pipeline que se propone. (*Soy consciente de que se puede hacer de forma más eficiente, quiero que os peléis un poco con los servicios...*).
+
+![EventBridge Schema](./img/eventbridge_graph.png)
+
+El envio de los mensajes se hace mediante un webhook que he preconfigurado para vosotros. [¿Qué es un webhook?](https://www.redhat.com/es/topics/automation/what-is-a-webhook).
+He creado una aplicación de Slack con múltiples webhooks, uno para cada equipo, siguiendo la [documentación de Slack](https://api.slack.com/messaging/webhooks).
+
+**Podéis consultar la URL del webhook en un canal que he creado específicamente para mandar notificaciones para cada equipo (`team-x-notis`)**
+
+
+5.2 Primero, crearemos la funcion lambda que mandará el mensaje a Slack utilizando un `Webhook`.
+Esta función debe contener este [código](./lambda_function.py). Como podéis ver, hace los siguientes pasos:
+- Procesa el evento de `EventBridge` que se manda vía `SNS`
+- Consulta en la API de AWS el nombre y tipo de la instancia
+- Genera el mensaje que enviará a Slack
+- Manda el mensaje a un canal de Slack mediante un webhook con una petición `HTTP POST`
+
+**Importante!** Tenéis que substituir la variable `webhook` con la URL que os proporcionamos
+
+```python
+webhook = "https://hooks.slack.com/services/XXXXXX" # TODO! Set webhook url!!
+```
+
+5.3 Seguidamente, crearemos el topic `Standard` de `SNS` `EC2InstanceChanges`, y subscribiremos la función lambda que hemos creado anteriormente, para que se ejecute cada vez que reciba un mensaje.
+
+![SNS Topic](./img/sns_topic_create.png)
+
+
+5.4 Seguidamente, crearemos la regla de EventBridge. Para ello accedemos al menú de `EventBridge` y seleccionaremos la opción `EventBridge Rule > Create rule`
+
+![EventBridge create rule](./img/eventbridge_create_rule.png)
+
+5.5 Le damos un nombre a la regla y la asignamos al bus por defecto
+
+![EventBridge create rule 1](./img/eventbridge_create_rule_1.png)
+
+5.6 Definimos el tipo de evento que debe escuchar, indicaremos que el `Event source` es del tipo `AWS events or EventBridge partner events`, junto a la siguiente regla
+
+```json
+{
+  "source": ["aws.ec2"],
+  "detail-type": ["EC2 Instance State-change Notification"],
+  "detail": {
+    "state": ["running", "stopped"]
+  }
+}
+```
+![EventBridge create rule pattern](./img/eventbridge_create_rule_pattern.png)
+
+De esta manera, `EventBridge` estará a la escucha de eventos de arranque y parada de todas las instancias EC2 de nuestra cuenta.
+
+5.7 En este punto debemos configurar el `target` de nuestra regla. Siguiendo el esquema, publicaremos el evento en el `SNS Topic` que hemos creado antes. 
+
+![EventBridge create target](./img/eventbridge_create_rule_target.png)
+
+5.8 Finalmente, creamos la regla. Esta debería de contener la configuración que se muestra a continuación:
+![EventBridge create resumen](./img/eventbridge_create_rule_resumen.png)
+
+5.9 Si todo ha ido bien, ahora deberíamos recibir un mensaje en el canal `team-x-notis` cada vez que paremos o iniciemos una máquina EC2
+
+5.10 Podemos volver a la API de Gatos que hemos levantado antes, y consultar el endpoint `/cat`, ahora deberíamos recibir un aviso del despliegue de la VM `crypto-miner`.
+
+![Notis](./img/slack_noti.png)
+
+
+### Cleanup
+Limpia el entorno de AWS con el comando `terraform destroy` para eliminar la VM y recursos asociados que hemos creado para desplegar la API.
 
 
 
