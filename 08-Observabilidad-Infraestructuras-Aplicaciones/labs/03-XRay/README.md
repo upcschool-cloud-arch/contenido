@@ -28,7 +28,8 @@ $ aws dynamodb create-table \
     --table-name animals \
     --attribute-definitions AttributeName=id,AttributeType=S \
     --key-schema AttributeName=id,KeyType=HASH \
-    --billing-mode PAY_PER_REQUEST
+    --billing-mode PAY_PER_REQUEST \
+    --region us-east-1
 ```
 
 1.3 - Instalaremos las dependencias de `node` para poder ejecutar el proyecto en local.
