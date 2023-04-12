@@ -23,6 +23,3 @@
 
 
 
-## Canal AWS Academy con la solución
-
-* [App inventario ](https://www.youtube.com/watch?v=I0nL0NX4qZc&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=17)
