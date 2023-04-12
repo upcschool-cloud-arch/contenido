@@ -7,7 +7,7 @@
 * [Github con el código de inventario](https://github.com/santos-pardos/Hands-On-Lab-in-AWS/blob/main/Networking_and_Content_Delivery/VPC_EC2_RDS/code.txt) 
 
 * [Doc oficial de RDS](https://docs.aws.amazon.com/es_es/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateVPC.html) 
-* 
+
 
 ## Additional labs
 
