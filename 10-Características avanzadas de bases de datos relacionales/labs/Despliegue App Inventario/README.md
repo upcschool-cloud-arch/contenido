@@ -1,6 +1,6 @@
 # RETO - Despliegue de una aplicacion de inventario
 
-En este laboratorio vamos a realizar la instalación de una aplicación de inventario en un VPC propio , en una EC2 Ami LInux 2023 y una BBDD RDS Mysql en cluster.
+En este laboratorio vamos a realizar la instalación de una aplicación de inventario en un VPC propio , en una EC2 Linux AMI 2 y una BBDD RDS Mysql en cluster.
 
 ## VPC
 
