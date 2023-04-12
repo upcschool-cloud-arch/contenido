@@ -1,4 +1,4 @@
-# Despliegue de una base de datos MySQL y conexión con HeidiSQL
+# LAB - Despliegue de una base de datos MySQL y conexión con HeidiSQL
 
 En este laboratorio crearemos una base de datos única en red pública y nos conectaremos con un cliente SQL
 
