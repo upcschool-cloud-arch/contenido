@@ -6,5 +6,5 @@
 
 ## Additional labs
 
-* [AWS General Immersion Day](https://catalog.workshops.aws/general-immersionday/en-US/basic-modules/50-rds/rds)
+* [AWS General Immersion Day - ASG](https://catalog.workshops.aws/general-immersionday/en-US/advanced-modules/compute/auto-scaling)
 
