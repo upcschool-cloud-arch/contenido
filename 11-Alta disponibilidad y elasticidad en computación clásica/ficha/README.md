@@ -1,17 +1,14 @@
 # Ficha del módulo
 
-Como arquitecto, a menudo tendrá que elegir entre diferentes tipos de bases de datos cuando considere qué tipo manejará mejor una carga de trabajo en particular. Antes de elegir una base de datos, hay algunas consideraciones clave que deberían aportar información al proceso de toma de decisiones.
+Las aplicaciones modernas deben poder manejar cantidades masivas de datos sin tiempo de inactividad y con tiempos de respuesta que estén por debajo del segundo. Para cumplir estos requisitos, puede implementar un sistema reactivo que sea elástico, resiliente, con capacidad de respuesta y que esté basado en mensajes. Una arquitectura reactiva bien diseñada puede ahorrarle dinero y ofrecer una mejor experiencia a sus usuarios.
 
-En primer lugar, considere la importancia de la escalabilidad. Con las bases de datos tradicionales en las instalaciones, el escalado de la capacidad puede ser una tarea difícil incluso para los administradores de base de datos experimentados. Puede tomar horas, días o semanas. El impacto en el rendimiento de la base de datos mientras se escala puede ser impredecible y puede requerir tiempo de inactividad. Sin embargo, no se puede sobrestimar la importancia de una base de datos escalada correctamente. Si el aprovisionamiento de su base de datos es insuficiente, es posible que las aplicaciones dejen de funcionar. Sin embargo, si el aprovisionamiento de su base de datos es excesivo, aumentará los costos iniciales mediante la adquisición de recursos que no necesita, lo que infringe el principio de optimización de costos de AWS Well-Architected Framework.
-
-Idealmente, debería elegir una solución de base de datos que tenga los recursos para manejar el rendimiento necesario en el lanzamiento y que también pueda escalarse en forma ascendente fácilmente más adelante si debe aumentar su rendimiento.
-
-Otra funcionalidad con la que es agradable contar es la capacidad de escalar en forma descendente la capacidad de la base de datos aprovisionada si los requisitos de rendimiento o la carga de la base de datos disminuyen posteriormente. Esto le permite obtener ahorros de costos inmediatamente reduciendo la capacidad aprovisionada. Una solución de escalado automático podría reducir los costos de sistema y de mano de obra.
-
+En este módulo, aprenderá a crear arquitecturas reactivas en AWS que sean elásticas, resilientes y con capacidad de respuesta. Aprenderá acerca de los componentes basados en mensajes para crear arquitecturas desacopladas en un módulo ulterior.
 
 ## Módulos anteriores
 
-Websites estáticos
+Arquitectura de aplicaciones web estáticas
+
+Introducción al Networking
 
 Arquitecturas de aplicaciones tradicionales
 
@@ -19,36 +16,33 @@ Arquitecturas de aplicaciones tradicionales
 
 ### Objetivos
 
-* Consideraciones de la capa de base de datos
-* Amazon RDS
-* Amazon DynamoDB
-* Controles de seguridad de la base de datos
-* Migración de datos a las bases de datos de AWS
-* Una demostración de la configuración automatizada de copias de seguridad y réplicas de lectura de Amazon Relational Database Service (Amazon RDS).
-* Un laboratorio guiado donde puede crear una base de datos de Amazon RDS y conectarse a ella mediante una aplicación web sencilla.
-* Un laboratorio de desafíos que lo desafía a migrar datos desde una base de datos que se ejecuta en una instancia de Amazon Elastic Compute Cloud (Amazon EC2) a una base de datos de Amazon RDS.
+Este módulo incluye las siguientes secciones:
 
+* Necesidad de arquitectura
+* Escalado de los recursos informáticos
+* Escalado de las bases de datos
+* Diseño de un entorno de alta disponibilidad
+* Monitoreo
+
+Este módulo también incluye lo siguiente:
+
+* Una demostración sobre cómo crear políticas de escalado de seguimiento de valores objetivo y de escalado por pasos para Amazon EC2 Auto Scaling
+* Una demostración sobre cómo implementar una aplicación web de disponibilidad alta con un balanceo de carga de aplicaciones 
+* Una demostración de Amazon Route 53
+* Un laboratorio guiado donde creará un entorno de disponibilidad alta
+* Un laboratorio de desafíos donde creará un entorno escalable y de disponibilidad alta para la cafetería
+
+Por último, se le solicitará que realice una evaluación de conocimientos, en la cual se determinará su grado de comprensión de los conceptos clave que se habrán analizado en este módulo.
 
 
 ### Conceptos tratados
 
-- [x] AWS RDS
-- [x] AWS Redshift
-- [ ] AWS DynamoDB
-- [x] DMS
-- [X] Seguridad
-- [x] S3
-- [x] EFS
+- [x] ALB
+- [x] ASG
 - [x] EC2
-
 
 ### Storytelling
 
-Desde que la cafetería agregó la posibilidad de realizar pedidos en línea a su sitio web, el personal se dio cuenta de que la actividad aumentó. Además, descubrieron que el historial de pedidos almacenado en la base de datos, que instalaron en la misma instancia EC2 en la que se ejecuta el servidor web, proporciona información valiosa para la empresa. Martha lo usa para fines contables, y Frank lo mira de vez en cuando para hacerse una idea de la cantidad de cada tipo de postre que debe hornear.
+Pronto la cafetería aparecerá en un famoso programa televisivo sobre comidas. Respecto de la emisión, Sofía y Nikhil anticipan que el servidor web de la cafetería experimentará un pico temporal en la cantidad de usuarios: tal vez hasta decenas de miles de usuarios más. Hoy el servidor web de la cafetería está implementado en una sola zona de disponibilidad, y tienen miedo de que no pueda manejar el aumento de tráfico previsto. Quieren hacer lo necesario para que sus clientes tengan una experiencia excelente cuando visiten el sitio web y para que no experimenten problemas, como retrasos o retardos a la hora de hacer pedidos. Para garantizar la experiencia que desean, el sitio web debe tener capacidad de respuesta, disponibilidad alta y debe poder hacer un escalado ascendente y descendente para atender la demanda fluctuante de los clientes. También debe incorporar el balanceo de carga. Para poder manejar el aumento de la demanda, en lugar de sobrecargar un único servidor, la arquitectura debe distribuir las solicitudes de pedidos de los clientes entre varios servidores de aplicaciones.
 
-Sin embargo, Sofía tiene algunas inquietudes. La base de datos debe actualizarse y se le deben aplicar parches, y ella no siempre tiene tiempo para realizar estas tareas de manera regular. Además, administrar la base de datos es una habilidad especializada, y capacitar a otros para que lo hagan no es algo a lo que ella quiere dedicar tiempo. Mientras tanto, también le preocupa que la cafetería no esté haciendo copias de seguridad de los datos con la frecuencia que se debería.
-
-El personal de la cafetería quiere reducir los costos de mano de obra relacionados con la inversión en aprendizaje técnico que se necesita para administrar la base de datos ellos mismos. Por lo tanto, decidieron que necesitan usar una solución de base de datos administrada. Idealmente, encontrarán una que ofrezca características esenciales, como durabilidad, escalabilidad y alto rendimiento.
-
-En este módulo, aprenderá detalles sobre los diferentes servicios de base de datos que ofrece AWS y las capacidades que proporcionan estos diferentes servicios. Ya que comprende las opciones disponibles, debería poder elegir una solución de base de datos que pueda satisfacer con éxito estos nuevos requisitos empresariales.
 
