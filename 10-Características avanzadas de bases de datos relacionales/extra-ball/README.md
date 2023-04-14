@@ -13,8 +13,6 @@
 
 * [AWS General Immersion Day](https://catalog.workshops.aws/general-immersionday/en-US/basic-modules/50-rds/rds)
 
-* [AWS General Immersion Day](https://catalog.workshops.aws/general-immersionday/en-US/basic-modules/50-rds/rds)
-
 * [RDS for SQL server](https://catalog.us-east-1.prod.workshops.aws/workshops/897acbd7-8f2e-46ed-8dcd-c97872d5b3ce/en-US)
 
 * [RDS for MySql](https://catalog.us-east-1.prod.workshops.aws/workshops/0135d1da-9f07-470c-9845-44ead3c78212/en-US)
