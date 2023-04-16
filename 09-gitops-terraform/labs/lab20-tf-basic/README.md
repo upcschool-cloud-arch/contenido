@@ -39,3 +39,88 @@ terraform fmt -diff -write=false *.tf
 terraform fmt *.tf
 ```
 
+## Dependency downloading
+
+* Initialize the required provider
+
+```bash
+terraform init
+```
+
+* What is the purpose of the file `.terraform.lock.hcl`? (hint: it is explained in the output of the `init` command)
+
+* Validate the syntax of the project
+
+```bash
+terraform validate
+```
+
+## Planning changes
+
+* Get the report with the expected actions to be taking when the project is applied
+
+```bash
+terraform plan -var prefix=demo
+```
+
+* What are the names of the properties with default values (and because of that, not appearing explicitly in the configuration)
+of the resource `random_pet.random_value`?
+
+
+## Applying the configuration
+
+* Execute the configuration update with
+
+```bash
+terraform apply -var prefix=demo -auto-approve
+```
+
+* How many resources where added, changed or destroyed?
+
+* Get the value of the outputs
+
+```bash
+terraform outputs
+```
+
+* Read the value of a particular output, and save it into a variable
+
+```bash
+VAL=$(terraform output -raw my_random_value)
+echo $VAL
+```
+
+## Functions
+
+Let's say that the value hold by `local.generated_value` can be considered *sensitive*. We will update
+the script and apply the new configuration.
+
+* Check the [function docs](https://developer.hashicorp.com/terraform/language/functions/sensitive) and
+covert the `local` value into a sensitive string
+
+```bash
+
+```
+
+## Provider demystification
+
+PROV=$(find . -name "*provider-random*")
+echo The random provider executable is $PROV.
+
+$PROV
+
+tmux split-window $PROV -debug; tmux last-pane
+
+export TF_REATTACH_PROVIDERS='{"registry.terraform.io/hashic...}'
+
+{
+  "@caller": "github.com/hashicorp/terraform-plugin-framework@v1.2.0/internal/fwserver/server_applyresourcechange.go:42",
+  "@level": "trace",
+  "@message": "ApplyResourceChange received no PriorState, running CreateResource",
+  "@module": "sdk.framework",
+  "@timestamp": "2023-04-15T20:38:19.775248+01:00",
+  "tf_provider_addr": "registry.terraform.io/hashicorp/random",
+  "tf_req_id": "98b57646-ee61-b557-f7f0-b7d8b94d90e6",
+  "tf_resource_type": "random_pet",
+  "tf_rpc": "ApplyResourceChange"
+}
