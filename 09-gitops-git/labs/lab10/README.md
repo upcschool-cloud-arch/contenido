@@ -481,6 +481,7 @@ ls
 
 * Our main writer will need to synchronize the content of both repositories, from his own content
 
+```bash
 cd ../alice/book
 git status
 git remote add origin ../../central/
