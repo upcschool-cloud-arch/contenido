@@ -8,7 +8,7 @@ resource "aws_vpc" "vpc" {
   }
 }
 
-resource "aws_internet_gateway" "internet-gateway" {
+resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
   tags = {
     Name = "${var.prefix}-igw"
@@ -19,8 +19,8 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
-resource "aws_subnet" "public_subnets" {
-  count                   = length(data.aws_availability_zones.available.names)
+resource "aws_subnet" "public" {
+  count                   = min(3,length(data.aws_availability_zones.available.names))
   vpc_id                  = aws_vpc.vpc.id
   availability_zone       = data.aws_availability_zones.available.names[count.index]
   cidr_block              = cidrsubnet(aws_vpc.vpc.cidr_block, 8, count.index)
@@ -32,12 +32,12 @@ resource "aws_subnet" "public_subnets" {
   }
 }
 
-resource "aws_route_table" "public_rtb" {
+resource "aws_route_table" "public" {
   vpc_id = aws_vpc.vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.internet-gateway.id
+    gateway_id = aws_internet_gateway.igw.id
   }
 
   tags = {
@@ -47,12 +47,12 @@ resource "aws_route_table" "public_rtb" {
 }
 
 resource "aws_route_table_association" "public" {
-  count          = length(aws_subnet.public_subnets)
-  route_table_id = aws_route_table.public_rtb.id
-  subnet_id      = aws_subnet.public_subnets[count.index].id
+  count          = length(aws_subnet.public)
+  route_table_id = aws_route_table.public.id
+  subnet_id      = aws_subnet.public[count.index].id
 }
 
-resource "aws_security_group" "web_sg" {
+resource "aws_security_group" "web" {
   name        = "web_sg"
   description = "Allow HTTP inbound traffic"
   vpc_id      = aws_vpc.vpc.id
