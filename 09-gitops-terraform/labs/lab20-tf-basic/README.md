@@ -165,15 +165,47 @@ terraform apply -destroy
 
 ## Provider demystification
 
+A *provider* is just an executable file implementing a [gRPC](https://grpc.io/) server. It is possible to keep it
+running in the background and attach a particular `terraform` command against it, enabling us to track the execution
+of the different commands.
+
+* Find the executable file
+
+```bash
 PROV=$(find . -name "*provider-random*")
 echo The random provider executable is $PROV.
+```
 
-$PROV
+* Execute it (it will fail, but providing an useful message)
 
+```bash
+eval $PROV
+eval $PROV -h
+```
+
+* Start the debug mode of the plugin in another `tmux` pane
+
+```bash
 tmux split-window $PROV -debug; tmux last-pane
+```
 
-export TF_REATTACH_PROVIDERS='{"registry.terraform.io/hashic...}'
+* Follow the instructions provided by the output of the command and export the variable
 
+```bash
+TF_REATTACH_PROVIDERS='{"registry.terraform.io/hashic... COPY THE VALUE FROM THE OUTPUT}'
+export TF_REATTACH_PROVIDERS
+```
+
+* Apply again the configuration and see how the provider is doing its work
+
+```bash
+terraform apply -var prefix=demo -auto-approve
+```
+
+* Take any line from the output of the provider and format it to understand the performed action. It will
+show you something like this:
+
+```json
 {
   "@caller": "github.com/hashicorp/terraform-plugin-framework@v1.2.0/internal/fwserver/server_applyresourcechange.go:42",
   "@level": "trace",
@@ -185,3 +217,11 @@ export TF_REATTACH_PROVIDERS='{"registry.terraform.io/hashic...}'
   "tf_resource_type": "random_pet",
   "tf_rpc": "ApplyResourceChange"
 }
+```
+
+* Stop the provider and remove the variable
+
+```bash
+kill -15 $(pidof $PROV)
+unset TF_REATTACH_PROVIDERS
+```
