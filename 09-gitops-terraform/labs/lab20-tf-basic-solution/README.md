@@ -24,19 +24,19 @@ pwd
 * Check the HCL files to see if all of them are correctly formatted (can you tell which file is the offender one?)
 
 ```bash
-terraform f██ -write=false *.tf
+terraform fmt -write=false *.tf
 ```
 
 * See what changes should be required to make it compliant
 
 ```bash
-terraform f██ -diff -write=false *.tf
+terraform fmt -diff -write=false *.tf
 ```
 
 * Do effective the changes
 
 ```bash
-terraform f██ *.tf
+terraform fmt *.tf
 ```
 
 ## Dependency downloading
@@ -52,7 +52,7 @@ terraform init
 * Validate the syntax of the project
 
 ```bash
-terraform va██████
+terraform validate
 ```
 
 ## Planning changes
@@ -60,7 +60,7 @@ terraform va██████
 * Get the report with the expected actions to be taking when the project is applied
 
 ```bash
-terraform pl██ -var prefix=demo
+terraform plan -var prefix=demo
 ```
 
 * What are the names of the properties with default values (and because of that, not appearing explicitly in the configuration)
@@ -86,13 +86,13 @@ cat terraform.tfstate | jq -C | less -R
 * Get the value of the outputs using the `terraform` command
 
 ```bash
-terraform out███
+terraform output
 ```
 
 * Read the value of a particular output, and save it into a variable
 
 ```bash
-VAL=$(terraform out███ -raw my_random_value)
+VAL=$(terraform output -raw my_random_value)
 echo $VAL
 ```
 
@@ -105,7 +105,7 @@ the script and apply the new configuration.
 covert the `local` value into a sensitive string
 
 ```bash
-sed -i '5s/.*/  generated_value = "${var.prefix}-${█████████(random_pet.random_value.id)}"/' main.tf
+sed -i '5s/.*/  generated_value = "${var.prefix}-${sensitive(random_pet.random_value.id)}"/' main.tf
 cat main.tf
 ```
 
@@ -118,7 +118,7 @@ terraform apply -var prefix=demo -auto-approve
 * Carefully read the error message, and use it to correct the output value
 
 ```bash
-sed -i '3 a\  █████████=true' outputs.tf
+sed -i '3 a\  sensitive=true' outputs.tf
 ```
 
 * Apply the desired state again, this time it will work as expected
@@ -144,8 +144,8 @@ explanation to understand what it is expected.
 * Create a `terraform.tfvars` file
 
 ```bash
-echo prefix = \"demo\" > terraform.tfv███
-cat terraform.tfv███; echo
+echo prefix = \"demo\" > terraform.tfvars
+cat terraform.tfvars; echo
 ```
 
 * Check how it is possible to apply the configuration without explicitly providing the value for the `prefix` variable
@@ -160,7 +160,7 @@ terraform apply -auto-approve
 the consequences of proceeding
 
 ```bash
-terraform apply -dest███
+terraform apply -destroy
 ```
 
 ## Provider demystification
