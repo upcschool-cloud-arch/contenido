@@ -77,10 +77,16 @@ terraform apply -var prefix=demo -auto-approve
 
 * How many resources where added, changed or destroyed?
 
-* Get the value of the outputs
+* Check the content of the generated state
 
 ```bash
-terraform outputs
+cat terraform.tfstate | jq -C | less -R
+```
+
+* Get the value of the outputs using the `terraform` command
+
+```bash
+terraform output
 ```
 
 * Read the value of a particular output, and save it into a variable
@@ -99,7 +105,62 @@ the script and apply the new configuration.
 covert the `local` value into a sensitive string
 
 ```bash
+sed -i '5s/.*/  generated_value = "${var.prefix}-${sensitive(random_pet.random_value.id)}"/' main.tf
+cat main.tf
+```
 
+* Try to apply the changes again (**it will fail**)
+
+```bash
+terraform apply -var prefix=demo -auto-approve
+```
+
+* Carefully read the error message, and use it to correct the output value
+
+```bash
+sed -i '3 a\  sensitive=true' outputs.tf
+```
+
+* Apply the desired state again, this time it will work as expected
+
+```bash
+terraform apply -var prefix=demo -auto-approve
+```
+
+* As the sensitive condition is just metainformation and it only affects the outputs,
+no actual resource update has ocurred. What does it means, regarding the *state* file content?
+
+```bash
+terraform output -raw my_random_value; echo
+cat terraform.tfstate | jq .outputs.my_random_value
+```
+
+## Variable files
+
+We want to set an easy way to provide default values that can be tracked by `git`. Read the
+[variables definition file](https://developer.hashicorp.com/terraform/language/values/variables#variable-definitions-tfvars-files)
+explanation to understand what it is expected.
+
+* Create a `terraform.tfvars` file
+
+```bash
+echo prefix = \"demo\" > terraform.tfvars
+cat terraform.tfvars; echo
+```
+
+* Check how it is possible to apply the configuration without explicitly providing the value for the `prefix` variable
+
+```bash
+terraform apply -auto-approve
+```
+
+## Clean up
+
+* Delete all resources referenced by the state file. **Carefully read the output of the command**, understanding
+the consequences of proceeding
+
+```bash
+terraform apply -destroy
 ```
 
 ## Provider demystification
