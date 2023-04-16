@@ -1,5 +1,5 @@
 resource "aws_vpc" "vpc" {
-  cidr_block           = var.vpc-cidr
+  cidr_block           = var.███████
   enable_dns_hostnames = true
   enable_dns_support   = true
 
@@ -9,7 +9,7 @@ resource "aws_vpc" "vpc" {
 }
 
 resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.vpc.id
+  vpc_id = aws_vpc.vpc.██
   tags = {
     Name = "${var.prefix}-igw"
   }
@@ -21,19 +21,19 @@ data "aws_availability_zones" "available" {
 
 resource "aws_subnet" "public" {
   count                   = min(3,length(data.aws_availability_zones.available.names))
-  vpc_id                  = aws_vpc.vpc.id
-  availability_zone       = data.aws_availability_zones.available.names[count.index]
-  cidr_block              = cidrsubnet(aws_vpc.vpc.cidr_block, 8, count.index)
+  vpc_id                  = aws_vpc.vpc.██
+  availability_zone       = data.aws_availability_zones.available.names[count.i████]
+  cidr_block              = cidrsubnet(aws_vpc.vpc.cidr_block, 8, count.i████)
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${var.prefix}-subnet-public-${data.aws_availability_zones.available.names[count.index]}"
+    Name = "${var.prefix}-subnet-public-${data.aws_availability_zones.available.names[count.i████]}"
     Tier = "public"
   }
 }
 
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.vpc.id
+  vpc_id = aws_vpc.vpc.██
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -49,13 +49,13 @@ resource "aws_route_table" "public" {
 resource "aws_route_table_association" "public" {
   count          = length(aws_subnet.public)
   route_table_id = aws_route_table.public.id
-  subnet_id      = aws_subnet.public[count.index].id
+  subnet_id      = aws_subnet.public[count.i████].id
 }
 
 resource "aws_security_group" "web" {
   name        = "web_sg"
   description = "Allow HTTP inbound traffic"
-  vpc_id      = aws_vpc.vpc.id
+  vpc_id      = aws_vpc.vpc.██
 
   ingress {
     description = "Web security group."
