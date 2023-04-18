@@ -25,21 +25,21 @@ mediante el uso de pipelines.
 
 ### Conceptos tratados
  
-- [ ] git
-- [ ] repository
-- [ ] repo initialization
-- [ ] commiting files
-- [ ] `HEAD` and `HEAD~1`
-- [ ] showing history of commits
-- [ ] jumping between revisions
-- [ ] branches
-- [ ] showing differences between revisions
-- [ ] merging
-- [ ] conflicts and conflict resolution
-- [ ] tags
-- [ ] cloned repositories
-- [ ] pushing and pulling
-- [ ] bare repositories
+- [x] git
+- [x] repository
+- [x] repo initialization
+- [x] commiting files
+- [x] `HEAD` and `HEAD~1`
+- [x] showing history of commits
+- [x] jumping between revisions
+- [x] branches
+- [x] showing differences between revisions
+- [x] merging
+- [x] conflicts and conflict resolution
+- [x] tags
+- [x] cloned repositories
+- [x] pushing and pulling
+- [x] bare repositories
 
 
 ### Storytelling
