@@ -6,3 +6,11 @@ node_modules/
 .local/
 *.log
 notes.md
+
+
+*tfstate*
+
+.terraform
+*swp*
+*lock*
+
