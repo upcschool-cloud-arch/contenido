@@ -1,6 +1,6 @@
 # LABS
 
-### Lab 01 - ALB
+### Lab 01 - ALB - Neflix
 
-### Lab 02 - ASG & ALB
+### Lab 02 - ASG & ALB - Juice Shop
 
