@@ -120,7 +120,7 @@ q
 EOF
 ```
 
-* Good. Let's see what are the differences against the commited version
+* Good. Let's see what are the `unstaged` changes
 
 ```bash
 git status
