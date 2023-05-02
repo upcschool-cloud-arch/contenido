@@ -24,3 +24,6 @@ you are in a hurry.
 * There is also a short-but-nice [Object Lambda workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/65ae1218-0c6b-444a-88bd-02aad3ac8636/en-US) that shows how to process S3 objects on the flight.
 * If you have access to an account with populated buckets, [Getting started with Storage Lens](https://aws.amazon.com/getting-started/hands-on/amazon-s3-storage-lens/) explains how to understand the content of those mentioned buckets.
 
+## Azure
+
+* [Azure static web apps tutorial](https://learn.microsoft.com/en-us/training/paths/azure-static-web-apps/)
