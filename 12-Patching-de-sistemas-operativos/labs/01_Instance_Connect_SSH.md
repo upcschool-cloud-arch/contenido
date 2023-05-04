@@ -49,7 +49,7 @@ A pesar de que supuestamente NGINX ha sido instalado en nuestra instancia nos co
 
 - Oh...parece que el servicio de NGINX no está arrancado. Nos acordabamos de que en las distribuciones RedHatBased cuando nos instalamos el servicio NO se arranca automáticamente así que tenemos que hacerlo nosotras:
 
- ` systemctl start nginx.service `
+ ` sudo systemctl start nginx.service `
 
  ¡Funciona!
 
