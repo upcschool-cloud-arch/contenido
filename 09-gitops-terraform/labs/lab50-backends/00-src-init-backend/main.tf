@@ -13,24 +13,20 @@ provider "aws" {
   region = var.region
 }
 
-provider "aws" {
-  alias  = "replica"
-  region = var.replica_region
-}
+
 
 module "remote_state" {
   source  = "nozaq/remote-state-s3-backend/aws"
   version = "1.5.0"
-  
-  override_s3_bucket_name = true
-  s3_bucket_name          = "my-fixed-bucket-name-remote-state"
-  s3_bucket_name_replica  = "my-fixed-bucket-replica-name-remote-state"
 
   terraform_iam_policy_create = false
 
+  # Academy doesn't allow S3 replication
+  enable_replication = false
+
   providers = {
     aws         = aws
-    aws.replica = aws.replica
+    aws.replica = aws
   }
 }
 
