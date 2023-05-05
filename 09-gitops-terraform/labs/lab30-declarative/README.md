@@ -10,6 +10,8 @@ we are using `terraform` to facilitate the evolution of the infrastructure.
 
 ## Exploring the configuration
 
+![TFState diagram](lab30.excalidraw.png)
+
 Look at [main.tf](src/main.tf) and check the following blocks:
 
 * A [data source element](https://developer.hashicorp.com/terraform/language/data-sources), that will query AWS to get the list of Availability Zones of the region.
