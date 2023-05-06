@@ -22,27 +22,20 @@ Introduciremos el nombre de nuestra key pair (**postgrado**) y dejaremos todos l
 
 ![](lab_images/02.png)
 
-Seleccionaremos el .yaml que previamente hemos guardado, de daremos un nombre a nuestro stack, la referencia a la AMI que acabamos de recopilar, indicaremos que queremos desplegar 2 instancias y completaremos el proceso.
+Seleccionaremos el .yaml que previamente hemos guardado, de daremos un nombre a nuestro stack y rellenaremos los 3 campos que nos pedirá:
+1. la referencia a la AMI que acabamos de recopilar. 
+2. El número de instancias: indicaremos que queremos desplegar 2.
+3. El valor del tag Name (el nombre que van a tener las instancias)
 
 Después de un rato nuestro stack estará desplegado y podemos seguir.
 
 ## Configuración de SSM en las instancias desplegadas
 
-- Vamos a ver cómo gestionar nuestras instancias desde SSM Run Command pero antes debemos configurar nuestras instancias para que puedan gestionarse por SSM. En el lab anterior lo hicimos a mano adjuntándoles un rol y en esta ocasión vamos a hacerlo a través del **Quick Setup** de AWS Systems Manager.
-
-2.1. Vamos al servicio **AWS Systems Manager** y en el lado izquierdo arriba del todo veremos el apartado **Quick Setup**.
-
-Una vez dentro crearemos un nuevo **Host Management**. Dejaremos todos los campos por defecto pero desmarcaremos la casilla "Scan instances for missing patches daily". 
-
-En el apartado **Targets** seleccionaremos la región actual y diremos que se aplique la configuración a las instancias que tengan el tag-nombre que hemos definido cuando desplegamos nuestro stack de CloudFormation.
-
-Como curiosidad, esta acción del **Quick Setup** Despliega un Stack en CloudFormation que podremos ver desplegado junto al stack que hemos desplegado nosotrxs.
-
-![](lab_images/04.png)
+- Por las limitaciones de AWS Academy no vamos a poder usar el **Quick Setup** de Systems Manager así que simplemente tendremos que cambiar el IAM role de nuestras instancias una por una por el de *LabInstanceProfile* para que las instancias puedan funcionar con Systems Manager.
 
 Ahora quedaría esperar unos 5 minutos hasta que la configuración se propague a nuestras instancias desplegadas.
 
-Antes de seguir, (y solo cuando el Host Management haya terminado de aplicar la configuración) vamos a conectarnos a alguna de nuestras instancias a través del Session Manager y comprobar qué versión de SSM Agent tienen corriendo ejecutando:
+Antes de seguir vamos a conectarnos a alguna de nuestras instancias a través del Session Manager y comprobar qué versión de SSM Agent tienen corriendo ejecutando:
 
 ` yum info amazon-ssm-agent `
 

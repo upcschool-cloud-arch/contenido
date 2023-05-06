@@ -42,13 +42,19 @@ Sabemos que el punto 1. sí se cumple porque hemos usado una AMI Amazon Linux qu
 
  Como la ya hemos visto la opción a) vamos a configurar la opción b.
 
- 2.1. Vamos a ir a IAM y crear un rol específico para nuestra EC2.
+ **Nota**: al trabajar con AWS Academy y teniendo en cuenta las limitaciones que eso supone NO vamos a poder crear un rol y por lo tanto tendremos que adjudicarle a nuestra instancia el instance role del lab *LabInstanceProfile* siguiendo el punto 2.2
+
+ [Saltarse esta parte por las limitaciones de AWS Academy]:
+
+
+ <!-- Vamos a ir a IAM y crear un rol específico para nuestra EC2.
 
  ![](images/10.png)
 
  Le tenemos que adjuntar la policie *AmazonSSMManagedInstanceCore* a nuestro rol para que funcione. Nota: la policy *AmazonEC2RoleforSSM* está deprecada pero puede seguir apareciendo en alguna documentación o manuales de AWS.
 
- También le vamos a adjuntar la policy *AmazonS3FullAccess* para poder auditar las sesiones que iniciemos.
+ También le vamos a adjuntar la policy *AmazonS3FullAccess* para poder auditar las sesiones que iniciemos. -->
+ 
 
  2.2. Una vez creado el rol, al volver a nuestra instancia y pulsar *Actions >> Security >> Modify IAM role* podremos asociarlo a la instancia. 
 
