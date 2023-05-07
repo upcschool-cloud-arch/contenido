@@ -68,7 +68,7 @@ En este punto nuestras dos instancias están pausadas y los dos volúmenes no es
 
 5. Seleccionaremos nuestro volumen OLD y pulsaremos sobre ***Actions***  >>> **Attach volume** y lo asignaremos a nuestra instancia **NEW**. Durante el proceso de attachment nos preguntará a qué instancia queremos asignarlo y el nombre de la partición: **dev/sda1**
 
-6. Ya podemos volver a arrancar nuestra instancia **NEW** que ya estará corriendo con el volumen de la instancia OLD. Cuando la isntancia arranque podremos acceder a ella por AWS EC2 instance connect.
+6. Ya podemos volver a arrancar nuestra instancia **NEW** que ya estará corriendo con el volumen de la instancia OLD. Cuando la instancia arranque podremos acceder a ella por AWS EC2 instance connect.
 
 7. Una vez dentro nos moveremos al directorio `/etc/` y veremos que allí hay un fichero llamado `ipsec.secret` ¿Podemos hacer un ` cat ` de ese fichero?  
 
