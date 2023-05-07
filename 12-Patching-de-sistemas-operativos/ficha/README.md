@@ -34,8 +34,10 @@ En caso de que sea necesario, también debemos ser capaces de parchear nuestras 
 - [x] Systems Manager Patch Manager
 - [x] Systems Manager Run command
 - [x] Systems Manager Session Manager
+- [x] Systems Manager State Manager
+- [x] Systems Manager Documentation
 - [x] EC2 Instance Connect
-- [x] Image Builder
+- [x] AWS Image Builder
 - [x] AMI
 - [x] Image pipeline
 - [x] Base image
