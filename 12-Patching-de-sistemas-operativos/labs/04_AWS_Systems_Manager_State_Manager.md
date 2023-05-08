@@ -4,8 +4,7 @@ Vamos a aprender a trabajar con AWS Systems Manager State Manager.
 
 ## Escenario
 
-Vamos a desplegar varias instancias con nuestro Stack de CloudFormation y configuraremos una Association para que mantenga al día nuestro agente de SSM y nuestro agente de CloudWatch.
-
+Vamos a desplegar varias instancias con nuestro Stack de CloudFormation y configuraremos una Association para que mantenga al día nuestro agente de SSM.
 ## Despliegue de instancias
 
 1.1 Seleccionaremos el .yaml que previamente hemos guardado del lab 03_AWS_Systems_Manager_Run_Command, le daremos un nombre a nuestro stack y rellenaremos los 3 campos que nos pedirá:
