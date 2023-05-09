@@ -20,8 +20,6 @@ El diseño y configuración de estos recursos, al igual que las redes, debe plan
 * Detección de SpoF en arquitecturas sencilas
 * Comprender el escalado vertical y horizontal en EC2 y RDS
 
-
-
 ### Conceptos tratados
 
 - [x] EC2: tipos, características, etc
@@ -37,7 +35,9 @@ El diseño y configuración de estos recursos, al igual que las redes, debe plan
 - [x] ELBs: tipos y características como sticky sessions
 - [x] Introducción a ASG
 
+### Quizzes
 
+* https://quizizz.com/admin/quiz/5e5cecb04338c6001b1df599
 
 ### Storytelling
 
