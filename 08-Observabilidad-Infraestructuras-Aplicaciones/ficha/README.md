@@ -29,6 +29,10 @@ Arquitectura de aplicaciones tradicionales
 - [ ] Cloudwatch Synthetics
 - [ ] AWS Managed Grafana
 
+### Quizzes
+
+* https://quizizz.com/admin/quiz/64189beaac228a001dfc621e
+
 ### Storytelling
 
 *Hace unos meses, el cliente adoptó un modelo de despliegue ágil, aplicando políticas y buenas prácticas GitOps. Esto ha incrementado el número de despliegues a producción, ya que nuestra confianza en cada versión ha incrementado notablemente. Aunque, recientemente se están incrementando el número de quejas de los usuarios, dado un aumento significativo de errores y fallos de rendimiento. El problema es que actualmente, no disponemos de ningún sistema de monitorización que nos permita evaluar y detectar errores en tiempo real, solo tenemos el feedback del usuario final.*
