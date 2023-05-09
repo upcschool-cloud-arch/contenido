@@ -19,7 +19,6 @@ Estabelecer las comunicaciones no solo dentro de los entornos en AWS, sino hacia
 * Comunicaciones intra e inter VPC
 * Conceptos básicos de seguridad nativa 
 
-
 ### Conceptos tratados
 
 - [x] VPC
@@ -39,6 +38,10 @@ Estabelecer las comunicaciones no solo dentro de los entornos en AWS, sino hacia
 - [x] Costes de transferencia
 - [x] Introducción a alto nivel de Transit Gateway
 
+### Quizzes
+
+* https://quizizz.com/admin/quiz/5e5cf48a70acd6001dc628f5
+* https://quizizz.com/admin/quiz/5e5cf4d8fd5794001b4e90d4
 
 ### Storytelling
 
