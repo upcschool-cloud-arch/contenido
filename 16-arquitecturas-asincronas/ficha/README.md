@@ -36,6 +36,7 @@ por los *productores* en forma de *mensajes*, que posteriormente pueden ser proc
 - [x] Productor
 - [x] Cola
 - [x] Consumidor
+- [x] Idempotencia
 - [x] SQS
 - [x] Visibility timeout
 - [x] Dead letter queue
