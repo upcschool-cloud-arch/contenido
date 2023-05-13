@@ -36,8 +36,13 @@ por los *productores* en forma de *mensajes*, que posteriormente pueden ser proc
 - [x] Productor
 - [x] Cola
 - [x] Consumidor
-- [x] Push vs Pull
 - [x] SQS
+- [x] Visibility timeout
+- [x] Dead letter queue
+- [x] Visibility delay
+- [x] FIFO
+- [x] Push vs Pull
+- [x] Long polling
 - [x] AmazonMQ (RabbitMQ, ActiveMQ)
 - [x] Kinesis streams
 - [x] AWS IoT Core (MQTT)
