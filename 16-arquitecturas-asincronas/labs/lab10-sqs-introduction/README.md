@@ -99,7 +99,7 @@ while true; do
             --region=us-east-1)
     handler=$(echo "$msg" | jq -r .Messages[0].ReceiptHandle)
     body=$(echo "$msg" | jq -r .Messages[0].Body)
-    echo "$body"
+    echo "Consumer $1 is processing: $body"
     sleep 2
     aws sqs delete-message --queue-url $URL --receipt-handle $handler --region us-east-1 
 done
@@ -111,9 +111,9 @@ chmod +x consumer.sh
 * Launch three consumers, competing for the messages
 
 ```bash
-tmux split-window -l 4 bash consumer.sh alpha; tmux last-pane
-tmux split-window -l 4 bash consumer.sh alpha; tmux last-pane
-tmux split-window -l 4 bash consumer.sh alpha; tmux last-pane
+tmux split-window -l 4 bash consumer.sh uno; tmux last-pane
+tmux split-window -l 4 bash consumer.sh dos; tmux last-pane
+tmux split-window -l 4 bash consumer.sh tres; tmux last-pane
 ```
 
 ## Metrics
@@ -125,7 +125,7 @@ tmux split-window -l 4 bash consumer.sh alpha; tmux last-pane
 * Close all the secondary `tmux` panes
 
 ```bash
-kill-pane -a -t 0
+tmux kill-pane -a -t 0
 ```
 
 * Delete the queue
