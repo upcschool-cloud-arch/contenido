@@ -119,3 +119,18 @@ tmux split-window -l 4 bash consumer.sh alpha; tmux last-pane
 ## Metrics
 
 * Check how the *ApproximateNumberOfMessages* and *ApproximateNumberOfMessagesNotVisible* evolves
+
+## Clean up
+
+* Close all the secondary `tmux` panes
+
+```bash
+kill-pane -a -t 0
+```
+
+* Delete the queue
+
+```bash
+URL=$(aws sqs get-queue-url --queue-name report-requests --query QueueUrl --output text --region us-east-1)
+aws sqs delete-queue --queue-url $URL --region us-east-1
+```
