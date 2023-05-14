@@ -125,7 +125,7 @@ tmux split-window -l 4 bash consumer.sh tres; tmux last-pane
 * Close all the secondary `tmux` panes
 
 ```bash
-tmux kill-pane -a -t 0
+tmux kill-pane -a
 ```
 
 * Delete the queue

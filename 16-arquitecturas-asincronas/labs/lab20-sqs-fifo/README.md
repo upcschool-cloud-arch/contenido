@@ -103,7 +103,7 @@ tmux split-window -l 8 bash producer.sh alpha; tmux last-pane
 * Close all the secondary `tmux` panes
 
 ```bash
-tmux kill-pane -a -t 0
+tmux kill-pane -a
 ```
 
 * Delete the queue
