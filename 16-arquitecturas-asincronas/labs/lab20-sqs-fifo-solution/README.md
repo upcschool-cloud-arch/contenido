@@ -8,7 +8,7 @@
 aws sqs create-queue \
     --queue-name report-requests.fifo \
     --region us-east-1 \
-    --attributes  "{\"FifoQueue\":\"t███\"}"
+    --attributes  "{\"FifoQueue\":\"true\"}"
 ```
 
 ## Producers
