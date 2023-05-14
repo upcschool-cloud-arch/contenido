@@ -8,7 +8,7 @@ roles as producers and consumers, by sharing a single queue.
 * Create the queue
 
 ```bash
-aws sqs create-██████ --queue-name report-requests --region us-east-1
+aws sqs create-queue --queue-name report-requests --region us-east-1
 ```
 
 * Check the url of the queue
@@ -49,7 +49,7 @@ URL=$(aws sqs get-queue-url --queue-name report-requests --query QueueUrl --outp
 echo Qeueu URL: $URL
 for i in `seq 1 100`; do
   echo Producer $1 creating message $i.
-  aws sqs send-███████ \
+  aws sqs send-message \
 	  --queue-url $URL \
 	  --message-body "This message was created by producer $1, with the number $i." \
 	  --region=us-east-1
@@ -70,9 +70,9 @@ tmux split-window -h bash producer.sh alpha; tmux last-pane
 
 * Pick up a message of the queue to understand the format
 
-```bash
+```
 URL=$(aws sqs get-queue-url --queue-name report-requests --query QueueUrl --output text --region us-east-1)
-aws sqs receive-███████ \
+aws sqs receive-message \
 	     --queue-url $URL \
 	     --max-number-of-message 1 \
 	     --region=us-east-1 \
@@ -101,7 +101,7 @@ while true; do
     body=$(echo "$msg" | jq -r .Messages[0].Body)
     echo "Consumer $1 is processing: $body"
     sleep 2
-    aws sqs delete-message --queue-url $URL --receipt-██████ $handler --region us-east-1 
+    aws sqs delete-message --queue-url $URL --receipt-handle $handler --region us-east-1 
 done
 EOF
 
@@ -132,5 +132,5 @@ tmux kill-pane -a
 
 ```bash
 URL=$(aws sqs get-queue-url --queue-name report-requests --query QueueUrl --output text --region us-east-1)
-aws sqs delete-██████ --queue-url $URL --region us-east-1
+aws sqs delete-queue --queue-url $URL --region us-east-1
 ```

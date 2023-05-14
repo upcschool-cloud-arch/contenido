@@ -20,8 +20,8 @@ echo $DLQ_URL
 ```bash
 DLQ_ARN=$(aws sqs get-queue-attributes \
   --queue-url $DLQ_URL \
-  --attribute-names Q████Arn \
-  --query Attributes.Q████Arn \
+  --attribute-names QueueArn \
+  --query Attributes.QueueArn \
   --output text \
   --region us-east-1)
 echo Dead letter queue URL: $DLQ_ARN
@@ -45,7 +45,7 @@ EOF
 ```bash
 aws sqs create-queue \
     --queue-name report-requests \
-    --attr██████ file://dlq-policy.json \
+    --attributes file://dlq-policy.json \
     --region us-east-1
 
 MAIN_URL=$(aws sqs get-queue-url \
