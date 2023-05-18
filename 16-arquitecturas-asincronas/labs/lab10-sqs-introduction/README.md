@@ -27,7 +27,6 @@ aws sqs get-queue-attributes --queue-url $URL --attribute-names All --region us-
 * Keep an eye on those metrics in a separated panel
 
 ```bash
-URL=$(aws sqs get-queue-url --queue-name report-requests --query QueueUrl --output text --region us-east-1)
 tmux split-window -l 18 \
     watch aws sqs get-queue-attributes --queue-url $URL --attribute-names All --region us-east-1; tmux last-pane
 ```
@@ -71,7 +70,6 @@ tmux split-window -h bash producer.sh alpha; tmux last-pane
 * Pick up a message of the queue to understand the format
 
 ```bash
-URL=$(aws sqs get-queue-url --queue-name report-requests --query QueueUrl --output text --region us-east-1)
 aws sqs receive-███████ \
 	     --queue-url $URL \
 	     --max-number-of-message 1 \
@@ -131,6 +129,5 @@ tmux kill-pane -a
 * Delete the queue
 
 ```bash
-URL=$(aws sqs get-queue-url --queue-name report-requests --query QueueUrl --output text --region us-east-1)
 aws sqs delete-██████ --queue-url $URL --region us-east-1
 ```
