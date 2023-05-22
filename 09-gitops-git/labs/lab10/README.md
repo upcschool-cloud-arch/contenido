@@ -470,11 +470,11 @@ cd ../../
 
 ## Alice: centralized repository creation
 
-* Alice is going to create a repository intended to have only the data, without any working content. This way, both Alice and Bob will be able to work against a common *integration branch*
+* Alice is going to create a repository intended to have only the data, without any working directory. This way, both Alice and Bob will be able to work against a common *integration branch*. By convention, bare repos ends with `.git`:
 
 ```bash
-mkdir central
-cd central
+mkdir central.git
+cd central.git
 git init --bare --shared
 ls
 ```
@@ -484,7 +484,7 @@ ls
 ```bash
 cd ../alice/book
 git status
-git remote add origin ../../central/
+git remote add origin ../../central.git/
 git push origin main   # No problem, as it is a barebone repo
 git push origin v1     # Annotated tags are usually pushed, too
 ```
