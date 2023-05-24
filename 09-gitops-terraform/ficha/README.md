@@ -43,6 +43,10 @@ gestión de infraestructura con el AWS CLI y, sobre todo, al uso de Terraform.
 - [ ] `terraform output`
 - [ ] `terraform apply -destroy`
 
+### Quizzes
+
+* https://quizizz.com/admin/quiz/6454d4764dfa8f001e809d58
+
 ### Storytelling
 
 Por fin vamos a poder coger las riendas de la gestión de nuestra infraestructura sin necesidad de
