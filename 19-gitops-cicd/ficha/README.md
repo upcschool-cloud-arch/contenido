@@ -24,8 +24,8 @@ gestión de infraestructura con el AWS CLI y, sobre todo, al uso de Terraform.
 - [x] Continuous integration
 - [x] Continuous delivery
 - [x] Continuous deployment
-- [x] GitOps
 - [x] Artefactos
+- [x] Build vs Release pipelines
 - [x] CICD platforms
     - [x] Jenkins
     - [x] CodePipeline, CodeCommit, CodeBuild y CodeDeploy
@@ -51,6 +51,9 @@ gestión de infraestructura con el AWS CLI y, sobre todo, al uso de Terraform.
     - [x] Artifact publishing
     - [x] Deployment
     - [x] End to end testing (E2E)
+- [x] GitOps
+    - [x] Repositorio único
+    - [x] Repositorio de infraestructura separado
 - [x] Estrategias de despliegue
     - [x] In-place replacement
     - [x] Immutable infraestructure
