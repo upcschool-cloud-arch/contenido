@@ -31,6 +31,11 @@ gestión de infraestructura con el AWS CLI y, sobre todo, al uso de Terraform.
     - [x] CodePipeline, CodeCommit, CodeBuild y CodeDeploy
     - [x] GitLab y GitLab CICD
     - [x] GitHub y GitHub Actions
+- [x] Funcionamiento de GitHub Actions
+    - [x] Workflow
+    - [x] Events
+    - [x] Jobs
+    - [x] Steps: Actions y Run
 - [x] Pipeline phases:
     - [x] Trigger
     - [x] Checkout
