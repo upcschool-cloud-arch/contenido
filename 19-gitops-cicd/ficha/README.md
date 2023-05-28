@@ -24,6 +24,7 @@ gestión de infraestructura con el AWS CLI y, sobre todo, al uso de Terraform.
 - [x] Continuous integration
 - [x] Continuous delivery
 - [x] Continuous deployment
+- [x] GitOps
 - [x] Artefactos
 - [x] CICD platforms
     - [x] Jenkins
@@ -37,6 +38,7 @@ gestión de infraestructura con el AWS CLI y, sobre todo, al uso de Terraform.
     - [x] Compiling
     - [x] Unit testing
     - [x] Security and compliance check
+    - [x] Documentation generation
     - [x] Artifact packaging
     - [x] Integration testing
     - [x] Artifact publishing
