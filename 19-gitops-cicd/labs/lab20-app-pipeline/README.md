@@ -56,11 +56,13 @@ on:
   pull_request:
     branches: [ main ]
 
+
 jobs:
-  test_and_build:
+  build:
     runs-on: ubuntu-latest
 
-    steps:    
+    steps:
+    
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -75,6 +77,9 @@ jobs:
 
       - name: Test and build with Maven
         run: ./mvnw --batch-mode --update-snapshots package
+
+      - name: aggregate artifacts
+        run: mkdir artifacts && cp target/spring-petclinic*.jar* artifacts/
 
       - name: Publish to packages
         uses: actions/upload-artifact@v3
