@@ -36,6 +36,8 @@ gestión de infraestructura con el AWS CLI y, sobre todo, al uso de Terraform.
     - [x] Events
     - [x] Jobs
     - [x] Steps: Actions y Run
+    - [x] Variables y el contexto `vars.`
+    - [x] Secrests y el contexto `secrets.`
 - [x] Pipeline phases:
     - [x] Trigger
     - [x] Checkout
