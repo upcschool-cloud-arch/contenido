@@ -20,7 +20,7 @@ sudo apt update
 sudo apt install openjdk-17-jdk jq -y 
 ```
 
-## Application exploration
+## Application building
 
 * Get the source code of the application
 
@@ -107,4 +107,20 @@ ls target/site/apidocs/*
 ```bash
 ls target/*.jar -lh
 ```
+
+## Application execution
+
+* Time to take a look a the application. Run it with
+
+```bash
+java -jar target/spring-petclinic*.jar
+```
+
+* **CHECK THAT THE SECURITY GROUP OF THE SERVER IS ALLOWING ACCESS TO PORT 8080**.
+
+* Check it again.
+
+* Open `http://<address of your server>:8080` and play a bit with the applications
+
+* Use `ctrl+c` to interrupt the java process
 
