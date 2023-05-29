@@ -3,9 +3,9 @@
 ## Exámenes pendientes (fechas pendientes de concretar en breve)
 25/05/2023
 
-* Delivery engineering, DevOps y observabilidad
-* Cloud native applications, parte 2
-* Gobernanza + Kubernetes
+* Delivery engineering, DevOps y observabilidad (12 de Junio, lógicamente no incluye los topics 22 y 23)
+* Cloud native applications, parte 2 (26 de Junio TBC)
+* Gobernanza + Kubernetes (10 de Julio TBC)
 
 ## Trabajo de final de Posgrado
 25/05/2023
