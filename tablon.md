@@ -3,7 +3,7 @@
 ## Exámenes pendientes (fechas pendientes de concretar en breve)
 25/05/2023
 
-* Delivery engineering, DevOps y observabilidad (12 de Junio, lógicamente no incluye los topics 22 y 23)
+* Delivery engineering, DevOps y observabilidad (12 de Junio)
   - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/08-observabilidad-infra-aplicaciones
   - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/09-gitops-git
   - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/09-gitops-terraform
