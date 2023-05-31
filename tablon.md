@@ -9,7 +9,7 @@
   - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/09-gitops-terraform
   - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/12-patching-de-sistemas-operativos
   - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/19-gitops-cicd
-  -   
+
 * Cloud native applications, parte 2 (26 de Junio TBC)
 * Gobernanza + Kubernetes (10 de Julio TBC)
 
