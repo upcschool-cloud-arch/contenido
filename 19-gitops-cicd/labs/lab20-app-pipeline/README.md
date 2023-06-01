@@ -112,7 +112,7 @@ git commit -m "Initial commit of the pipeline."
 * Authenticate yourself on GitHub using the CLI (follow the instructions provided by the tool)
 
 ```bash
-github auth login
+gh auth login
 ```
 
 * Create the new repo, setting it as the *origin* of the local one
