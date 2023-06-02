@@ -1,0 +1,139 @@
+# Lab 1: Infraestructura básica I
+
+El objetivo de este primer laboratorio será familiarizarnos con la creación de la estructura básica de red para nuestros futuros entorno, así como tener una pequeña Landing Zone dónde lanzar los primeros recursos.
+
+<img width="552" alt="image" src="https://user-images.githubusercontent.com/108825363/221699511-47c0a717-ea41-48c4-897f-988999fd7c25.png">
+
+
+## Creación de una VPC
+
+1. En el buscador de la consola, teclea VPC y clica sobre la primera opción
+2. Click sobre el botón _Create VPC_
+3. De momento solo queremos crear nuestra VPC, por lo que seleccionaremos VPC only y escribimos el nombre de nuestra VPC en _Name tag_: main_vpc_\*yourname\* 
+4. Seleccionamos IPv4 CIDR manual input y tenancy _Default_. Introducimos el rango: 172.31.0.0/16
+5. En _add tag_ escribimos la clave-valor: Lab 1 y clicamos sobre _Create VPC_.
+6. Verificamos que se ha creado correctamente
+
+## Creación de las subnets
+
+Crearemos 3 subnets de igual tamaño, una para cada AZ disponible en la región. Dado que partimos de una VPC /16 (2^16 =65.536), podremos dividir cómo mínimo en rangos /18. 
+
+7. A través del menú de navegación de VPC (Izquierda), clicamos en _Subnets_
+8. Clicamos sobre el botón, _Create subnet_. En el desplegable, seleccionamos la VPC creada en el apartado anterior: main_vpc_\*yourname\*
+9. AWS nos permite crear de una vez tantas subnets como necesitemos, siempre que no excedamos el rango marcado por la VPC. Escribimos en el cuadro
+_Subnet Name_: main_subnet_a y seleccionaremos la AZ correspondiente (región-1a)
+10. Definimos el rango: 172.31.0.0/24 y clicamos sobre _Add New Subnet_
+11. Repetimos la operación 2 veces más para las otras 2 Azs
+	* 11.1 172.31.1.0/24 main_subnet_b para la AZ correspondiente (region-1b)
+	* 11.2 172.31.2.0/24 main_subnet_c para la AZ correspondiente (región-1c)
+12. Clicamos sobre _Create subnet_
+	
+Nuestra subnet pública será la main_subnet_a, que en este momento cuenta con un rango privado de IPs. Para darle características de subnet pública, vamos a autoasignar IPs públicas.
+
+13. En el dashboard de VPCs, clicamos sobre la Subnets y seleccionamos _main_subnet_a_ 
+14. Clicamos sobre el botón _Actions_--> _Edit Subnet Settings_
+15. Marcamos la opción _Enable auto-assign public IPV4 adress_ y guardamos
+
+## Creación de Internet Gateway
+
+16. Retomamos el panel de VPC y seleccionamos _Internet Gateway_ (menú de la izquierda)
+17. Clicamos sobre el botón _Create internet gateway_ y escribimos: main_internet_gateway y creamos
+
+En este punto veremos que ya tenemos creado nuestro Internet Gateway, pero no se encuentra atachado a ninguna VPC, por lo que la comunicación hacia internet aún no podrá establecerse
+
+18. En la esquina superior derecha, clicamos sobre _Attach to a VPC_ y seleccionamos nuestra main_vpc_\*yourname\*
+19. Verificamos que aparece como Attached en el listado de Internet Gateway
+
+
+## Creación de la route table
+
+20. En el panel Your VPCs, clicamos sobre nuestra Main VPC
+21. En la pestaña _details_, podemos ver que nuestra VPC ya tiene por defecto, una route table principal. Si clicamos sobre el identificador, podemos ver el detalle.
+22. Clicamos sobre la pestaña _Routes_ y vemos que tenemos la ruta local hacia nuestra VPC: 172.31.0.0/16. Las subnets que forman parte de esta VPC y no tienen una asociación explítica con otra route table, seguirán las routas de la principal (implícita)
+23. Si clicamos sobre la pestaña _Subnets_, veremos que las subnets que hemos creado en los puntos anteriores se encuentras asociadas de forma implícita a esta route table.
+
+En este momento, aún no se han establecido las rutas necesarias para poder acceder a internet. Para ello, crearemos una Custom Route Table que asociaremos a la subnet pública (main_subnet_a).
+
+24. Crearemos una route table custom asociada a nuestra VPC principal. En el panel de VPC, seleccionamos _Route Table_.
+25. Clicamos sobre el botón _Create Route Table_ (arriba al derecha)
+26. El nombre de route table custom será: Custom_Main_Route_Table y añadiremos la etiqueta: Key: Lab, Value: 1. Seleccionamos la VPC main_vpc_\*yourname\*
+27. En el menú Route Tables, clicamos sobre la route table que acabamos de crear y seleccionamos la pestaña Routes
+28. Añadimos la rutas necesarias para poder salir a internet. Clicamos sobre _Edit Routes_ y añadimos:
+* Destination: 0.0.0.0/0  Target: id del Internet Gatewat creado (main_internet_gateway)
+* La destinación local debería aparecer por defecto.
+** Destination: 172.31.0.0/24 y target: local
+
+## Crear una EC2 simple
+Vamos a necesitar una instancia EC2 para verificar que nuestro entorno se ha creado correctamente. 
+
+29. Nos vamos al panel EC2 y seleccionamos _Launch Instance_
+30. Definiremos los siguientes parámetros:
+* Name: lab1
+* Desplegamos Application and OS Images y seleccionamos Amazon Linux
+* Instance type: t2.micro
+* Key Pair (Login), creamos un nuevo key pair que llamaremos lab1. 
+	! Guardad bien este .pem, ya que lo utilizaremos en otras EC2s más adelante
+* Networkin Settings, seleccionamos el botón _Edit_ y escogemos nuestra VPC _main_vpc_yourname y la subnet _main_subnet_a. 
+	* Creamos un nuevo SG vacío (deshabilitar todos los checks) y lo llamaremos lab1
+* Finalmente desplegamos Advance Details y pegamos el siguiente código:
+```bash
+#!/bin/bash
+# Use this for your user data (script from top to bottom)
+# install httpd (Linux 2 version)
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
+```
+
+
+
+## Chequear la salida a internet
+
+Ahora que ya tenemos nuestro entorno montado, vamos a verificar que funciona correctamente:
+
+35. En el buscador de la consola escribimos EC2 y clicamos
+36. En buscador del dashboard de EC2 escribimos: lab1 y seleccionamos la instancia
+37. Copiamos la IP Pública de esta ec2 (Public IPV4), que encontraremos en la pestaña _Details_
+38. Desde vuestra terminal, tecleamos:
+```bash
+ping <ip_pública_ec2> 
+curl http://<ip_publica_ec2>
+```
+41. ¿Qué resultado obtienes?
+
+No podemos llegar a la EC2 con IP pública. ¿Cuál crees que es el movito?
+
+A pesar de haber definido las route table, hemos de recordar que no hemos modificado el Security Group, que por defecto, deniega todo tipo de tráfico hacia la instancia EC2.
+
+## Creamos los security groups
+42. Volvemos al panel de las EC2 y clicamos sobre nuestra instancia lab1.
+43. Clicamos sobre la pestaña Security y a continuación sobre el id del SG
+44. Sobre la pestaña Inbound, verificamos que no hay SG roules creadas
+45. Clicamos sobre el botón Edit Inbound roules y añadimos las reglas que nos permitan:
+	* Acceder por SSH. Recordad que el orígen debería estar limitado a una IP o rango de IPs (en este caso sería vuestro laptop)
+	* Puerto 80 y puerto 443. ¿Cual debería ser el orígen?
+	* Que nos permita hacer ping hacia la máquina
+
+46. Guardamos las nuevas reglas desde el botón _Save rules_
+47. Ahora comprobamos que las reglas outbound permiten todo el tráfico hacia fuera. Clicamos sobre la pestaña Outbound rules y verificamos que en Type tenemos "All traffic"
+
+## Verificamos la salida y entrada a internet
+48. De nuevo desde el terminal, comprueba los resultados al hacer:
+```bash
+ping <Public_IP>
+curl https://<Public_IP>
+````
+¿Qué resultado obtienes ahora? También puedes copiar el siguiente comando en el navegador
+```bash
+ http://<Public_IP>
+ ```
+ 
+49. Verificamos que podemos acceder a la instancia EC2 por SSH. Para ello, vamos a necesitar el fichero lab1.pem que hemos obtenido al crear la EC2.
+50. Desde el terminal, escribimos el siguiente comando: 
+```bash
+ssh -i "lab1.pem" ec2-user@<Públic IP>
+````
+
+

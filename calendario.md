@@ -26,8 +26,8 @@
 | 12 | Patching de Sistemas Operativos y administración de servidores                  | Delivery engineering, DevOps y observabilidad | 3     | Tasia  [R]    | 4/may  |
 | 13 | Patching de Sistemas Operativos y administración de servidores - Proyecto final | Proyecto final                                | 3     | Tasia  [R]    | 8/may  |
 | 14 | Diseño y creación de pipelines de CI/CD para infraestructura clásica            | Delivery engineering, DevOps y observabilidad | 3     | Javi          | 10/may |
-| 15 | Control y gestión de costes                                                     | Gobernanza                                    | 3     | Samu          | 15/may |
-| 16 | Arquitectura de aplicaciones asíncronas                                         | Aplicaciones cloud native                     | 3     | Javi          | 17/may |
+| 16 | Arquitectura de aplicaciones asíncronas                                         | Aplicaciones cloud native                     | 3     | Javi          | 15/may |
+| 15 | Control y gestión de costes                                                     | Gobernanza                                    | 3     | Samu          | 17/may |
 | 17 | Gobernanza integral de infraestructura cloud                                    | Gobernanza                                    | 6     | Samu          | 22/may |
 |    |                                                                                 |                                               |       | Samu          | 24/may |
 | 18 | Conceptos avanzados de Networking                                               | Aplicaciones cloud native                     | 3     | René          | 29/may |

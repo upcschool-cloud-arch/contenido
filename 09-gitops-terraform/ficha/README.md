@@ -24,24 +24,28 @@ gestión de infraestructura con el AWS CLI y, sobre todo, al uso de Terraform.
 
 ### Conceptos tratados
  
-- [ ] Infraestructura como Código
-- [ ] Lenguaje imperativo
-- [ ] Lenguaje declarativo
-- [ ] Automatización con scripts
-- [ ] Terraform
-- [ ] Terraform CLI
-- [ ] Proveedores
-- [ ] Variables
-- [ ] Outputs
-- [ ] Recursos
-- [ ] Bloques `data`
-- [ ] `terraform init`
-- [ ] `terraform fmt`
-- [ ] `terraform validate`
-- [ ] `terraform plan`
-- [ ] `terraform apply`
-- [ ] `terraform output`
-- [ ] `terraform apply -destroy`
+- [x] Infraestructura como Código
+- [x] Lenguaje imperativo
+- [x] Lenguaje declarativo
+- [x] Automatización con scripts
+- [x] Terraform
+- [x] Terraform CLI
+- [x] Proveedores
+- [x] Variables
+- [x] Outputs
+- [x] Recursos
+- [x] Bloques `data`
+- [ ] Backends
+- [x] `terraform init`
+- [x] `terraform fmt`
+- [x] `terraform validate`
+- [x] `terraform plan`
+- [x] `terraform apply`
+- [x] `terraform output`
+- [x] `terraform apply -destroy`
+### Quizzes
+
+* https://quizizz.com/admin/quiz/6454d4764dfa8f001e809d58
 
 ### Storytelling
 
