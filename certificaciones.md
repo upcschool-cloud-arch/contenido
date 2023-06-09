@@ -7,7 +7,7 @@
 * [Preguntas de ejemplo del examen de arquitectura (associate)](https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate_Sample-Questions.pdf)
 * [Terraform certification](https://www.hashicorp.com/certification/terraform-associate)
 
-## Páginas de Azure
+## Páginas de Azure (I know, sorry :)
 
 ### Documentación
 
