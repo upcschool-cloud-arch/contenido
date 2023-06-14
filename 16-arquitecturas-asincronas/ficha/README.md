@@ -44,9 +44,9 @@ por los *productores* en forma de *mensajes*, que posteriormente pueden ser proc
 - [x] FIFO
 - [x] Push vs Pull
 - [x] Long polling
-- [x] AmazonMQ (RabbitMQ, ActiveMQ)
-- [x] Kinesis streams
-- [x] AWS IoT Core (MQTT)
+- [ ] AmazonMQ (RabbitMQ, ActiveMQ)
+- [ ] Kinesis streams
+- [ ] AWS IoT Core (MQTT)
 
 
 ### Storytelling

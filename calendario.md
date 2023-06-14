@@ -43,7 +43,7 @@
 |    |                                                                                 |                                               |       | Rael          | 3/jul  |
 | 28 | Gobernanza en Kubernetes                                                        | Contenerización y Kubernetes                  | 2     | Rael          | 5/jul  |
 | 29 | Diseño y creación de pipelines de CI/CD en Kubernetes                           | Contenerización y Kubernetes                  | 2     | Rael          |        |
-| B  | Charla Tasia                                                                    | Delivery engineering, DevOps y observabilidad | 3     | Tasia  [R]    | 6/jul  |
+| B  | Charla Tasia                                                                    | Delivery engineering, DevOps y observabilidad | 3     | Tasia         | 6/jul  |
 |    |                                                                                 |                                               |       |               |        |
 | 30 | Proyecto final                                                                  | Proyecto final                                | 6     | ---           | 10/jul |
 |    |                                                                                 |                                               |       | ---           | 12/jul |
