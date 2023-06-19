@@ -10,7 +10,13 @@
   - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/12-patching-de-sistemas-operativos
   - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/19-gitops-cicd
 
-* Cloud native applications, parte 2 (26 de Junio TBC)
+* Cloud native applications, parte 2 (26 de Junio)
+  - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/10-caracteristicas-avanzadas-bd
+  - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/11-alta-disponibilidad-y-elasticidad
+  - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/16-arquitecturas-asincronas
+  - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/18-Conceptos-avanzados-de-Networking
+  - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/20-bases-de-datos-no-relacionales
+
 * Gobernanza + Kubernetes (10 de Julio TBC)
 
 ## Trabajo de final de Posgrado
