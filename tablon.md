@@ -16,6 +16,7 @@
   - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/16-arquitecturas-asincronas
   - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/18-Conceptos-avanzados-de-Networking
   - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/20-bases-de-datos-no-relacionales
+  - Implementación de planes de Disaster Recovery
 
 * Gobernanza + Kubernetes (10 de Julio TBC)
 
