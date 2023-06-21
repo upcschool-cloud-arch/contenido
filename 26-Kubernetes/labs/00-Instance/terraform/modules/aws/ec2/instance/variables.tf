@@ -19,8 +19,8 @@ variable "subnet" {
 
 variable "tcp_allowed_ingress" {
   description = "EC2 SG TCP ingress open ports"
-  type        = list
-  default     = [22]
+  type        = list(any)
+  default     = [22, 8080, 8888, 9999]
 }
 
 variable "instance_type" {

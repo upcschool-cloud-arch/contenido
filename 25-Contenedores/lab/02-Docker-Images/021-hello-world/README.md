@@ -179,7 +179,7 @@ cd /var/lib/docker/
 ```
 
 ```
-tree /var/lib/docker/overlay2/
+sudo tree /var/lib/docker/overlay2/
 ```
 
 ```

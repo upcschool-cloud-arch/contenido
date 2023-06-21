@@ -26,7 +26,19 @@ docker run --rm -p 8080:8080 ${REPOSITORY}:${TAG}
 Run the container in the background:
 
 ```
-docker run --rm -d -p 8080:8080 ${REPOSITORY}:${TAG}
+docker run --name hello --rm -d -p 8080:8080 ${REPOSITORY}:${TAG}
+```
+
+## View the containers logs
+
+```
+docker logs -f hello
+```
+
+## Spawn a shell into the containr
+
+```
+docker exec -ti hello /bin/sh
 ```
 
 ## Push the container
