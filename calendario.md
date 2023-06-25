@@ -30,8 +30,8 @@
 | 15 | Control y gestión de costes                                                     | Gobernanza                                    | 3     | Samu          | 17/may |
 | 17 | Gobernanza integral de infraestructura cloud                                    | Gobernanza                                    | 6     | Samu          | 22/may |
 |    |                                                                                 |                                               |       | Samu          | 24/may |
-| 18 | Conceptos avanzados de Networking                                               | Aplicaciones cloud native                     | 3     | René          | 29/may |
-| 19 | Infraestructura como código avanzada                                            | Delivery engineering, DevOps y observabilidad | 3     | Javi          | 31/may |
+| 19 | Infraestructura como código avanzada                                            | Delivery engineering, DevOps y observabilidad | 3     | Javi          | 29/may |
+| 18 | Conceptos avanzados de Networking                                               | Aplicaciones cloud native                     | 3     | René          | 31/may |
 | 20 | Bases de datos no-relacionales                                                  | Aplicaciones cloud native                     | 3     | Javi          | 1/jun  |
 | 21 | Conceptos avanzados de Networking - Proyecto final                              | Proyecto final                                | 3     | René          | 7/jun  |
 | 22 | Seguridad avanzada                                                              | Gobernanza                                    | 3     | Tasia  [R]    | 12/jun |
