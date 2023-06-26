@@ -62,7 +62,8 @@ The push refers to repository [docker.io/raelga/hello-world-nginx]
 96f80c66bc08: Pushed
 bdea7c663e86: Mounted from nginxdemos/hello-world-nginx
 1b22827e15b4: Mounted from nginxdemos/hello-world-nginx
-d9f50eaf56fa: Mounted from nginxdemos/hello-world-nginx
+d9f50eaf56fa:
+ Mounted from nginxdemos/hello-world-nginx
 2530717ff0bb: Mounted from nginxdemos/hello-world-nginx
 e7766bc830a8: Mounted from nginxdemos/hello-world-nginx
 cb411529b86f: Mounted from nginxdemos/hello-world-nginx
