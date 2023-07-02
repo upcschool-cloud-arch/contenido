@@ -15,7 +15,7 @@ module "ec2" {
   system_user         = "rael"
   github_user         = "raelga"
   instance_type       = "t3a.2xlarge"
-  tcp_allowed_ingress = [22, 80]
+  tcp_allowed_ingress = [22, 80, 30172]
 }
 
 # module "ec2" {
