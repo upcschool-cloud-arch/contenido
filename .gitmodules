@@ -1,0 +1,12 @@
+[submodule "26-Kubernetes/labs/06-deployments/k8s-deployment-strategies"]
+	path = 26-Kubernetes/labs/06-deployments/k8s-deployment-strategies
+	url = git@github.com:ContainerSolutions/k8s-deployment-strategies.git
+[submodule "26-Kubernetes/labs/06-deployments/--help"]
+	path = 26-Kubernetes/labs/06-deployments/--help
+	url = git@github.com:ContainerSolutions/k8s-deployment-strategies.git
+[submodule "26-Kubernetes/labs/06-deployments/labs/cs-deployment-strategies"]
+	path = 26-Kubernetes/labs/06-deployments/labs/cs-deployment-strategies
+	url = git@github.com:ContainerSolutions/k8s-deployment-strategies.git
+[submodule "26-Kubernetes/labs/06-Deployments/cs-deployment-strategies"]
+	path = 26-Kubernetes/labs/06-Deployments/cs-deployment-strategies
+	url = git@github.com:ContainerSolutions/k8s-deployment-strategies.git
