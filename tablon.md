@@ -18,7 +18,13 @@
   - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/20-bases-de-datos-no-relacionales
   - Implementación de planes de Disaster Recovery
 
-* Gobernanza + Kubernetes (10 de Julio TBC)
+* Gobernanza + Kubernetes (10 de Julio)
+  - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/01-autenticacion-y-autorizacion/ficha
+  - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/15-Control-y-Gestion-de-Costes/slides
+  - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/17-gobernanza-integral-de-infraestructura-cloud/slides
+  - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/22-Seguridad-Avanzada/ficha
+  - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/23-planes-de-migracion/slides
+  - Slides de Kubernetes
 
 ## Trabajo de final de Posgrado
 25/05/2023
