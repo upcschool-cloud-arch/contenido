@@ -42,11 +42,3 @@ kubectl apply -f https://raw.githubusercontent.com/raelga/kubernetes-talks/gb/gu
 ```
 kubectl get svc -w
 ```
-
-```
-export APP_URL=$(kubectl get -n default svc guestbook \
-    -o jsonpath="{.status.loadBalancer.ingress[*]['hostname']}") && \
-    echo http://${APP_URL}/
-while true; do curl -I ${APP_URL}; sleep 5; done;
-echo ${APP_URL}
-```

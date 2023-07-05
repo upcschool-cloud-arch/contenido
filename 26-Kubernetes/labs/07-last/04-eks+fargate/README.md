@@ -133,11 +133,16 @@ kubectl apply -f https://raw.githubusercontent.com/raelga/kubernetes-talks/gb/gu
 Doesn't work as Fargate requires a ALB or a NLB.
 
 ```
-kubectl patch service guestbook -p '{"spec":{"type":"NodePort"}}'
+kubectl patch service guestbook -p '{"spec":{"type":"NodePort"}}' && \
+kubectl get service guestbook
 ```
 
 ```
 kubectl apply -f guestbook-ingress.yaml
+```
+
+```
+k get ingress && k describe ingress gb
 ```
 
 Doesn't work either as AWS Load Balancer is a controller not deployed by default.
@@ -195,15 +200,27 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
 #### Review the AWS Load Balancer Controller logs
 
 ```
+kubectl get pods -n kube-system -w;
 kubectl logs -n kube-system -l app.kubernetes.io/name=aws-load-balancer-controller -f
 ```
 
+```
+export APP_URL=$(kubectl get ingress gb \
+    -o jsonpath="{.status.loadBalancer.ingress[*]['hostname']}") && echo https://${APP_URL}/;
+while true; do curl -I ${APP_URL}; sleep 5; done;
+echo ${APP_URL}
+```
 
 ### Install another app: the 2048 game
 
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.4/docs/examples/2048/2048_full.yaml
+```
+
+```
+k get pods -n game-2048 -w;
+k describe pods -n game-2048
 ```
 
 Doesn't work as Fargate requires a profile.
@@ -216,6 +233,10 @@ eksctl create fargateprofile \
     --namespace game-2048
 ```
 
+```
+k get pods,nodes -n game-2048 -w;
+```
+
 ### Add a node group for non-fargate workloads
 
 ```
@@ -224,7 +245,7 @@ eksctl create nodegroup --managed \
   --region ${EKSCTL_AWS_REGION}
 ```
 
-### Deploy a
+### Deploy Guestbook on a non-fargate namespace
 
 ```
 kubectl create namespace guestbook
@@ -235,13 +256,18 @@ kubectl apply -n guestbook -f https://raw.githubusercontent.com/raelga/kubernete
 k get pods -o wide -n guestbook
 ```
 
+
 ### eksctl cleanup
 
 ```bash
-aws --region ${EKSCTL_AWS_REGION} ec2 delete-key-pair --key-name EKS-eksctl-key
 aws iam delete-policy \
   --policy-arn=arn:aws:iam::$(aws sts get-caller-identity --query "Account" --output text):policy/AWSLoadBalancerControllerIAMPolicy
 eksctl delete cluster \
   --name ${EKSCTL_CLUSTER_NAME} \
+  --region ${EKSCTL_AWS_REGION}
+
+eksctl delete iamserviceaccount \
+  --name aws-load-balancer-controller \
+  --cluster ${EKSCTL_CLUSTER_NAME} \
   --region ${EKSCTL_AWS_REGION}
 ```

@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: plain.guestbook.rael.io
+    - host: plain.guestbook.kops.rael.io
       http:
         paths:
           - pathType: Prefix
