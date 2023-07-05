@@ -27,16 +27,22 @@ ssh-keygen -t rsa -N '' -b 4086 -C 'kops.talks.aws.rael.io ssh key pair' -f ~/.s
 ```bash
 kops create cluster \
     --name kops.talks.aws.rael.io \
-    --master-size t3.medium \
+    --master-size m5.medium \
     --master-count 3 \
     --master-zones eu-west-1a,eu-west-1b \
     --node-count 3 \
-    --node-size t3.medium \
+    --node-size m5.medium \
     --zones eu-west-1a,eu-west-1b \
     --state s3://kops-s3.talks.aws.rael.io \
     --ssh-public-key ~/.ssh/kops_rsa.pub \
     --yes && \
     while true; do kops validate cluster && break || sleep 30; done;
+```
+
+### Kubeconfig
+
+```
+kops export kubeconfig
 ```
 
 ### Destroy the cluster once finished
