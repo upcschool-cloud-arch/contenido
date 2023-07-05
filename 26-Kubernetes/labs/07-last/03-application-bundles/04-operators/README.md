@@ -1,5 +1,5 @@
 
-### Install Grafana Operator
+### Install Grafana
 
 ```
 helm upgrade -i grafana-operator oci://ghcr.io/grafana-operator/helm-charts/grafana-operator --namespace monitoring --version v5.0.0
