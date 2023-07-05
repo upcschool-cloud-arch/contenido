@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: plain.guestbook.rael.io
+    - host: plain.kops.rael.io
       http:
         paths:
           - pathType: Prefix
@@ -18,7 +18,7 @@ spec:
                 name: guestbook-np
                 port:
                   number: 80
-    - host: ssl.guestbook.rael.io
+    - host: ssl.kops.rael.io
       http:
         paths:
           - pathType: Prefix
@@ -30,8 +30,8 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - ssl.guestbook.rael.io
-      secretName: ssl.guestbook.rael.io-cert
+        - ssl.kops.rael.io
+      secretName: ssl.kops.rael.io-cert
 ---
 kind: Service
 apiVersion: v1

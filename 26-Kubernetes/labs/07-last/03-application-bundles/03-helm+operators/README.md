@@ -37,7 +37,7 @@ helm install kops oci://ghcr.io/nginxinc/charts/nginx-ingress --version 0.18.0
 ### Deploy the Guestbook Nginx ingress
 
 ```
-guestbook-http-ingress.yaml
+kubectl apply -f guestbook-http-ingress.yaml
 ```
 
 ### Fetch ExternalDNS
@@ -95,7 +95,7 @@ kubectl apply -f letsencrypt-production-clusterissuer.yaml
 ### Add Let's Encrypt TLS to the Guestbook ingress
 
 ```
-kubectl apply -f guestbook-letsencrypt-ingress.yaml
+kubectl apply -f guestbook-letsencrypt-production-ingress.yaml
 ```
 
 ```
