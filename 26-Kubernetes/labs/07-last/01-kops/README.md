@@ -29,10 +29,10 @@ kops create cluster \
     --name kops.talks.aws.rael.io \
     --master-size m5a.large \
     --master-count 3 \
-    --master-zones eu-west-1a,eu-west-1b \
+    --master-zones eu-west-1a,eu-west-1b,eu-west-1c \
     --node-count 3 \
     --node-size m5a.large \
-    --zones eu-west-1a,eu-west-1b \
+    --zones eu-west-1a,eu-west-1b,eu-west-1c \
     --state s3://kops-s3.talks.aws.rael.io \
     --ssh-public-key ~/.ssh/kops_rsa.pub \
     --yes && \
