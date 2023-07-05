@@ -20,7 +20,7 @@ import (
 )
 
 var (
-	version     = "v2.0.0"
+	version     = os.Getenv("VERSION")
 	addr        = flag.String("listen-address", ":8080", "The address to listen on for HTTP requests.")
 	probeAddr   = flag.String("probe-address", ":8086", "The address to listen on for probe requests.")
 	metricsAddr = flag.String("metrics-address", ":9101", "The address to listen on for Prometheus metrics requests.")

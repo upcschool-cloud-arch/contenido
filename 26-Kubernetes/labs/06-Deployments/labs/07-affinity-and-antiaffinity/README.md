@@ -17,7 +17,7 @@ kubectl get nodes -o name
 ### Add the node name
 
 ```
-kubectl patch deployment hostname-node-selector -p '{"spec":{"template":{"spec":{"nodeName":"_______________________"}}}}'
+kubectl patch deployment hostname-node-selector -p '{"spec":{"template":{"spec":{"nodeName":"gke-k8s-gke-default-pool-4c243126-zvlt"}}}}'
 ```
 
 ### Test the node affinity

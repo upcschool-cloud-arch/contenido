@@ -3,7 +3,7 @@
 all: test-all build
 
 build:
-	docker build --no-cache -t raelga/k8s-deployment-strategies:v2.0.0 .
+	docker build --no-cache -t raelga/k8s-deployment-strategies:latest .
 
 test-all: vet lint test
 

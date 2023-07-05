@@ -6,7 +6,7 @@ kubectl apply -f mysql-sts.yaml
 ```
 
 ```
-kubectl get pvc,pv,storageclass
+kubectl get -n default pvc,pv,storageclass
 ```
 
 ### Ephemeral Containers
