@@ -12,7 +12,7 @@ metadata:
 spec:
   ingressClassName: "nginx"
   rules:
-    - host: plain.argocd.rael.io
+    - host: argo.kops.rael.io
       http:
         paths:
           - path: /
@@ -22,7 +22,7 @@ spec:
                 name: argocd-server
                 port:
                   name: https
-    - host: ssl.argocd.rael.io
+    - host: argossl.kops.rael.io
       http:
         paths:
           - path: /
@@ -34,5 +34,5 @@ spec:
                   name: https
   tls:
     - hosts:
-        - ssl.argocd.rael.io
-      secretName: ssl.argocd.rael.io-cert
+        - argossl.kops.rael.io
+      secretName: argossl.kops.rael.io-cert
