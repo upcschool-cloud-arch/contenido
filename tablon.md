@@ -24,7 +24,8 @@
   - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/17-gobernanza-integral-de-infraestructura-cloud/slides
   - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/22-Seguridad-Avanzada/ficha
   - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/23-planes-de-migracion/slides
-  - Slides de Kubernetes
+  - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/25-Contenedores
+  - https://github.com/upcschool-cloud-arch/edicion-1-contenido/tree/main/26-Kubernetes
 
 ## Trabajo de final de Posgrado
 25/05/2023
