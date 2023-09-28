@@ -1,11 +1,6 @@
 
 # Extra ball
 
-## Contenido extra de S3
-
-UPC Campus Talent -> Sesión 15 de febrero -> 2o vídeo (https://campus.talent.upc.edu/activitat/PLYpZQXaR1lnrykJL59b0mDGJ7y4ro/aules/~b1V6emlGKzd5MlU9/material/)
-
-
 ## Additional learning resources
 
 * The [Transfer Family](https://aws.amazon.com/aws-transfer-family/) is a practical way to add
