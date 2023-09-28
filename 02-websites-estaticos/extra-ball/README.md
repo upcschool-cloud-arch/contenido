@@ -21,6 +21,7 @@ a very simple way to generate *share links* for S3 objects.
 * William Thelen has an extremely nice collection of study cards (flashcards). You will find several about
 [S3](https://quizlet.com/516736315/aws-amazon-s3-flash-cards/), [Athena](https://quizlet.com/517204816/advanced-amazon-s3-and-athena-flash-cards/) and the [Snowball family](https://quizlet.com/518465877/aws-storage-extras-flash-cards/).
 * Sooner or later, you will find yourself in a [data lake](https://en.wikipedia.org/wiki/Data_lake) project. [Building and operating a data lake on AWS S3](https://www.youtube.com/watch?v=YCNVdK5kPWk) provides a good introduction to the topic.
+* Excellent presentation about the [history and the different tiers of S3](https://d1.awsstatic.com/events/reinvent/2021/New_Launch_Introducing_the_Amazon_S3_Glacier_Instant_Retrieval_storage_class_STG214.pdf), from re:invent 2021.
 
 ## Additional labs
 
