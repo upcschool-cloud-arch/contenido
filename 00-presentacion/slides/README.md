@@ -101,10 +101,6 @@ Al finalizar el posgrado, **cada equipo** presentará un trabajo final.
 
 ![Surprised man, by Andrea Piacquadio, https://www.pexels.com/photo/man-in-red-polo-shirt-3779453/](https://images.pexels.com/photos/3779453/pexels-photo-3779453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)
 
-Cada equipo escribirá un **diario de trabajo**, en el que se reflejen los
-ejercicios realizados (pequeñas explicaciones sobre su propósito, 
-capturas de pantalla, algún detalle que haya parecido interesante, dudas surgidas, etc)
-
 Conforme avance el curso, **cada equipo elegirá un tema** que le interese
 y profundizará en él. El resultado de este último elemento se presentará
 al resto de la clase.
@@ -119,28 +115,8 @@ Cada equipo tendrá un tutor asignado. Su responsabilidad principal consistirá
 en **ayudar a definir el proyecto** de final de posgrado y facilitar la resolución
 de dudas.
 
-También comprobará que el diario de trabajo se mantiene actualizado
-y con contenido relevante.
-
 [](.illustration.powerlist)
 
-## Equipos semipresencial
-
-![Group silhoutte, by Dennis magati, https://www.pexels.com/photo/silhouette-of-four-people-against-sun-background-862848/](https://images.pexels.com/photos/862848/pexels-photo-862848.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)
-
-* Oriol Matavacas, Arnau Beltrà, Víctor Ruiz, Joan Lorenzo
-* Laura Pena, Alex Carod, David Criado, Florentino Roces
-* Jonatan J. Cantarino, David del Prado, Antonio F. De La Torre, Daniel Picó
-
-[](.illustration.powerlist)
-
-## Equipos remotos
-
-![Group slhoutte, by vjapratana, https://www.pexels.com/photo/silhouette-of-people-jumping-935835/](https://images.pexels.com/photos/935835/pexels-photo-935835.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)
-
-* Raúl Barral, Bruno Orcha, Santiago Romeu, Felipe A. Ramírez
-* Santiago Scalzadonna, Isaac Ramírez, Miguel A. Almazán,  José F. Olivert
-* Joel Vilaboa, Beatriz Gonzalez, Miriam Gallardo, Erick A. Gómez, Cristina Cervera
 
 [](.illustration)
 
