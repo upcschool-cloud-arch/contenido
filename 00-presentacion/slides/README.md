@@ -17,7 +17,7 @@ Es importante que os paséis por **#presentaciones** para que nos conozcamos mej
 Cada asignatura tendrá un canal que empezará por **#asign-** donde discutir dudas
 y comentar el contenido
 
-Los equipos deberían crear un canal para cada uno, con el prefijo **#team-**
+Por equipos, cread un canal con el nombre **#team-ed02-X**
 
 Por supuesto, siempre tendremos los buenos viejos **#general** **y #random**
 
@@ -30,24 +30,19 @@ Por supuesto, siempre tendremos los buenos viejos **#general** **y #random**
 ### /upcschool-cloud-arch
 
 En esta *organization* encontraréis el respositorio con el material necesario
-para seguir el curso (**edicion-1-contenido**) y crearemos otro para cada
-uno de los equipos (**edicion-1-team-YYYY**).
+para seguir el curso (**contenido**)
 
 ¡Esperamos vuestras **pull requests** al repo compartido para mejorar entre
 todos el material!
 
 [](.illustration)
 
-## ▒▒▒▒▒▒▒▒ ▒▒▒
+## Workstation
 
 ![Misterious door with a quotation mark, by Minator Yang, https://unsplash.com/photos/ZzQeYkwpv_c](https://images.unsplash.com/photo-1624811072711-3e3481f355fd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=903&q=80)
 
-
-▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ **▒▒▒▒▒** ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒▒▒▒▒▒▒ ▒▒ ▒▒▒
-▒▒▒ ▒▒▒▒▒▒▒▒▒ **▒▒▒▒▒▒▒▒** ▒▒▒▒▒
-
-
-▒▒▒▒▒ ▒▒▒▒ ▒ ▒▒▒▒▒▒▒▒▒▒ ▒▒▒ ▒▒▒ **▒▒▒**!
+Para facilitar la **colaboración**, cada equipo dispondrá de una workstation que permitirá de una forma sencilla
+interactuar contra los mismos recursos
 
 [](.illustration)
 
@@ -71,16 +66,16 @@ curso.
 
 ![Woman using a tablet, photo by Marek Levak, https://www.pexels.com/photo/woman-sitting-beside-table-while-using-ipad-2265482/](https://images.pexels.com/photos/2265482/pexels-photo-2265482.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)
 
-### talent.upc.edu/
+### talent.upc.edu
 
-Es la plataforma oficial de la UPC School para gestionar los cursos.
+Es la plataforma oficial de la UPC School para gestionar los cursos
 
-Incluye un **sistema de mensajería** que puede utilizarse. O no.
+Incluye un **sistema de mensajería** que puede utilizarse. O no
 
 Los **vídeos de las sesiones** serán publicados en ella al día siguiente
-de llevarse a cabo la clase.
+de llevarse a cabo la clase
 
-También podréis consultar **las notas** de cada examen y la nota final.
+También podréis consultar **las notas** de cada examen y la nota final
 
 [](.illustration)
 
@@ -89,11 +84,11 @@ También podréis consultar **las notas** de cada examen y la nota final.
 ![Woman surprised, by Andrea Piacquadio, https://www.pexels.com/photo/woman-in-gray-tank-top-covering-her-face-with-her-hand-3812752/](https://images.pexels.com/photos/3812752/pexels-photo-3812752.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)
 
 Por la dinámica general de la UPC y sobre todo porque trabajaréis en equipo, 
-**la asistencia es obligatoria** (80% del total de horas).
+**la asistencia es obligatoria** (80% del total de horas)
 
-Cada asignatura tendrá **uno o dos exámenes**, dependiendo de su extensión.
+Cada asignatura tendrá **uno o dos exámenes**, dependiendo de su extensión
 
-Al finalizar el posgrado, **cada equipo** presentará un trabajo final.
+Al finalizar el posgrado, **cada equipo** presentará un trabajo final
 
 [](.illustration)
 
@@ -102,8 +97,9 @@ Al finalizar el posgrado, **cada equipo** presentará un trabajo final.
 ![Surprised man, by Andrea Piacquadio, https://www.pexels.com/photo/man-in-red-polo-shirt-3779453/](https://images.pexels.com/photos/3779453/pexels-photo-3779453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)
 
 Conforme avance el curso, **cada equipo elegirá un tema** que le interese
-y profundizará en él. El resultado de este último elemento se presentará
-al resto de la clase.
+y profundizará en él
+
+El resultado de este último elemento se presentará al resto de la clase
 
 [](.illustration)
 
@@ -113,9 +109,7 @@ al resto de la clase.
 
 Cada equipo tendrá un tutor asignado. Su responsabilidad principal consistirá
 en **ayudar a definir el proyecto** de final de posgrado y facilitar la resolución
-de dudas.
-
-[](.illustration.powerlist)
+de dudas
 
 
 [](.illustration)
@@ -125,13 +119,13 @@ de dudas.
 ![Group of kids surrounded by televisions, by Cottonbro Studio, https://www.pexels.com/photo/woman-in-black-and-white-stripe-shirt-sitting-on-chair-4842494/](https://images.pexels.com/photos/4842494/pexels-photo-4842494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)
 
 Trabajamos en una empresa clásica cuyos mejores días ya han pasado: **cada vez es menos
-competitiva** y tiene problemas para seguir el ritmo de innovación de la competencia.
+competitiva** y tiene problemas para seguir el ritmo de innovación de la competencia
 
 Despidieron al antiguo director ejecutivo, y **el nuevo CEO quiere cambiar la cultura**
-existente por una más ágil e innovadora.
+existente por una más ágil e innovadora
 
 El departamento de IT ha recibido el mandato de evolucionar **desde los data centers 
-on-premises existentes al cloud público**.
+on-premises existentes al cloud público**
 
 
 [](.coverbg)
