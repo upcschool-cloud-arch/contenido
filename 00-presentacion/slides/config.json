@@ -1,8 +1,0 @@
-{
-    "content": "README.md",
-    "styles": ["css/alyssum.css", "css/local.css"],
-    "processors": [
-        "hiddenSlidesProcessor"
-    ],
-    "script": ""
-}
