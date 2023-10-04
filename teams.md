@@ -18,23 +18,23 @@
 
 ### Team 3
 
-* Jitsi: https://meet.jit.si/cloud-arch-team2
+* Jitsi: https://meet.jit.si/cloud-arch-team3
 * Participantes: María Gil, Tamara Ruíz, Mirko Vitale.
 
 ## Online
 
 ### Team 4
 
-* Jitsi: https://meet.jit.si/cloud-arch-team3
+* Jitsi: https://meet.jit.si/cloud-arch-team4
 * Participantes: Marc Grau, Javier Fernández, Francesc Fons, Lara Gómez.
 
 ### Team 5
 
-* Jitsi: https://meet.jit.si/cloud-arch-team4
+* Jitsi: https://meet.jit.si/cloud-arch-team5
 * Participantes: Adrian Feria, Xavier González, Diego López, Ivan Margarit.
 
 ### Team 6
 
-* Jitsi: https://meet.jit.si/cloud-arch-team5
-* Participantes: Alex Pérez, Joan Pont, Marc Masramón, Edgar Roballo.
+* Jitsi: https://meet.jit.si/cloud-arch-team6
+* Participantes: Alex Pérez, Joan Pont, Marc Masramón, Edgar Roballo, Omar Jesús Pérez.
 
