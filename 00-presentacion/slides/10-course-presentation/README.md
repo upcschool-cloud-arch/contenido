@@ -43,8 +43,11 @@ todos el material!
 
 **teamX-workstation.aprender.cloud**
 
-Para facilitar la **colaboración**, cada equipo dispondrá de una workstation que permitirá de una forma sencilla
-interactuar contra los mismos recursos
+Para facilitar la **colaboración**, cada equipo dispondrá de una workstation que permitirá de una forma sencilla interactuar contra los mismos recursos
+
+* /vscode (IDE)
+* /vscode/proxy/7681 (terminal)
+* /firefox (navegador)
 
 [](.illustration)
 
