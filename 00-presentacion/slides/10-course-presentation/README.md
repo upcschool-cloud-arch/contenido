@@ -17,7 +17,7 @@ Es importante que os paséis por **#presentaciones** para que nos conozcamos mej
 Cada asignatura tendrá un canal que empezará por **#asign-** donde discutir dudas
 y comentar el contenido
 
-Por equipos, cread un canal con el nombre **#team-ed02-X**
+Por equipos, cread un canal con el nombre **#team-2X**
 
 Por supuesto, siempre tendremos los buenos viejos **#general** **y #random**
 
@@ -40,6 +40,8 @@ todos el material!
 ## Workstation
 
 ![Misterious door with a quotation mark, by Minator Yang, https://unsplash.com/photos/ZzQeYkwpv_c](https://images.unsplash.com/photo-1624811072711-3e3481f355fd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=903&q=80)
+
+**teamX-workstation.aprender.cloud**
 
 Para facilitar la **colaboración**, cada equipo dispondrá de una workstation que permitirá de una forma sencilla
 interactuar contra los mismos recursos
@@ -76,6 +78,18 @@ Los **vídeos de las sesiones** serán publicados en ella al día siguiente
 de llevarse a cabo la clase
 
 También podréis consultar **las notas** de cada examen y la nota final
+
+[](.illustration)
+
+## Plataforma de colaboración
+
+![Gather town illustration](images/gather.png)
+
+### gather.town
+
+Es una innovadora aproximación a la videoconferencia que
+facilita mucho las **dinámicas de grupo**, fundamentales en
+un posgrado práctico como este
 
 [](.illustration)
 
