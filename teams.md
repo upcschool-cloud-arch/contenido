@@ -1,5 +1,9 @@
 # Equipos
 
+## Gather Town
+
+* Link: https://app.gather.town/invite?token=if8oB5zCQhufwxFy9CuX
+
 ## Semipresencial
 
 ### Team 1
