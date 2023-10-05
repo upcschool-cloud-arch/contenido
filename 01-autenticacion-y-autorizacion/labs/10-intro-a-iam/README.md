@@ -65,11 +65,6 @@ aws sts get-caller-identity
 ### Preparación
 
 * Acceder al servicio de [Cloudshell](https://aws.amazon.com/cloudshell/)
-* Iniciar o compartir una sesión de `tmux`
-
-```bash
-tmux --attach || tmux
-```
 
 ### Comprobar las credenciales actuales
 
