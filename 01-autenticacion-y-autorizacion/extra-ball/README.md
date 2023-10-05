@@ -13,6 +13,6 @@ mechanisms works in AWS (requires some additional knowledge about resources like
 
 * [Unauthorized IAM Credential Use - Simulation and Detection](https://catalog.us-east-1.prod.workshops.aws/workshops/6a8ad836-10a6-4694-9a3b-f53f193041de/en-US)
 is a fantastic and not very difficult lab that resemebles an intrussion detection forensic process
-* [Advanced IAM workshop](../labs/60-advanced-iam-alb) is and additional lab intended to help the student understand how the assume role process work
+* [Advanced IAM workshop](../labs/60-advanced-iam-lab) is and additional lab intended to help the student understand how the assume role process work
 * [Automated IAM user cleanup](https://www.wellarchitectedlabs.com/security/200_labs/200_automated_iam_user_cleanup/) will guide you through the process of
 automatically analyizing unused IAM credentials
