@@ -41,24 +41,3 @@ echo $AWS_CONTAINER_AUTHORIZATION_TOKEN
 curl -H "Authorization: $AWS_CONTAINER_AUTHORIZATION_TOKEN" $AWS_CONTAINER_CREDENTIALS_FULL_URI
 ```
 
-## Ejecutar una petición a un servicio en AWS
-
-* Invoca el servicio `STS` para obtener información sobre la identidad actual
-
-```bash
-aws sts get-caller-identity
-```
-
-* Reproduce la misma llamada, pero obteniendo información de depuración
-
-```bash
-aws sts get-caller-identity --debug
-```
-
-* Envía la salida detallada del comando al fichero `output.txt` para su posterior análisis
-
-```bash
-aws sts get-caller-identity --debug 2> output.txt
-```
-
-* Localiza en el fichero `output.txt` las credenciales mostradas anteriormente.
