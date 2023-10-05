@@ -1,22 +1,5 @@
 # CloudShell e IAM
 
-## Conceptos
-
-* Credenciales de usuario
-* AWS Command Line Interface (CLI)
-* IAM Policies
-* CloudShell
-* Temporal credentials
-* Security Token Service (STS)
-* Containers credentials service
-* Access key
-* Secret key
-* Session token
-* Boto
-* AWS CLI
-* Servicio de metadata
-
-
 ## Preparación
 
 * Acceder al servicio de [Cloudshell](https://aws.amazon.com/cloudshell/)
