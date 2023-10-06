@@ -53,7 +53,7 @@ NAME=PON_AQUI_LO_QUE_TU_QUIERAS
 
 ```bash
 terraform init
-terraform apply -var owner=$NAME
+terraform apply -var owner=$NAME -var region=us-east-1 -auto-approve
 ```
 
 
