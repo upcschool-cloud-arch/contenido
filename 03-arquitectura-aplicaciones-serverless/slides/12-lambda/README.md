@@ -34,12 +34,13 @@ You are only billed for what you use. Billing for a Lambda function starts when 
 
 ![imagen](./images/05.png)
 
-Lambda billing (us-east-1 ARM)
-$0.0000133334 per GB-second
-$0.20 per 1 Million requests
-Free tier
-1 M invocations per month
-400,000 GB-Seconds of compute per month
+#### Lambda billing (us-east-1 ARM)
+
+- $0.0000133334 per GB-second
+- $0.20 per 1 Million requests
+- Free tier
+  - 1 M invocations per month
+  - 400,000 GB-Seconds of compute per month
 
 ## Anatomy of a Lambda function
 
