@@ -12,7 +12,7 @@ El objetivo de este primer laboratorio será familiarizarnos con la creación de
 3. De momento solo queremos crear nuestra VPC, por lo que seleccionaremos VPC only y escribimos el nombre de nuestra VPC en _Name tag_: main_vpc_\*yourname\* 
 4. Seleccionamos IPv4 CIDR manual input y tenancy _Default_. Introducimos el rango: 172.31.0.0/16
 5. En _add tag_ escribimos la key:Lab, value:1 y clicamos sobre _Create VPC_:
-6. Verificamos que se ha creado correctamente
+6. Verificamos que se ha creado correctamente revisando el listado de VPCs. Nota: verificad que aparece el nombre asignado. En caso contrario, podéis introducirlo manualmente a través del lápiz que aparece en el campo _Name_  <img src="https://lab1ester.s3.amazonaws.com/name_vpc.PNG">
 
 ## Creación de las subnets
 
