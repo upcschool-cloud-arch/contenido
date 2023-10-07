@@ -11,7 +11,7 @@ El objetivo de este primer laboratorio será familiarizarnos con la creación de
 2. Click sobre el botón _Create VPC_
 3. De momento solo queremos crear nuestra VPC, por lo que seleccionaremos VPC only y escribimos el nombre de nuestra VPC en _Name tag_: main_vpc_\*yourname\* 
 4. Seleccionamos IPv4 CIDR manual input y tenancy _Default_. Introducimos el rango: 172.31.0.0/16
-5. En _add tag_ escribimos la clave-valor: Lab 1 y clicamos sobre _Create VPC_.
+5. En _add tag_ escribimos la key:Lab, value:1 y clicamos sobre _Create VPC_:
 6. Verificamos que se ha creado correctamente
 
 ## Creación de las subnets
