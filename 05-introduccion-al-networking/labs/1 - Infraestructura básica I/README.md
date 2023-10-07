@@ -56,7 +56,7 @@ En este punto veremos que ya tenemos creado nuestro Internet Gateway, pero no se
 
 En este momento, **aún no se han establecido las rutas necesarias para poder acceder a internet**. Para ello, crearemos una Custom Route Table que asociaremos de **forma explícita** a la subnet pública (main_subnet_a).
 
-24. Crearemos una route table custom asociada a nuestra VPC principal. En el panel de VPC, seleccionamos _Route Table_.
+24. Crearemos una route table custom asociada a nuestra VPC principal. En el dashboard general de VPC, seleccionamos _Route Table_ (menú izquierda, debajo de Subnets).
 25. Clicamos sobre el botón _Create Route Table_ (arriba al derecha)
 26. El nombre de route table custom será: Custom_Main_Route_Table y añadiremos la etiqueta: Key: Lab, Value: 1. Seleccionamos la VPC main_vpc_\*yourname\*
 27. En el menú Route Tables, clicamos sobre la route table que acabamos de crear y seleccionamos la pestaña Routes
