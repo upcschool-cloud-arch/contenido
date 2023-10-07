@@ -64,19 +64,22 @@ En este momento, **aún no se han establecido las rutas necesarias para poder ac
 * Destination: 0.0.0.0/0  Target: id del Internet Gatewat creado (main_internet_gateway)
 * La destinación local debería aparecer por defecto.
 ** Destination: 172.31.0.0/24 y target: local
+29. A continuación, tendremos que realizar la **asociación explícita** para que la subnet utilice nuestro custom route table en lugar de la route table generada por defecto en la VPC.
+30. En el panel _Route Tables_ seleccionamos Custom_main_route_table y clicamos a la pestaña _Subnet associations_
+31. Sobre el apartado _Explicit subnet associations_, clicamos en _Edit subnet associations_ y seleccionamos nuestra subnet pública, main_subnet_a y clicamos sobre _Save associations_.
 
 ## Crear una EC2 simple
 Vamos a necesitar una instancia EC2 para verificar que nuestro entorno se ha creado correctamente. 
 
-29. Nos vamos al panel EC2 y seleccionamos _Launch Instance_
-30. Definiremos los siguientes parámetros:
+32. Nos vamos al panel EC2 y seleccionamos _Launch Instance_
+33. Definiremos los siguientes parámetros:
 * Name: lab1
 * Desplegamos _Application and OS Images_ y seleccionamos Amazon Linux. Veréis que por defecto, selecciona una AMI gratuita.
 * Instance type: t2.micro
 * Key Pair (Login), creamos un nuevo key pair que llamaremos lab1. Clicar sobre _Create new key pair_ .
   **IMPORTANTE**: Guardad bien este .pem, ya que lo utilizaremos en otras EC2s más adelante
 * _Networkin Settings_, seleccionamos el botón _Edit_ y escogemos nuestra VPC _main_vpc_yourname y la subnet _main_subnet_a. Dejamos el valor "Enable" el desplegable _Auto assign public IP_ .
-       	* Creamos un nuevo SG vacío y lo llamaremos lab1.
+       	* Creamos un nuevo SG vacío y lo llamaremos lab1. Quitad todos los checks de las reglas sugeridas.
 * Finalmente desplegamos _Advance Details_ y pegamos el siguiente código:
 ```bash
 #!/bin/bash
@@ -88,7 +91,7 @@ systemctl start httpd
 systemctl enable httpd
 echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
 ```
-
+34. Dejamos el resto de campos tal como estan y clicamos sobre el botón _Launch instances_
 
 
 ## Chequear la salida a internet
@@ -103,26 +106,26 @@ Ahora que ya tenemos nuestro entorno montado, vamos a verificar que funciona cor
 ping <ip_pública_ec2> 
 curl http://<ip_publica_ec2>
 ```
-41. ¿Qué resultado obtienes?
+39. ¿Qué resultado obtienes?
 
 No podemos llegar a la EC2 con IP pública. ¿Cuál crees que es el movito?
 
-A pesar de haber definido las route table, hemos de recordar que no hemos modificado el Security Group, que por defecto, deniega todo tipo de tráfico hacia la instancia EC2.
+A pesar de haber definido las route table, **recordad que no hemos añadido reglas al Security Group que acabamos de crear**. Como hemos visto en la sesión, los SG por defecto deniega el inbound a los recursos, que en este caso es nuestra EC2.
 
 ## Creamos los security groups
-42. Volvemos al panel de las EC2 y clicamos sobre nuestra instancia lab1.
-43. Clicamos sobre la pestaña Security y a continuación sobre el id del SG
-44. Sobre la pestaña Inbound, verificamos que no hay SG roules creadas
-45. Clicamos sobre el botón Edit Inbound roules y añadimos las reglas que nos permitan:
+40. Volvemos al panel de las EC2 y clicamos sobre nuestra instancia lab1.
+41. Clicamos sobre la pestaña Security y a continuación sobre el id del SG
+42. Sobre la pestaña Inbound, verificamos que no hay SG roules creadas
+43. Clicamos sobre el botón _Edit Inbound roules_ y añadimos las reglas que nos permitan:
 	* Acceder por SSH. Recordad que el orígen debería estar limitado a una IP o rango de IPs (en este caso sería vuestro laptop)
 	* Puerto 80 y puerto 443. ¿Cual debería ser el orígen?
-	* Que nos permita hacer ping hacia la máquina
+	* Hacer ping hacia a nuestra EC2.
 
-46. Guardamos las nuevas reglas desde el botón _Save rules_
-47. Ahora comprobamos que las reglas outbound permiten todo el tráfico hacia fuera. Clicamos sobre la pestaña Outbound rules y verificamos que en Type tenemos "All traffic"
+44. Guardamos las nuevas reglas desde el botón _Save rules_ .
+45. Comprobar que las reglas outbound permiten todo el tráfico hacia fuera. Clicamos sobre la pestaña Outbound rules y verificamos que en Type tenemos "All traffic".
 
 ## Verificamos la salida y entrada a internet
-48. De nuevo desde el terminal, comprueba los resultados al hacer:
+46. De nuevo desde el terminal, comprueba los resultados al hacer:
 ```bash
 ping <Public_IP>
 curl https://<Public_IP>
@@ -132,8 +135,8 @@ curl https://<Public_IP>
  http://<Public_IP>
  ```
  
-49. Verificamos que podemos acceder a la instancia EC2 por SSH. Para ello, vamos a necesitar el fichero lab1.pem que hemos obtenido al crear la EC2.
-50. Desde el terminal, escribimos el siguiente comando: 
+47. Verificamos que podemos acceder a la instancia EC2 por SSH. Para ello, vamos a necesitar el fichero lab1.pem que hemos obtenido al crear la EC2.
+48. Desde el terminal, escribimos el siguiente comando: 
 ```bash
 ssh -i "lab1.pem" ec2-user@<Públic IP>
 ````
