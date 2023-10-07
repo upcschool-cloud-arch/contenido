@@ -49,10 +49,10 @@ En este punto veremos que ya tenemos creado nuestro Internet Gateway, pero no se
 
 ## Creación de la route table
 
-20. En el panel Your VPCs, clicamos sobre nuestra Main VPC
+20. En el panel Your VPCs, clicamos sobre nuestra Main VPC.
 21. En la pestaña _details_, podemos ver que nuestra VPC ya tiene por defecto, una route table principal. Si clicamos sobre el identificador, podemos ver el detalle.
-22. Clicamos sobre la pestaña _Routes_ y vemos que tenemos la ruta local hacia nuestra VPC: 172.31.0.0/16. Las subnets que forman parte de esta VPC y no tienen una asociación explítica con otra route table, seguirán las routas de la principal (implícita)
-23. Si clicamos sobre la pestaña _Subnets_, veremos que las subnets que hemos creado en los puntos anteriores se encuentras asociadas de forma implícita a esta route table.
+22. Clicamos sobre la pestaña _Routes_ y vemos que tenemos la ruta local hacia nuestra VPC: 172.31.0.0/16. Las subnets que forman parte de esta VPC y no tienen una asociación explítica con otra route table, seguirán las routas de la principal (implícita).
+23. Si clicamos sobre la pestaña _Subnets_, veremos que las subnets que hemos creado en los puntos anteriores se encuentras asociadas de forma implícita a esta route table (Implícita = _Subnets without explicit association_).
 
 En este momento, aún no se han establecido las rutas necesarias para poder acceder a internet. Para ello, crearemos una Custom Route Table que asociaremos a la subnet pública (main_subnet_a).
 
