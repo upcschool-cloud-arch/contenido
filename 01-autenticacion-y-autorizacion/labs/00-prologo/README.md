@@ -49,11 +49,11 @@ cd workstation/src
 NAME=PON_AQUI_LO_QUE_TU_QUIERAS
 ```
 
-* Pide que se inicialice el proyecto y que despliegue la aplicación. Recuerda contestar `yes` cuando te pregunte si deseas continuar
+* Pide que se inicialice el proyecto y que despliegue la aplicación.
 
 ```bash
 terraform init
-terraform apply -var owner=$NAME -var region=us-east-1 -auto-approve
+terraform apply -var owner=$NAME -var region=$AWS_REGION -auto-approve
 ```
 
 
