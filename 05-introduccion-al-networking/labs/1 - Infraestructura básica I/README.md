@@ -33,18 +33,18 @@ _Subnet Name_: main_subnet_a y seleccionaremos la AZ correspondiente (región-1a
 Nuestra subnet pública será la main_subnet_a, que en este momento cuenta con un rango privado de IPs. Para darle características de subnet pública, vamos a autoasignar IPs públicas.
 
 13. En el dashboard de VPCs, clicamos sobre la Subnets y seleccionamos _main_subnet_a_ 
-14. Clicamos sobre el botón _Actions_(lo encontraréis arriba a la derecha)--> _Edit Subnet Settings_
+14. Clicamos sobre el botón _Actions_ (lo encontraréis en la esquina superior a la derecha) --> _Edit Subnet Settings_
 15. Marcamos la opción _Enable auto-assign public IPV4 adress_ y guardamos
 
 ## Creación de Internet Gateway
 
 16. Retomamos el panel de VPC y seleccionamos _Internet Gateway_ (menú de la izquierda)
-17. Clicamos sobre el botón _Create internet gateway_ y escribimos: main_internet_gateway y creamos
+17. Clicamos sobre el botón _Create internet gateway_ y escribimos: main_internet_gateway y creamos.
 
-En este punto veremos que ya tenemos creado nuestro Internet Gateway, pero no se encuentra atachado a ninguna VPC, por lo que la comunicación hacia internet aún no podrá establecerse
+En este punto veremos que ya tenemos creado nuestro Internet Gateway, pero no se encuentra atachado a ninguna VPC, por lo que la comunicación hacia internet aún no podrá establecerse.
 
 18. En la esquina superior derecha, clicamos sobre _Attach to a VPC_ y seleccionamos nuestra main_vpc_\*yourname\*
-19. Verificamos que aparece como Attached en el listado de Internet Gateway
+19. Verificamos que aparece como Attached en el listado de Internet Gateway.
 
 
 ## Creación de la route table
