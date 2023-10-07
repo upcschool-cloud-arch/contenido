@@ -33,7 +33,7 @@ _Subnet Name_: main_subnet_a y seleccionaremos la AZ correspondiente (región-1a
 Nuestra subnet pública será la main_subnet_a, que en este momento cuenta con un rango privado de IPs. Para darle características de subnet pública, vamos a autoasignar IPs públicas.
 
 13. En el dashboard de VPCs, clicamos sobre la Subnets y seleccionamos _main_subnet_a_ 
-14. Clicamos sobre el botón _Actions_--> _Edit Subnet Settings_
+14. Clicamos sobre el botón _Actions_(lo encontraréis arriba a la derecha)--> _Edit Subnet Settings_
 15. Marcamos la opción _Enable auto-assign public IPV4 adress_ y guardamos
 
 ## Creación de Internet Gateway
