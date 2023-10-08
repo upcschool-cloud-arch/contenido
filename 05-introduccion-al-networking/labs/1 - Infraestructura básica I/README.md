@@ -84,12 +84,9 @@ Vamos a necesitar una instancia EC2 para verificar que nuestro entorno se ha cre
 ```bash
 #!/bin/bash
 # Use this for your user data (script from top to bottom)
-# install httpd (Linux 2 version)
-yum update -y
-yum install -y httpd
-systemctl start httpd
-systemctl enable httpd
-echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
+sudo apt update
+sudo apt install apache2
+sudo echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
 ```
 34. Dejamos el resto de campos tal como estan y clicamos sobre el botón _Launch instances_ .
 
@@ -128,7 +125,7 @@ A pesar de haber definido las route table, **recordad que no hemos añadido regl
 46. De nuevo desde el terminal, comprueba los resultados al hacer:
 ```bash
 ping <Public_IP>
-curl https://<Public_IP>
+curl http://<Public_IP>
 ````
 ¿Qué resultado obtienes ahora? También puedes copiar el siguiente comando en el navegador
 ```bash
@@ -141,7 +138,12 @@ curl https://<Public_IP>
 
 **Linux o Mac**
 
-48. Desde el terminal, escribimos el siguiente comando si usamos Linux
+48. Desde el terminal, escribimos el siguiente comando si usamos Linux:
+```bash
+chmod 400 lab1.4.pem
+```
+Nota: en la ruta en la que tengamos guardado el .pem
+
 ```bash
 ssh -i "lab1.pem" ubuntu@<Públic IP>
 ````
