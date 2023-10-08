@@ -153,5 +153,7 @@ ssh -i "lab1.pem" ubuntu@<Públic IP>
 48.b Si utilizáis Windows, utilizad Putty para acceder a esta EC2. Podéis descargarlo en el siguiente enlace:
 https://www.putty.org/
 
+49. Dado que hemos descargado la key en .pem, deberemos convertirlo a .ppk con PuttyGen, que podréis descargar del enlace anterior.
+50. Una vez convertido podréis acceder a través de Putty con la IP pública proporcionada por aws.
 
 
