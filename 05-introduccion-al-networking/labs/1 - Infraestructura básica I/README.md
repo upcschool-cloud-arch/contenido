@@ -156,4 +156,42 @@ https://www.putty.org/
 49. Dado que hemos descargado la key en .pem, deberemos convertirlo a .ppk con PuttyGen, que podréis descargar del enlace anterior.
 50. Una vez convertido podréis acceder a través de Putty con la IP pública proporcionada por aws.
 
+## Bonus track 
+
+Hemos visto la importancia de que todos los recursos estén configurados correctamente para poder acceder desde internet a nuestros recursos internos. Si no podemos acceder a las EC2, lo primero que pensamos es que los SG no están abiertos para el protocolo que queremos utilizar, pero, ¿qué ocurre si los SG están correctamente definidos? 
+
+En este apartado vamos a intentar hacer un poco de troubleshooting para determinar qué puede estar fallando.
+
+51. Accedemos de nuevo a la consola de AWS y accedemos al VPC dashboard.
+52. Generaremos una nueva VPC que llamarermos secondary_vpc y que eliminaremos al acabar el laboratorio.
+    CIDR: 10.0.0.0/24
+53. Dentro de esta VPC generaremos 3 subnets al igual que en el apartado anterior.
+    secondary_subnet_a: 10.0.0.0/26, AZ: us-east-1a
+    secondary_subnet_b: 10.0.0.64/26, AZ: us-east-1b
+    secondary_subnet_c: 10.0.0.127/26, AZ:us-east-1c
+    secondary_subnet_d: 10.0.0.192/26, AZ: us-east-1d
+
+54. Crearemos también un nuevo internet gatewat que atacharemos a esta VPC secundaria.
+55. Accedemos a la route table y generamos una route table custom (recordad que se recomienda no tocar la main route table). En esta nueva route table que llamaremos secondary_route_Table, añadiremos al ruta al Internet Gateway:
+    Destination: 0.0.0.0/0
+    Target: id_internet_gatewat
+56. Finalmente crearemos una instancia ec2 en la subnet secondary_subnet_a
+    Name: lab1_bonus_Track
+    AMI: Amazon Linux
+    Instance type: t2.micro
+    Keypair, el mismo que utilizamos en los puntos anterior lab1.pem
+    Network setting: seleccionamos la VPC secondary y la subnet secondary_subnet_a
+    Security Group: generaremos unos nuevo y clicamos el check SSH y HTTP
+57. Y clicamos launch instances
+58. Una vez está generada esta nueva instancia, vamos a completar el SG con un regla que nos permita hacer ping desde cualquier lugar. Recordar que necesitaremos protocolo ICMP, desde 0.0.0.0/0
+59. Finalizado este paso, hacemos ping desde nuestro terminal. ¿Qué resultado obtienes?
+
+60. No podemos llegar por ping, y tampoco podríamos llegar por ssh. El motivo, tiene que ver con las asociaciones implicitas y explicitas de las route tables.
+61. Accedemos de nuevo a las route tables y clicamos sobre la custom_secondary_route_table y a través de la pestaña _Subnet associations_ asociamos la subnet secondary_subnet_a a la custom route table.
+62. Haz de nuevo ping y comprueba que funciona correctamente.
+
+El motivo por el que no estaba funcionado el ping inicialmente es porqué nuestra custom route table no estaba explícitamos asociada a la subnet dónde se encuentra la EC2, y toma por defecto la route table de la VPC, que no tiene definida la salida a internet por el Internet Gateway.
+
+
+
 
