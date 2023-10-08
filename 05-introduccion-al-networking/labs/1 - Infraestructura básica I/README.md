@@ -74,7 +74,7 @@ Vamos a necesitar una instancia EC2 para verificar que nuestro entorno se ha cre
 32. Nos vamos al panel EC2 y seleccionamos _Launch Instance_
 33. Definiremos los siguientes parámetros:
 * Name: lab1
-* Desplegamos _Application and OS Images_ y seleccionamos Amazon Linux. Veréis que por defecto, selecciona una AMI gratuita.
+* Desplegamos _Application and OS Images_ y seleccionamos Ubuntu. Veréis que por defecto, selecciona una AMI gratuita.
 * Instance type: t2.micro
 * Key Pair (Login), creamos un nuevo key pair que llamaremos lab1. Clicar sobre _Create new key pair_ .
   **IMPORTANTE**: Guardad bien este .pem, ya que lo utilizaremos en otras EC2s más adelante
