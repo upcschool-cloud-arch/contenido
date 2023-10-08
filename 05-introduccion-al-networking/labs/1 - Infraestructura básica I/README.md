@@ -77,7 +77,7 @@ Vamos a necesitar una instancia EC2 para verificar que nuestro entorno se ha cre
 * Desplegamos _Application and OS Images_ y seleccionamos Ubuntu. Veréis que por defecto, selecciona una AMI gratuita.
 * Instance type: t2.micro
 * Key Pair (Login), creamos un nuevo key pair que llamaremos lab1. Clicar sobre _Create new key pair_ .
-  **IMPORTANTE**: Guardad bien este .pem, ya que lo utilizaremos en otras EC2s más adelante
+  **IMPORTANTE**: Guardad bien este .pem ya que lo utilizaremos en otras EC2s más adelante.
 * _Networkin Settings_, seleccionamos el botón _Edit_ y escogemos nuestra VPC _main_vpc_yourname y la subnet _main_subnet_a. Dejamos el valor "Enable" el desplegable _Auto assign public IP_ .
        	* Creamos un nuevo SG vacío y lo llamaremos lab1. Quitad todos los checks de las reglas sugeridas.
 * Finalmente desplegamos _Advance Details_ y pegamos el siguiente código:
@@ -91,7 +91,7 @@ systemctl start httpd
 systemctl enable httpd
 echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
 ```
-34. Dejamos el resto de campos tal como estan y clicamos sobre el botón _Launch instances_
+34. Dejamos el resto de campos tal como estan y clicamos sobre el botón _Launch instances_ .
 
 
 ## Chequear la salida a internet
@@ -136,9 +136,18 @@ curl https://<Public_IP>
  ```
  
 47. Verificamos que podemos acceder a la instancia EC2 por SSH. Para ello, vamos a necesitar el fichero lab1.pem que hemos obtenido al crear la EC2.
-48. Desde el terminal, escribimos el siguiente comando: 
+
+Para acceder a la instancia desde nuestro terminal:
+
+**Linux o Mac**
+48. Desde el terminal, escribimos el siguiente comando si usamos Linux
 ```bash
-ssh -i "lab1.pem" ec2-user@<Públic IP>
+ssh -i "lab1.pem" ubuntu@<Públic IP>
 ````
+
+**Windows**
+48.b Si utilizáis Windows, utilizad Putty para acceder a esta EC2. Podéis descargarlo en el siguiente enlace:
+https://www.putty.org/
+
 
 
