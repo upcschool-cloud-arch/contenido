@@ -137,15 +137,17 @@ curl https://<Public_IP>
  
 47. Verificamos que podemos acceder a la instancia EC2 por SSH. Para ello, vamos a necesitar el fichero lab1.pem que hemos obtenido al crear la EC2.
 
-Para acceder a la instancia desde nuestro terminal:
+--> Para acceder a la instancia desde nuestro terminal:
 
 **Linux o Mac**
+
 48. Desde el terminal, escribimos el siguiente comando si usamos Linux
 ```bash
 ssh -i "lab1.pem" ubuntu@<Públic IP>
 ````
 
 **Windows**
+
 48.b Si utilizáis Windows, utilizad Putty para acceder a esta EC2. Podéis descargarlo en el siguiente enlace:
 https://www.putty.org/
 
