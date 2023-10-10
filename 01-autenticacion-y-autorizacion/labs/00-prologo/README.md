@@ -49,11 +49,17 @@ cd workstation/src
 NAME=PON_AQUI_LO_QUE_TU_QUIERAS
 ```
 
-* Pide que se inicialice el proyecto y que despliegue la aplicación. Recuerda contestar `yes` cuando te pregunte si deseas continuar
+* Elige una región donde quieras crear el servidor.
+
+```bash
+REGION=us-east-1
+```
+
+* Pide que se inicialice el proyecto y que despliegue la aplicación.
 
 ```bash
 terraform init
-terraform apply -var owner=$NAME -var region=us-east-1 -auto-approve
+terraform apply -var owner=$NAME -var region=$REGION -auto-approve
 ```
 
 
