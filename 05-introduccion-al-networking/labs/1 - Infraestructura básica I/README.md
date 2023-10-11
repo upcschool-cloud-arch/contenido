@@ -80,7 +80,7 @@ Vamos a necesitar una instancia EC2 para verificar que nuestro entorno se ha cre
   **IMPORTANTE**: Guardad bien este .pem ya que lo utilizaremos en otras EC2s más adelante.
 * _Networkin Settings_, seleccionamos el botón _Edit_ y escogemos nuestra VPC _main_vpc_yourname y la subnet _main_subnet_a. Dejamos el valor "Enable" el desplegable _Auto assign public IP_ .
        	* Creamos un nuevo SG vacío y lo llamaremos lab1. Quitad todos los checks de las reglas sugeridas.
-* Finalmente desplegamos _Advance Details_ y pegamos el siguiente código:
+* Finalmente desplegamos _Advance Details_ y pegamos el siguiente código en _User Data_:
 ```bash
 #!/bin/bash
 # Use this for your user data (script from top to bottom)
