@@ -63,7 +63,7 @@ En este momento, **aún no se han establecido las rutas necesarias para poder ac
 28. Añadimos la rutas necesarias para poder salir a internet. Clicamos sobre _Edit Routes_ y añadimos:
 * Destination: 0.0.0.0/0  Target: id del Internet Gatewat creado (main_internet_gateway)
 * La destinación local debería aparecer por defecto.
-** Destination: 172.31.0.0/24 y target: local
+** Destination: 172.31.0.0/16 y target: local
 29. A continuación, tendremos que realizar la **asociación explícita** para que la subnet utilice nuestro custom route table en lugar de la route table generada por defecto en la VPC.
 30. En el panel _Route Tables_ seleccionamos Custom_main_route_table y clicamos a la pestaña _Subnet associations_
 31. Sobre el apartado _Explicit subnet associations_, clicamos en _Edit subnet associations_ y seleccionamos nuestra subnet pública, main_subnet_a y clicamos sobre _Save associations_.
