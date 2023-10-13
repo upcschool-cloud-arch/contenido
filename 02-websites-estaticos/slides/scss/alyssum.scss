@@ -3,7 +3,7 @@
 
 $base-background: white;
 $base-text-color: black;
-$base-text-size: 32pt;
+$base-text-size: 28pt;
 
 $base-headers-background: rgba(212,196,63,0.7);
 $base-headers-color: white;
@@ -15,6 +15,7 @@ $strong-color : orange;
     font-family: Open Sans, sans-serif;
     font-weight: 400;
     font-size: $base-text-size;
+    line-height: 1.7;
 
     &.aspect-ratio-4-3 {
         font-size: $base-text-size * 0.7;
@@ -260,7 +261,7 @@ $strong-color : orange;
         > div.block-image {
             position: absolute;
             top: 0;
-            width: 50%;
+            width: 40%;
             overflow : hidden;
             padding: 0;
             margin: 0;
@@ -274,7 +275,8 @@ $strong-color : orange;
         }
 
         > p, > ul, > .content-group {
-            margin-left: 50%;
+            margin-left: 40%;
+            margin-right: 15%;
             padding: 0 2em;
         }
 

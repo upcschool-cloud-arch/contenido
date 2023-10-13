@@ -2,12 +2,13 @@
 .slidedeck {
   font-family: Open Sans, sans-serif;
   font-weight: 400;
-  font-size: 32pt;
+  font-size: 28pt;
+  line-height: 1.7;
   /*
         General slide color, fonts, etc.
     */ }
   .slidedeck.aspect-ratio-4-3 {
-    font-size: 22.4pt; }
+    font-size: 19.6pt; }
   .slidedeck section {
     background-color: white;
     color: black; }
@@ -88,7 +89,7 @@
   .slidedeck .blocks > p {
     margin: 0 100px 0 100px; }
   .slidedeck .blocks > ul {
-    margin: 38.4pt 64pt;
+    margin: 33.6pt 56pt;
     padding: 0;
     display: grid;
     grid-auto-flow: column; }
@@ -153,7 +154,7 @@
   .slidedeck .illustration > div.block-image {
     position: absolute;
     top: 0;
-    width: 50%;
+    width: 40%;
     overflow: hidden;
     padding: 0;
     margin: 0;
@@ -163,7 +164,8 @@
     height: 100%;
     object-fit: cover; }
   .slidedeck .illustration > p, .slidedeck .illustration > ul, .slidedeck .illustration > .content-group {
-    margin-left: 50%;
+    margin-left: 40%;
+    margin-right: 15%;
     padding: 0 2em; }
   .slidedeck .illustration > ul > li {
     margin-bottom: 1em; }

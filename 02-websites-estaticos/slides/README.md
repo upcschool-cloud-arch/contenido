@@ -52,7 +52,7 @@ object URL, but **objects are regional**
 
 * Objects can store **metadata** and also can be **tagged**
 
-* Basic list API useful only if the object key prefix is known
+* Basic list API useful only if the object key **prefix is known**
 
 [](#pyramid,.coverbg)
 
@@ -60,12 +60,6 @@ object URL, but **objects are regional**
 
 S3 will become the backbone of the information
 architecture in most large systems.
-
-[](.coverbg)
-
-## Lab time!
-
-![Man tinkering with a glue gun, by Thirdman, https://www.pexels.com/photo/a-man-holding-a-glue-gun-7180746/](https://images.pexels.com/photos/7180746/pexels-photo-7180746.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)
 
 [](.illustration.partial.dense)
 
@@ -119,7 +113,7 @@ Costs can be optimized by using the [different tiers](https://aws.amazon.com/s3/
 * S3 Glacier Deep Archive
 
 Choosing Intelligent-Tiering usually **provides the best results**, although it
-doesn't manage files under 256KB
+doesn't manage small files (under 256KB)
 
 [Lifecycle policies](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html)
 may be used for **more sophisticated** strategies
@@ -182,3 +176,10 @@ performance and cost. The general recommendation is to use ORC columnar
 format with Snappy compression.
 
 :::
+
+[](.coverbg)
+
+## Lab time!
+
+![Man tinkering with a glue gun, by Thirdman, https://www.pexels.com/photo/a-man-holding-a-glue-gun-7180746/](https://images.pexels.com/photos/7180746/pexels-photo-7180746.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)
+
