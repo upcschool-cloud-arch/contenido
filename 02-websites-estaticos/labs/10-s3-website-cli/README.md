@@ -1,20 +1,44 @@
 # Aplicaciones estáticas
 
+Este laboratorio deberías poder completarlo tanto desde CLoud Shell como con
+tu workstation: las instrucciones funcionarán correctamente en Amazon Linux
+y Ubuntu.
 
 ## Preparación
 
-* Genera un nombre único para tu bucket
+* El nombre del bucket forma parte de la URL asociada a cada objeto, 
+por lo que no pueden existir dos con el mismo
+nombre a nivel global. Define un nombre único para albergar tu blog:
 
 ```bash
 BLOG_NAME=blognumber$RANDOM
 ```
 
+* Muestra el nombre que se ha generado para tu bucket:
+
+```bash
+echo $BLOG_NAME
+```
+
 ## Configuración de S3
 
-* Crea el bucket
+* Crea el bucket con:
 
 ```bash
 aws s3 mb s3://$BLOG_NAME
+```
+
+* Comprueba que el bucket está disponible con
+
+```bash
+aws s3 ls
+```
+
+* Por motivos de seguridad el acceso publico de los buckets está bloqueado por defecto.
+Nosotros tenemos que eliminar dicho bloqueo:
+
+```bash
+aws s3api delete-public-access-block --bucket $BLOG_NAME
 ```
 
 * Define la *resource policy* que permitirá que incluso usuarios no autenticados puedan leer de él
@@ -36,7 +60,8 @@ cat<< EOF > policy.json
 EOF
 ```
 
-* Asigna la policy al bucket
+* Asigna la policy al bucket. A partir de este momento cualquier persona
+podrá leer de él:
 
 ```bash
 aws s3api put-bucket-policy --bucket $BLOG_NAME --policy file://policy.json
@@ -81,40 +106,22 @@ aws s3api put-bucket-website --bucket $BLOG_NAME --website-configuration file://
 REGION=us-east-1
 ```
 
-* Instala [Hugo](https://gohugo.io), el generador de websites que utilizaremos
+* Crea tu blog en la carpeta `web`
 
 ```bash
-wget https://github.com/gohugoio/hugo/releases/download/v0.87.0/hugo_extended_0.87.0_Linux-64bit.tar.gz
-tar xvf hugo_extended_0.87.0_Linux-64bit.tar.gz
-./hugo version
-```
-
-* Descarga la plantilla para el website
-
-```bash
-git clone https://github.com/themefisher/airspace-hugo
-```
-
-* Genera el website a partir de la plantilla
-
-```bash
-cd airspace-hugo/exampleSite
-~/hugo --themesDir ../.. --baseURL /
-```
-
-* Revisa el contenido (estará en la carpeta public)
-
-```bash
-ls public/
+mkdir web
+wget https://pastebin.com/raw/kAQg0yhu -O web/index.html
+wget https://pastebin.com/raw/jxEqVD29 -O web/404.html
 ```
 
 * Copia tu blog al bucket
 
 ```bash
-aws s3 cp --cache-control max-age=3600 --recursive public/ s3://$BLOG_NAME
+aws s3 cp --cache-control max-age=3600 --recursive web/ s3://$BLOG_NAME
 ```
 
-* ¡Accede a tu bucket!
+* Obtén la dirección pública compatible con navegadores de tu bucket y úsala
+para acceder a tu blog desde el navegador:
 
 ```bash
 echo The website url is: http://$BLOG_NAME.s3-website-$REGION.amazonaws.com
