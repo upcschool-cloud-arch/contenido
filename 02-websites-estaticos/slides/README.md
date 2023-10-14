@@ -17,7 +17,7 @@ We have learned there is a new trend for architecting websites called
 We want to take advantage of this **serverless** approach for reducing
 the overhead on our operations team
 
-[](.illustration.partial)
+[](.illustration.dense.partial)
 
 ## The solution
 
@@ -36,7 +36,7 @@ browser full compatibility
 
 * Like any other AWS service, S3 is tightly **integrated with IAM**
 
-[](.illustration.partial)
+[](.illustration.dense.partial)
 
 ## Basic concepts
 
@@ -48,11 +48,11 @@ intended to group related files
 * Bucket names are global because they appear as a part of the
 object URL, but **objects are regional**
 
-* Designed for eleven nines of durability (but not in any SLA)
-
-* Objects can store **metadata** and also can be **tagged**
+* Objects can store **metadata** and also can be **tagged** for further classification
 
 * Basic list API useful only if the object key **prefix is known**
+
+* Object operations can **trigger events**, attached to SNS, SQS and Lambda
 
 [](#pyramid,.coverbg)
 
@@ -61,9 +61,9 @@ object URL, but **objects are regional**
 S3 will become the backbone of the information
 architecture in most large systems.
 
-[](.illustration.partial.dense)
+[](.illustration.partial)
 
-## Processing objects
+## Processing objects (I)
 
 ![Robotic facility, by Simon Kadula, https://unsplash.com/photos/8gr6bObQLOI](https://images.unsplash.com/photo-1647427060118-4911c9821b82?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)
 
@@ -79,6 +79,12 @@ can process files while they are being downloaded
 * For analyzing organization-wide **storage and access usage**,
 [Storage lense](https://aws.amazon.com/s3/storage-analytics-insights/)
 allows data aggregation and exploration
+
+[](.illustration.partial)
+
+## Processing objects (II)
+
+![Automatic facility, from Getty+Unsplash, https://unsplash.com/photos/DVagg4RgTms](https://plus.unsplash.com/premium_photo-1661878008007-7a13bf31c14b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80)
 
 * New objects can be **automatically copied** in the same or in other region using
 [Replication](https://aws.amazon.com/s3/features/replication/). Existing ones
@@ -100,19 +106,19 @@ to a healthy copy of the replicated data.
 
 ![Squirrel in a tree, by Külli Kittus, https://unsplash.com/photos/qyt0cPByJjs](https://images.unsplash.com/photo-1518770352423-dce09a3d3307?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80)
 
-User pays for the amount of storage used, the invocation of each API call
+User pays for the storage used, each API call made
 and the traffic outside the object region
 
-Costs can be optimized by using the [different tiers](https://aws.amazon.com/s3/storage-classes):
+Cost may be optimized by using [different tiers](https://aws.amazon.com/s3/storage-classes):
 
-* S3 Standard
-* S3 Standard-Infrequent Access
-* S3 One Zone-Infrequent Access
-* S3 Glacier Instant Retrieval
-* S3 Glacier Flexible Retrieval
-* S3 Glacier Deep Archive
+* Standard
+* Standard-Infrequent Access
+* One Zone-Infrequent Access
+* Glacier Instant Retrieval
+* Glacier Flexible Retrieval
+* Glacier Deep Archive
 
-Choosing Intelligent-Tiering usually **provides the best results**, although it
+Choosing **Intelligent-Tiering usually provides the best results**, although it
 doesn't manage small files (under 256KB)
 
 [Lifecycle policies](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html)
@@ -135,9 +141,9 @@ HTTPs** access
 
 Several encryption options are available:
 
-* Server-side with Amazon managed keys (SSE-S3)
-* Server-side with KMS keys (SSE-KMS)
-* Server-side with customer-provided keys (SSE-C)
+* **Amazon managed** keys (SSE-S3)
+* **KMS** keys (SSE-KMS)
+* **customer-provided** keys (SSE-C)
 * Client side encryption
 
 ::: Notes
