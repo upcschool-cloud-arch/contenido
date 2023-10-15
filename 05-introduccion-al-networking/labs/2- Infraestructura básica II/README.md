@@ -49,7 +49,7 @@ Tened en cuenta que esta es la única manera de poder trabajar subnets públicas
 * Key Pair: usamos el mismo key pair del lab1
 * Networkin Settings, seleccionamos el botón _Edit_ y escogemos nuestra VPC _main_vpc_yourname y la subnet _main_subnet_b. 
 * Deshabilitamos _Auto-assign public IP_
-	* Creamos un nuevo SG vacío que llamaremos lab2 y habilitamos el inboud para conexión ssh desde nuestra IP (nuestro laptop)
+	* Creamos un nuevo SG vacío que llamaremos lab2 y habilitamos el inboud para conexión ssh desde la IP privada del la ec2 lab1 (recordad que la EC2 lab1 será nuestra instancia de salto).
 * Finalmente desplegamos Advance Details y pegamos el siguiente código:
 ```bash
 #!/bin/bash
@@ -70,17 +70,23 @@ Comprabaremos el correcto funcionamiento del nat gateway, saliendo a internet a 
 ```bash
 ssh -i "lab1.pem" ubuntu@<ip publica>
 ````
-23. Una vez dentro de la instancia de salto, podemos acceder a la instancia privada _lab2_, a través del mismo comando visto en el punto 18: 
+23. Una vez dentro de la instancia de salto, podemos acceder a la instancia privada _lab2_. Pero antes tendremos que realizar algunas configuraciones previas.
+24. En primer lugar, tendremos que crear un fichero copiando el text de lab1.pem. y guardándolo con este mismo nombre. Recordar poneros en root para evitar problemas de permisos.
+25. Un vez tenemos el fichero creado, cambiaremos los permisos:
+```bash
+chmod 400 lab1.pem
+```
 
+26. Desde el mismo directorio dónde hemos creado este fichero .pem accedemos a la instancia con el siguiente comando:
  ```bash
-ssh -i "lab.pem1" ec2-user@<ip_privada>
+ssh -i "lab.pem1" ubuntu@<ip_privada>
 ```
 
 Un vez dentro de una ec2 ubicada en una subnet privada y sin IP pública, podemos chequear si el nat gateway está funcionado:
 
-24. Hacemos ping
+27. Hacemos ping
 ```bash
  ping 8.8.8.8 // Google
  ```
-25. Si lanzamos un _traceroute_, podemos ver el camino que sigue nuestro paquete IP y si realmente está pasadando por el Nat Gateway
+28. Si lanzamos un _traceroute_, podemos ver el camino que sigue nuestro paquete IP y si realmente está pasadando por el Nat Gateway
 	
