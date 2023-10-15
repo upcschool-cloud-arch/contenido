@@ -64,11 +64,11 @@ sudo echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
 
 Comprabaremos el correcto funcionamiento del nat gateway, saliendo a internet a través de una instancia ec2 ubicada en una de nuestras subnets privadas. Para ello, necesitaremos conectarnos a una instancia de salto con ip pública.
 
-20. En el dashboard de EC2, buscamos la instancia lab y la iniciamos a través del botón _Instance State_--> _Start Instances_ en caso de estar parada.
+20. En el dashboard de EC2, buscamos la instancia lab1 y la iniciamos a través del botón _Instance State_--> _Start Instances_ en caso de estar parada.
 21. Copiamos la IP pública que se muestra en la pestaña _Details_
 22. Accedemos por ssh a la instancia lab1. Abrimos el terminal y utilizamos el siguiente comando: 
 ```bash
-ssh -i "lab1.pem" ec2-user@<ip publica>
+ssh -i "lab1.pem" ubuntu@<ip publica>
 ````
 23. Una vez dentro de la instancia de salto, podemos acceder a la instancia privada _lab2_, a través del mismo comando visto en el punto 18: 
 
