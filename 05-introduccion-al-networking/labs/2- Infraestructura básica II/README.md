@@ -17,10 +17,24 @@ EL objetivo de este laboratorio es preparar las subnets privadas para poder cone
 9. Clicamos sobre el botón _Edit Route Tables_ y añadimos:
 	• Destination: ¿Cual debería ser? , Target: Nat Gateway <id_nat-gateway>
 	
-10. Ahora todas las subnets están asociadas implicitamente a este Route Table hacia el natgateway y la Custom_Route_Table que habíamos definido en el lab1, no está aplicando por lo que no tendremos acceso a internet. Para solucionarlo, clicamos sobre subnets en el dashboard de VPCs
-11. Buscamos la main_subnet_A y clicamos sobre ella
-12. Clicamos sobre la pestaña _Route Tables_
-13. Asociamos de forma explícita nuestra subnet pública (A) con la Custom_Main_Route_Table
+Ahora todas las subnets privadas están asociadas implicitamente a este Route Table con la ruta hacia el NAT gateway. Recordad que la subnet pública (main_subnet_a) tenía una asociación explícita a la Custom_Route_Table que habíamos definido en el lab1, dónde teníamos la ruta hacía internet a través del Internet Gateway.
+
+10. Vamos a intentar dejar todo en la Main_Route_Table. En el dashboard de VPC, y selecciona la Main_Route_Table, que será la route table asociada a vuestra VPC main_vpc_yourname
+11. Clicamos sobre la pestaña _Routes_ y añadimos la línea del Internet Gateway, definiendo el como destination: 0.0.0.0/0 y el Target: el ID del Internet Gateway creado en el lab 1.
+12. ¿Cuál es el resultado?
+
+El resultado será un errror, ¿Sabríais decir por qué?
+
+El motivo es que no podemos tener dos salidas a la misma dirección dentro de la misma Route Table.
+
+13. Vamos a ver qué ocurre si dejamos únicamente el nat gateway. Volvemos al apartado de _Route_Tables y seleccionamos la Custom_main_route_table que es dónde tenemos definida nuestra salida a internet. 
+14. Clicamos sobre subnet associations y en _Edit_subnet_associations_ y eliminamos la asociación explícita, quitando el check de la main_subnet_a.
+15. Vamos a probar llegar desde internet hasta la EC2. Para ello haz ping a la nueva IP de instancia EC2 del lab1 (aseguraros de que está running). ¿Cuál es el resultado?
+
+No podremos alcanzar nuestra EC2 desde internet porque no tenemos definido una ruta a internet desde el Internet Gateway, aunque tengamos el security group abierto. Sin embargo, si quisieramos acceder desde nuestra EC2 a internet sí que deberíamos poder conectar. 
+
+16. Accede a través de la shell de la instancia a la EC2. Para ello, clica en la consola, arriba a la derecha sobre el botón _Connect_
+17. 
 
 		
 ## Creación EC2 en subnet privada
