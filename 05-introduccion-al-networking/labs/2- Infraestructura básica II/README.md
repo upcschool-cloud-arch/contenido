@@ -133,4 +133,8 @@ Vamos a verificar que la comunicación entre instancias de estas VPCS funciona c
 Tened en cuenta que si no hubieramos establecido el peering no sería posible comunicar dos instancias con IPd privadas en diferentes VPCs.
 
 ## Delete Nat Gateway
-	
+
+Para evitar un exceso de gastos, vamos a eliminar el NAT Gateway hasta que volvamos a necesitarlo.
+
+42. A través del VPC dashboard, accedemos al apartado NAT Gateways y clicamos en el único que tenemos creado.
+43. Clicamos sobre el botón _Actions_ y seleccionamos Delete NAT Gateway. Escribimos delete en el cuadro y finalizamos.
