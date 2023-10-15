@@ -96,6 +96,3 @@ servir tu contenido.
 ---
 
 * Abre esa dirección en tu navegador y deberías acceder con latencias bajas a la web del producto.
-
-![](images/14.jpg)
-
