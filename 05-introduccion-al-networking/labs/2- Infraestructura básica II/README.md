@@ -49,7 +49,7 @@ Tened en cuenta que esta es la única manera de poder trabajar subnets públicas
 * Key Pair: usamos el mismo key pair del lab1
 * Networkin Settings, seleccionamos el botón _Edit_ y escogemos nuestra VPC _main_vpc_yourname y la subnet _main_subnet_b. 
 * Deshabilitamos _Auto-assign public IP_
-	* Creamos un nuevo SG vacío que llamaremos lab2 y habilitamos el inboud para conexión ssh desde la IP privada del la ec2 lab1 (recordad que la EC2 lab1 será nuestra instancia de salto).
+	* Creamos un nuevo SG vacío que llamaremos lab2 y habilitamos el inboud para conexión ssh desde la IP privada de la ec2 lab1 (recordad que la EC2 lab1 será nuestra instancia de salto).
 * Finalmente desplegamos Advance Details y pegamos el siguiente código:
 ```bash
 #!/bin/bash
@@ -62,16 +62,24 @@ sudo echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
 
 ## Chequeo del Nat Gateway
 
-Comprabaremos el correcto funcionamiento del nat gateway, saliendo a internet a través de una instancia ec2 ubicada en una de nuestras subnets privadas. Para ello, necesitaremos conectarnos a una instancia de salto con ip pública.
+Comprobaremos el correcto funcionamiento del nat gateway, saliendo a internet a través de una instancia ec2 ubicada en una de nuestras subnets privadas. Para ello, necesitaremos conectarnos a una instancia de salto con ip pública.
 
 20. En el dashboard de EC2, buscamos la instancia lab1 y la iniciamos a través del botón _Instance State_--> _Start Instances_ en caso de estar parada.
 21. Copiamos la IP pública que se muestra en la pestaña _Details_
-22. Accedemos por ssh a la instancia lab1. Abrimos el terminal y utilizamos el siguiente comando: 
+22. Accedemos por ssh a la instancia lab1. Abrimos el terminal y utilizamos el siguiente comando si trabajamos con Linux:
+**Recordad si no lo hicistéis en el lab anterior, lanzar el siguiente comando antes de hacer el ssh:
+```bash
+chmod 400 lab1.pem
+```
+
 ```bash
 ssh -i "lab1.pem" ubuntu@<ip publica>
 ````
-23. Una vez dentro de la instancia de salto, podemos acceder a la instancia privada _lab2_. Pero antes tendremos que realizar algunas configuraciones previas.
-24. En primer lugar, tendremos que crear un fichero copiando el text de lab1.pem. y guardándolo con este mismo nombre. Recordar poneros en root para evitar problemas de permisos.
+Windows:
+A través de Putty
+
+23. Una vez dentro de la instancia de salto, podemos acceder a la instancia privada _lab2_. Pero antes, tendremos que realizar algunas configuraciones previas.
+24. En primer lugar, tendremos que crear un fichero copiando el text de lab1.pem. y guardándolo con este mismo nombre. Recordad poneros en root para evitar problemas de permisos.
 25. Un vez tenemos el fichero creado, cambiaremos los permisos:
 ```bash
 chmod 400 lab1.pem
@@ -79,7 +87,7 @@ chmod 400 lab1.pem
 
 26. Desde el mismo directorio dónde hemos creado este fichero .pem accedemos a la instancia con el siguiente comando:
  ```bash
-ssh -i "lab.pem1" ubuntu@<ip_privada>
+ssh -i "lab.pem1" ubuntu@<ip_privada_lab2>
 ```
 
 Un vez dentro de una ec2 ubicada en una subnet privada y sin IP pública, podemos chequear si el nat gateway está funcionado:
@@ -88,5 +96,7 @@ Un vez dentro de una ec2 ubicada en una subnet privada y sin IP pública, podemo
 ```bash
  ping 8.8.8.8 // Google
  ```
-28. Si lanzamos un _traceroute_, podemos ver el camino que sigue nuestro paquete IP y si realmente está pasadando por el Nat Gateway
+28. Si lanzamos un _traceroute_, podemos ver el camino que sigue nuestro paquete IP y si realmente está pasadando por el Nat Gateway. Podéis verificar la IP de vuestro Nat gatway en la consola de AWS.
+
+
 	
