@@ -98,5 +98,39 @@ Un vez dentro de una ec2 ubicada en una subnet privada y sin IP pública, podemo
  ```
 28. Si lanzamos un _traceroute_, podemos ver el camino que sigue nuestro paquete IP y si realmente está pasadando por el Nat Gateway. Podéis verificar la IP de vuestro Nat gatway en la consola de AWS.
 
+## Peering Connection
 
+En esta segunda parte del lab, vamos a establecer una conexión por peering entre nuestras VPCs
+
+29. A través de la consola, accede al dashboard de VPCs. En las opciones de la izquierda, encontraréis un apartado llamado _Peering Connections_ .
+30. Clicad sobre el botón _Create peering connection_
+31. Nombraremos a este peering my_first_peering_connection y seleccionaremos nuestra main_vpc_yourname como VPC requester
+32. Seleccionamos _my account_ y _This region_ y en VPC accepter selecciona la VPC default.
+33. ¿Qué ha ocurrido?
+
+Recordad que la vpc default es 172.31.0.0/16, al igual que nuestra main VPC, con lo que estamos teniendo overlaping y AWS no nos permitirá hacer peering entre estas dos vpcs para evitar conflictos a la hora de comunicarse entre ellas.
+
+34. Seleccionad como VPC Accepter la secondary_vpc. 
+35. Añadimos el tag key: lab y value: 2 y clicamos sobre el boton _create peering connection_
+36. Como owners de la secondary VPC, nos llegará una notificación de aceptación del peering. La aceptamos y ya tendremos el peering creado.
+37. Si queremos establecer comunicación, deberemos crear las rutas correspondientes tanto en la vpc orígen, como destino.
+38. Accedemos al listado de route tables y clicamos sobre la main route table de la main_vpc_your_name. Agregamos una nueva ruta con destino: 10.0.0.0/24 a través del target peering_id.
+39. En la main route table de la secondary_vpc agregamos una nueva ruta con destino 172.31.0.0/16 a través del target peering_id.
+
+Vamos a verificar que la comunicación entre instancias de estas VPCS funciona correctamente.
+
+40. En la VPC secondary, creamos una EC2 llamada lab2_secondary, en la que **NO** tendremos IP pública.
+* Name: lab2_secondary
+* Desplegamos Application and OS Images y seleccionamos ubuntu
+* Instance type: t2.micro
+* Key Pair: usamos el mismo key pair del lab1
+* Networkin Settings, seleccionamos el botón _Edit_ y escogemos nuestra VPC secondary_vpc y la subnet _secondary_b 
+* Deshabilitamos _Auto-assign public IP_
+	* Creamos un nuevo SG vacío que llamaremos lab2.2 y habilitamos el inboud para conexión por ICMP desde la IP privada de la ec2 lab2.
+
+41. Un vez creada esta instancia, podemos hacer ping desde la ec2 lab2 hacia la ip privada de lab2_secondary
+
+Tened en cuenta que si no hubieramos establecido el peering no sería posible comunicar dos instancias con IPd privadas en diferentes VPCs.
+
+## Delete Nat Gateway
 	
