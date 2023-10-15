@@ -31,24 +31,25 @@ El motivo es que no podemos tener dos salidas a la misma dirección dentro de la
 14. Clicamos sobre subnet associations y en _Edit_subnet_associations_ y eliminamos la asociación explícita, quitando el check de la main_subnet_a.
 15. Vamos a probar llegar desde internet hasta la EC2. Para ello haz ping a la nueva IP de instancia EC2 del lab1 (aseguraros de que está running). ¿Cuál es el resultado?
 
-No podremos alcanzar nuestra EC2 desde internet porque no tenemos definido una ruta a internet desde el Internet Gateway, aunque tengamos el security group abierto. Sin embargo, si quisieramos acceder desde nuestra EC2 a internet sí que deberíamos poder conectar. 
+No podremos alcanzar nuestra EC2 desde internet porque no tenemos definido una ruta a internet desde el Internet Gateway, aunque tengamos el security group abierto.
 
 16. Accede a través de la shell de la instancia a la EC2. Para ello, clica en la consola, arriba a la derecha sobre el botón _Connect_
-17. 
+17. El resultado es que tampoco podemos conectarnos. Asocia de nuevo **explícitamente** la Custom_main_route_Table a la main_subnet_a
 
+Tened en cuenta que esta es la única manera de poder trabajar subnets públicas y privadas dentro de la misma VPC. Si nuestra VPC fuera enteramente pública, podríamos en la Main Route Table, dejar una ruta a internet a través de Internet Gateway sin necesidad de realizar una asociación explícita. Aún así, se aconseja no tocar la main route table que viene por defecto en la VPC.
 		
 ## Creación EC2 en subnet privada
 
-14. Crearemos una EC2 de características muy similares a lab1 pero sin públic IP
-15. Desde el dashboard de EC2, creamos esta EC2:
+18. Crearemos una EC2 de características muy similares a lab1 pero sin públic IP
+19. Desde el dashboard de EC2, creamos esta EC2:
 
 * Name: lab2
-* Desplegamos Application and OS Images y seleccionamos Amazon Linux
+* Desplegamos Application and OS Images y seleccionamos ubuntu
 * Instance type: t2.micro
 * Key Pair: usamos el mismo key pair del lab1
 * Networkin Settings, seleccionamos el botón _Edit_ y escogemos nuestra VPC _main_vpc_yourname y la subnet _main_subnet_b. 
 * Deshabilitamos _Auto-assign public IP_
-	* Creamos un nuevo SG vacío y habilitamos el inboud para conexión ssh
+	* Creamos un nuevo SG vacío que llamaremos lab2 y habilitamos el inboud para conexión ssh desde nuestra IP (nuestro laptop)
 * Finalmente desplegamos Advance Details y pegamos el siguiente código:
 ```bash
 #!/bin/bash
@@ -63,13 +64,13 @@ sudo echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
 
 Comprabaremos el correcto funcionamiento del nat gateway, saliendo a internet a través de una instancia ec2 ubicada en una de nuestras subnets privadas. Para ello, necesitaremos conectarnos a una instancia de salto con ip pública.
 
-16. En el dashboard de EC2, buscamos la instancia lab y la iniciamos a través del botón _Instance State_--> _Start Instances_ en caso de estar parada.
-17. Copiamos la IP pública que se muestra en la pestaña _Details_
-18. Accedemos por ssh a la instancia lab1. Abrimos el terminal y utilizamos el siguiente comando: 
+20. En el dashboard de EC2, buscamos la instancia lab y la iniciamos a través del botón _Instance State_--> _Start Instances_ en caso de estar parada.
+21. Copiamos la IP pública que se muestra en la pestaña _Details_
+22. Accedemos por ssh a la instancia lab1. Abrimos el terminal y utilizamos el siguiente comando: 
 ```bash
 ssh -i "lab1.pem" ec2-user@<ip publica>
 ````
-15. Una vez dentro de la instancia de salto, podemos acceder a la instancia privada _lab2_, a través del mismo comando visto en el punto 18: 
+23. Una vez dentro de la instancia de salto, podemos acceder a la instancia privada _lab2_, a través del mismo comando visto en el punto 18: 
 
  ```bash
 ssh -i "lab.pem1" ec2-user@<ip_privada>
@@ -77,9 +78,9 @@ ssh -i "lab.pem1" ec2-user@<ip_privada>
 
 Un vez dentro de una ec2 ubicada en una subnet privada y sin IP pública, podemos chequear si el nat gateway está funcionado:
 
-16. Hacemos ping
+24. Hacemos ping
 ```bash
  ping 8.8.8.8 // Google
  ```
-17. Si lanzamos un _traceroute_, podemos ver el camino que sigue nuestro paquete IP y si realmente está pasadando por el Nat Gateway
+25. Si lanzamos un _traceroute_, podemos ver el camino que sigue nuestro paquete IP y si realmente está pasadando por el Nat Gateway
 	
