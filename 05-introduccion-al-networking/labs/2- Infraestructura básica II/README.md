@@ -39,9 +39,6 @@ EL objetivo de este laboratorio es preparar las subnets privadas para poder cone
 ```bash
 #!/bin/bash
 # Use this for your user data (script from top to bottom)
-# install httpd (Linux 2 version)
-#!/bin/bash
-# Use this for your user data (script from top to bottom)
 sudo apt update
 sudo apt install apache2
 sudo echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
