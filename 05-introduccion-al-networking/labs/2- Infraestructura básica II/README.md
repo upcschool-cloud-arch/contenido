@@ -8,7 +8,7 @@ EL objetivo de este laboratorio es preparar las subnets privadas para poder cone
 3. En el nombre del Nat Gateway, indicamos main_nat_gateway
 4. Recordemos que el nat gateway siempre debe ir asoiciado a una subnet pública. En este caso, deberemos asociarlo a la main_subnet_a
 5. Seleccionaremos conectividad pública y asignaremos una Elastic IP 
-6. En Tags indicaremos Key: lab , Value: 2
+6. En Tags, añadimos Key: lab , Value: 2
 
 
 ## Ajustes de Route Tables
