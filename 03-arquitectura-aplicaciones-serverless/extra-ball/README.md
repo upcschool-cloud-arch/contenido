@@ -5,7 +5,7 @@
 * Serverless is a fuzzy concept, but if you require a MySQL / Postgres compatible database that scales vertically in milliseconds (O_O!) check [Aurora Serverless v2](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html).
 * Implementing a lambda-based application with an RDS backend comes with its own challenges. Do some research (for example, read [this post about connection issues](https://faiqahsan.medium.com/how-to-solve-lambda-and-rds-database-connection-issues-for-nodejs-application-7c9a22362160)) before taking this path.
 * Many AI-related services can be considered serverless. For example, [Transcribe](https://aws.amazon.com/transcribe) can help for transforming audio into text, or [Polly](https://aws.amazon.com/polly) can do the opposite. Others are focused on computer vision, like [Textract](https://aws.amazon.com/textract) for extracting textual data from images (including particular cases, like invoices).
-* The most popular choices for developing lambda-based applications are [SAM](https://aws.amazon.com/serverless/sam/) and [Serverless](https://www.serverless.com). Check both of them to choose your own favorite.
+* The most popular choices for developing lambda-based applications are [AWS SAM](./AWS-SAM.md), [Serverless Framework](https://www.serverless.com) and [AWS CDK](https://youtu.be/zOwYSX6ExSY?si=peJtI6O3oJe0Wu2C). Check them to choose your own favorite.
 
 ## Additional labs
 
