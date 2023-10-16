@@ -12,3 +12,4 @@
 - [DynamoDB book](https://www.dynamodbbook.com/)
 - [DynamoDB expressions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.html)
 - [DynamoDB APIs](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.API.html)
+- [Using DynamoDB to build Webapps - Guide](https://serverlessland.com/content/service/dynamodb/guides/using-dynamodbto-build-webapps/introduction)
