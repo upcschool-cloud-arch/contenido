@@ -166,10 +166,10 @@ En este apartado vamos a intentar hacer un poco de troubleshooting para determin
 52. Generaremos una nueva VPC que llamarermos secondary_vpc y que eliminaremos al acabar el laboratorio.
     CIDR: 10.0.0.0/24
 53. Dentro de esta VPC generaremos 4 subnets:
-    -secondary_subnet_a: 10.0.0.0/26, AZ: us-east-1a
-    -secondary_subnet_b: 10.0.0.64/26, AZ: us-east-1b
-    -secondary_subnet_c: 10.0.0.127/26, AZ:us-east-1c
-    -secondary_subnet_d: 10.0.0.192/26, AZ: us-east-1d
+* secondary_subnet_a: 10.0.0.0/26, AZ: us-east-1a
+* secondary_subnet_b: 10.0.0.64/26, AZ: us-east-1b
+* secondary_subnet_c: 10.0.0.127/26, AZ:us-east-1c
+* secondary_subnet_d: 10.0.0.192/26, AZ: us-east-1d
 
 54. Crearemos también un nuevo internet gatewat que atacharemos a esta VPC secundaria.
 55. Accedemos a la route table y generamos una route table custom (recordad que se recomienda no tocar la main route table). En esta nueva route table que llamaremos secondary_route_Table, añadiremos al ruta al Internet Gateway:
