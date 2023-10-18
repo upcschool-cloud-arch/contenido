@@ -190,7 +190,7 @@ En este apartado vamos a intentar hacer un poco de troubleshooting para determin
 61. Accedemos de nuevo a las route tables y clicamos sobre la custom_secondary_route_table y a través de la pestaña _Subnet associations_ asociamos la subnet secondary_subnet_a a la custom route table.
 62. Haz de nuevo ping y comprueba que funciona correctamente.
 
-El motivo por el que no estaba funcionado el ping inicialmente es porqué nuestra custom route table no estaba explícitamos asociada a la subnet dónde se encuentra la EC2, y toma por defecto la route table de la VPC, que no tiene definida la salida a internet por el Internet Gateway.
+El motivo por el que no estaba funcionado el ping inicialmente, es porqué nuestra custom route table no estaba explícitamos asociada a la subnet dónde se encuentra la EC2, y toma por defecto la route table de la VPC, que no tiene definida la salida a internet por el Internet Gateway.
 
 
 
