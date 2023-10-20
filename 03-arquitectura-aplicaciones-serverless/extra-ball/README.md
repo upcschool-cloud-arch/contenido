@@ -6,6 +6,7 @@
 * Implementing a lambda-based application with an RDS backend comes with its own challenges. Do some research (for example, read [this post about connection issues](https://faiqahsan.medium.com/how-to-solve-lambda-and-rds-database-connection-issues-for-nodejs-application-7c9a22362160)) before taking this path.
 * Many AI-related services can be considered serverless. For example, [Transcribe](https://aws.amazon.com/transcribe) can help for transforming audio into text, or [Polly](https://aws.amazon.com/polly) can do the opposite. Others are focused on computer vision, like [Textract](https://aws.amazon.com/textract) for extracting textual data from images (including particular cases, like invoices).
 * The most popular choices for developing lambda-based applications are [AWS SAM](./AWS-SAM.md), [Serverless Framework](https://www.serverless.com) and [AWS CDK](https://youtu.be/zOwYSX6ExSY?si=peJtI6O3oJe0Wu2C). Check them to choose your own favorite.
+* A very nice post comparing the serverless compute offer of the three vendors: [serverless showdown](https://www.pluralsight.com/resources/blog/cloud/serverless-showdown-aws-lambda-vs-azure-functions-vs-google-cloud-functions).
 
 ## Additional labs
 
