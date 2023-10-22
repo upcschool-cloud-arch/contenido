@@ -59,12 +59,13 @@ Ahora volveremos al tipo de instancia. ¿Recuerdas que tipo de instancia has esc
 25. ¿Recuerdas que tipo de escalado necesitaremos si queremos aumentar los recursos de nuestra EC2?
 26. Necesitaremos un escalado Vertical (aumento de recursos como CPU y/o RAM). Para ello tendremos que cambiar el tipo de instancia. 
 27. Busca una instancia de uso general que tenga el menor coste y 2 vCPU y 6 GiB de RAM. Ayúdate con los siguientes enlaces:
+```
     https://calculator.aws/#/
     https://aws.amazon.com/es/ec2/instance-types
-  
-28. ¿Qué instancia has escogido?
-29. Una vez claro a qué instancia vamos a ir, tendremos que proceder con el escalado vertical. Para ello, nos vamos al menú EC2, seleccionamos nuestra instancia _lab3_ y clicamos sobre el botón de arriba a la derecha _Instance State_ --> _Instance settings_ --> _Change instance type_ 
-30. Vemos que esta opción está deshabilitada. ¿Sabes cuál es el motivo?
+```
+29. ¿Qué instancia has escogido?
+30. Una vez claro a qué instancia vamos a ir, tendremos que proceder con el escalado vertical. Para ello, nos vamos al menú EC2, seleccionamos nuestra instancia _lab3_ y clicamos sobre el botón de arriba a la derecha _Instance State_ --> _Instance settings_ --> _Change instance type_ 
+31. Vemos que esta opción está deshabilitada. ¿Sabes cuál es el motivo?
 
 Como ya hemos comentado, para poder realizar un cambio de tipo de instancia, es decir, escalado vertical, tenemos que parar la EC2. Este cambio NO puede hacerse en caliente, y por lo tanto, si nuestro entorno fuese productivo, tendríamos que tener un ventana de mantenimiento con su correspondiente downtime.
 
