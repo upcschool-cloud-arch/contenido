@@ -28,13 +28,13 @@ yum install -y httpd
 #echo "<h1>Hello I'm lab3 instance from $(hostname -f) </h1>" > /var/www/html/index.html
 ```
 12. Clicamos sobre _Launch Instance_
-13. Comprobamos que la instancia ha finalizado su lanzamiento, en status check: _2/2 checks passed_
+13. **IMPORTANTE**:Comprobamos que la instancia ha finalizado su lanzamiento, en status check: _2/2 checks passed_
 14. Lo primero que vamos a comprobar es que nuestro apache esté iniciado, para ello, comprobamos mediante un curl 
 ```bash
 curl http://<Ip pública>
 ```
 15. ¿Qué resultado obtienes? 
-16. Accedemos por ssh a nuestra instancia ec2 _lab3_
+16. Accedemos por ssh a nuestra instancia ec2 _lab3_. Podemos iniciar también desde la consola de AWS, usando el botón _Connect_ que encontraréis arriba a la derecha de la pantalla en el menú EC2.
 * Linux:
 ```bash 
 ssh -i "lab1.pem" ec2-user@<IP publica>
@@ -49,9 +49,10 @@ systemctl status httpd
 19. Vemos que ha habido algún problema con el arranque del servicio http. Vamos a ver dónde puede encontrarse el problema
 20. Seleccionamos sobre nuestra instancia EC2 _lab_ en el dashboard de EC2 y clicamos sobre el botón arriba a la derecha _Actions_
 21. Seleccionamos _Instance_Setting_ y buscamos la opción _Edit User Data_
-22. Aquí podremos verificar el código introduccido en User Data. Vemos que hay un error, ya que las líneas que inicializar httpd están comentadas/desahabilitadas con #.
-23. Si intentamos eliminar estas almohadillas del código, veremos que tenemoss habilitado el cuadro del código. No podemos modificarlo si la instancia no está running.
-24. Corregiremos este error más adelante.
+22. ¿Detectas algún problema en el código del _User Data_?
+23. Si observamos con detenimiento,  Vemos que hay un error, ya que las líneas que inicializar httpd están comentadas/desahabilitadas con #.
+24. Si intentamos eliminar estas almohadillas del código, veremos que tenemos habilitado el cuadro del código. No podemos modificarlo si la instancia está **running**.
+25. Corregiremos este error más adelante en este lab. Por el momento sigue adelante con lo siguientes pasos.
 
 Ahora volveremos al tipo de instancia. ¿Recuerdas que tipo de instancia has escogido para esta EC2?. Posiblemente, nuestra futura aplicación no podrá ejecutarse en una instancia tan pequeña. 
 
