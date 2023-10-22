@@ -14,7 +14,7 @@ En esta primera parte del lab, vamos a ver qué cambios en frío (parada de EC2)
 6. Selecciona el tipo de instancia más grande que encuentres en free-tier (gratuita). Tip: ayúdate de la opción _Compare Instance Type_ que te aparece a la derecha.
 7. En Key pair, clica sobre el menú desplegable y selecciona lab1 (creado en el módulo de Introducción al Networking). Si has perdido este fichero, crea un nuevo key pair con el mismo nombre _lab1_ y guárdalo.
 8. Editaremos los Networking settings para que nuestra nueva instancia se cree dentro de nuestra vpc <main_vpc_yourname>, en la subnet pública <main_subnet_a> y habilitar la IP pública.
-9. Selecciona el Security Group creado en los labs anteriores. Recuerda que debes tener acceso por HTTP (puerto 80), SSH (puerto 22) y orígen ip de tu laptop o PC y ping (Protocolo ICPM).
+9. Selecciona el Security Group creado en los labs anteriores. Recuerda que debes tener acceso por HTTP (puerto 80), SSH (puerto 22) y orígen ip de tu laptop o PC y ping (Protocolo ICMP).
 10. Dejaremos el almacenamiento con las caraterísticas que vienen por defecto
 11. En advance details, añadiremos en el cuadro _User Data_:
 ```bash
