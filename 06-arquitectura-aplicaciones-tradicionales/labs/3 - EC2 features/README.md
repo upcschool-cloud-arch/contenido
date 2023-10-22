@@ -67,10 +67,10 @@ Ahora volveremos al tipo de instancia. ¿Recuerdas que tipo de instancia has esc
 30. Una vez claro a qué instancia vamos a ir, tendremos que proceder con el escalado vertical. Para ello, nos vamos al menú EC2, seleccionamos nuestra instancia _lab3_ y clicamos sobre el botón de arriba a la derecha _Instance State_ --> _Instance settings_ --> _Change instance type_ 
 31. Vemos que esta opción está deshabilitada. ¿Sabes cuál es el motivo?
 
-Como ya hemos comentado, para poder realizar un cambio de tipo de instancia, es decir, escalado vertical, tenemos que parar la EC2. Este cambio NO puede hacerse en caliente, y por lo tanto, si nuestro entorno fuese productivo, tendríamos que tener un ventana de mantenimiento con su correspondiente downtime.
+Como ya hemos comentado, para poder realizar un cambio de tipo de instancia, es decir, escalado vertical, tenemos que parar la EC2. Este cambio **NO puede hacerse en caliente**, por lo que, si nuestro entorno fuese productivo, tendríamos que tener un ventana de mantenimiento con su correspondiente downtime.
 
-31. Apagamos _lab3_, seleccionando nuestra EC2 en el panel y arriba a la derecha clicamos sobre _Instance state_ --> _Stop Instance_
-32. Volvemos a los pasos del punto 29. Y seleccionamos el tipo de instancia escigdo en el punto 28 y aplicamos los cambios.
+31. Apagamos _lab3_, seleccionando nuestra EC2 en el panel y arriba a la derecha clicamos sobre _Instance state_ --> _Stop Instance_.
+32. Volvemos a los pasos del punto 30. Y seleccionamos el tipo de instancia escogido en el punto 29 y aplicamos los cambios.
 33. Verificamos que se ha producido el cambio de tamaño en el panel de EC2. Como véis el cambio es rápido, pero necesitamos parar la EC2 para hacerlo.
 34. Aprovechamos que tenemos la EC2 parada, para realizar el cambio en el User Data
 35. Seguimos las instrucciones del punto 21 y eliminamos la almohadilla de las líneas:
