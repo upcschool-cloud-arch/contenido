@@ -1,6 +1,36 @@
 # Tablón de anuncios
 
-## Exámenes  (fechas pendientes de concretar en breve)
+## 2023-10-23: Primera clase de repaso
+
+Fecha de la clase: Jueves 9 Nov, 18:30
+Lugar: GatherTown
+Duración: 90 minutos
+
+Estamos preparando nuestra primera clase de repaso. Estos son puntos que tienes que tener en cuenta:
+
+* La asistencia es totalmente opcional.
+* Se centrará en los temas que ya han aparecido en el curso.
+* Durará 90 minutos.
+* La llevaremos a cabo un jueves en el que no tengáis clase (pronto, pero no podemos concretaros todavía).
+
+**Para hacerla más interesante, necesitamos que nos expliques qué quieres que tratemos utilizando [este formulario](https://forms.gle/JSDtvgFGthA6voZv6)**. Si tienes varias dudas, puedes responderlo varias veces (pero no uses una única respuesta para enumerarlas todas).
+
+¡Gracias!
+
+## 2023-10-23: Examen
+
+Fecha del examen: Lunes 13 de Noviembre
+Lugar: GatherTown
+Formato: 10 preguntas tipo test
+Duración: 30 minutos
+
+Entrará lo que hemos visto hasta ahora, con una pregunta sobre el topic 1 (Autenticación), otra sobre el topic 2 (webs estáticas), tres sobre el 3 (serverless) , tres sobre el 4 (networking) y dos sobre el 5 (aplicaciones tradicionales).
+
+Todas las preguntas serán razonables, buscando el que tengáis que pensar la respuesta más que en memorizar nada. Pero tenéis que tener una idea clara sobre todos los conceptos que aparecen en cada una de las fichas de cada topic: de ahí es de donde sacaremos la inspiración. 
+
+Haremos un par de preguntas de prueba para que veáis el formato más adelante. El día del examen reservaremos media hora de clase para ello.
+
+**Durante el tiempo del examen SOLO PODÉIS HABLAR CON EL PROFESOR QUE ESTÉ AL CARGO DE LA SESIÓN, usando slack. INCLUSO SI HABÉIS ENTREGADO YA VUESTRAS RESPUESTAS**.
 
 
 ## Trabajo de final de Posgrado
