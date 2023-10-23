@@ -97,7 +97,7 @@ Ahora que ya tenemos nuestro entorno montado, vamos a verificar que funciona cor
 
 35. En el buscador de la consola escribimos EC2 y clicamos
 36. En buscador del dashboard de EC2 escribimos: lab1 y seleccionamos la instancia
-37. Copiamos la IP Pública de esta ec2 (Public IPV4), que encontraremos en la pestaña _Details_
+37. Copiamos la IP Pública de esta EC2 (Public IPV4), que encontraremos en la pestaña _Details_
 38. Desde vuestra terminal, tecleamos:
 ```bash
 ping <ip_pública_ec2> 
@@ -163,7 +163,7 @@ Hemos visto la importancia de que todos los recursos estén configurados correct
 En este apartado vamos a intentar hacer un poco de troubleshooting para determinar qué puede estar fallando.
 
 51. Accedemos de nuevo a la consola de AWS y accedemos al VPC dashboard.
-52. Generaremos una nueva VPC que llamarermos secondary_vpc y que eliminaremos al acabar el laboratorio.
+52. Generaremos una nueva VPC que llamarermos secondary_vpc.
     CIDR: 10.0.0.0/24
 53. Dentro de esta VPC generaremos 4 subnets:
 * secondary_subnet_a: 10.0.0.0/26, AZ: us-east-1a
@@ -171,26 +171,26 @@ En este apartado vamos a intentar hacer un poco de troubleshooting para determin
 * secondary_subnet_c: 10.0.0.128/26, AZ:us-east-1c
 * secondary_subnet_d: 10.0.0.192/26, AZ: us-east-1d
 
-54. Crearemos también un nuevo internet gatewat que atacharemos a esta VPC secundaria.
-55. Accedemos a la route table y generamos una route table custom (recordad que se recomienda no tocar la main route table). En esta nueva route table que llamaremos secondary_route_Table, añadiremos al ruta al Internet Gateway:
+54. Crearemos también un nuevo internet gateway que atacharemos a esta VPC secundaria, secondary_internet_gateway.
+55. Accedemos a la route table y generamos una route table custom (recordad que se recomienda no tocar la main route table). En esta nueva route table que llamaremos custom_secondary_route_table, añadiremos la ruta al Internet Gateway:
     Destination: 0.0.0.0/0
-    Target: id_internet_gatewat
-56. Finalmente crearemos una instancia ec2 en la subnet secondary_subnet_a
-    Name: lab1_bonus_Track
+    Target: (secondary_internet_gateway)
+56. Finalmente crearemos una instancia EC2 en la subnet secondary_subnet_a
+    Name: lab1_bonus_track
     AMI: Amazon Linux
     Instance type: t2.micro
-    Keypair, el mismo que utilizamos en los puntos anterior lab1.pem
-    Network setting: seleccionamos la VPC secondary y la subnet secondary_subnet_a
-    Security Group: generaremos unos nuevo y clicamos el check SSH y HTTP
+    Keypair: el mismo que utilizamos en los puntos anteriores, lab1.pem
+    Network settings: seleccionamos la VPC secondary_vpc y la subnet secondary_subnet_a
+    Security Group: generaremos uno nuevo y clicamos el check SSH y HTTP
 57. Y clicamos launch instances
-58. Una vez está generada esta nueva instancia, vamos a completar el SG con un regla que nos permita hacer ping desde cualquier lugar. Recordar que necesitaremos protocolo ICMP, desde 0.0.0.0/0
+58. Una vez está generada esta nueva instancia, vamos a completar el SG con un regla que nos permita hacer ping desde cualquier lugar. Recordad que necesitaremos protocolo ICMP, desde 0.0.0.0/0
 59. Finalizado este paso, hacemos ping desde nuestro terminal. ¿Qué resultado obtienes?
 
-60. No podemos llegar por ping, y tampoco podríamos llegar por ssh. El motivo, tiene que ver con las asociaciones implicitas y explicitas de las route tables.
+60. No podemos llegar por ping, y tampoco podríamos llegar por ssh. El motivo tiene que ver con las asociaciones implícitas y explícitas de las route tables.
 61. Accedemos de nuevo a las route tables y clicamos sobre la custom_secondary_route_table y a través de la pestaña _Subnet associations_ asociamos la subnet secondary_subnet_a a la custom route table.
 62. Haz de nuevo ping y comprueba que funciona correctamente.
 
-El motivo por el que no estaba funcionado el ping inicialmente, es porqué nuestra custom route table no estaba explícitamos asociada a la subnet dónde se encuentra la EC2, y toma por defecto la route table de la VPC, que no tiene definida la salida a internet por el Internet Gateway.
+El motivo por el que no estaba funcionado el ping inicialmente, es porque nuestra custom route table no estaba explícitamente asociada a la subnet donde se encuentra la EC2, y toma por defecto la route table de la VPC, que no tiene definida la salida a internet por el Internet Gateway.
 
 
 
