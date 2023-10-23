@@ -87,7 +87,7 @@ chmod 400 lab1.pem
 
 26. Desde el mismo directorio dónde hemos creado este fichero .pem accedemos a la instancia con el siguiente comando:
  ```bash
-ssh -i "lab.pem1" ubuntu@<ip_privada_lab2>
+ssh -i "lab1.pem" ubuntu@<ip_privada_lab2>
 ```
 
 Un vez dentro de una ec2 ubicada en una subnet privada y sin IP pública, podemos chequear si el nat gateway está funcionado:
