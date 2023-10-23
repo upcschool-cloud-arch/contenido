@@ -173,15 +173,15 @@ En este apartado vamos a intentar hacer un poco de troubleshooting para determin
 
 54. Crearemos también un nuevo internet gateway que atacharemos a esta VPC secundaria, secondary_internet_gateway.
 55. Accedemos a la route table y generamos una route table custom (recordad que se recomienda no tocar la main route table). En esta nueva route table que llamaremos custom_secondary_route_table, añadiremos la ruta al Internet Gateway:
-    Destination: 0.0.0.0/0
-    Target: (secondary_internet_gateway)
+* Destination: 0.0.0.0/0
+* Target: (secondary_internet_gateway)
 56. Finalmente crearemos una instancia EC2 en la subnet secondary_subnet_a
-    Name: lab1_bonus_track
-    AMI: Amazon Linux
-    Instance type: t2.micro
-    Keypair: el mismo que utilizamos en los puntos anteriores, lab1.pem
-    Network settings: seleccionamos la VPC secondary_vpc y la subnet secondary_subnet_a
-    Security Group: generaremos uno nuevo y clicamos el check SSH y HTTP
+* Name: lab1_bonus_track
+* AMI: Amazon Linux
+* Instance type: t2.micro
+* Keypair: el mismo que utilizamos en los puntos anteriores, lab1.pem
+* Network settings: seleccionamos la VPC secondary_vpc y la subnet secondary_subnet_a
+* Security Group: generaremos uno nuevo y clicamos el check SSH y HTTP
 57. Y clicamos launch instances
 58. Una vez está generada esta nueva instancia, vamos a completar el SG con un regla que nos permita hacer ping desde cualquier lugar. Recordad que necesitaremos protocolo ICMP, desde 0.0.0.0/0
 59. Finalizado este paso, hacemos ping desde nuestro terminal. ¿Qué resultado obtienes?
