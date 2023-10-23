@@ -23,7 +23,7 @@ Ahora todas las subnets privadas están asociadas implicitamente a este Route Ta
 11. Clicamos sobre la pestaña _Routes_ y añadimos la línea del Internet Gateway, definiendo el como destination: 0.0.0.0/0 y el Target: el ID del Internet Gateway creado en el lab 1.
 12. ¿Cuál es el resultado?
 
-El resultado será un errror, ¿Sabríais decir por qué?
+El resultado será un error, ¿Sabríais decir por qué?
 
 El motivo es que no podemos tener dos salidas a la misma dirección dentro de la misma Route Table.
 
