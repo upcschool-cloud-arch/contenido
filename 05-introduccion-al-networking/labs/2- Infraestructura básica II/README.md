@@ -67,7 +67,7 @@ Comprobaremos el correcto funcionamiento del nat gateway, saliendo a internet a 
 20. En el dashboard de EC2, buscamos la instancia lab1 y la iniciamos a través del botón _Instance State_--> _Start Instances_ en caso de estar parada.
 21. Copiamos la IP pública que se muestra en la pestaña _Details_
 22. Accedemos por ssh a la instancia lab1. Abrimos el terminal y utilizamos el siguiente comando si trabajamos con Linux:
-**Recordad si no lo hicistéis en el lab anterior, lanzar el siguiente comando antes de hacer el ssh:
+**Recordad, si no lo hicisteis en el lab anterior, lanzar el siguiente comando antes de hacer el ssh:
 ```bash
 chmod 400 lab1.pem
 ```
@@ -96,7 +96,7 @@ Un vez dentro de una ec2 ubicada en una subnet privada y sin IP pública, podemo
 ```bash
  ping 8.8.8.8 // Google
  ```
-28. Si lanzamos un _traceroute_, podemos ver el camino que sigue nuestro paquete IP y si realmente está pasadando por el Nat Gateway. Podéis verificar la IP de vuestro Nat gatway en la consola de AWS.
+28. Si lanzamos un _traceroute 8.8.8.8_, podemos ver el camino que sigue nuestro paquete IP y si realmente está pasando por el Nat Gateway. Podéis verificar la IP (privada) de vuestro Nat Gateway en la consola de AWS.
 
 ## Peering Connection
 
