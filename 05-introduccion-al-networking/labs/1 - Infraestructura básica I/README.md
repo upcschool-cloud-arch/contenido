@@ -105,7 +105,7 @@ curl http://<ip_publica_ec2>
 ```
 39. ¿Qué resultado obtienes?
 
-No podemos llegar a la EC2 con IP pública. ¿Cuál crees que es el movito?
+No podemos llegar a la EC2 con IP pública. ¿Cuál crees que es el motivo?
 
 A pesar de haber definido las route table, **recordad que no hemos añadido reglas al Security Group que acabamos de crear**. Como hemos visto en la sesión, los SG por defecto deniega el inbound a los recursos, que en este caso es nuestra EC2.
 
@@ -140,7 +140,7 @@ curl http://<Public_IP>
 
 48. Desde el terminal, escribimos el siguiente comando si usamos Linux:
 ```bash
-chmod 400 lab1.4.pem
+chmod 400 lab1.pem
 ```
 Nota: en la ruta en la que tengamos guardado el .pem
 
@@ -168,7 +168,7 @@ En este apartado vamos a intentar hacer un poco de troubleshooting para determin
 53. Dentro de esta VPC generaremos 4 subnets:
 * secondary_subnet_a: 10.0.0.0/26, AZ: us-east-1a
 * secondary_subnet_b: 10.0.0.64/26, AZ: us-east-1b
-* secondary_subnet_c: 10.0.0.127/26, AZ:us-east-1c
+* secondary_subnet_c: 10.0.0.128/26, AZ:us-east-1c
 * secondary_subnet_d: 10.0.0.192/26, AZ: us-east-1d
 
 54. Crearemos también un nuevo internet gatewat que atacharemos a esta VPC secundaria.
