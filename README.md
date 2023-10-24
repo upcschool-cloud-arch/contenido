@@ -1,5 +1,6 @@
 # Edición 2 del Posgrado de Cloud Architecture
 
+* [Tablón de anuncions](tablon.md)
 * [Calendario](calendario.md)
 * [Equipos](teams.md)
 * [Slack](https://cloudarchupc.slack.com)
