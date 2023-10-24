@@ -37,14 +37,14 @@ curl http://<Ip pública>
 16. Accedemos por ssh a nuestra instancia ec2 _lab3_:
  **Nota**: recuerda que podemos acceder a las instancias por dos vías:
  
---> La primera forma depende si tu equipo es Linux o Windows: Podemos iniciar también desde 
+--> La primera forma depende si tu equipo es Linux o Windows:
 * Linux:
 ```bash 
 ssh -i "lab1.pem" ec2-user@<IP publica>
 ````
 * Windows: a través de putty y con el usuario ec2-user
 
---> La segunda forma es a través de la consola de AWS, usando el botón _Connect_ que encontraréis arriba a la derecha de la pantalla en el menú EC2.
+--> La segunda forma es a través de la consola de AWS, usando el botón **_Connect_** que encontraréis arriba a la derecha de la pantalla en el menú EC2.
 
 17. Una vez dentro comprobamos si httpd está levantado
 ```bash 
