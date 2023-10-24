@@ -6,7 +6,7 @@ En este lab, vamos a repasar algunas de las características principales que hem
 
 En esta primera parte del lab, vamos a ver qué cambios en frío (parada de EC2) podemos hacer sobre la EC2
 
-1. En primer lugar, crearemos una segunda EC2 en nuestra subnet pública (main_subnet_a)
+1. En primer lugar, crearemos una segunda EC2 **con IP pública** en nuestra subnet pública (main_subnet_a)
 2. En el dashboard principal de aws buscamos el servicio EC2 en la barra del buscador o bien a través del menu _Services_
 3. Clicamos sobre el botón _Launch instance_
 4. Nuestra nueva EC2 tendrá el nombre _lab3_
