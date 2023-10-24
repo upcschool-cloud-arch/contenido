@@ -52,10 +52,10 @@ systemctl status httpd
 ```
 18. ¿Qué resultado obtienes?
 19. Vemos que ha habido algún problema con el arranque del servicio http. Vamos a ver dónde puede encontrarse el problema
-20. Seleccionamos sobre nuestra instancia EC2 _lab_ en el dashboard de EC2 y clicamos sobre el botón arriba a la derecha _Actions_
-21. Seleccionamos _Instance_Setting_ y buscamos la opción _Edit User Data_
+20. Seleccionamos sobre nuestra instancia EC2 _lab_ en el dashboard de EC2 y clicamos sobre el botón arriba a la derecha _Actions_ .
+21. Seleccionamos _Instance_Setting_ y buscamos la opción _Edit User Data_.
 22. ¿Detectas algún problema en el código del _User Data_?
-23. Si observamos con detenimiento,  Vemos que hay un error, ya que las líneas que inicializar httpd están comentadas/desahabilitadas con #.
+23. Si observamos con detenimiento, vemos que hay un error, ya que las líneas que inicializan httpd están comentadas/desahabilitadas con #.
 24. Si intentamos eliminar estas almohadillas del código, veremos que tenemos habilitado el cuadro del código. No podemos modificarlo si la instancia está **running**.
 25. Corregiremos este error más adelante en este lab. Por el momento sigue adelante con lo siguientes pasos.
 
