@@ -29,17 +29,22 @@ yum install -y httpd
 ```
 12. Clicamos sobre _Launch Instance_
 13. **IMPORTANTE**:Comprobamos que la instancia ha finalizado su lanzamiento, en status check: _2/2 checks passed_
-14. Lo primero que vamos a comprobar es que nuestro apache esté iniciado, para ello, comprobamos mediante un curl 
+14. Lo primero que vamos a verificar es si nuestro apache esté iniciado, para ello, comprobamos mediante un curl 
 ```bash
 curl http://<Ip pública>
 ```
 15. ¿Qué resultado obtienes? 
-16. Accedemos por ssh a nuestra instancia ec2 _lab3_. Podemos iniciar también desde la consola de AWS, usando el botón _Connect_ que encontraréis arriba a la derecha de la pantalla en el menú EC2.
+16. Accedemos por ssh a nuestra instancia ec2 _lab3_.
+
+ **Nota**: recuerda que podemos acceder a las instancias por dos vías:
+--> La primera forma depende si tu equipo es Linux o Windows: Podemos iniciar también desde 
 * Linux:
 ```bash 
 ssh -i "lab1.pem" ec2-user@<IP publica>
 ````
 * Windows: a través de putty y con el usuario ec2-user
+
+--> La segunda forma es a través de la consola de AWS, usando el botón _Connect_ que encontraréis arriba a la derecha de la pantalla en el menú EC2.
 
 17. Una vez dentro comprobamos si httpd está levantado
 ```bash 
