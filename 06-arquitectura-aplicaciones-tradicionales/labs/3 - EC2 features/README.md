@@ -34,9 +34,9 @@ yum install -y httpd
 curl http://<Ip pública>
 ```
 15. ¿Qué resultado obtienes? 
-16. Accedemos por ssh a nuestra instancia ec2 _lab3_.
-
+16. Accedemos por ssh a nuestra instancia ec2 _lab3_:
  **Nota**: recuerda que podemos acceder a las instancias por dos vías:
+ 
 --> La primera forma depende si tu equipo es Linux o Windows: Podemos iniciar también desde 
 * Linux:
 ```bash 
