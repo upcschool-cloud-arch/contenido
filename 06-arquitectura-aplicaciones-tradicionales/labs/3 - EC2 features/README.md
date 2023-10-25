@@ -56,7 +56,7 @@ systemctl status httpd
 21. Seleccionamos _Instance_Setting_ y buscamos la opción _Edit User Data_.
 22. ¿Detectas algún problema en el código del _User Data_?
 23. Si observamos con detenimiento, vemos que hay un error, ya que las líneas que inicializan httpd están comentadas/desahabilitadas con #.
-24. Si intentamos eliminar estas almohadillas del código, veremos que tenemos habilitado el cuadro del código. No podemos modificarlo si la instancia está **running**.
+24. Si intentamos eliminar estas almohadillas del código, veremos que tenemos deshabilitado el cuadro del código. No podemos modificarlo si la instancia está **running**.
 25. Corregiremos este error más adelante en este lab. Por el momento sigue adelante con lo siguientes pasos.
 
 Ahora volveremos al tipo de instancia. ¿Recuerdas que tipo de instancia has escogido para esta EC2?. Posiblemente, nuestra futura aplicación no podrá ejecutarse en una instancia tan pequeña. 
