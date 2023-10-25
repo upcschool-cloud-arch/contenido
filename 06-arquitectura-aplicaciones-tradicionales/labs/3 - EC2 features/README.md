@@ -118,7 +118,5 @@ Content-Disposition: attachment; filename="userdata.txt"
 ```
 
 41. Arranca de nuevo la EC2, verifica que han pasado los checks y realiza de nuevo el curl.
-42. La segunda opción, es modificar el User Data con lo comandos correctos y generar una AMI. A partir de esta AMI podemos crear las EC2 que necesitemos con el web server instalando y arrancado.
-  
-.............
-38. Cuando hayas finalizado el lab, puedes parar la EC2 o terminarla.
+42. La segunda opción, es modificar el User Data con lo comandos correctos y generar una AMI. A partir de esta AMI podemos crear las EC2 que necesitemos con el web server instalando y arrancado. Lo veremos en el próximo lab.
+43.  Cuando hayas finalizado el lab, puedes parar la EC2.
