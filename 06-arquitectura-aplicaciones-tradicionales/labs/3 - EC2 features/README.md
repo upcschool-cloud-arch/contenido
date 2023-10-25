@@ -69,7 +69,7 @@ Ahora volveremos al tipo de instancia. ¿Recuerdas que tipo de instancia has esc
     https://aws.amazon.com/es/ec2/instance-types
 ```
 29. ¿Qué instancia has escogido?
-30. Una vez claro a qué instancia vamos a ir, tendremos que proceder con el escalado vertical. Para ello, nos vamos al menú EC2, seleccionamos nuestra instancia _lab3_ y clicamos sobre el botón de arriba a la derecha _Instance State_ --> _Instance settings_ --> _Change instance type_ 
+30. Una vez claro a qué instancia vamos a ir, tendremos que proceder con el escalado vertical. Para ello, nos vamos al menú EC2, seleccionamos nuestra instancia _lab3_ y clicamos sobre el botón de arriba a la derecha _Actions_--> _Instance settings_ --> _Change instance type_ 
 31. Vemos que esta opción está deshabilitada. ¿Sabes cuál es el motivo?
 
 Como ya hemos comentado, para poder realizar un cambio de tipo de instancia, es decir, escalado vertical, tenemos que parar la EC2. Este cambio **NO puede hacerse en caliente**, por lo que, si nuestro entorno fuese productivo, tendríamos que tener un ventana de mantenimiento con su correspondiente downtime.
