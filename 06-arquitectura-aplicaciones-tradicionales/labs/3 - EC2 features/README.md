@@ -84,10 +84,41 @@ systemctl start httpd
 systemctl enable httpd
 ```
 36. Guardamos los cambios y levantamos de nueva la instancia desde _Instance state_ --> _Start instance_
-37. Cuando la instancia se encuentre ya arrancada y los dos checks ok, verificamos que tenemos el servicio httpd funcionando. Prueba de nuevo
+37. Cuando la instancia se encuentre ya arrancada y los dos checks ok,comprobamos de nuevo si el servicio httpd está funcionando. Prueba de nuevo
 ```bash
 curl http://<ip pública>
 ```
 Ojo con la IP, está habrá cambiando respecto al momento previo a parar la instancia.
+39. El servicio httpd sigue sin funcionar. El motivo es que el user data, por defecto, solo se ejecuta cuando la instancia se lanza. ¿Cómo arreglamos entonces está problema? Tenemos dos vías:
 
+40. La primera, será "forzar la ejecución con cada reinicio. Para ellos, paramos de nuevo la instancia y incluiremos el siguiente texto en el User Data:
+```
+Content-Type: multipart/mixed; boundary="//"
+MIME-Version: 1.0
+
+--//
+Content-Type: text/cloud-config; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="cloud-config.txt"
+
+#cloud-config
+cloud_final_modules:
+- [scripts-user, always]
+
+--//
+Content-Type: text/x-shellscript; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="userdata.txt"
+
+#!/bin/bash
+/bin/echo "Hello World" >> /tmp/testfile.txt
+--//--
+```
+
+41. Arranca de nuevo la EC2, verifica que han pasado los checks y realiza de nuevo el curl.
+42. La segunda opción, es modificar el User Data con lo comandos correctos y generar una AMI. A partir de esta AMI podemos crear las EC2 que necesitemos con el web server instalando y arrancado.
+  
+.............
 38. Cuando hayas finalizado el lab, puedes parar la EC2 o terminarla.
