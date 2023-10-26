@@ -4,20 +4,16 @@ La idea de este laboratorio es comprobar todas las opciones que nos brinda este 
 
 ## Cambios en caliente
 
-1. En el Dashboard de EC2, vamos a iniciar alguna de las instancias que tengamos sobre nuestra subnet pública _main subnet_a y nos aseguramos que:
+1. En el Dashboard de EC2, vamos a iniciar la instancia del lab3. Recordemos que esta se encuentra en la subnet pública _main subnet_a. Antes de seguir, verifica los siguientes puntos:
 * Tiene el SG abierto para HTTP, ICMP, SSH
-* Tenemos en el User Data el servicio de httpd incluido
+* Tenemos en el User Data el servicio de httpd incluido y levantado**
 * Si está parada, la inciamos con un start desde _Instance State_
 
-2. Una vez comprobados los puntos anteriores, con la instancia seleccionada, nos vamos a la pestaña _Storage_ (parte baja de la pantalla)
-3. Clicamos sobre el id del volumen _vol-xxxxxxxxxxx_, que nos llevará al dashboard de EBS y nuevamente clicamos sobre el id para ver las características de nuestro EBS.
-4. El siguiente paso será realizar un cambio del tamaño del volumen y del tipo de EBS, mientras comprobamos que la máquina no sufre downtimes en el proceso.
-5. Para ello, podemos monitorizar de forma sencilla tirando un ping a la máquina  o bien revisando que el servicio de http está levantado*. Esto último podemos verlo a través del navegador usando la dirección:
+** **Nota**: si el web server no está levantado, es decir, no obtenemos la respuesta "Hello I'm lab3 instance from ip-xxx-xx-x-xxx.ec2.internal" al hacer un curl al lanzar la petición en el navegador:
 ```bash
-http://<ip pública ec2>
-````
-
-* **Nota**: aseguraros que el servicio de http funciona antes de realizar el cambio del siguiente punto. Para ello: accede por ssh a la instancia y lanza el siguiente comando:
+http://<ip_publica>
+```
+levánta el servicio manualmente, tal como se indica a continuación:
 ```
 systemctl status httpd
 ```
@@ -26,16 +22,27 @@ Si no estuviera levantado, inícialo con:
 systemctl start httpd
 ```
 
-6. Procedemos con el cambio, clicando sobre el volumen que queremos hacer el cambio y clicamos sobre el botón _Modify_
-7. Seleccionaremos el volumen de tipo io1 (recordad que era el más económico dentro de los Provisioned IOPs). Subimos el size a 10 GiB e indicamos 100 IOPS.
-8. CLicamos sobre el botón _Modify_  y verificamos que durante el cambio no tenemos pérdida de ping ni de HTTP.
+2. Una vez comprobados los puntos anteriores, con la instancia seleccionada, nos vamos a la pestaña _Storage_ (parte baja de la pantalla)
+3. Clicamos sobre el id del volumen _vol-xxxxxxxxxxx_ (esto nos llevará al dashboard de EBS) y añade a este volumen el tag "EBS_lab3" para que te sea más fácil identificarlo.
+4. Nuevamente clicamos sobre el id para ver las características de nuestro EBS (tamaño, tipo, snapshots, etc).
+5. El siguiente paso será realizar un cambio del tamaño del volumen y del tipo de EBS, mientras comprobamos que la máquina no sufre downtimes en el proceso.
+6. Para ello, podemos monitorizar de forma sencilla tirando un ping a la máquina  o bien observando servicio de http, que debería estar está levantado en todo momento. Esto último podemos verlo a través del navegador usando la dirección:
+```bash
+http://<ip pública ec2>
+````
+**Nota**: también podríamos monitorizar la EC2 a través de Cloudwatch.
 
-Iportante: Tened en cuenta, que si hacemos un resize de EBS, en un entorno real, tendremos que realizar también una extensión de disco para que se vea reflejado el cambio en el SO o en Disk Management. Esta configuración difiere enrte Windows y Linux:
+6. Vamos a proceder con el cambio de tamaño y tipo de EBS. Podéis hacerle desde dos puntos:
+* La primera opción es seleccionar el volumen EBS_lab3 y clicamos sobre el botón _Actions_ que encontraréis arriba a la derecha. Seguidamente clicais sobre _Modify volume_ .
+* La segunda opción, es desde el paso 4. Si estamos dentro de las características de nuestro volumen, veremos arriba a la derecha el botón _Modify_.
+7. Seleccionaremos el volumen de tipo io1 (recordad que era el más económico dentro de los Provisioned IOPs). Subimos el size a 10 GiB e indicamos 100 IOPS.
+8. CLicamos sobre el botón _Modify_ y verificamos que durante el cambio no tenemos pérdida de ping nid de HTTP.
+**Importante**: Tened en cuenta, que si hacemos un resize de EBS, en un entorno real, tendremos que realizar también una extensión de disco para que se vea reflejado el cambio en el SO o en Disk Management. Esta configuración es diferente según el Sistema Operativo de nuestra EC2:
 * Linux: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html
 * Windows: https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/recognize-expanded-volume-windows.html
 
-9. Siguiendo las instrucciones y el casuítica correspondiente (procesador Intel) del link anterior, extendemos el disco de nuestro EBS
-10. Nos conectamos por ssh a la ec2 dónde se encuentra el vollumen EBS
+9. Siguiendo las instrucciones y el casuítica correspondiente (procesador Intel) del link anterior, vamos a extender el disco de nuestro EBS.
+10. Nos conectamos por ssh o a través de la consolo de AWS a la EC2 lab3 (o dónde se encuentre el volumen que estamos trabajando: EBS_lab3)
 11. Una vez aquí, lanzamos el siguiente comando
 ```bash
 sudo lsblk  
