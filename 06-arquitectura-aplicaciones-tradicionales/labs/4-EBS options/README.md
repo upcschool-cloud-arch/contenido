@@ -12,12 +12,12 @@ La idea de este laboratorio es comprobar todas las opciones que nos brinda este 
 2. Una vez comprobados los puntos anteriores, con la instancia seleccionada, nos vamos a la pestaña _Storage_ (parte baja de la pantalla)
 3. Clicamos sobre el id del volumen _vol-xxxxxxxxxxx_, que nos llevará al dashboard de EBS y nuevamente clicamos sobre el id para ver las características de nuestro EBS.
 4. El siguiente paso será realizar un cambio del tamaño del volumen y del tipo de EBS, mientras comprobamos que la máquina no sufre downtimes en el proceso.
-5. Para ello, podemos monitorizar de forma sencilla tirando un ping a la máquina  o bien revisando que el servicio de http está levantado. Esto último podemos verlo a través del navegador usando la dirección:
+5. Para ello, podemos monitorizar de forma sencilla tirando un ping a la máquina  o bien revisando que el servicio de http está levantado*. Esto último podemos verlo a través del navegador usando la dirección:
 ```bash
 http://<ip pública ec2>
 ````
 
-Ojo: aseguraros que el servicio de http funciona antes de realizar el cambio del siguiente punto. Para ello: accede por ssh a la instancia y lanza el siguiente comando:
+* **Nota**: aseguraros que el servicio de http funciona antes de realizar el cambio del siguiente punto. Para ello: accede por ssh a la instancia y lanza el siguiente comando:
 ```
 systemctl status httpd
 ```
