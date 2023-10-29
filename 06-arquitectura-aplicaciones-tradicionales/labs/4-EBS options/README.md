@@ -93,8 +93,8 @@ sudo xfs_growfs -d /
 [ec2-user ~]$ df -hT
 ```
 
-20. Un vez verificado esto, volvemos tipo de disco inicial. Clica de nuevo sobre el volumen que acabamos de modificar y clica sobre el botón _Modify_
-21. Seleccionamos de nuevo el voumen de tipo gp2 y aplicamos los cambios.
+20. Pasada una hora aproximadamente, podemos volver al tipo de disco inicial. Clica de nuevo sobre el volumen que acabamos de modificar y clica sobre el botón _Modify_ .
+21. Seleccionamos de nuevo el voumen de tipo gp3 y aplicamos los cambios.
 
 
 
