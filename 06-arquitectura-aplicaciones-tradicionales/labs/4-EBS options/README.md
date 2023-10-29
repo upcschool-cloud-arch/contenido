@@ -60,7 +60,7 @@ xvdf    202:80   0  24G  0 disk
 ```bash 
 sudo growpart /dev/xvda 1
 ```
-15. Una vez extendido deberíamos ver que el volumen y la partición tiene el mismo tamaño (10GB). Lanza de nuevo el comando del paso 12:
+15. Una vez extendido deberíamos ver que el volumen y la partición tiene el mismo tamaño (10GB). Lanza de nuevo el comando del paso 11:
 ```bash
 [ec2-user ~]$ sudo lsblk               
 NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
