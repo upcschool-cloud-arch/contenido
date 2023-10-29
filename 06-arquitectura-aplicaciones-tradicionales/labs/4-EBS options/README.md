@@ -115,16 +115,16 @@ aws --version
 
 24. Clicamos sobre el volumen que hemos trabajado en el apartado anterior
 25. Clicamos el botón _Actions_ y seleccionamos _Create snapshot_
-26. En la descripción indicamos my first snapshot y añadimos el tag:
+26. En la descripción indicamos "my first snapshot" y añadimos el tag:
 * key: Name; Value:Lab4
 27. Clicamos sobre el botón _Create snapshot_
 
 ## Creación de nuestra propia AMI 
 
-Como hemos comentado a lo largo de este módulo, podemos generar nuestras propias AMIs. Vamos a ver cómo se haría:
+Como hemos comentado a lo largo de este módulo, podemos generar nuestras propias AMIs. En este laboratorio, crearemos uns plantilla que contendrá tanto la CLI de aws como un webserver ya configurado. Vamos a ver cómo:
 
 28. Desde la consola de EC2, a la izquierda, buscamos dentro del apartado: Elastic Block Store, el punto snapshots y clicamos sobre este.
-29. Seleccionamos el snapshot creado en el punto anterior (Descripción My first snapshot) y clicamos sobre el botón _Create image from snapshot_
+29. Seleccionamos el snapshot creado en el punto anterior _lab4_ y clicamos sobre el botón _Create image from snapshot_
 30. Lo primero que indicaremos será el nombre de nuestra nueva AMI: myfirstAMI, y en la descripción indicaremos lo My first AMI
 31. Dejaremos el resto de parámetros que vienen por defecto y clicaremos sobre el botón _Create Image_
 32. Ahora nos vamos al apartado _Images_ dentro de la consola EC2 y verificamos que nuestra imagen se ha creado.
@@ -140,7 +140,7 @@ Lanzaremos una instancia con este AMI y verificaremos que el servicio de httpd s
 * Configure storage: dejamos valores por defecto
 
 35. clicamos _Launch instance_
-36. Verfificamos que el servicio httpd está funcionando:
+36. Esperamos a que el los checks esten ok y verfificamos que el servicio httpd está funcionando:
 ```bash
 curl http://<ip pública>
 ```
