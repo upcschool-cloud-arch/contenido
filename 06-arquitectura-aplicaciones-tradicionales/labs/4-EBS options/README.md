@@ -151,13 +151,13 @@ aws --version
 
 ## Encriptación de volúmenes 
 
-Ninguno de nuestros EBS se encuentra encriptado ahora mismo, si queremos encriptar sin necesidade de crear una máquina nueva, podemos hacerlo sin necesidad de parar nuestra EC2:
-38. Seleccionamos ec2 _lab4 y nos vamos a la pestaña _Storage_
+Ninguno de nuestros EBS se encuentra encriptado ahora mismo, si queremos encriptar, podemos hacerlo sin necesidad de parar nuestra EC2:
+38. Seleccionamos ec2 _lab4_ y nos vamos a la pestaña _Storage_
 39. Clicamos sobre el volumen de esta EC2 
 40. En el botón _Actions_ seleccionamos _Create snapshot_
 41. En la descripción indicamos snapshot sin escriptar y en el tag: 
 * Key:lab; Value:4
-42. Creamos el snapshot con el botçon _create snapsjot_
+42. Creamos el snapshot con el botón _create snapsjot_
 43. En el dashboard de EC2, nos vamos a la izquierda y clicamos sobre _Snapshots_
 44. Seleccionamos el snapshot que acabamos de crear y clicamos sobre el botón _Actions_
 45. Seleccionamos _Copy snapshot_
@@ -172,7 +172,7 @@ Fijaros que en este punto, además de encriptar el volúmen, pero también podr�
 * Key: lab; Value: 4
 * Key: Name; Value: vol_ecnriptado
 51. Clicamos sobre _Create Volume_
-52. Una vez creado esto, podemos atachar este volumen a la instancia que hemos estado trabajando a una instancia diferente.
+52. Una vez creado esto, podemos atachar este volumen a la instancia que hemos estado trabajando o a otra instancia.
 53. En este caso atacharemos a la misma instancia, clicando sobre el volumnes y sobre el botón _Actions_ y seleccionamos _Attach volume_
 54. Seleccionamos la instancia en el desplegable _Instance_ y dejamos el _Device name_ por defecto
 55. Clicamos sobre el _Attach Volume_
