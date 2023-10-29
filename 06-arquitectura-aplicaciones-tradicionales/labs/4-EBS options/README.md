@@ -116,8 +116,7 @@ aws --version
 24. Clicamos sobre el volumen que hemos trabajado en el apartado anterior
 25. Clicamos el botón _Actions_ y seleccionamos _Create snapshot_
 26. En la descripción indicamos my first snapshot y añadimos el tag:
-* Name: Lab4
-* Key: Lab; Value: 4
+* key: Name; Value:Lab4
 27. Clicamos sobre el botón _Create snapshot_
 
 ## Creación de nuestra propia AMI 
