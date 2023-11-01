@@ -151,22 +151,22 @@ aws --version
 
 ## Encriptación de volúmenes 
 
-Ninguno de nuestros EBS se encuentra encriptado ahora mismo, si queremos encriptar, podemos hacerlo sin necesidad de parar nuestra EC2:
+Ninguno de nuestros EBS se encuentra encriptado por el momento. Recordad, que podemos cambiar esto sin necesidad de parar nuestra EC2. Vamos a ver cómo:
 38. Seleccionamos ec2 _lab4_ y nos vamos a la pestaña _Storage_
 39. Clicamos sobre el volumen de esta EC2 
 40. En el botón _Actions_ seleccionamos _Create snapshot_
 41. En la descripción indicamos snapshot sin escriptar y en el tag: 
-* Key:lab; Value:4
-42. Creamos el snapshot con el botón _create snapsjot_
+* Key:Name; Value: lab4
+42. Creamos el snapshot con el botón _create snapshot_.
 43. En el dashboard de EC2, nos vamos a la izquierda y clicamos sobre _Snapshots_
 44. Seleccionamos el snapshot que acabamos de crear y clicamos sobre el botón _Actions_
 45. Seleccionamos _Copy snapshot_
 
-Fijaros que en este punto, además de encriptar el volúmen, pero también podríamos cambiar la región de destino, para recrear nuestros volúmnenes o nuestras EC2 en otras regiones.
+Fijaros que en este punto, además de encriptar el volúmen,también podríamos cambiar la región de destino, para recrear nuestros volúmnenes o EC2 en aquella región que nos interese.
 
 46. Dejamos la región por defecto y habilitamos la casilla _Encrypt this snapshot_
 47. La key de KMS será la que nos aparezca por defecto y clicamos sobre el botón _Copy Snapshot_
-48. Tened en cuenta que esto puede llevar un par de minutos. Una vez creado el snapshot, lo seleccionamos y le añadimos el nombre _encriptado_
+48. Tened en cuenta que esto puede llevar un par de minutos. Una vez creado el snapshot, lo seleccionamos y le añadimos el nombre _encriptado_ .
 49. Ahora crearemos el nuevo volúmen ya encriptado. Clicamos sobre el snpashot encriptado y en el menú _Actions_ clicamos sobre _Create volume from snpashot_
 50. Dejamos por defecto todos los parámetros y añadimos los tags:
 * Key: lab; Value: 4
