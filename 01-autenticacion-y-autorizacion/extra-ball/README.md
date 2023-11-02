@@ -2,7 +2,7 @@
 
 ## Additional learning resources
 
-* [Getting started with AWS identity services](https://www.youtube.com/watch?v=YQsK4MtsELU) is a gentle (and quick!) introduction to IAM services
+* [Getting started with AWS identity services](https://www.youtube.com/watch?v=rFHnZkx7nqY) is a gentle (and quick!) introduction to IAM services
 * [Become an IAM Policy Master in 60 Minutes or Less ](https://www.youtube.com/watch?v=YQsK4MtsELU) is easily one of the best sessions run on each edition of Re:Invent.
 * [Harness power of IAM policies & rein in permissions w/Access Analyzer](https://www.youtube.com/watch?v=x-Kh8hKVX74) shows how to track wider-than-necessary
 s3 permissions using the Access Analyzer service
