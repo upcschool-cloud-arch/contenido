@@ -6,6 +6,7 @@ Durante el transcurso de este módulo estudiaremos las opciones de monitorizaci�
 ## Módulos anteriores
 
 Arquitectura de aplicaciones tradicionales
+
 ## En este módulo
 
 ### Objetivos
@@ -15,6 +16,7 @@ Arquitectura de aplicaciones tradicionales
 * Familiarizarse con el Uso de Cloudtrail para monitorizar las llamadas a la API de AWS
 * Saber diferenciar entre métricas, logs y trazas
 * Aprender acerca de la monitorización de arquitecturas de aplicaciones y microservicios con trazas
+* Conocer el `state of art` de los servicios de monitorización utilizados en el mundo empresarial más allá de AWS
 
 ### Conceptos tratados
 
@@ -24,14 +26,17 @@ Arquitectura de aplicaciones tradicionales
 - [x] EventBridge
 - [X] Athena
 - [x] SNS
-- [X] CloudTrail 
-- [ ] X-Ray
-- [ ] Cloudwatch Synthetics
-- [ ] AWS Managed Grafana
+- [x] CloudTrail 
+- [x] X-Ray
+- [x] Cloudwatch Synthetics
+- [x] AWS Managed Grafana
+- [x] Herramientas externas a AWS
+
 
 ### Quizzes
 
-* https://quizizz.com/admin/quiz/64189beaac228a001dfc621e
+* https://quizizz.com/admin/quiz/6546358a6b8be01266d8caef?source=quiz_share
+* https://quizizz.com/admin/quiz/65463612f61c99a35cb7f1f7?source=quiz_share
 
 ### Storytelling
 
