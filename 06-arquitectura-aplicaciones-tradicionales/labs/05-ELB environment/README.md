@@ -100,15 +100,28 @@ En esta sección cambiaremos la configuración de nuestro ELB para que funcine c
 En este apartado vamos a crear una RDS y una EC2 desde la que conectarnos.
 
 29. Accedemos al dashboard de RDS y clicamos sobre el botón en _Create Database_ .
-30. Señeccionaremos el motor de base de datos Aurora (mysql compatible) y dejamos la versión por defecto.
-31. Escogemos la template Dev/test y escribimos myfirstdb en el identificador del clúster.
-32. Dejamos como master username: admin y como password indicad el que consideréis.
-33. Seleccionaremos el storage Standard y en instances configurations seleccionamos la opción _busrtable_ y la instancia de tipo db.t3.medium y seleccionaremos la opción multi-AZ.
+30. Seleccionaremos el motor de base datos Aurora compatible with Mysql y dejamos la versión por defecto.
+31. Escogemos la template Dev/test y en el apartado Availabilty & Durability, seleccionamos el deployment Create an Aurora Replica or Reader node in a different AZ.
+32. Indicaremos como identificador myfirstrds. Dejamos como master username: admin y como password indicad el que consideréis.
+33. Seleccionaremos la instance configuration burstable classes y seleccionamos db.t3.medium.
 34. Finalmente, en el apartado Connectivity, seleccionaremos _Connect to an EC2 Compute resource_ .
 35. En el desplegable, podéis escoger cualquier de las EC2 que ya tenemos desplegadas.
-36. En el apartado VPC security group (firewall). crearemos uno nuevo con el nombre: vpc_security_group_rds y clicamos en el botón _Create database_.
-37. 
-38. 
+36. En el apartado VPC security group (firewall). crearemos uno nuevo con el nombre: vpc_security_group_rds. El resto de parámetros, los dejamos con los valores por defecto. Clicamos en el botón _Create database_.
+37. En principio, ya tendremos nuestra base de datos creada y enlazada con nuestra ec2.
+38. Para poder acceder a nuestra RDS para crear nuestras bases de datos, debemos tener instalado mysql en este caso.
+39. Conectaros a la EC2 por SSH o bien a través de la propia consola de AWS y installaremos mysql con los siguientes comandos:
+```
+sudo wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+sudo dnf install mysql80-community-release-el9-1.noarch.rpm -y
+sudo dnf install mysql-community-server -y
+```
+40. Una vez instalado, podréis acceder a la rds con el siguiente comando:
+```
+mysql -u admin -p -h endpoint 
+```
+El endpoint lo podéis ver en el apartado Conectivity & Security si clicais sobre la rds que acabais de crear.
+
+
 
 # Destrucción de las 3 instancias del TG
 
