@@ -91,11 +91,24 @@ En esta sección cambiaremos la configuración de nuestro ELB para que funcine c
 
 24. Volvemos al dashboard de EC2 y clicamos sobre _Target Groups_ 
 25. Clicamos sobre nuestro target group y seleccionamos la pestaña _Atributos_. Clicamos sobre el botón _Edit_
-26. En _target selecction configurations_ y habilitamos la opción _Stickiness_
-27. Definiremos un tiempo para este lab de 1 un minuto, pero lo ideal sería definirlo según las necesidades de nuestra aplicación. Por ejemplo: ¿cuánto tiempo de media puede tardar un usuario en hacer una compra en nuestro e-commerce?
-28. Guardamos los cambios.
-29. Hacemos de nuevo la prueba del bloque anterior, copiando el DNS y llevándolo a un navegador. Repite el refresco cada X segundos durante un minuto y verifica que la internal IP es siempre la misma.
-30. Haz la mismo con el dns del LB de otro compañero y verifica que siempre te duelve la misma IP privada.
+26. En _target selecction configurations_ y habilitamos la opción _Stickiness_ . 
+27. Hacemos de nuevo la prueba del bloque anterior, copiando el DNS y llevándolo a un navegador. Repite el refresco cada X segundos durante un minuto y verifica que la internal IP es siempre la misma.
+28. Haz la mismo con el dns del LB de otro compañero y verifica que siempre te duelve la misma IP privada.
+
+## Creación de un RDS
+
+En este apartado vamos a crear una RDS y una EC2 desde la que conectarnos.
+
+29. Accedemos al dashboard de RDS y clicamos sobre el botón en _Create Database_ .
+30. Señeccionaremos el motor de base de datos Aurora (mysql compatible) y dejamos la versión por defecto.
+31. Escogemos la template Dev/test y escribimos myfirstdb en el identificador del clúster.
+32. Dejamos como master username: admin y como password indicad el que consideréis.
+33. Seleccionaremos el storage Standard y en instances configurations seleccionamos la opción _busrtable_ y la instancia de tipo db.t3.medium y seleccionaremos la opción multi-AZ.
+34. Finalmente, en el apartado Connectivity, seleccionaremos _Connect to an EC2 Compute resource_ .
+35. En el desplegable, podéis escoger cualquier de las EC2 que ya tenemos desplegadas.
+36. En el apartado VPC security group (firewall). crearemos uno nuevo con el nombre: vpc_security_group_rds y clicamos en el botón _Create database_.
+37. 
+38. 
 
 # Destrucción de las 3 instancias del TG
 
