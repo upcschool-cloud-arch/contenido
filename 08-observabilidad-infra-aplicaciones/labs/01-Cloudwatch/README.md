@@ -2,7 +2,7 @@
 
 ## Storytelling
 
-A raiz del boom de Pokemon Go, nuestra empresa ha decidido publicar un servicio web que ofrece información relativa a la Pokedex. De esta manera, el CEO puede publicitar su empresa dentro de los circulos de jugadores de Pokemon. 
+A raíz del boom de Pokemon Go, nuestra empresa ha decidido publicar un servicio web que ofrece información relativa a la Pokedex. De esta manera, el CEO puede publicitar su empresa dentro de los círculos de jugadores de Pokemon. 
 
 Resulta que la aplicación está gustando, aunque algunas personas se quejan de errores puntuales. Dado que no tenemos ningún sistema de monitorización activado no podemos encontrar la causa de estos errores.
 
@@ -11,7 +11,7 @@ Dada la situación, el CTO nos ha pedido implementar mecanismos para monitorizar
 
 ## Objetivos
 Es esta práctica, aprenderemos a monitorizar aplicaciones e infraestructura, utilizando las herramientas SaaS que nos ofrece AWS. 
-Aprenderemos los principios básicos de Cloudwatch para el análisis de métricas y logs. También veremos las posibilidades que nos oferece CloudWatch Alarms junto con EventBridge para el tratamiento de eventos inesperados.
+Aprenderemos los principios básicos de Cloudwatch para el análisis de métricas y logs. También veremos las posibilidades que nos ofrece CloudWatch Alarms junto con EventBridge para el tratamiento de eventos inesperados.
 
 ## Creación del entorno
 
@@ -29,7 +29,7 @@ Desplegamos nuestra aplicación con Terraform
 ```bash
 $ terraform init && terraform apply
 ```
-Si todo ha ido bien, el script de terraform nos devolverá el host de nuestra aplicación, desplegada en una nueva instancia EC2.
+Si todo ha ido bien, el script de Terraform nos devolverá el host de nuestra aplicación, desplegada en una nueva instancia EC2.
 
 Accediendo vía web, deberíamos ver algo parecido a esto:
 
@@ -40,7 +40,7 @@ Accediendo vía web, deberíamos ver algo parecido a esto:
 
 1-
 
-Antes de nada, activaremos el "monitoreo detallado" para poder obtener datos de monitorización en intervalos de 1 minuto para incrementar el número de datos que recibimos.
+Antes de nada, activaremos la opción "Manage detailed monitoring" para poder obtener datos de monitorización en intervalos de 1 minuto para incrementar el número de datos que recibimos.
 ![Screenshot monitoring 1](./img/act_detailed_monitoring.png)
 
 ![Screenshot monitoring 2](./img/act_detailed_monitoring_2.png)
@@ -49,7 +49,7 @@ Como podéis ver en la pestaña monitoreo dentro del panel de EC2, podemos ver u
 
 2- 
 
-Navegaremos hacia **CloudWatch > Métricas > Todas las métricas**. Dónde podemos hacer una búsqueda por 'id' de instancia para poder obtener todas las métricas asociadas a nuestra aplicación. 
+Navegaremos hacia **CloudWatch > Metrics > All metrics**. Dónde podemos hacer una búsqueda por 'id' de instancia para poder obtener todas las métricas asociadas a nuestra aplicación. 
 
 ![Screenshot metrics explorer](./img/cloudwatch_metrics.png)
 
@@ -62,7 +62,7 @@ Para ello, tenemos que instalar **CloudWatch Agent**
 
 3-
 
-A continuación, instalaremos CloudWatch Agent en nuestra máquina. Para ello, introduciremos **AWS Systems Manager**, que nos permite la instalación de paquetes de forma remota sin acceder vía SSH.
+A continuación, instalaremos CloudWatch Agent en nuestra máquina. Para ello, introduciremos el servicio **AWS Systems Manager**, que nos permite la instalación de paquetes de forma remota sin acceder vía SSH.
 
 3.1-
 
@@ -70,9 +70,11 @@ Haciendo uso del buscador, accederemos al servicio de **AWS Systems Manager** (h
 
 3.2-
 
-Una vez ahí, buscaremos la opción `Run command` bajo el apartado `Administración de nodos`
+Una vez ahí, buscaremos la opción `Run command` bajo el apartado `Node Management`
 
 ![Screenshot systems manager](./img/aws_sys_manager_run_command.png)
+
+![Screenshot systems manager11](./img/aws_sys_manager_run_command_1.1.png)
 
 3.3-
 
@@ -88,7 +90,7 @@ Indicamos el paquete a instalar con su versión: `AmazonCloudWatchAgent`, `lates
 
 3.5 -
 
-Seguidamente, seleccionamos el `target`, que en nuestro caso será la instancia `PokeApp`, y ejecutamos el comando.
+Seguidamente, seleccionamos el `target`, que en nuestro caso será la instancia `PokeApp`, y ejecutamos el comando haciendo click a la opción `Run` del final de la página.
 
 ![Screenshot systems manager 4](./img/aws_sys_manager_run_command_4.png)
 
@@ -175,37 +177,45 @@ Ahora mismo, nuestra instancia de EC2 dispone del agente de CloudWatch, pero no 
 ```
 4.1 - 
 
-Accederemos a **AWS Systems Manager > Almacén de parámetros > Crear el parámetro**, para crear la configuración que posteriormente enviaremos al agente. Dentro del campo **Valor** añadiremos la configuración en Json que podemos encontrar en el paso anterior.
+Accederemos a **AWS Systems Manager > Parameter Store > Create parameter**, para crear la configuración que posteriormente enviaremos al agente. Dentro del campo **Value** añadiremos la configuración en Json que podemos encontrar en el paso anterior.
 ![Crear parametro](./img/crear_parametro.png)
 
 4.2 - 
 
-Seguidamente, lanzaremos el comando de actualización de la configuración entrando en el apartado **AWS Systems Manager > Run command > AmazonCloudWatch-ManageAgent**. Dónde debemos incluir el nombre del parámetro que hemos creado anteriormente e indicar nuestra instancia PokeApp como `target`.
-![Reconfigure Agent](./img/reconfigure-agent.PNG)
+Seguidamente, lanzaremos el comando de actualización de la configuración entrando en el apartado **AWS Systems Manager > Run command > AmazonCloudWatch-ManageAgent**. Dónde debemos incluir el nombre del parámetro que hemos creado anteriormente e indicar nuestra instancia PokeApp como `target`, siguiendo el mismo procedimiento del punto 3.5
+![Reconfigure Agent](./img/reconfigure-agent.png)
 
 ### Monitorización de logs de aplicación
 
 5.1 -
 
 En este punto, si todo ha ido bien, deberíamos de ver que nuestro agente de CloudWatch está exportando correctamente los logs del servidor web.
-**CloudWatch > Grupos de registro > NginxAccessLogs**
+**CloudWatch > Log groups > NginxAccessLogs**
 ![Agent Access Logs](./img/nginx-access-logs.PNG)
+![Agent Access Logs](./img/nginx-access-logs_1.PNG)
 En el campo mensaje podemos observar el contenido de la línea de logs exportada. Además, como podéis observar, se parsea el `timestamp` de cada entrada para poder filtrar por tiempo, acorde a la configuración que hemos visto anteriormente.
 
 5.2 -
 
 Nuestra aplicación tiene una parte que no acaba de funcionar bien, parece que se trata de una funcionalidad que aún no está del todo operativa. Es el `endpoint` `/digimon`. Prueba a acceder y observa como aparecen los logs de las peticiones devolviendo errores `500`.
 
+5.2.2 -
+
+Para poder ver los logs en tiempo real, accede a `CloudWatch > Live Tail` y configura el filtro para obtener los errores 500 del `NginxAccessLog`, tal y como se muestra a continuación
+![Agent Access Logs](./img/nginx_live_tail.png)
+
 
 
 ### Métricas derivadas de logs
 
 5.3 -
-A continuación, `crearemos una métrica` que nos indique el número de errores 500 en los logs. Para ello accedemos a **CloudWatch > Grupo de registros > NginxAccessLogs > Acciones > Crear un filtro de métricas**
+A continuación, crearemos una métrica que nos indique el número de errores 500 en los logs. Para ello accedemos a **CloudWatch > Log groups > NginxAccessLogs > Actions > Create metric filter**
 ![Crear filtro metricas](./img/nginx_log_evento_registro.PNG)
 
-A continuación, introducimos el patrón a utilizar, en nuestro caso será `[ip, id, user, timestamp, request, status_code=500, size]`, de manera que solo se contabilizaran las entradas con error 500, añadiendo un valor de 1 a la métrica, tal como se muestra a continuación:
+A continuación, introducimos el patrón a utilizar, en nuestro caso será `[ip, id, user, timestamp, request, status_code=5*, size]`, de manera que solo se contabilizaran las entradas con error `5XX`, añadiendo un valor de 1 a la métrica, tal como se muestra a continuación:
 ![Crear filtro metricas 2](./img/crear_filtro_2.PNG)
+
+![Crear filtro metricas 3](./img/crear_filtro_3.PNG)
 
 **¿Puedes encontrar un comando de AWS CLI para crear un filtro de métricas?**
 
@@ -225,7 +235,7 @@ aws logs put-metric-filter \
 
 5.4 - 
 
-Si accedemos al apartado de consultas, podremos observar que la métrica captura correctamente el número de errores 500.
+Si accedemos al apartado de consultas de métricas `CloudWatch > Metrics > All metrics`, podremos observar que la métrica captura correctamente el número de errores 500.
 
 ![Observar_valor_metrica](./img/visualizacion_metrica_custom.PNG)
 
@@ -234,11 +244,13 @@ En este apartado crearemos una alarma a partir de la métrica que hemos definido
 
 6.1 -
 
-Para ello, accederemos a **CloudWatch > Alarmas > Crear Alarma**, seleccionaremos la métrica que hemos creado antes, en nuestro caso, `500Errors`. Configurando la condición de activación con los siguientes parámetros:
+Para ello, accederemos a **CloudWatch > Alarms > All alarms > Create alarm**, seleccionaremos la métrica que hemos creado antes, en nuestro caso, `500Errors`. Configurando la condición de activación con los siguientes parámetros:
 * Estadística: Suma
 * Período: 1 minuto
 * Tipo de límite: Estático
 * Condición: Mayor (>) 10
+
+![Crear nueva alarma](./img/create_new_alarm.png)
 
 6.2 -
 
@@ -262,7 +274,8 @@ En un minuto, deberíamos de ver como nuestra alarma pasa a modo alarma y recibi
 
 
 ## Bonus 1 (Opcional)
-Crea un panel que refleje las métricas **USE** de la instancia **PokeApp** para poder monitorizarla fácilmente. Al final deberías de acabar con un panel como el que se muestra a continuación  
+Crea un panel que refleje las métricas **USE** de la instancia **PokeApp** para poder monitorizarla fácilmente. Te recomiendo que utilizes las métricas del grupo `CWAgent`, estas són las que recolecta el agente de cloudwatch.
+Al final deberías de acabar con un panel como el que se muestra a continuación  
 ![USE Schema](./img/USESchema.PNG)
 
 En este se deberan reflejar las siguientes métricas:
@@ -276,7 +289,7 @@ Es recomendable utilizar un **periodo de 1 minuto** para visualizar las métrica
 
 Si os habéis fijado, la PokeApp está abierta a todo el mundo, por lo que es muy probable que hayamos recibido alguna request de algún bot no deseado... A continuación, vamos a utilizar **Logs Insight** para consultar nuestros logs y obtener todos aquellos que provienen de una ip diferente a la nuestra, a ver si encontramos algún bot!
 
-Acceder a la herramienta y **CloudWatch > Logs Insights** y con la ayuda de la [documentación](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html), encontrar una consulta que os permita listar todas las peticiones del `NginxAccessLog` que provengan de una IP diferente a la vuestra.
+Acceder a la herramienta y **CloudWatch > Logs > Logs Insights** y con la ayuda de la [documentación](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html), encontrar una consulta que os permita listar todas las peticiones del `NginxAccessLog` que provengan de una IP diferente a la vuestra.
 
 
 <details><summary>Solución</summary>
