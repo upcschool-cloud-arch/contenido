@@ -46,7 +46,7 @@ echo "<h1>Hello I'm  $(hostname -f) ! </h1>" > /var/www/html/index.html
 ```
 5. Modifica los parámetros: 
 * Key_name indicando la key usada en el primer lab
-* vpc_security_group_id con el id del security groups del primer lab
+* vpc_security_group_id con el id del security groups del primer lab o cualquier Security Group que permita acceso por el puerto 80 desde internet (0.0.0.0/0).
 * subnet_id indicando el id de vuestra main_subnet_a (la subnet pública del primer lab)
 
 6. Lanzamos la creación de nuestros recursos con los siguientes comandos:
@@ -55,6 +55,8 @@ terraform init
 terraform plan
 terraform apply
 ```
+**Nota**: podeís lanzar también estás 3 instancias a través de la consola si os funciona con terraform. Utilizad como base la ami generada en el laboratorio anterior, y en lugar de crear 1 sola instancia, cread las 3 a la vez. No necesitáis habilitar la IP pública!.
+
 7. Comprobamos que nuestras 3 EC2 se han levantado correctamente desde el dashboard de AWS.
 8. Dentro del panel de EC2, abajo a la izquierda, clicaremos sobre ELB
 9. Clicamos sobre la _Create load balancer_ y seleccionamos Network Load Balancer
