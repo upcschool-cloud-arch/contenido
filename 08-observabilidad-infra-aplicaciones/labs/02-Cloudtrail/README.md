@@ -24,20 +24,20 @@ Nuestro compañero Juan ha encontrado una API en GitHub que parece que cumple co
 
 ![Panel Cloudtrail](./img/cloudtrail_panel.PNG)
 
-1.3 - En el panel, podremos observar el historial de eventos recientes registrados por CloudTrail, estos no se guardan y se pierden pasados 90 dias. Si queremos almacenar los eventos y poder acceder a estos pasado el límite de días, debemos crear un registro o `trail`. Haremos click a la opción `Crear un registro de seguimiento` para crear uno.
+1.3 - En el panel, podremos observar el historial de eventos recientes registrados por CloudTrail, estos no se guardan y se pierden pasados 90 días. Si queremos almacenar los eventos y poder acceder a estos pasado el límite de días, debemos crear un registro o `trail`. Haremos click a la opción `Create trail` para crear uno.
 
 ![Panel Cloudtrail 2](./img/cloudtrail_panel_2.PNG)
 
 
-1.4 - Indicamos el nombre de la `traza` a crear, desactivando el cifrado SSE-KMS (para este laboratorio no será necesario).
+1.4 - Indicamos el nombre del `trail` a crear, desactivando el cifrado SSE-KMS (para este laboratorio no será necesario).
 
 ![Crear traza 1](./img/crear_traza_1.PNG)
 
-1.5 - Seguidamente, indicaremos que solo queremos almacenar los eventos de administración, de tipo lectura y escritura. Hacemos click a siguiente, revisamos los datos y finalmente crearemos la `traza`
+1.5 - Seguidamente, indicaremos que solo queremos almacenar los eventos de administración, de tipo lectura y escritura. Hacemos click a siguiente, revisamos los datos y finalmente crearemos el `trail`
 
 ![Crear traza 2](./img/crear_traza_2.PNG)
 
-1.6 - En este punto, si vamos al panel de CloudTrail, veremos que nuestro registro de seguimiento se ha guardado correctamente. Además, podremos ver que se ha creado un Bucket S3 nuevo para persistir todos los datos de la traza.
+1.6 - En este punto, si vamos al panel de CloudTrail (`Cloudtrail > Dashboard`), veremos que nuestro registro de seguimiento se ha guardado correctamente. Además, podremos ver que se ha creado un Bucket S3 nuevo para persistir todos los datos de la traza.
 
 ![Crear traza 3](./img/crear_traza_3.PNG)
 
@@ -54,7 +54,7 @@ Ten en cuenta que podemos filtrar la petición con el parámetro `query`, para q
 ```bash
 aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=ConsoleLogin --query 'Events[].[Username,EventTime,CloudTrailEvent]'
 ```
-Para cada evento devuelve la persona que ha hecho login, el timestamp y el evento de cloudtrail en string, con formato JSON.
+Para cada evento de tipo `ConsoleLogin` devuelve la persona que ha hecho login, el timestamp y el evento de cloudtrail en string, con formato JSON.
 
 
 Revisa la documentación de AWS referente al método `lookup-events` (https://docs.aws.amazon.com/cli/latest/reference/cloudtrail/lookup-events.html) e intenta escribir un comando de CLI que devuelva información referente a los eventos de creación de un bucket S3 (`CreateBucket`), con el siguiente formato de salida:
@@ -74,6 +74,8 @@ Revisa la documentación de AWS referente al método `lookup-events` (https://do
 aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=CreateBucket --query 'Events[].[Username,EventTime,Resources[].ResourceName]'
 ```
 </details>
+
+Debería de como mínimo aparecer el S3 Bucket que hemos creado para almacenar el `trail` que hemos creado anteriormente.
 
 ### Consultas via Athena
 
@@ -95,7 +97,7 @@ Si os acordáis, anteriormente hemos creado una traza de CloudTrail que guarda d
 
 ![Consulta_athena](./img/consulta_athena_3.PNG)
 
-3.4 - Ahora, ya podemos consultar las trazas con SQL básico. Puedes crear una consulta que devuelva los intentos de acceder a la consola (`ConsoleLogin`), incluyendo los campos:
+3.4 - Ahora, ya podemos consultar las trazas con SQL básico des del editor de consultas (`Amazon Athena > Query editor`). Puedes crear una consulta que devuelva los intentos de login a la consola de AWS (`ConsoleLogin`), incluyendo los campos:
  * Cuenta
  * Información del navegador
  * IP de origen
@@ -133,7 +135,7 @@ $ terraform init && terraform apply
 ```
 Podremos ver el DNS público de esta instancia en la salida del Terraform: `instance_public_dns = "ecx-x-xxx-xx-xxx.compute-1.amazonaws.com"`
 
-4.3 - Esperamos un minuto a que se acabe de desplegar y accedemos via web. Deberiamos obtener el siguiente mensaje:
+4.3 - Esperamos un minuto a que se acabe de desplegar y accedemos vía web. Deberíamos obtener el siguiente mensaje:
 ```txt
 Hello World! Try /cat to receive a cool kitty image
 ```
@@ -183,10 +185,10 @@ A continuación, se muestra un ejemplo del pipeline que se propone. (*Soy consci
 
 ![EventBridge Schema](./img/eventbridge_graph.png)
 
-El envio de los mensajes se hace mediante un webhook que he preconfigurado para vosotros. [¿Qué es un webhook?](https://www.redhat.com/es/topics/automation/what-is-a-webhook).
+El envío de los mensajes se hace mediante un webhook que he preconfigurado para vosotros. [¿Qué es un webhook?](https://www.redhat.com/es/topics/automation/what-is-a-webhook).
 He creado una aplicación de Slack con múltiples webhooks, uno para cada equipo, siguiendo la [documentación de Slack](https://api.slack.com/messaging/webhooks).
 
-**Podéis consultar la URL del webhook en un canal que he creado específicamente para mandar notificaciones para cada equipo (`team-x-notis`)**
+**Podéis consultar la URL del webhook en un canal que he creado específicamente para mandar notificaciones para cada equipo (`2023q1-team-x-notis`)**
 
 
 5.2 Primero, crearemos la funcion lambda que mandará el mensaje a Slack utilizando un `Webhook`.
@@ -242,6 +244,8 @@ De esta manera, `EventBridge` estará a la escucha de eventos de arranque y para
 5.10 Podemos volver a la API de Gatos que hemos levantado antes, y consultar el endpoint `/cat`, ahora deberíamos recibir un aviso del despliegue de la VM `crypto-miner`.
 
 ![Notis](./img/slack_noti.png)
+
+5.11 Consulta el endpoint `/enough` para deshacer los cambios de la API y revisa que los recursos se eliminan correctamente.
 
 
 ### Cleanup
