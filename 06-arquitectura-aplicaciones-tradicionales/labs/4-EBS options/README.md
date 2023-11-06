@@ -116,7 +116,7 @@ aws --version
 24. Clicamos sobre el volumen que hemos trabajado en el apartado anterior
 25. Clicamos el botón _Actions_ y seleccionamos _Create snapshot_
 26. En la descripción indicamos "my first snapshot" y añadimos el tag:
-* key: Name; Value:Lab4
+* key: Name; Value:lab4
 27. Clicamos sobre el botón _Create snapshot_
 
 ## Creación de nuestra propia AMI 
@@ -129,14 +129,15 @@ Como hemos comentado a lo largo de este módulo, podemos generar nuestras propia
 31. Dejaremos el resto de parámetros que vienen por defecto y clicaremos sobre el botón _Create Image_
 32. Ahora nos vamos al apartado _Images_ dentro de la consola EC2 y verificamos que nuestra imagen se ha creado.
 
-Lanzaremos una instancia con este AMI y verificaremos que el servicio de httpd se encuentra instalado en nuestra nueva EC2. 
+Lanzaremos una instancia con este AMI y verificaremos que el servicio de httpd se encuentra instalado en nuestra nueva EC2.
+
 33. Seleccionamos la ami que acabamos de crear y clicamos sobre el botón _Launch instance from AMI_
 34. Las características de la nueva EC2 seran:
 * Name: lab4
 * AMI:ya debería estar seleccionada la que acabamos de crear
 * Instance type: t2.micro
 * keypair: lab1.pem
-* Network settings: VPC: _main_vpc_yourname; Subnet: main_subnet_a; Auto-assig public PI: eNABLE; SG creado en labs anteriores
+* Network settings: VPC: _main_vpc_yourname; Subnet: main_subnet_a; Auto-assign public IP: Enable; SG creado en labs anteriores
 * Configure storage: dejamos valores por defecto
 
 35. clicamos _Launch instance_
