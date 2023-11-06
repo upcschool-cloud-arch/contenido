@@ -119,7 +119,17 @@ sudo dnf install mysql-community-server -y
 ```
 mysql -u admin -p -h endpoint 
 ```
-El endpoint lo podéis ver en el apartado Conectivity & Security si clicais sobre la rds que acabais de crear.
+El endpoint lo podéis ver en el apartado Conectivity & Security si clicais sobre la rds (la primera instancia del desplegable) que acabais de crear.
+
+41. Una vez dentro, podemos crear las bases de datos y tablas que necesitemos. Por ejemplo, puedes lanzar el siguiente comando para crear tu primera ddbb en nuestra RDS:
+```
+CREATE DATABASE myfirstdatabase;
+```
+
+42. Verifica que se haya creado correctamente
+```
+SHOW DATABASES
+```
 
 
 
