@@ -128,25 +128,38 @@ CREATE DATABASE myfirstdatabase;
 
 42. Verifica que se haya creado correctamente
 ```
-SHOW DATABASES
+SHOW DATABASES;
 ```
+43. Podemos verificar que tenemos los mismos datos en ambos instancias de RDS, haciendo un failover.
+44. Desde la consola de RDS, selecciona la base de datos (Writer instance) y a través del botón _Actions_ y fuerza un Failover.
+45. Una vez se haya realizado el failover, accede de nuevo a la instancia conectada a nuestra RDS y accede a la nueva writer indicado el endpoint correspondiente:
+```
+mysql -u admin -p -h endpoint
+```
+46. Verifica que las base de datos creada en la instancia principal, se mantiene tras hacer este failover:
+```
+SHOW DATABASES;
+```
+# Destrucción RDS
+Para evitar consumo excesivos, vamos a eliminar nuestra RDS:
 
-
+47. Accedemos de nuevo al panel de RDS y selecciona una de las instancias. Clica sobre el botón _Actions_ y selecciona _Delete_ . Repite este mismo paso con la instancia reader, qué probablemente ahora sea la writer.
+48. Verás que el sistema realiza un backup de la rds de forma automática. Finalmente selecciona la instancia Regional Cluster y a través del botón actions elimina definitavamente la RDS. 
 
 # Destrucción de las 3 instancias del TG
 
 Para evitar un consumo excesivo, puede eliminar las 3 instancias que acabamos de crear de una manera sencilla.
 
-31. Vuelve a la terminal del workstation: https://yourname-workstation.aprender.cloud/vscode
-32. Verificamos que nos encontramos dentro del entorno que hemos creado (lab5) con el comando 
+49. Vuelve a la terminal del workstation: https://yourname-workstation.aprender.cloud/vscode
+50. Verificamos que nos encontramos dentro del entorno que hemos creado (lab5) con el comando 
 ```bash
 pwd
 ```
-34. Escribimos en el terminal el siguiente código:
+51. Escribimos en el terminal el siguiente código:
 ```bash
 terraform destroy
 ```
-33. Verifica en el dashboard de EC2 que se han eliminado las 3 instancias creadas.
+52. Verifica en el dashboard de EC2 que se han eliminado las 3 instancias creadas.
 
 
 
