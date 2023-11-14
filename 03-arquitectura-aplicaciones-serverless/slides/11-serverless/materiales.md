@@ -6,7 +6,8 @@
 
 ## Algunos casos de uso en español de empresas que usan serverless
 
-- [🇪🇸#3.12 - Construyendo un Metaverso Serverless (Charlas Técnicas de AWS)](https://youtu.be/ayxV3Lq1iSA) -[🇪🇸#3.14 - Mentorías y Serverless en Lego (Charlas Técnicas de AWS)](https://youtu.be/X_D0NXaNj48)
+- [🇪🇸#3.12 - Construyendo un Metaverso Serverless (Charlas Técnicas de AWS)](https://youtu.be/ayxV3Lq1iSA)
+- [🇪🇸#3.14 - Mentorías y Serverless en Lego (Charlas Técnicas de AWS)](https://youtu.be/X_D0NXaNj48)
 - [🇪🇸#3.16 - Cómo gestionar aplicaciones a gran escala (Charlas Técnicas de AWS)](https://youtu.be/IhQTD5TKDXE)
-- [🇪🇸 #2.19 - Qué son las aplicaciones modernas? (Charlas Técnicas de AWS)](https://youtu.be/cev-JJSMKdM)
+- [🇪🇸#2.19 - Qué son las aplicaciones modernas? (Charlas Técnicas de AWS)](https://youtu.be/cev-JJSMKdM)
 - [🇪🇸#3.20 - Introducción a Arquitecturas Orientadas a Eventos (Charlas Técnicas de AWS)](https://youtu.be/UgDsKpGmNNE)
