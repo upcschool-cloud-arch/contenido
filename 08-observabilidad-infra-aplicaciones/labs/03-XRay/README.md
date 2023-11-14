@@ -60,7 +60,7 @@ Server listening at http://localhost:3000
 Hello World! Try /cat to receive a cool kitty image
 ```
 
-¿Os suena? Es el mismo mensaje que la API del Laboratorio 2 de Cloudtrail, pero con algunas mejoras
+¿Os suena? Es el mismo mensaje que la API del Laboratorio 2 de Cloudtrail, pero sin ningún *"malware"* y con algunas mejoras.
 
 1.6 - Si accedemos a `/cat`, nos devolverá una imagen de un gato. Si por el contrario accedemos a `/dog`, nos devolverá una de un perro.
 ![API Cat](./img/cat_output.png)
@@ -91,7 +91,7 @@ La instrumentalización con la SDK de X-Ray es muy fácil, solamente tendremos q
 
 Podéis consultar la documentación de la SDK de X-Ray para más información (https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-nodejs.html)
 
-2.1 - Primero, importaremos la SDK de X-Ray para Node.
+2.1 - Primero, pararemos la aplicación e importaremos la SDK de X-Ray para Node.
 
 ```bash
 $ npm install --save aws-xray-sdk@^3.4.1
@@ -101,7 +101,16 @@ $ npm install --save aws-xray-sdk@^3.4.1
 
 Abriremos el fichero `index.js` y añadiremos el siguiente codigo al principio y final.
 
+```js
+const AWSXRay = require('aws-xray-sdk');
+app.use(AWSXRay.express.openSegment('CatDogAPI'));
+```
+
 ![Code1](./img/code_1.png)
+
+```js
+app.use(AWSXRay.express.closeSegment());
+```
 
 ![Code2](./img/code_2.png)
 
@@ -150,15 +159,26 @@ Observa que, también se puede hacer correlación de la traza con logs, **esta p
 
 2.5 - Vamos a intentar desgranar un poco más este segmento, como bien sabemos, nuestra aplicación está accediendo a DynamoDB. Vamos a capturar las llamadas que hace el SDK de DynamoDB, solo debemos substituir la manera como instanciamos el cliente de DynamoDB en el fichero `./controllers/dynamodb.controller.js`
 
+```js
+const AWSXRay = require('aws-xray-sdk');
+const docClient = AWSXRay.captureAWSv3Client(new DynamoDBClient({ region: "us-east-1" }));
+```
+
 ![code_3](./img/code_3.png)
 
 2.6 - Reiniciamos la API, generamos un poco de trafico y ahora deberíamos de poder ver el segmento de DynamoDB en las trazas.
+
 
 ![dynamodb_traza](./img/dynamodb_traza.png)
 
 ¿Habéis visto? El tiempo que tarda la operación de guardado de DynamoDB es ridículo en comparación con el resto.
 
-2.7 - Finalmente, vamos a añadir los segmentos referentes a las peticiones que hace nuestra API a [Dog API](https://dog.ceo/dog-api/) y a [Cat API](https://thecatapi.com/). Queremos ver exactamente que peticiones desencadena nuestra API y cuanto tardan.
+2.7 - Finalmente, vamos a añadir los segmentos referentes a las peticiones que hace nuestra API a [Dog API](https://dog.ceo/dog-api/) y a [Cat API](https://thecatapi.com/), capturando la librería HTTP/s global. Queremos ver exactamente que peticiones desencadena nuestra API y cuanto tardan.
+
+```js
+AWSXRay.captureHTTPsGlobal(require('http'));
+AWSXRay.captureHTTPsGlobal(require('https'));
+```
 
 ![code_4](./img/code_4.png)
 
@@ -171,7 +191,7 @@ Con un Service Map así:
 ![service_map](./img/service_map_final.png)
 
 
-2.8 - Añade un error arbitrario en el código, que salte cuando se haga una consulta a `/cat` o `/dog`. Haz una captura de la traza generada y adjunta el resultado en el informe final.
+2.8 - Añade un error arbitrario en el código, que salte cuando se haga una consulta a `/cat` o `/dog`.
 
 Ten en cuenta, que puedes mandar un error arbitrario a partir del objeto `res`, que encontrarás en las definiciones de los endpoints.
 
