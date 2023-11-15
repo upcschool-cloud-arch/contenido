@@ -214,7 +214,7 @@ Si en algún momento te quedas estancado/a y no sabes como continuar, puedes con
 C1 - Eliminamos la tabla de `DynamoBD` que hemos creado antes
 
 ```bash
-$ aws dynamodb delete-table --table-name animals
+$ aws dynamodb delete-table --table-name animals --region us-east-1
 ```
 
 C2 - Detenemos el proceso de X-Ray
