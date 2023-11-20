@@ -190,7 +190,7 @@ sum(rate(tns_request_duration_seconds_count[5m])) by(route)
 
 10.3 - Indicaremos el comportamiento que deseamos, definiendo la carpeta donde se guardará esta alerta (*Si no tienes ninguna, tienes que escribir el nombre en el selector y darle a la tecla ENTER*) y el grupo de evaluación (*lo tendrás que crear de la misma forma*). Indicando que todas las alarmas del grupo `traffic` se van a evaluar cada minuto `Evaluate query = 1m` y que se deberá lanzar la alarma nada más se viole la condición definida, indicando `for = 0m`.
 
-![Alt text](image.png)
+![Alt text](./img/alert_2.png)
 
 Dejaremos el resto de atributos por defecto y guardaremos la alarma con el botón del margen superior derecho (`Save Rule and Exit`).
 
