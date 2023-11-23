@@ -26,7 +26,7 @@ module "ec2_instance" {
   ami                    = "ami-02f3f602d23f1659d"
   instance_type          = "t2.micro"
   key_name               = "lab1"
-  user_data = << EOF
+  user_data = <<EOF
 #!/bin/bash
 yum update -y
 yum install -y httpd
@@ -58,17 +58,17 @@ terraform apply
 **Nota**: podeís lanzar también estás 3 instancias a través de la consola si os funciona con terraform. Utilizad como base la ami generada en el laboratorio anterior, y en lugar de crear 1 sola instancia, cread las 3 a la vez. No necesitáis habilitar la IP pública!.
 
 7. Comprobamos que nuestras 3 EC2 se han levantado correctamente desde el dashboard de AWS.
-8. Dentro del panel de EC2, abajo a la izquierda, clicaremos sobre ELB
+8. Dentro del panel de EC2, en el panel izquierdo, clicaremos sobre Load Balancers
 9. Clicamos sobre la _Create load balancer_ y seleccionamos Network Load Balancer
 10. Indicamos _myfirstLB_ en load balancer name y dejamos el resto de parámetros por defecto de _Basic Configurations_. Revisad que está marcada la opción Internet facing, ya que queremos acceder a la aplicación desde internet.
 11. En el apartado _Networking mapping_ seleccionamos nuestra vpc principal _main_vpc_yourname_ y en el mapping seleccionamos la az-a. Recordad que en la az-a es dónde tenemos nuestra subnet pública. Indicaremos que la IP nos la asigne AWS.
-12. Seleccionaremos un sg que hayamos utilizado en algún otro laboratorio. En principio cualquier que permita el acceso por el puerto 80.
+12. Seleccionaremos un SG que hayamos utilizado en algún otro laboratorio. En principio cualquier que permita el acceso por el puerto 80.
 13. En el apartado Listener and Routing, indicamos el protocolo:
 * HTTP: 80
 * En default action, veréis que el desplegable está vacío. Aún no hemos creado ningún TG, por lo que no podemos asociar el destino hacía el que balancer nuestra peticiones. Vamos a crearlo, clicando sobre el enlace _Create target group_
-14. Selecciona _Instances_ como tipo de Target Group y en el nombre indicamos lab5. EN el apartado Listener, de nuevo indicaremos el puerto 80 con el protocolo TCP.
+14. Selecciona _Instances_ como tipo de Target Group y en el nombre indicamos lab5. En el apartado Protocol:Port, de nuevo indicaremos el puerto 80 con el protocolo TCP.
 15. En el apartado de Networking, seleccionaremos nuestra vpc main.
-16. En el apartado _Health check_ dejaremos por defecto HTTP y / como path. Si clicais sobre _Advance Health Cehch settings_ veréis que podemos modificar los parámetros que hemos visto en clase. Vamos a modificar el timeout a 5 segundos, y clicamos sobre el botón _Next_.
+16. En el apartado _Health check_ dejaremos por defecto HTTP y / como path. Si clicais sobre _Advance health check settings_ veréis que podemos modificar los parámetros que hemos visto en clase. Vamos a modificar el timeout a 5 segundos, y clicamos sobre el botón _Next_.
 17. En la siguiente pantalla, deberemos escoger las 3 instancias que hemos creado en los puntos anteriores y clicamos sobre el botón _include pendings below_ y clicamos _create target group_
 
 Volvemos a la plantalla de creación del balanceador y en el desplegable Target Group ya deberíamos poder ver nuestro recién creado TG lab5.
