@@ -26,13 +26,13 @@ module "ec2_instance" {
   ami                    = "ami-02f3f602d23f1659d"
   instance_type          = "t2.micro"
   key_name               = "lab1"
-  user_data = <<EOF
-#!/bin/bash
-yum update -y
-yum install -y httpd
-systemctl start httpd
-systemctl enable httpd
-echo "<h1>Hello I'm  $(hostname -f) ! </h1>" > /var/www/html/index.html
+  user_data = <<-EOF
+	#!/bin/bash
+	yum update -y
+	yum install -y httpd
+	systemctl start httpd
+	systemctl enable httpd
+	echo "<h1>Hello I'm  $(hostname -f) ! </h1>" > /var/www/html/index.html
 	EOF
   monitoring             = true
   vpc_security_group_ids = ["sg-xxxxxxxxxxx"]  
@@ -73,7 +73,7 @@ terraform apply
 
 Volvemos a la plantalla de creación del balanceador y en el desplegable Target Group ya deberíamos poder ver nuestro recién creado TG lab5.
 
-18. Seleccionamos TG lab 5, añadimos el tag Lab 5 a nuestro balanceador y clicamos sobre el botón _Create Load balancer_
+18. Seleccionamos TG lab5, añadimos el tag Lab 5 a nuestro balanceador y clicamos sobre el botón _Create Load balancer_
 
 ## Verificación del funcionamiento del LB
 
@@ -82,7 +82,7 @@ Una vez creado nuestro load balancer, vamos a comprobar como balancea las petici
 19. En el dashboard de EC2, en las opciones de la izquierda, clicamos sobre _load balancer_
 20. Seleccionamos nuestro load balancer _myfirstLB_ y nos vamos a la pestaña _Details_
 21. Copiamos el DNS Name y lo llevamos a un navegador. ¿Que resultado tienes?
-22. Abre una ventana de modo incógnito y refresca la url. Comprueba el resultado. ¿La petición la está devolviendo la misma ec2 (ip privada)? 
+22. Abre una ventana de modo incógnito y refresca la url. Comprueba el resultado. ¿La petición la está devolviendo la misma EC2 (ip privada)? 
 23. Repite varias veces el refresco y comprueba que va cambiando la EC2 que responde la petición.
 
 ## Sticky session LB
@@ -99,17 +99,17 @@ En esta sección cambiaremos la configuración de nuestro ELB para que funcine c
 
 En este apartado vamos a crear una RDS y una EC2 desde la que conectarnos.
 
-29. Accedemos al dashboard de RDS y clicamos sobre el botón en _Create Database_ .
+29. Accedemos al dashboard de RDS y clicamos sobre el botón en _Create Database_. El método de creación será el Standard.
 30. Seleccionaremos el motor de base datos Aurora compatible with Mysql y dejamos la versión por defecto.
-31. Escogemos la template Dev/test y en el apartado Availabilty & Durability, seleccionamos el deployment Create an Aurora Replica or Reader node in a different AZ.
+31. Escogemos la template Dev/test.
 32. Indicaremos como identificador myfirstrds. Dejamos como master username: admin y como password indicad el que consideréis.
-33. Seleccionaremos la instance configuration burstable classes y seleccionamos db.t3.medium.
-34. Finalmente, en el apartado Connectivity, seleccionaremos _Connect to an EC2 Compute resource_ .
-35. En el desplegable, podéis escoger cualquier de las EC2 que ya tenemos desplegadas.
-36. En el apartado VPC security group (firewall). crearemos uno nuevo con el nombre: vpc_security_group_rds. El resto de parámetros, los dejamos con los valores por defecto. Clicamos en el botón _Create database_.
-37. En principio, ya tendremos nuestra base de datos creada y enlazada con nuestra ec2.
-38. Para poder acceder a nuestra RDS para crear nuestras bases de datos, debemos tener instalado mysql en este caso.
-39. Conectaros a la EC2 por SSH o bien a través de la propia consola de AWS y installaremos mysql con los siguientes comandos:
+33. Seleccionaremos la Instance configuration burstable classes y seleccionamos db.t3.medium.
+34. En el apartado Availabilty & Durability, seleccionamos el deployment _Create an Aurora Replica or Reader node in a different AZ_.
+35. Finalmente, en el apartado Connectivity, seleccionaremos _Connect to an EC2 Compute resource_. En el desplegable, podéis escoger cualquier de las EC2 que ya tenemos desplegadas. (NOTA: Si no sale ninguna instancia, dadle al botón de recarga de este apartado)
+37. En el apartado VPC security group (firewall), crearemos uno nuevo con el nombre: vpc_security_group_rds. El resto de parámetros, los dejamos con los valores por defecto. Clicamos en el botón _Create database_.
+38. En principio, ya tendremos nuestra base de datos creada y enlazada con nuestra EC2.
+39. Para poder acceder a nuestra RDS para crear nuestras bases de datos, debemos tener instalado Mysql en este caso.
+40. Conectaos a la EC2 por SSH o bien a través de la propia consola de AWS e instalaremos Mysql con los siguientes comandos:
 ```
 sudo wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
 sudo dnf install mysql80-community-release-el9-1.noarch.rpm -y
