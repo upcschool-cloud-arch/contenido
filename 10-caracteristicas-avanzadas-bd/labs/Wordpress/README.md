@@ -10,7 +10,7 @@ En este laboratorio vamos a realizar la instalación de un wordpress , en una EC
 
 * Crear subredes publicas 10.0.1.0/24 10.0.2.0/24 y privadas 10.0.3.0/24 10.0.4.0/24
 
-* Crear Internet Gateway
+* Crear Internet Gateway y NAT gateway
 
 * Modificar las tablas de enrutamiento
 
