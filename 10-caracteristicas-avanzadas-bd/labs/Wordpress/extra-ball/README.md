@@ -2,7 +2,7 @@
 
 ## Additional learning resources
 
-* [Github con el código]([https://github.com/santos-pardos/Hands-On-Lab-in-AWS/blob/main/Networking_and_Content_Delivery/VPC_EC2_RDS/code.txt](https://github.com/upcschool-cloud-arch/contenido/tree/main/10-caracteristicas-avanzadas-bd/labs/Wordpress)) 
+* [Github con el código](https://github.com/upcschool-cloud-arch/contenido/tree/main/10-caracteristicas-avanzadas-bd/labs/Wordpress)
 
 * [Doc oficial de RDS](https://docs.aws.amazon.com/es_es/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateVPC.html) 
 
@@ -19,6 +19,3 @@
 
 
 
-## Canal AWS Academy con la solución
-
-* [App inventario ](https://www.youtube.com/watch?v=I0nL0NX4qZc&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=17)
