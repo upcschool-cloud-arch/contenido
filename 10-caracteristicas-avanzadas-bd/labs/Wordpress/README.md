@@ -91,6 +91,7 @@ define('FS_METHOD', 'direct');
 sudo systemctl restart apache2
 ```
 ## Redis
+![](images/16.png)
 Instalación cambiando el wp-config.php
 ```
 define('WP_REDIS_HOST', 'endpoint-redis');
