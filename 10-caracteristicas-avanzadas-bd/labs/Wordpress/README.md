@@ -85,7 +85,6 @@ Crear un fichero wp-config.php con la configuración que te da wordpress al inte
 ![](images/15.png)
 
 
-```
 ## Redis
 Instalación Elasticache - Redis - Demo
 ![](images/19.png)
@@ -105,6 +104,7 @@ Si no instala Plug-in. Añadir en wp-config-php
 define('FS_METHOD', 'direct');
 sudo systemctl restart apache2
 Cambiar permisos para poder instalar plugins
+
 ```
 sudo chown -R www-data:www-data /var/www/html
 sudo systemctl restart apache2
