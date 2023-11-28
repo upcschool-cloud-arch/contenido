@@ -97,4 +97,9 @@ sudo systemctl restart apache2
 ```
 
 ## Links
+```
+https://stackoverflow.com/questions/17922644/wordpress-asking-for-my-ftp-credentials-to-install-plugins
+https://dev.to/pixeline/how-to-use-redis-with-wordpress-docker-compose-55fk
+https://bobcares.com/blog/installation-failed-could-not-create-directory-error-in-wordpress/
+```
 
