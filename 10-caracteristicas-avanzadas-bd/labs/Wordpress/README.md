@@ -16,6 +16,17 @@ En este laboratorio vamos a realizar la instalación de un wordpress , en una EC
 
 
 ## EC2
+* Instalación Ubuntu. 
+
+![](images/01.png)
+
+* IP Pública
+
+![](images/02.png)
+
+* Pantalla inicial Wordpress
+
+![](images/03.png)
 
 * Crear un grupo de seguridad SBWeb con el puerto 22 y 80 abierto para acceso por SSH y consultar la web
 
@@ -35,17 +46,7 @@ cd /var/www/html
 sudo rm index.html
 sudo nano wp-config.php
 ```
-* Instalación Ubuntu. 
 
-![](images/01.png)
-
-* IP Pública
-
-![](images/02.png)
-
-* Pantalla inicial Wordpress
-
-![](images/03.png)
 
 
 ## BBDD
