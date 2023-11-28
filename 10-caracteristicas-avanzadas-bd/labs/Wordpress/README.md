@@ -102,6 +102,7 @@ Cambiar permisos para poder instalar plugins
 sudo chown -R www-data:www-data /var/www/html
 sudo systemctl restart apache2
 ```
+![](images/17.png)
 
 ## Links
 ```
