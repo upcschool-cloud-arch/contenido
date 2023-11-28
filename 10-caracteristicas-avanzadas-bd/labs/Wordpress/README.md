@@ -98,7 +98,7 @@ Instalación cambiando el wp-config.php
 ![](images/16.png)
 
 ```
-define('WP_REDIS_HOST', 'endpoint-redis');
+define('WP_REDIS_HOST', 'demo-0001-001.lamigo.0001.use1.cache.amazonaws.com:6379');
 define('WP_REDIS_PORT', '6379');
 sudo systemctl restart apache2
 ```
