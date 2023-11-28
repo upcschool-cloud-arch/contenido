@@ -83,3 +83,18 @@ Crear un fichero wp-config.php con la configuración que te da wordpress al inte
 * Configuración inicial Wordpress
 ![](images/14.png)
 ![](images/15.png)
+
+## Problemas
+Si no instala Plug-in. Añadir en wp-config-php
+```
+define('FS_METHOD', 'direct');
+```
+
+Cambiar permisos para poder instalar plugins
+```
+sudo chown -R www-data:www-data /var/www/html
+sudo systemctl restart apache2
+```
+
+## Links
+
