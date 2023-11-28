@@ -91,8 +91,12 @@ define('FS_METHOD', 'direct');
 sudo systemctl restart apache2
 ```
 ## Redis
-![](images/16.png)
+Instalación Elasticache - Redis - Demo
+![](images/19.png)
+![](images/18.png)
 Instalación cambiando el wp-config.php
+![](images/17.png)
+
 ```
 define('WP_REDIS_HOST', 'endpoint-redis');
 define('WP_REDIS_PORT', '6379');
