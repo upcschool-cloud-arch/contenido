@@ -2,7 +2,7 @@
 
 ## Additional learning resources
 
-* [Github con el código de inventario](https://github.com/santos-pardos/Hands-On-Lab-in-AWS/blob/main/Networking_and_Content_Delivery/VPC_EC2_RDS/code.txt) 
+* [Github con el código](https://github.com/santos-pardos/Hands-On-Lab-in-AWS/tree/main/DataBase/AddressBook) 
 
 * [Doc oficial de RDS](https://docs.aws.amazon.com/es_es/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateVPC.html) 
 
@@ -17,8 +17,3 @@
 
 * [RDS Postgress SQL](https://catalog.us-east-1.prod.workshops.aws/workshops/2a5fc82d-2b5f-4105-83c2-91a1b4d7abfe/en-US/3-intermediate/rds-proxy/task2)
 
-
-
-## Canal AWS Academy con la solución
-
-* [App inventario ](https://www.youtube.com/watch?v=I0nL0NX4qZc&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=17)
