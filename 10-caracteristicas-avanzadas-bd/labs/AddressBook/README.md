@@ -35,12 +35,11 @@ chown apache:root /var/www/html/rds.conf.php
 
 * Comprobar el acceso con la IP pública. En este momento te da el siguiente error por ser cuentas de AWS academy. 
 
-![alt text](images/01.png)
+![alt text](images/1.png)
 
 * Lo solucionamos cambiando el Role de la EC2 or el role utilizado en AWS Academy. Elegimos LabInstanceProfile
 
-!(images/02.png)
-
+![alt text](images/2.png)
 
 
 
@@ -61,12 +60,12 @@ Initial database name: myDB
 
 * Le diremos que cree una base de datos llamada myDB a la hora de lanzar la instancia RDS
 
-![](images/03.png)
+![alt text](images/3.png)
 
 
 ## Comprobacíón final
 
 * Vamos a la IP pública  y lo rellenamos con los datos de nuestro proyecto
 
-![](images/04.png)
+![alt text](images/4.png)
 
