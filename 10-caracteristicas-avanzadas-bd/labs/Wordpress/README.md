@@ -102,6 +102,8 @@ define('WP_REDIS_HOST', 'demo-0001-001.lamigo.0001.use1.cache.amazonaws.com:6379
 define('WP_REDIS_PORT', '6379');
 sudo systemctl restart apache2
 ```
+![](images/17.png)
+
 
 ## Problemas
 Si no instala Plug-in. Añadir en wp-config-php
@@ -115,7 +117,6 @@ Cambiar permisos para poder instalar plugins
 sudo chown -R www-data:www-data /var/www/html
 sudo systemctl restart apache2
 ```
-![](images/17.png)
 
 ## Links
 ```
