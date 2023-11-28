@@ -69,14 +69,14 @@ sudo nano wp-config.php
 ![](images/09.png)
 
 
-* Configuración BBDD en Wordpress 
+* Configuración inicial con el endpoint de la BBDD usuario y contraseña
 
 ![](images/10.png)
 ![](images/11.png)
 
 
 ## Creación wp-config.php
-
+Crear un fichero wp-config.php con la configuración que te da wordpress al intentar conectar por primera vez.
 ![](images/12.png)
 ![](images/13.png)
 
