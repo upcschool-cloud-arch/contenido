@@ -88,8 +88,15 @@ Crear un fichero wp-config.php con la configuración que te da wordpress al inte
 Si no instala Plug-in. Añadir en wp-config-php
 ```
 define('FS_METHOD', 'direct');
+sudo systemctl restart apache2
 ```
-
+## Redis
+Instalación cambiando el wp-config.php
+```
+define('WP_REDIS_HOST', 'endpoint-redis');
+define('WP_REDIS_PORT', '6379');
+sudo systemctl restart apache2
+```
 Cambiar permisos para poder instalar plugins
 ```
 sudo chown -R www-data:www-data /var/www/html
