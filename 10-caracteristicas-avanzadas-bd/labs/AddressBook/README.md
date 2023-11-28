@@ -49,7 +49,7 @@ chown apache:root /var/www/html/rds.conf.php
 
 * Crear un Security Group, SWbbdd con el puerto 3306 para acceso desde la EC2
 
-* Lanzar un Mysql en cluster de desarrollo con el grupo de subredes creado
+* Lanzar un Mysql en free-tier o multi-az (a elegir) con el grupo de subredes creado
 ```
 DB instance identifier: myDB
 Master username: admin
