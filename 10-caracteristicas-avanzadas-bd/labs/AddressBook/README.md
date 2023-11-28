@@ -35,7 +35,7 @@ chown apache:root /var/www/html/rds.conf.php
 
 * Comprobar el acceso con la IP pública. En este momento te da el siguiente error por ser cuentas de AWS academy. 
 
-!(images/01.png)
+![alt text](images/01.png)
 
 * Lo solucionamos cambiando el Role de la EC2 or el role utilizado en AWS Academy. Elegimos LabInstanceProfile
 
