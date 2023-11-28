@@ -30,7 +30,7 @@ php -v
 sudo wget https://wordpress.org/latest.tar.gz
 sudo tar xzf latest.tar.gz
 cd wordpress
-sudo cp -r  .   /var/www/html
+sudo cp -r . /var/www/html
 cd /var/www/html
 sudo rm index.html
 sudo nano wp-config.php
