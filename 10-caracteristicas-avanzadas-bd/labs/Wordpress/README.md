@@ -77,19 +77,24 @@ sudo nano wp-config.php
 
 ## Creación wp-config.php
 Crear un fichero wp-config.php con la configuración que te da wordpress al intentar conectar por primera vez.
+
 ![](images/12.png)
 ![](images/13.png)
 
 * Configuración inicial Wordpress
+  
 ![](images/14.png)
 ![](images/15.png)
 
 
 ## Redis
 Instalación Elasticache - Redis - Demo
+
 ![](images/19.png)
 ![](images/18.png)
+
 Instalación cambiando el wp-config.php
+
 ![](images/16.png)
 
 ```
@@ -103,8 +108,9 @@ Si no instala Plug-in. Añadir en wp-config-php
 ```
 define('FS_METHOD', 'direct');
 sudo systemctl restart apache2
-Cambiar permisos para poder instalar plugins
+```
 
+Cambiar permisos para poder instalar plugins
 ```
 sudo chown -R www-data:www-data /var/www/html
 sudo systemctl restart apache2
