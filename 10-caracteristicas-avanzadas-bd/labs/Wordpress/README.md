@@ -95,7 +95,7 @@ Instalación Elasticache - Redis - Demo
 ![](images/19.png)
 ![](images/18.png)
 Instalación cambiando el wp-config.php
-![](images/17.png)
+![](images/16.png)
 
 ```
 define('WP_REDIS_HOST', 'endpoint-redis');
