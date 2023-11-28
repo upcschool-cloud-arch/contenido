@@ -16,6 +16,8 @@ En este laboratorio vamos a realizar la instalación de un wordpress , en una EC
 
 
 ## EC2
+* Crear un grupo de seguridad SBWeb con el puerto 22 y 80 abierto para acceso por SSH y consultar la web
+  
 * Instalación Ubuntu. 
 
 ![](images/01.png)
@@ -28,7 +30,7 @@ En este laboratorio vamos a realizar la instalación de un wordpress , en una EC
 
 ![](images/03.png)
 
-* Crear un grupo de seguridad SBWeb con el puerto 22 y 80 abierto para acceso por SSH y consultar la web
+
 
 * Instalación de Apache, PHP, Mysql y Wordpress
 
@@ -55,7 +57,7 @@ sudo nano wp-config.php
 
 * Crear un Security Group, SWbbdd con el puerto 3306 para acceso desde la EC2
 
-* Lanzar un Mysql en cluster de desarrollo con el grupo de subredes creado
+* Lanzar un Mysql en multi-AZ o free-tier (a elegir),  con el grupo de subredes creado
 
 * RDS para Wordpress
 
