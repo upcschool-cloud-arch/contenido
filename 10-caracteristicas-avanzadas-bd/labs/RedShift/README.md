@@ -137,7 +137,7 @@ ORDER BY firstname;
 Esta consulta muestra los usuarios residentes en Ohio (OH) a los que les gusta el deporte, pero no la ópera. La lista está ordenada según el nombre de los usuarios.
 
 Pon en marcha esta consulta:
-
+```
 SELECT
   city,
   COUNT(*) AS count
@@ -146,3 +146,4 @@ WHERE likejazz
 GROUP BY city
 ORDER BY count DESC
 LIMIT 10;
+```
