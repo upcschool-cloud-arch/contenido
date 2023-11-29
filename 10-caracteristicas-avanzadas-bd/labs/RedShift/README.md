@@ -35,12 +35,10 @@ El clúster tardará unos minutos en iniciarse.
 Haz clic en el nombre de tu clúster (lab).
 
 La configuración del clúster aparecerá en pantalla. 
-
-
 ```
 
 ## Tarea 2: Utilizar el editor de consultas de Redshift para contactar con tu clúster de Redshift
-```
+
 Amazon Redshift se puede utilizar mediante el SQL estándar del sector. Para usar Redshift, necesitas un SQL Client (cliente SQL) que facilite una interfaz de usuario en la que introducir SQL. Cualquier cliente SQL que admita JDBC o ODBC se puede utilizar con Redshift.
 
 Para completar este laboratorio, usarás el editor de consultas de Amazon Redshift.
