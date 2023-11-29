@@ -44,19 +44,21 @@ La configuración del clúster aparecerá en pantalla.
 Amazon Redshift se puede utilizar mediante el SQL estándar del sector. Para usar Redshift, necesitas un SQL Client (cliente SQL) que facilite una interfaz de usuario en la que introducir SQL. Cualquier cliente SQL que admita JDBC o ODBC se puede utilizar con Redshift.
 
 Para completar este laboratorio, usarás el editor de consultas de Amazon Redshift.
-
+```
 En el panel de navegación de la izquierda, haz clic en Query editor 2 (Editor de consultas) y selecciona Conectar con la base de datos. A continuación, configura lo siguiente:
 Clúster: lab
 Nombre de la base de datos: dev
 Usuario de la base de datos: master
 Contraseña: Redshift123
 Haz clic en Conectar
+```
 
 ## Tarea 3: Crear una base de datos y una tabla
 
 Pulsa en el cluster en la parte izquierda y en botón CREATE elegie Database y nombre labdb.
-```
+
 Copia este comando SQL, pégalo en la ventana Query 1 (Consulta 1) elige en los desplegables la base de datos labdb y el usuario master. Ejecuta la consulta.
+
 ```
 CREATE TABLE users (
   userid INTEGER NOT NULL,
