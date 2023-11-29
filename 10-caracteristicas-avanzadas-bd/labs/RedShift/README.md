@@ -13,21 +13,14 @@ Haz clic en Crear clúster para abrir el asistente de creación de clústeres de
 
 En la sección Configuración del clúster, configura lo siguiente:
 
-Identificador de clúster: 
-
-lab
+Identificador de clúster: lab
 Tipo de nodo:  dc2.large
-Number of nodes (Cantidad de nodos): 
-
+Number of nodes (Cantidad de nodos): 2
 
 En la sección Configuraciones de la base de datos, configura lo siguiente:
-Nombre de usuario del administrador: 
-
-master
-Contraseña de usuario administrador: 
-
-Redshift123
-En Roles de IAM asociados, haz clic en Rol de IAM asociado y selecciona Redshift-Role (Rol de Redshift).
+Nombre de usuario del administrador: master
+Contraseña de usuario administrador: Redshift123
+En Roles de IAM asociados, haz clic en Rol de IAM asociado y selecciona LabRole (de AWS Academy).
 
 Haz clic en Roles de IAM asociados.
 
@@ -35,23 +28,15 @@ El rol concede permiso a Amazon Redshift para leer datos de Amazon S3.
 
 En la sección Configuraciones adicionales, anula la selección de  Usar valores predeterminados.
 
-Expande  Red y seguridad y configura lo siguiente:
+Clic en Crear clúster.
 
-Nube virtual privada Lab VPC
-Grupos de seguridad de VPC:
-Anula la selección de predeterminado.
-Selecciona Redshift Security Group (Grupo de seguridad de Redshift).
-Expande  Configuraciones de base de datos y configura lo siguiente:
-Nombre de base de datos: 
-
-labdb
-Desplázate hasta la parte inferior de la pantalla y haz clic en Crear clúster.
- El clúster tardará unos minutos en iniciarse. Continúa con los siguientes pasos del laboratorio. No hace falta que esperes.
+El clúster tardará unos minutos en iniciarse.
 
 Haz clic en el nombre de tu clúster (lab).
-La configuración del clúster aparecerá en pantalla. Dedica unos minutos a revisar las propiedades.
 
-Espera a que el Status (Estado) del clúster sea Disponible antes de continuar con la siguiente tarea.
+La configuración del clúster aparecerá en pantalla. 
+
+
 ```
 
 ## Tarea 2: Utilizar el editor de consultas de Redshift para contactar con tu clúster de Redshift
@@ -60,19 +45,18 @@ Amazon Redshift se puede utilizar mediante el SQL estándar del sector. Para usa
 
 Para completar este laboratorio, usarás el editor de consultas de Amazon Redshift.
 
-En el panel de navegación de la izquierda, haz clic en Query editor (Editor de consultas) y selecciona Conectar con la base de datos. A continuación, configura lo siguiente:
+En el panel de navegación de la izquierda, haz clic en Query editor 2 (Editor de consultas) y selecciona Conectar con la base de datos. A continuación, configura lo siguiente:
 Clúster: lab
-Nombre de la base de datos: 
-
-labdb
-Usuario de la base de datos: 
-
-master
+Nombre de la base de datos: dev
+Usuario de la base de datos: master
+Contraseña: Redshift123
 Haz clic en Conectar
-## Tarea 3: Crear una tabla
-En esta tarea, pondrás en marcha comandos SQL para crear una tabla en Redshift.
+
+## Tarea 3: Crear una base de datos y una tabla
+
+Pulsa en el cluster en la parte izquierda y en botón CREATE elegie Database y nombre labdb.
 ```
-Copia este comando SQL, pégalo en la ventana Query 1 (Consulta 1) y, a continuación, haz clic en Ejecutar.
+Copia este comando SQL, pégalo en la ventana Query 1 (Consulta 1) elige en los desplegables la base de datos labdb y el usuario master. Ejecuta la consulta.
 ```
 CREATE TABLE users (
   userid INTEGER NOT NULL,
@@ -102,14 +86,16 @@ Este comando creará una tabla denominada usuarios. Contiene el nombre, la direc
 Amazon Redshift puede importar datos desde Amazon S3. Admite varios formatos de archivo, campos de longitud fija, valores separados por comas (CSV) y delimitadores personalizados. Los datos de este laboratorio están separados por plecas (|).
 ```
 Elimina la consulta existente y pega este comando SQL en la ventana Query 1 (Consulta 1).
+
 ```
-COPY users FROM 's3://awssampledbuswest2/tickit/allusers_pipe.txt'
+COPY users FROM 's3://midemobucketxxxxxx/tickit/allusers_pipe.txt'
 CREDENTIALS 'aws_iam_role=YOUR-ROLE'
 DELIMITER '|';
 ```
-Antes de poner en marcha este comando, tendrás que introducir el ROL que utilizará Redshift para acceder a Amazon S3.
 
-Copia el valor de Rol situado a la izquierda de las instrucciones que estás leyendo. Empieza así: arn:aws:iam::
+Crea un bucket en la región de AWS Acadmy Nort Virginia con el nombre midemobucketxxxxxx siendo xxxxx cualquier combinación de números y letras.
+
+Copia el valor de Rol de LabRole desde IAM en la cuenta de AWS Academ. Empieza así: arn:aws:iam::
 
 Pégalo en la ventana de la consulta, reemplazando el texto YOUR-ROLE (TU ROL).
 
