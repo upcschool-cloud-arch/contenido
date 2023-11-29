@@ -26,11 +26,6 @@ En este laboratorio vamos a realizar la instalación de un wordpress , en una EC
 
 ![](images/02.png)
 
-* Pantalla inicial Wordpress
-
-![](images/03.png)
-
-
 
 * Instalación de Apache, PHP, Mysql y Wordpress
 
@@ -48,6 +43,13 @@ cd /var/www/html
 sudo rm index.html
 sudo nano wp-config.php
 ```
+
+
+
+* Pantalla inicial Wordpress
+
+![](images/03.png)
+
 
 
 
