@@ -55,6 +55,7 @@ Espera a que el Status (Estado) del clúster sea Disponible antes de continuar c
 ```
 
 ## Tarea 2: Utilizar el editor de consultas de Redshift para contactar con tu clúster de Redshift
+```
 Amazon Redshift se puede utilizar mediante el SQL estándar del sector. Para usar Redshift, necesitas un SQL Client (cliente SQL) que facilite una interfaz de usuario en la que introducir SQL. Cualquier cliente SQL que admita JDBC o ODBC se puede utilizar con Redshift.
 
 Para completar este laboratorio, usarás el editor de consultas de Amazon Redshift.
@@ -70,7 +71,7 @@ master
 Haz clic en Conectar
 ## Tarea 3: Crear una tabla
 En esta tarea, pondrás en marcha comandos SQL para crear una tabla en Redshift.
-
+```
 Copia este comando SQL, pégalo en la ventana Query 1 (Consulta 1) y, a continuación, haz clic en Ejecutar.
 ```
 CREATE TABLE users (
@@ -97,8 +98,9 @@ CREATE TABLE users (
 Este comando creará una tabla denominada usuarios. Contiene el nombre, la dirección y detalles sobre el tipo de música que le gusta al usuario.
 
 ## Tarea 4: Cargar datos de muestra desde Amazon S3
+```
 Amazon Redshift puede importar datos desde Amazon S3. Admite varios formatos de archivo, campos de longitud fija, valores separados por comas (CSV) y delimitadores personalizados. Los datos de este laboratorio están separados por plecas (|).
-
+```
 Elimina la consulta existente y pega este comando SQL en la ventana Query 1 (Consulta 1).
 ```
 COPY users FROM 's3://awssampledbuswest2/tickit/allusers_pipe.txt'
