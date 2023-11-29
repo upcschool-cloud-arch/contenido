@@ -82,9 +82,9 @@ CREATE TABLE users (
 Este comando creará una tabla denominada usuarios. Contiene el nombre, la dirección y detalles sobre el tipo de música que le gusta al usuario.
 
 ## Tarea 4: Cargar datos de muestra desde Amazon S3
-```
+
 Amazon Redshift puede importar datos desde Amazon S3. Admite varios formatos de archivo, campos de longitud fija, valores separados por comas (CSV) y delimitadores personalizados. Los datos de este laboratorio están separados por plecas (|).
-```
+
 Elimina la consulta existente y pega este comando SQL en la ventana Query 1 (Consulta 1).
 
 ```
