@@ -1,4 +1,5 @@
 ## Tarea 1: Iniciar un clúster de Amazon Redshift
+```
 En esta tarea, iniciarás un clúster de Amazon Redshift. Un clúster es un Data Warehouse completamente gestionado formado por un conjunto de nodos de computación. Cada clúster pone en marcha un motor de Amazon Redshift y contiene una o más bases de datos.
 
 Al iniciar un clúster, una de las opciones que tendrás que especificar es el node type (tipo de nodo). El tipo de nodo determina la CPU, la RAM, la capacidad de almacenamiento y el tipo de unidad de almacenamiento de cada nodo. Los tipos de nodo están disponibles en varios tamaños. El tamaño del nodo y el número de nodos determina el almacenamiento total de un clúster.
@@ -18,7 +19,7 @@ lab
 Tipo de nodo:  dc2.large
 Number of nodes (Cantidad de nodos): 
 
-2
+
 En la sección Configuraciones de la base de datos, configura lo siguiente:
 Nombre de usuario del administrador: 
 
@@ -51,6 +52,8 @@ Haz clic en el nombre de tu clúster (lab).
 La configuración del clúster aparecerá en pantalla. Dedica unos minutos a revisar las propiedades.
 
 Espera a que el Status (Estado) del clúster sea Disponible antes de continuar con la siguiente tarea.
+```
+
 ## Tarea 2: Utilizar el editor de consultas de Redshift para contactar con tu clúster de Redshift
 Amazon Redshift se puede utilizar mediante el SQL estándar del sector. Para usar Redshift, necesitas un SQL Client (cliente SQL) que facilite una interfaz de usuario en la que introducir SQL. Cualquier cliente SQL que admita JDBC o ODBC se puede utilizar con Redshift.
 
