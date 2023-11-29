@@ -118,6 +118,13 @@ sudo chown -R www-data:www-data /var/www/html
 sudo systemctl restart apache2
 ```
 
+URL Wordpress Admin
+http://54.166.217.206/wp-login.php?
+
+Si no tienes IP fija, al cambiar la IP pública tienes que añadir en wp-config.php estas lineas y cambiar la URL por la IP publica que te de en cada momentos AWS
+define( 'WP_HOME', 'http://example.com' );
+define( 'WP_SITEURL', 'http://example.com' );
+
 ## Links
 ```
 https://stackoverflow.com/questions/17922644/wordpress-asking-for-my-ftp-credentials-to-install-plugins
