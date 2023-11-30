@@ -139,3 +139,6 @@ https://dev.to/pixeline/how-to-use-redis-with-wordpress-docker-compose-55fk
 https://bobcares.com/blog/installation-failed-could-not-create-directory-error-in-wordpress/
 ```
 
+## Video de ayuda
+
+[Wordpress - RDS - Redis Video](https://www.youtube.com/watch?v=dSu2x7Xg8rg&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=99)
