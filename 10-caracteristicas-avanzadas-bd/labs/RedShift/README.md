@@ -135,4 +135,4 @@ LIMIT 10;
 ```
 ## Video de ayuda
 
-[AddressBook Video](https://www.youtube.com/watch?v=xzkCPvpOGM4&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=98)
+[RedShift Video](https://www.youtube.com/watch?v=xzkCPvpOGM4&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=98)
