@@ -69,3 +69,7 @@ Initial database name: myDB
 
 ![alt text](images/4.png)
 
+## Video de ayuda
+
+https://www.youtube.com/watch?v=eCW4P9QnleI&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=96
+
