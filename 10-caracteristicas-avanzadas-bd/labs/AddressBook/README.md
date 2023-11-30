@@ -71,6 +71,8 @@ Initial database name: myDB
 
 ## Video de ayuda
 
-[AddressBook Video](https://www.youtube.com/watch?v=eCW4P9QnleI&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=96)https://www.youtube.com/watch?v=eCW4P9QnleI&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=96)
+[AddressBook Video](https://www.youtube.com/watch?v=eCW4P9QnleI&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=96)
+
+ [configuración del CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
 
 
