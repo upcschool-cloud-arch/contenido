@@ -1,3 +1,5 @@
+# LAB - Análisis de datos en un Datawarehouse
+
 ## Tarea 1: Iniciar un clúster de Amazon Redshift
 ```
 En esta tarea, iniciarás un clúster de Amazon Redshift. Un clúster es un Data Warehouse completamente gestionado formado por un conjunto de nodos de computación. Cada clúster pone en marcha un motor de Amazon Redshift y contiene una o más bases de datos.
