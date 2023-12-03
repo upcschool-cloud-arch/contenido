@@ -1,4 +1,4 @@
-# RETO - Network Loab Balancer y NodeJS
+# RETO - Network Load Balancer y NodeJS
 
 
 ## Instalación NodeJs
