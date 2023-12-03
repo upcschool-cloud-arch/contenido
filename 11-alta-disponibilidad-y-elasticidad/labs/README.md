@@ -2,7 +2,9 @@
 
 ### Lab 01 - ALB - Netflix
 
-### Lab 02 - ASG & ALB - Juice Shop
+### Lab 02 - NLB - NodeJS
+
+### Lab 03 - ASG & ALB - Juice Shop
 
 ### Other Labs
 
