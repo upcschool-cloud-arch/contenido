@@ -13,7 +13,7 @@
 
 * [Amazon EC2 Auto Scaling with EC2 Spot Instances](https://aws.amazon.com/es/getting-started/hands-on/ec2-auto-scaling-spot-instances/)
 
-* [AWS General Immersion Day - ASG](https://catalog.workshops.aws/general-immersionday/en-US/advanced-modules/compute/auto-scaling)
+* [AWS General Immersion Day - ASG](https://catalog.workshops.aws/general-immersionday/en-US)
 
 * [ALB ASG Public Subnet](https://www.youtube.com/watch?v=GqRMAwo6QRA&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=22)
 
