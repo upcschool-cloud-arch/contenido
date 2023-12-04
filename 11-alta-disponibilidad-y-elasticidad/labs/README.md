@@ -10,7 +10,6 @@
 
 ### Other Labs
 
-* [AWS Academy Architecting - Lab 9 & Challenge 9](https://www.awsacademy.com/vforcesite/LMS_Login)
 
 * [Amazon EC2 Auto Scaling with EC2 Spot Instances](https://aws.amazon.com/es/getting-started/hands-on/ec2-auto-scaling-spot-instances/)
 
