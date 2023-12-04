@@ -26,13 +26,13 @@ module "ec2_instance" {
   ami                    = "ami-02f3f602d23f1659d"
   instance_type          = "t2.micro"
   key_name               = "lab1"
-  user_data = << EOF
-#!/bin/bash
-yum update -y
-yum install -y httpd
-systemctl start httpd
-systemctl enable httpd
-echo "<h1>Hello I'm  $(hostname -f) ! </h1>" > /var/www/html/index.html
+  user_data = <<-EOF
+	#!/bin/bash
+	yum update -y
+	yum install -y httpd
+	systemctl start httpd
+	systemctl enable httpd
+	echo "<h1>Hello I'm  $(hostname -f) ! </h1>" > /var/www/html/index.html
 	EOF
   monitoring             = true
   vpc_security_group_ids = ["sg-xxxxxxxxxxx"]  
@@ -58,22 +58,22 @@ terraform apply
 **Nota**: podeís lanzar también estás 3 instancias a través de la consola si os funciona con terraform. Utilizad como base la ami generada en el laboratorio anterior, y en lugar de crear 1 sola instancia, cread las 3 a la vez. No necesitáis habilitar la IP pública!.
 
 7. Comprobamos que nuestras 3 EC2 se han levantado correctamente desde el dashboard de AWS.
-8. Dentro del panel de EC2, abajo a la izquierda, clicaremos sobre ELB
+8. Dentro del panel de EC2, en el panel izquierdo, clicaremos sobre Load Balancers
 9. Clicamos sobre la _Create load balancer_ y seleccionamos Network Load Balancer
 10. Indicamos _myfirstLB_ en load balancer name y dejamos el resto de parámetros por defecto de _Basic Configurations_. Revisad que está marcada la opción Internet facing, ya que queremos acceder a la aplicación desde internet.
 11. En el apartado _Networking mapping_ seleccionamos nuestra vpc principal _main_vpc_yourname_ y en el mapping seleccionamos la az-a. Recordad que en la az-a es dónde tenemos nuestra subnet pública. Indicaremos que la IP nos la asigne AWS.
-12. Seleccionaremos un sg que hayamos utilizado en algún otro laboratorio. En principio cualquier que permita el acceso por el puerto 80.
+12. Seleccionaremos un SG que hayamos utilizado en algún otro laboratorio. En principio cualquier que permita el acceso por el puerto 80.
 13. En el apartado Listener and Routing, indicamos el protocolo:
 * HTTP: 80
 * En default action, veréis que el desplegable está vacío. Aún no hemos creado ningún TG, por lo que no podemos asociar el destino hacía el que balancer nuestra peticiones. Vamos a crearlo, clicando sobre el enlace _Create target group_
-14. Selecciona _Instances_ como tipo de Target Group y en el nombre indicamos lab5. EN el apartado Listener, de nuevo indicaremos el puerto 80 con el protocolo TCP.
+14. Selecciona _Instances_ como tipo de Target Group y en el nombre indicamos lab5. En el apartado Protocol:Port, de nuevo indicaremos el puerto 80 con el protocolo TCP.
 15. En el apartado de Networking, seleccionaremos nuestra vpc main.
-16. En el apartado _Health check_ dejaremos por defecto HTTP y / como path. Si clicais sobre _Advance Health Cehch settings_ veréis que podemos modificar los parámetros que hemos visto en clase. Vamos a modificar el timeout a 5 segundos, y clicamos sobre el botón _Next_.
+16. En el apartado _Health check_ dejaremos por defecto HTTP y / como path. Si clicais sobre _Advance health check settings_ veréis que podemos modificar los parámetros que hemos visto en clase. Vamos a modificar el timeout a 5 segundos, y clicamos sobre el botón _Next_.
 17. En la siguiente pantalla, deberemos escoger las 3 instancias que hemos creado en los puntos anteriores y clicamos sobre el botón _include pendings below_ y clicamos _create target group_
 
 Volvemos a la plantalla de creación del balanceador y en el desplegable Target Group ya deberíamos poder ver nuestro recién creado TG lab5.
 
-18. Seleccionamos TG lab 5, añadimos el tag Lab 5 a nuestro balanceador y clicamos sobre el botón _Create Load balancer_
+18. Seleccionamos TG lab5, añadimos el tag Lab 5 a nuestro balanceador y clicamos sobre el botón _Create Load balancer_
 
 ## Verificación del funcionamiento del LB
 
@@ -82,7 +82,7 @@ Una vez creado nuestro load balancer, vamos a comprobar como balancea las petici
 19. En el dashboard de EC2, en las opciones de la izquierda, clicamos sobre _load balancer_
 20. Seleccionamos nuestro load balancer _myfirstLB_ y nos vamos a la pestaña _Details_
 21. Copiamos el DNS Name y lo llevamos a un navegador. ¿Que resultado tienes?
-22. Abre una ventana de modo incógnito y refresca la url. Comprueba el resultado. ¿La petición la está devolviendo la misma ec2 (ip privada)? 
+22. Abre una ventana de modo incógnito y refresca la url. Comprueba el resultado. ¿La petición la está devolviendo la misma EC2 (ip privada)? 
 23. Repite varias veces el refresco y comprueba que va cambiando la EC2 que responde la petición.
 
 ## Sticky session LB
@@ -99,17 +99,17 @@ En esta sección cambiaremos la configuración de nuestro ELB para que funcine c
 
 En este apartado vamos a crear una RDS y una EC2 desde la que conectarnos.
 
-29. Accedemos al dashboard de RDS y clicamos sobre el botón en _Create Database_ .
+29. Accedemos al dashboard de RDS y clicamos sobre el botón en _Create Database_. El método de creación será el Standard.
 30. Seleccionaremos el motor de base datos Aurora compatible with Mysql y dejamos la versión por defecto.
-31. Escogemos la template Dev/test y en el apartado Availabilty & Durability, seleccionamos el deployment Create an Aurora Replica or Reader node in a different AZ.
+31. Escogemos la template Dev/test.
 32. Indicaremos como identificador myfirstrds. Dejamos como master username: admin y como password indicad el que consideréis.
-33. Seleccionaremos la instance configuration burstable classes y seleccionamos db.t3.medium.
-34. Finalmente, en el apartado Connectivity, seleccionaremos _Connect to an EC2 Compute resource_ .
-35. En el desplegable, podéis escoger cualquier de las EC2 que ya tenemos desplegadas.
-36. En el apartado VPC security group (firewall). crearemos uno nuevo con el nombre: vpc_security_group_rds. El resto de parámetros, los dejamos con los valores por defecto. Clicamos en el botón _Create database_.
-37. En principio, ya tendremos nuestra base de datos creada y enlazada con nuestra ec2.
-38. Para poder acceder a nuestra RDS para crear nuestras bases de datos, debemos tener instalado mysql en este caso.
-39. Conectaros a la EC2 por SSH o bien a través de la propia consola de AWS y installaremos mysql con los siguientes comandos:
+33. Seleccionaremos la Instance configuration burstable classes y seleccionamos db.t3.medium.
+34. En el apartado Availabilty & Durability, seleccionamos el deployment _Create an Aurora Replica or Reader node in a different AZ_.
+35. Finalmente, en el apartado Connectivity, seleccionaremos _Connect to an EC2 Compute resource_. En el desplegable, podéis escoger cualquier de las EC2 que ya tenemos desplegadas. (NOTA: Si no sale ninguna instancia, dadle al botón de recarga de este apartado)
+37. En el apartado VPC security group (firewall), crearemos uno nuevo con el nombre: vpc_security_group_rds. El resto de parámetros, los dejamos con los valores por defecto. Clicamos en el botón _Create database_.
+38. En principio, ya tendremos nuestra base de datos creada y enlazada con nuestra EC2.
+39. Para poder acceder a nuestra RDS para crear nuestras bases de datos, debemos tener instalado Mysql en este caso.
+40. Conectaos a la EC2 por SSH o bien a través de la propia consola de AWS e instalaremos Mysql con los siguientes comandos:
 ```
 sudo wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
 sudo dnf install mysql80-community-release-el9-1.noarch.rpm -y
