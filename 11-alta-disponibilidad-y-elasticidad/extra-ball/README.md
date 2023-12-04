@@ -18,4 +18,12 @@
 
 * [ALB Public Subnet](https://www.youtube.com/watch?v=TpVK6-5oeiI&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=20)
 
+* [Route 53 Private Zone](https://www.youtube.com/watch?v=TPwhW1oP-ng&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=31)
+
+* [ALB EC2 Dns-Exit](https://www.youtube.com/watch?v=RXLSw64XO7o&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=82)
+
+* [ALB EC2](https://www.youtube.com/watch?v=GnUVpchf4Q0&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=81)
+
+* [ALB EC2 NFS DNS](https://www.youtube.com/watch?v=60wZMEEIEWM&list=PLr35b7rSarzizDIWK4eKyl6mY4V_HxERi&index=84)
+
 
