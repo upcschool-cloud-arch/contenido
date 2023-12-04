@@ -23,7 +23,7 @@ Ahora todas las subnets privadas están asociadas implicitamente a este Route Ta
 11. Clicamos sobre la pestaña _Routes_ y añadimos la línea del Internet Gateway, definiendo el como destination: 0.0.0.0/0 y el Target: el ID del Internet Gateway creado en el lab 1.
 12. ¿Cuál es el resultado?
 
-El resultado será un errror, ¿Sabríais decir por qué?
+El resultado será un error, ¿Sabríais decir por qué?
 
 El motivo es que no podemos tener dos salidas a la misma dirección dentro de la misma Route Table.
 
@@ -67,7 +67,7 @@ Comprobaremos el correcto funcionamiento del nat gateway, saliendo a internet a 
 20. En el dashboard de EC2, buscamos la instancia lab1 y la iniciamos a través del botón _Instance State_--> _Start Instances_ en caso de estar parada.
 21. Copiamos la IP pública que se muestra en la pestaña _Details_
 22. Accedemos por ssh a la instancia lab1. Abrimos el terminal y utilizamos el siguiente comando si trabajamos con Linux:
-**Recordad si no lo hicistéis en el lab anterior, lanzar el siguiente comando antes de hacer el ssh:
+**Recordad, si no lo hicisteis en el lab anterior, lanzar el siguiente comando antes de hacer el ssh:
 ```bash
 chmod 400 lab1.pem
 ```
@@ -87,7 +87,7 @@ chmod 400 lab1.pem
 
 26. Desde el mismo directorio dónde hemos creado este fichero .pem accedemos a la instancia con el siguiente comando:
  ```bash
-ssh -i "lab.pem1" ubuntu@<ip_privada_lab2>
+ssh -i "lab1.pem" ubuntu@<ip_privada_lab2>
 ```
 
 Un vez dentro de una ec2 ubicada en una subnet privada y sin IP pública, podemos chequear si el nat gateway está funcionado:
@@ -96,7 +96,7 @@ Un vez dentro de una ec2 ubicada en una subnet privada y sin IP pública, podemo
 ```bash
  ping 8.8.8.8 // Google
  ```
-28. Si lanzamos un _traceroute_, podemos ver el camino que sigue nuestro paquete IP y si realmente está pasadando por el Nat Gateway. Podéis verificar la IP de vuestro Nat gatway en la consola de AWS.
+28. Si lanzamos un _traceroute 8.8.8.8_, podemos ver el camino que sigue nuestro paquete IP y si realmente está pasando por el Nat Gateway. Podéis verificar la IP (privada) de vuestro Nat Gateway en la consola de AWS.
 
 ## Peering Connection
 
@@ -105,12 +105,12 @@ En esta segunda parte del lab, vamos a establecer una conexión por peering entr
 29. A través de la consola, accede al dashboard de VPCs. En las opciones de la izquierda, encontraréis un apartado llamado _Peering Connections_ .
 30. Clicad sobre el botón _Create peering connection_
 31. Nombraremos a este peering my_first_peering_connection y seleccionaremos nuestra main_vpc_yourname como VPC requester
-32. Seleccionamos _my account_ y _This region_ y en VPC accepter selecciona la VPC default.
+32. Seleccionamos _my account_ y _This region_, en VPC accepter selecciona la VPC default y clicad sobre el botón _Create peering connection_.
 33. ¿Qué ha ocurrido?
 
 Recordad que la vpc default es 172.31.0.0/16, al igual que nuestra main VPC, con lo que estamos teniendo overlaping y AWS no nos permitirá hacer peering entre estas dos vpcs para evitar conflictos a la hora de comunicarse entre ellas.
 
-34. Seleccionad como VPC Accepter la secondary_vpc. 
+34. Seleccionad como VPC Accepter la secondary_vpc (creada en el _Bonus track_ del lab anterior). 
 35. Añadimos el tag key: lab y value: 2 y clicamos sobre el boton _create peering connection_
 36. Como owners de la secondary VPC, nos llegará una notificación de aceptación del peering. La aceptamos y ya tendremos el peering creado.
 37. Si queremos establecer comunicación, deberemos crear las rutas correspondientes tanto en la vpc orígen, como destino.
