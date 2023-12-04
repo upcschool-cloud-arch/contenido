@@ -14,3 +14,6 @@ echo "Microservicio 1 desde $(hostname -f)" > /var/www/html/m1/index.html
 mkdir m2
 echo "Microservicio 2 desde $(hostname -f)" > /var/www/html/m2/index.html
 ```
+## Monta un ALB con un TG
+
+## Configura dos reglas con multi path a cada microservicio
