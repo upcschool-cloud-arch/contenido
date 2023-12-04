@@ -22,4 +22,4 @@ Entra en la configuración del balanceador en "listener and Rules"
 ![](images/01.png)
 
 Configura 2 reglas de path nuevas que apunten a m1 y m2
-![](images/01.png)
+![](images/02.png)
