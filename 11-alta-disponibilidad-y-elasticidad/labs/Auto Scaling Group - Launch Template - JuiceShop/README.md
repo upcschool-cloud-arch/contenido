@@ -22,10 +22,10 @@ En este laboratorio crearemos una web con contenedores con un balanceador de car
 
 * En opciones avanzadas edita el user data y agrega el siguiente código.
 
-```bash
+```
 #!/bin/bash 
-sudo dnf update -y 
-sudo dnf install -y docker 
+dnf update -y 
+dnf install -y docker 
 service docker start 
 systemctl enable docker.service
 docker pull santospardos/upc:juiceshop
