@@ -1,5 +1,7 @@
 # Reto: Fronted - Backend  (Route 53 - S3 - ALB - EC2)
 
+![](images/01.png)
+
 # Frontend 
 
 ## S3
