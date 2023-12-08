@@ -1,5 +1,6 @@
 # Reto: Full Stack Website (Fronted - Backend)  (Route 53 - S3 - ALB - EC2)
-
+## Frontend - Static  - Html JS CSS
+## Backend  - Dynamic - NodeJs
 ![](images/01.png)
 
 # Frontend 
