@@ -2,7 +2,7 @@
 
 ### Lab01/RETO - ELB - ALB - Netflix
 
-### Lab02/RETO - ELB - NLB - NodeJS
+### Lab02/RETO - ELB - ALB - Full Stack - Car Repair 
 
 ### Lab03/RETO - ASG - ALB - Juice Shop
 
