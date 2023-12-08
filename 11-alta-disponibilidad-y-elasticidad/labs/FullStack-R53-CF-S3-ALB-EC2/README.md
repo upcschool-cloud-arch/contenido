@@ -1,4 +1,4 @@
-# Reto: Full Stack - Car Repair Website - (Route 53 - S3 - ALB - EC2)
+# Reto: Full Stack - Car Repair Website - (Route 53 - Cloudfront - ACM - S3 - ALB - EC2)
 ## Frontend - Static  - Html JS CSS
 ## Backend  - Dynamic - NodeJs
 ![](images/01.png)
