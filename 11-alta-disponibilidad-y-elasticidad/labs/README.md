@@ -1,12 +1,12 @@
 # LABS
 
-### Lab01/RETO - ELB - ALB - Netflix
+### Lab01/RETO - ASG - ALB - Juice Shop
 
-### Lab02/RETO - ELB - ALB - Full Stack - Car Repair 
+### Lab02/RETO - ELB - ALB - Microservicios
 
-### Lab03/RETO - ASG - ALB - Juice Shop
+### Lab03/RETO - ELB - ALB - Netflix
 
-### Lab04/RETO - ELB - ALB - Microservicios
+### Lab04/RETO - ELB - ALB - Full Stack - Car Repair 
 
 ### Other Labs
 
