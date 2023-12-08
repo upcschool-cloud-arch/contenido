@@ -1,5 +1,4 @@
-# Challenge: Fronted - Backend  (Route 53 - S3 - ALB - EC2)
-(It is not a step-by-step lab)
+# Reto: Fronted - Backend  (Route 53 - S3 - ALB - EC2)
 
 # Frontend 
 
@@ -28,7 +27,7 @@ You can follow this video:
 https://youtu.be/xXCnaMxWUDk
 ```
 
-## Cloudfront
+## Cloudfront (2 origenes 2 comportamientos)
 
 Change the xxxx for the right value
 ```
@@ -84,7 +83,7 @@ http://public-ip:18000/accounts/1
 http://public-ip:18000/accounts/1/cars/
 ```
 
-### ALB
+### ALB (2 reglas)
 TG : Port 18000. Health Check Overrride 18000.
 
 ALB: Port: 80
