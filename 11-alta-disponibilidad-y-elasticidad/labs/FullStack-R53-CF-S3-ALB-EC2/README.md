@@ -1,4 +1,4 @@
-# Reto: Fronted - Backend  (Route 53 - S3 - ALB - EC2)
+# Reto: Full Stack Website (Fronted - Backend)  (Route 53 - S3 - ALB - EC2)
 
 ![](images/01.png)
 
