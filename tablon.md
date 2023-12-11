@@ -3,7 +3,7 @@
 ## 2023-12-11: Segundo examen
 
 Fecha del examen: Miércoles 20 de Diciembre
-Lugar: GatherTown
+Lugar: GatherTown o presencial.
 Formato: 10 preguntas tipo test
 Duración: 30 minutos
 
