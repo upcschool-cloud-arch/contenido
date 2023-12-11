@@ -98,3 +98,4 @@ docker run -d -p 80:3000 santospardos/upc:juiceshop
 ## RETO
 
 Instalar la aplicación stress en ambas EC2, lanzamos 10 procesos de cpu y comprobamos que cuando lleguen a 50% ambas máquinas se lanza una tercera EC2 al aplicarse la politica de autoescalado
+O un balanceador con loadtest o siege.
