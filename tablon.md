@@ -1,5 +1,18 @@
 # Tablón de anuncios
 
+## 2023-12-11: Segundo examen
+
+Fecha del examen: Miércoles 20 de Diciembre
+Lugar: GatherTown
+Formato: 10 preguntas tipo test
+Duración: 30 minutos
+
+Entrarán los topics 7, 8, 9 y 10, es decir, gitops y los temas de Santos.
+
+**Durante el tiempo del examen SOLO PODÉIS HABLAR CON EL PROFESOR QUE ESTÉ AL CARGO DE LA SESIÓN, usando slack. INCLUSO SI HABÉIS ENTREGADO YA VUESTRAS RESPUESTAS**.
+
+
+
 ## 2023-10-23: Primera clase de repaso
 
 Fecha de la clase: Jueves 9 Nov, 18:30
