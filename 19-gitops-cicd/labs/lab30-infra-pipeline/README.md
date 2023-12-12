@@ -75,7 +75,7 @@ terraform.rc
 *.conf
 ```
 
-2.5- Copy the source code you will find in [./00-src-network/](./00-src-network/) and take the opportinity to look at the code. Finally, commit.
+2.5- Copy the source code you will find in [./00-src-network/](./00-src-network/) and take the opportinity to look at the code, and commit all the files.
 
 ```bash
 git add --all
@@ -84,7 +84,7 @@ git commit -m "first commit"
 
 ## Github Repository initialization
 
-3.1- Next, we will **create a new repository in GitHub** where we will push the source code.
+Next, we will **create a new repository in GitHub** where we will push the source code.
 
 3.2- Authenticate yourself on GitHub using the CLI (follow the instructions provided by the tool)
 
@@ -177,16 +177,31 @@ echo "Visit https://github.com/$GH_USER/poc-actions-terraform/settings/secrets/a
 
 Notice that secrets can not be visualized, thus can only be updated or deleted
 
+## Configure the base workflow
 
-# Configure the base workflow
+5.1- First, check the `Actions` functionality is enabled in your repository, and that you can access to the correspoding tab.
 
-```yml
+```bash
+echo "https://github.com/$GH_USER/poc-actions-terraform/actions"
+```
+
+5.2- Now, we are ready to define a basic Worflow, create a YML file `.github/workflows/terraform.yml` with the following definition
+
+```bash
+mkdir -p .github/workflows
+```
+
+```bash
 name: Github Actions Terraform
 on: [push]
 jobs:
   format_check:
     name: Terraform Validation Check
     runs-on: ubuntu-latest
+    outputs:
+      validate_outcome: ${{ steps.validate.outcome }}
+      validate_stdout: ${{ steps.validate.outputs.stdout }}
+      fmt_outcome: ${{ steps.fmt.outcome }}
     steps:
       - uses: actions/checkout@v4
 
@@ -205,10 +220,12 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
 
       - name: Terraform fmt
+        id: fmt
         run: terraform fmt -check
         continue-on-error: true
 
       - name: Terraform Init
+        id: init
         run: terraform init -backend-config=backend.conf
         env:
           AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -216,20 +233,169 @@ jobs:
           AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }}
 
       - name: Terraform Validate
+        id: validate
         run: terraform validate -no-color
 ```
 
+5.3- Commit and push the worflow and check the workflow runs flawlessly
+
+```bash
+git add --all
+git commit -m "add workflow"
+git push origin master #or main!
+echo "Check the workflow run! -> https://github.com/$GH_USER/poc-actions-terraform/actions"
+```
+Any error?
 
 
+## Add the planning definition
+
+6.1- Now, add a new Job to the workflow called `plan` that depends on the job already defined (`format_check`). This job should peform the `init` and `plan` terraform commands
+
+```yml
+  plan:
+    name: Terraform Plan
+    needs: format_check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract Backend Config
+        run: |
+          cat << EOF > backend.conf
+            bucket = "${S3_BUCKET}"
+            key    = "terraform.tfstate"
+            dynamodb_table = "${DYNAMODB_TABLE}"
+            region = "us-east-1"
+          EOF
+        env:
+          S3_BUCKET: ${{ vars.s3_bucket }}
+          DYNAMODB_TABLE:  ${{ vars.dynamodb_table }}
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init -backend-config=backend.conf
+        id: init
+        env:
+          AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }}
+
+      - name: Terraform Plan
+        run: terraform plan -no-color
+        id: plan
+        env:
+          AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }}
+```
+6.2- Commit the changes, is the `terraform plan` being executed correctly?
+
+## Set the triggers
+
+7.2- The workflow is only being triggered whenever someone pushes a commit to the repository. Check the [Github Actions Documentation](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on) and allow the workflow to run on the following events:
+- push on any branch
+- A new pull_request is opened, targeting the master branch
 
 
+## Decorate the pull requests
 
-//Then plan (master)
+8.1- Now, we would like to decorate the `pull requests` with the output of the workflow. To do so, we are defining a new step in the job `plan`
 
-//Then apply when release
+```yml
+      - uses: actions/github-script@v6
+        if: github.event_name == 'pull_request'
+        env:
+          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // 1. Retrieve existing bot comments for the PR
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            })
+            const botComment = comments.find(comment => {
+              return comment.user.type === 'Bot' && comment.body.includes('Terraform Format and Style')
+            })
+      
+            // 2. Prepare format of the comment
+            const output = `#### Terraform Format and Style 🖌\`${{ needs.format_check.outputs.fmt_outcome }}\`
+            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Validation 🤖\`${{ needs.format_check.outputs.validate_outcome }}\`
+            <details><summary>Validation Output</summary>
+      
+            \`\`\`\n
+            ${{ needs.format_check.outputs.validate_stdout}}
+            \`\`\`
+      
+            </details>
+      
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+      
+            <details><summary>Show Plan</summary>
+      
+            \`\`\`\n
+            ${process.env.PLAN}
+            \`\`\`
+      
+            </details>
+      
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
+      
+            // 3. If we have a comment, update it, otherwise create a new one
+            if (botComment) {
+              github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: output
+              })
+            } else {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+              })
+            }
+```
 
-//Notice the backend information is empty.... We will provide this information as an env variable
+This step makes use of the `Actions Github_TOKEN` to publish the comment, although, by default, the token hasn't enough privileges to perform the action. Modify the Workflow permissions via `Settings > Actions > General > Workflow permissions` and set `Read and write permissions`.
+
+![Alt text](images/permission.png)
+
+8.2- Create a new branch modifying the `Security Group Rule` and open a Pull Request to test the step, and leave the Pull request open.
+
+Example: <https://github.com/TheMatrix97/poc-actions-terraform/pull/4>
+
+## Release workflow
+
+9.1- Our team decided to build a separated workflow to `apply` the changes everytime a `new release` is published, as indicated below.
+
+```yml
+on:
+  release:
+    types: [published]
+```
+Using the current worflow as a template, **create a new one**, in a separated file, that runs the following commands:
+- terraform init
+- terraform validate
+- terraform apply -auto-approve
+
+9.2- Merge the Pull request defined in 8.2 and publish a new release (v0.0.1). Are the changes applied correctly?
 
 
+## Final
+10- Don't forget to destroy the resources!
 
+```bash
+cd poc-actions-terraform
+terraform destroy
+```
+Don't forget the S3 bucket together with the DynamoDB table instantiated in `1.1`!
 
+## Solution
+The solution to this lab is located [here](./solution_workflows/). Please try yout best, and only use the solution as last resource :)

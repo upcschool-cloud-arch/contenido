@@ -1,0 +1,146 @@
+name: Github Actions Terraform
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    types:
+      - opened
+    branches:
+      - 'master'
+jobs:
+  format_check:
+    name: Terraform Validation Check
+    runs-on: ubuntu-latest
+    outputs:
+      validate_outcome: ${{ steps.validate.outcome }}
+      validate_stdout: ${{ steps.validate.outputs.stdout }}
+      fmt_outcome: ${{ steps.fmt.outcome }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract Backend Config
+        run: |
+          cat << EOF > backend.conf
+            bucket = "${S3_BUCKET}"
+            key    = "terraform.tfstate"
+            dynamodb_table = "${DYNAMODB_TABLE}"
+            region = "us-east-1"
+          EOF
+        env:
+          S3_BUCKET: ${{ vars.s3_bucket }}
+          DYNAMODB_TABLE:  ${{ vars.dynamodb_table }}
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform fmt
+        run: terraform fmt -check
+        id: fmt
+        continue-on-error: true
+
+      - name: Terraform Init
+        run: terraform init -backend-config=backend.conf
+        env:
+          AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }}
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+  plan:
+    name: Terraform Plan
+    needs: format_check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract Backend Config
+        run: |
+          cat << EOF > backend.conf
+            bucket = "${S3_BUCKET}"
+            key    = "terraform.tfstate"
+            dynamodb_table = "${DYNAMODB_TABLE}"
+            region = "us-east-1"
+          EOF
+        env:
+          S3_BUCKET: ${{ vars.s3_bucket }}
+          DYNAMODB_TABLE:  ${{ vars.dynamodb_table }}
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init -backend-config=backend.conf
+        id: init
+        env:
+          AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }}
+
+      - name: Terraform Plan
+        run: terraform plan -no-color
+        id: plan
+        env:
+          AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }}
+      
+      - uses: actions/github-script@v6
+        if: github.event_name == 'pull_request'
+        env:
+          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // 1. Retrieve existing bot comments for the PR
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            })
+            const botComment = comments.find(comment => {
+              return comment.user.type === 'Bot' && comment.body.includes('Terraform Format and Style')
+            })
+      
+            // 2. Prepare format of the comment
+            const output = `#### Terraform Format and Style 🖌\`${{ needs.format_check.outputs.fmt_outcome }}\`
+            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Validation 🤖\`${{ needs.format_check.outputs.validate_outcome }}\`
+            <details><summary>Validation Output</summary>
+      
+            \`\`\`\n
+            ${{ needs.format_check.outputs.validate_stdout}}
+            \`\`\`
+      
+            </details>
+      
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+      
+            <details><summary>Show Plan</summary>
+      
+            \`\`\`\n
+            ${process.env.PLAN}
+            \`\`\`
+      
+            </details>
+      
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
+      
+            // 3. If we have a comment, update it, otherwise create a new one
+            if (botComment) {
+              github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: output
+              })
+            } else {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+              })
+            }
+
+      
