@@ -96,6 +96,7 @@ ALB: Port: 80
 https://awstip.com/deploying-a-nodejs-application-with-aws-ec2-ssl-and-a-load-balancer-38885230fc6f
 https://github.com/santos-pardos/dealcar-node-api
 https://s3.eu-west-1.amazonaws.com/www.profesantos.cloud/car-repair.zip
+https://catalog.us-east-1.prod.workshops.aws/workshops/4557215e-2a5c-4522-a69b-8d058aba088c/en-US
 ```
 
 # Video
