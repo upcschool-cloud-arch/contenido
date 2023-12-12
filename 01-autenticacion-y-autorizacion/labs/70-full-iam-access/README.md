@@ -1,4 +1,4 @@
-# IAM labs
+![image](https://github.com/upcschool-cloud-arch/contenido/assets/1154367/2e6938e1-066c-4dea-a124-4586c13dd1dd)# IAM labs
 
 Hemos creado una cuenta para facilitaros la experimentación con el sistema de permisos de AWS. En ella podéis, por ejemplo, hacer lo siguiente:
 
@@ -15,6 +15,8 @@ El resto de permisos están bloqueados utilizando una característica de Organiz
 * Usad vuestro nombre de usuario de estudiantat. Por ejemplo, si mi dirección es `javi.moreno@estudiantat.upc.edu`, mi nombre de usuario será `javi.moreno`.
 * Seguid las indicaciones para resetear el password y activar el MFA.
 * Elegid el acceso por consola a la cuenta de AWS que os aparece.
+
+![SSO Login screeshot](sso-login.png)
 
 ## Actividades
 
