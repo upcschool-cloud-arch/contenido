@@ -1,0 +1,46 @@
+name: Release Terraform and apply changes
+on:
+  release:
+    types: [published]
+jobs:
+  release_terraform:
+    name: Terraform Release Job
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract Backend Config
+        run: |
+          cat << EOF > backend.conf
+            bucket = "${S3_BUCKET}"
+            key    = "terraform.tfstate"
+            dynamodb_table = "${DYNAMODB_TABLE}"
+            region = "us-east-1"
+          EOF
+        env:
+          S3_BUCKET: ${{ vars.s3_bucket }}
+          DYNAMODB_TABLE:  ${{ vars.dynamodb_table }}
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform fmt
+        run: terraform fmt -check
+        continue-on-error: true
+
+      - name: Terraform Init
+        run: terraform init -backend-config=backend.conf
+        env:
+          AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }}
+
+      - name: Terraform Validate
+        run: terraform validate -no-color
+      
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -no-color
+        env:
+          AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }}
+      
