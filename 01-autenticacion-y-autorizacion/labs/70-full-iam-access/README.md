@@ -1,4 +1,4 @@
-![image](https://github.com/upcschool-cloud-arch/contenido/assets/1154367/2e6938e1-066c-4dea-a124-4586c13dd1dd)# IAM labs
+# IAM labs
 
 Hemos creado una cuenta para facilitaros la experimentación con el sistema de permisos de AWS. En ella podéis, por ejemplo, hacer lo siguiente:
 
