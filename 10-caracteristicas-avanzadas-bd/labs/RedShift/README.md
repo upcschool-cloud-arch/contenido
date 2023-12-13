@@ -28,7 +28,7 @@ Haz clic en Roles de IAM asociados.
 
 El rol concede permiso a Amazon Redshift para leer datos de Amazon S3.
 
-En la sección Configuraciones adicionales, anula la selección de  Usar valores predeterminados.
+En la sección Configuraciones adicionales, ten seleccionada la opción de Usar valores predeterminados.
 
 Clic en Crear clúster.
 
