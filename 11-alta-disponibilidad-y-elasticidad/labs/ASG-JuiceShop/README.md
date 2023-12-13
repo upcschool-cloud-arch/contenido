@@ -87,12 +87,12 @@ docker run -d -p 80:3000 santospardos/upc:juiceshop
 
 * Comprobamos la creación del ASG
 
-![](images/14.png)
+![](images/15.png)
 
 
 * Revisamos las EC2 creadas
 
-![](images/14.png)
+![](images/16.png)
 
 
 ## RETO
