@@ -74,8 +74,9 @@ terraform.rc
 # Configuration files
 *.conf
 ```
+2.5- Check the ./00-src-network/providers.tf and add the required parameters to the `backend` annotation, as stated in [Lab50 Module 09-gitops-terraform](../../../09-gitops-terraform/labs/lab50-backends/00-src-init-backend/) to use the s3 bucket and dynamodb table deployed before.
 
-2.5- Copy the source code you will find in [./00-src-network/](./00-src-network/) and take the opportinity to look at the code, and commit all the files.
+2.6- Copy the source code you will find in [./00-src-network/](./00-src-network/) and take the opportinity to look at the code, and commit all the files.
 
 ```bash
 git add --all
