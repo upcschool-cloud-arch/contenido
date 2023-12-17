@@ -46,13 +46,13 @@
 | MIERCOLES | 24-Jan-2024 | 3     | 21      | Conceptos avanzados de Networking - Proyecto final                              | Proyecto final                                | René          |
 | LUNES     | 29-Jan-2024 | 3     | 22      | Seguridad avanzada                                                              | Gobernanza                                    | Tasia [R]     |
 | MIERCOLES | 31-Jan-2024 | 3     | 23      | Diseño y ejecución de planes de migración                                       | Gobernanza                                    | Samu          |
-| JUEVES    | 1-Feb-2024  | 3     | 24      | Implementación de planes de Disaster Recovery                                   | Aplicaciones cloud native                     | Tasia [R]     |
+| JUEVES    | 1-Feb-2024  | 3     | 24      | Contenedores                                                                    | Contenerización y Kubernetes                  | Rael          |
 | LUNES     | 5-Feb-2024  | 3     | 25      | Contenedores                                                                    | Contenerización y Kubernetes                  | Rael          |
 | MIERCOLES | 7-Feb-2024  | 3     | 25      | Contenedores                                                                    | Contenerización y Kubernetes                  | Rael          |
 | LUNES     | 12-Feb-2024 | 3     | 25      | Contenedores                                                                    | Contenerización y Kubernetes                  | Rael          |
 | MIERCOLES | 14-Feb-2024 | 3     | 25      | Contenedores                                                                    | Contenerización y Kubernetes                  | Rael          |
-| LUNES     | 19-Feb-2024 | 3     | 26      | Charla Tasia                                                                    | Delivery engineering, DevOps y observabilidad | Tasia [R]     |
-| MIERCOLES | 21-Feb-2024 | 3     | 25      | Contenedores                                                                    | Contenerización y Kubernetes                  | Rael          |
+| LUNES     | 19-Feb-2024 | 3     | 26      | Implementación de planes de Disaster Recovery                                   | Aplicaciones cloud native                     | Tasia [R]     |
+| MIERCOLES | 21-Feb-2024 | 3     | 25      | Charla Tasia                                                                    | Delivery engineering, DevOps y observabilidad | Tasia         |
 | LUNES     | 26-Feb-2024 | 3     | 27      | Proyecto final                                                                  | Proyecto final                                | \---          |
 | MIERCOLES | 28-Feb-2024 | 3     | 27      | Proyecto final                                                                  | Proyecto final                                | \---          |
 
