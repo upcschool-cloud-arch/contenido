@@ -7,7 +7,12 @@ Lugar: GatherTown o presencial.
 Formato: 10 preguntas tipo test
 Duración: 30 minutos
 
-Entrarán los topics 7, 8, 9 y 10, es decir, gitops y los temas de Santos.
+Entrarán siguientes los topics:
+* 06-arquitectura-aplicaciones-tradicionales -> Santos
+* 08-observabilidad-infra-aplicaciones -> Marc
+* 09-gitops-git -> Javier
+* 09-gitops-terraform -> Marc
+* 10-caracteristicas-avanzadas-bd -> Santos
 
 **Durante el tiempo del examen SOLO PODÉIS HABLAR CON EL PROFESOR QUE ESTÉ AL CARGO DE LA SESIÓN, usando slack. INCLUSO SI HABÉIS ENTREGADO YA VUESTRAS RESPUESTAS**.
 
