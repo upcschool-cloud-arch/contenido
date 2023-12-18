@@ -31,8 +31,8 @@
 | LUNES     | 11-Dec-2023 | 3     | 10      | Alta disponibilidad y elasticidad en computación clásica                        | Aplicaciones cloud native                     | Santos [R]    |
 | MIERCOLES | 13-Dec-2023 | 3     | 14      | Introducción a Terraform                                                        | Delivery engineering, DevOps y observabilidad | Marc Catrisse |
 | JUEVES    | 14-Dec-2023 | 3     | 18      | Diseño y creación de pipelines de CI/CD para infraestructura clásica            | Delivery engineering, DevOps y observabilidad | Marc Catrisse |
-| LUNES     | 18-Dec-2023 | 3     | 15      | Arquitectura de aplicaciones asíncronas                                         | Aplicaciones cloud native                     | Javi          |
-| MIERCOLES | 20-Dec-2023 | 3     | 16      | Control y gestión de costes                                                     | Gobernanza                                    | Samu          |
+| LUNES     | 18-Dec-2023 | 3     | 16      | Control y gestión de costes                                                     |  Gobernanza                                   | Samu          |
+| MIERCOLES | 20-Dec-2023 | 3     | 15      | Arquitectura de aplicaciones asíncronas                                         | Aplicaciones cloud native                     | Javi          |
 | LUNES     |             |       |         | 25-Dec-2023                                                                     | NAVIDAD                                       |               |
 | MIERCOLES |             |       |         | 27-Dec-2023                                                                     | NAVIDAD                                       |               |
 | LUNES     |             |       |         | 1-Jan-2024                                                                      | NAVIDAD                                       |               |
