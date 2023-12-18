@@ -8,11 +8,12 @@ Formato: 10 preguntas tipo test
 Duración: 30 minutos
 
 Entrarán siguientes los topics:
-* 06-arquitectura-aplicaciones-tradicionales -> Santos
 * 08-observabilidad-infra-aplicaciones -> Marc
 * 09-gitops-git -> Javier
 * 09-gitops-terraform -> Marc
-* 10-caracteristicas-avanzadas-bd -> Santos
+* 10-caracteristicas-avanzadas-de-base-datos --> Santos
+* 11-alta-disponibilidad-y-elasticidads --> Santos
+* 19-gitops-ci-cd --> Marc
 
 **Durante el tiempo del examen SOLO PODÉIS HABLAR CON EL PROFESOR QUE ESTÉ AL CARGO DE LA SESIÓN, usando slack. INCLUSO SI HABÉIS ENTREGADO YA VUESTRAS RESPUESTAS**.
 
