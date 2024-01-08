@@ -6,8 +6,8 @@ En caso de que sea necesario, también debemos ser capaces de parchear nuestras 
 
 ## Módulos anteriores
 
-* Charla Pau - 3 de mayo
-* Alta disponibilidad y elasticidad en computación clásica (Santos) - 25 de Abril
+* Arquitectura de aplicaciones asíncronas - Javi:  20 de diciembre
+* Control y gestión de costes - Samu: 18 de Diciembre
 
 ## En este módulo
 
@@ -37,6 +37,7 @@ En caso de que sea necesario, también debemos ser capaces de parchear nuestras 
 - [x] Systems Manager State Manager
 - [x] Systems Manager Documentation
 - [x] EC2 Instance Connect
+- [x] EC2 Instance Connect Endpoint
 - [x] AWS Image Builder
 - [x] AMI
 - [x] Image pipeline

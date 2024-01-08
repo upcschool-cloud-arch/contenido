@@ -1,0 +1,248 @@
+---
+# Anastasia Kondratieva <anastasia@asiaknt.com>
+# sáb 22 abr 2023 12:50:24 CEST
+
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: >-
+  This AWS CloudFormation template creates a fully operational VPC with 2 AZs and
+  a given number of EC2 instances with access from the internet
+Parameters:
+
+  NumeroDeInstancias:
+    Type: String
+    Description: 'Numero de instancias a desplegar. Cuidado, puede incurrir en gastos'
+    Default: '1'   
+  AMIId:
+    Type: String
+    Description: 'AMI de las instancias' 
+  EtiquetaIdentificativa:
+    Type: String
+    Description: 'Etiqueta que identifica a las instancias del grupo'
+
+Resources:
+  #############################################################################
+  # VPC                                                                       #
+  #############################################################################
+  VPC:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock: '10.0.0.0/16'
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
+      InstanceTenancy: 'default'
+      Tags:
+        - Key: Name
+          Value: 'CCAPost-vpc'
+  #############################################################################
+  # Internet Gateway                                                          #
+  #############################################################################
+  InternetGateway:
+    Type: 'AWS::EC2::InternetGateway'
+    Properties:
+      Tags:
+        - Key: Name
+          Value: 'CCAPost-igw'
+  GatewayToInternet:
+    Type: 'AWS::EC2::VPCGatewayAttachment'
+    Properties:
+      VpcId: !Ref 'VPC'
+      InternetGatewayId: !Ref 'InternetGateway'
+  #############################################################################
+  # Subnets                                                                   #
+  #############################################################################
+  PublicSubnet1a:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref 'VPC'
+      CidrBlock: '10.0.0.0/18'
+      AvailabilityZone: !Select [ 0, !GetAZs '' ] 
+      MapPublicIpOnLaunch: 'false'
+      Tags:
+        - Key: Name
+          Value: 'CCAPost-public-1a-subnet'
+  PublicSubnet1b:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref 'VPC'
+      CidrBlock: '10.0.64.0/18'
+      AvailabilityZone: !Select [ 1, !GetAZs '' ] 
+      MapPublicIpOnLaunch: 'false'
+      Tags:
+        - Key: Name
+          Value: 'CCAPost-public-1b-subnet'
+  PrivateSubnet1a:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref 'VPC'
+      CidrBlock: '10.0.128.0/18'
+      AvailabilityZone: !Select [ 0, !GetAZs '' ] 
+      MapPublicIpOnLaunch: 'false'
+      Tags:
+        - Key: Name
+          Value: 'CCAPost-private-1a-subnet'
+  PrivateSubnet1b:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref 'VPC'
+      CidrBlock: '10.0.192.0/18'
+      AvailabilityZone: !Select [ 1, !GetAZs '' ] 
+      MapPublicIpOnLaunch: 'false'
+      Tags:
+        - Key: Name
+          Value: 'CCAPost-private-1b-subnet'
+  #############################################################################
+  # Route Tables                                                              #
+  #############################################################################
+  PublicRouteTable1a:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId: !Ref 'VPC'
+      Tags:
+        - Key: Name
+          Value: 'CCAPost-public-1a-rt'
+  PublicRouteTable1b:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId: !Ref 'VPC'
+      Tags:
+        - Key: Name
+          Value: 'CCAPost-public-1b-rt'
+  InternetRoute1aAssociation:
+    Type: 'AWS::EC2::Route'
+    Properties:
+      RouteTableId: !Ref 'PublicRouteTable1a'
+      DestinationCidrBlock: '0.0.0.0/0'
+      GatewayId: !Ref 'InternetGateway'
+  InternetRoute1bAssociation:
+    Type: 'AWS::EC2::Route'
+    Properties:
+      RouteTableId: !Ref 'PublicRouteTable1b'
+      DestinationCidrBlock: '0.0.0.0/0'
+      GatewayId: !Ref 'InternetGateway'
+  PublicSubnet1aAssociation:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Properties:
+      SubnetId: !Ref 'PublicSubnet1a'
+      RouteTableId: !Ref 'PublicRouteTable1a'
+  PublicSubnet1bAssociation:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Properties:
+      SubnetId: !Ref 'PublicSubnet1b'
+      RouteTableId: !Ref 'PublicRouteTable1b'
+  PrivateRouteTable1a:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId: !Ref 'VPC'
+      Tags:
+        - Key: Name
+          Value: 'CCAPost-private-1a-rt'
+  PrivateRouteTable1b:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId: !Ref 'VPC'
+      Tags:
+        - Key: Name
+          Value: 'CCAPost-private-1b-rt'
+  PrivateSubnet1aAssociation:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Properties:
+      SubnetId: !Ref 'PrivateSubnet1a'
+      RouteTableId: !Ref 'PrivateRouteTable1a'
+  Private1bSubnetAssociation:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Properties:
+      SubnetId: !Ref 'PrivateSubnet1b'
+      RouteTableId: !Ref 'PrivateRouteTable1b'
+  #############################################################################
+  # NAT Gateway                                                               #
+  #############################################################################
+  NatGatewayElasticIP1a:
+    Type: 'AWS::EC2::EIP'
+    Properties:
+      Domain: 'vpc'
+  NatGatewayElasticIP1b:
+    Type: 'AWS::EC2::EIP'
+    Properties:
+      Domain: 'vpc'
+  NatGateway1a:
+    Type: 'AWS::EC2::NatGateway'
+    Properties:
+      AllocationId: !GetAtt 'NatGatewayElasticIP1a.AllocationId'
+      SubnetId: !Ref 'PublicSubnet1a'
+      Tags:
+        - Key: 'Name'
+          Value: 'CCAPost-1a-natgw'
+  NatGateway1b:
+    Type: 'AWS::EC2::NatGateway'
+    Properties:
+      AllocationId: !GetAtt 'NatGatewayElasticIP1b.AllocationId'
+      SubnetId: !Ref 'PublicSubnet1b'
+      Tags:
+        - Key: 'Name'
+          Value: 'CCAPost-1b-natgw'
+  PrivateRouteTableRoute1a:
+    Type: 'AWS::EC2::Route'
+    Properties:
+      DestinationCidrBlock: '0.0.0.0/0'
+      NatGatewayId: !Ref 'NatGateway1a'
+      RouteTableId: !Ref 'PrivateRouteTable1a'
+  PrivateRouteTableRoute1b:
+    Type: 'AWS::EC2::Route'
+    Properties:
+      DestinationCidrBlock: '0.0.0.0/0'
+      NatGatewayId: !Ref 'NatGateway1b'
+      RouteTableId: !Ref 'PrivateRouteTable1b'
+  #############################################################################
+  # Security group granting access to the instances via SSH                   #
+  #############################################################################
+  Ec2SecurityGroup: 
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties: 
+      VpcId: !Ref 'VPC'
+      GroupDescription: 'Enable SSH access to Bastion via port 22'
+      SecurityGroupIngress:
+        IpProtocol: tcp
+        FromPort: '22'
+        ToPort: '22'
+        CidrIp: '0.0.0.0/0'
+        Description: 'SSH Access to the instance from everywhere'
+      Tags: 
+      - Key: 'Name'
+        Value: 'CCAPost-ec2-sg'
+  # #############################################################################
+  # # Launch configuration for the ASG                                          #
+  # #############################################################################
+  LaunchConfiguration:
+    Type: 'AWS::AutoScaling::LaunchConfiguration'
+    Properties:
+      ImageId: !Ref 'AMIId'
+      InstanceType: 't2.micro'
+      SecurityGroups:
+        - !Ref 'Ec2SecurityGroup'
+      KeyName: 'postgrado'
+      AssociatePublicIpAddress: true
+      UserData:
+        Fn::Base64: !Sub |  
+          #!/bin/bash
+          yum update -y                          
+          yum update
+          yum install -y docker
+          usermod -a -G docker ec2-user
+          systemctl enable docker.service
+          systemctl start docker.service
+  # #############################################################################
+  # # Auto Scaling Group                                                        #
+  # #############################################################################
+  AutoScalingGroup:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      VPCZoneIdentifier: [ !Ref PublicSubnet1a, !Ref PublicSubnet1b ]
+      LaunchConfigurationName: !Ref 'LaunchConfiguration'
+      MinSize: !Ref 'NumeroDeInstancias'
+      MaxSize: !Ref 'NumeroDeInstancias'
+      DesiredCapacity: !Ref 'NumeroDeInstancias'
+      Tags:
+        - Key: Name
+          Value: !Ref 'EtiquetaIdentificativa'
+          PropagateAtLaunch: true
