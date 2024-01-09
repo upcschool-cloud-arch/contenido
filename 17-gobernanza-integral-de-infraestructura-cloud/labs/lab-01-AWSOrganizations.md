@@ -17,7 +17,7 @@ Ejecutando la siguiente instrucción:
 aws organizations list-organizational-units-for-parent --parent-id r-v4qm
 ```
 Debe aparecer el primer nivel de OUs:
-<!-- 
+<details>
 {
     "OrganizationalUnits": [
         {
@@ -37,7 +37,7 @@ Debe aparecer el primer nivel de OUs:
         }
     ]
 }
--->
+</details>
 
 3. Ubicar la cuenta labs-costes. Apretar la flecha delante de la OU "Costes" para desplegarla
 </br>
@@ -51,7 +51,7 @@ Ejecutando la siguiente instrucción:
 aws organizations list-accounts-for-parent --parent-id ou-v4qm-206b74z1
 ```
 Debe aparecer las cuentas dentro de la OU _Costes_ (si no se sabe la OU se debe iterar hasta encontrar la cuenta):
-<!--
+<details>
 {
     "Accounts": [
         {
@@ -65,7 +65,7 @@ Debe aparecer las cuentas dentro de la OU _Costes_ (si no se sabe la OU se debe 
         }
     ]
 }
--->
+</details>
 
 4. Revisar la configuración de la cuenta, apretando sobre el nombre de la misma en el dashboard de AWS Organizations
 </br>
@@ -83,7 +83,7 @@ Ejecutando la siguiente instrucción:
 aws organizations list-policies-for-target --target-id 555947165850 --filter SERVICE_CONTROL_POLICY
 ```
 Debe aparecer las Service Control Policies pero _sólo las directamente asociadas_:
-<!--
+<details>
 {
     "Policies": [
         {
@@ -96,7 +96,7 @@ Debe aparecer las Service Control Policies pero _sólo las directamente asociada
         }
     ]
 }
--->
+</details>
 
 6. El detalle completo de las SCP aplicadas deberia ser el siguiente:
 </br>
@@ -115,7 +115,7 @@ Ejecutando la siguiente instrucción:
 aws organizations describe-policy --policy-id p-FullAWSAccess
 ```
 Debe aparecer el detalle de la policy que hemos visto anteriormente asignada a la cuenta:
-<!--
+<details>
 {
     "Policy": {
         "PolicySummary": {
@@ -129,6 +129,6 @@ Debe aparecer el detalle de la policy que hemos visto anteriormente asignada a l
         "Content": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"*\",\n      \"Resource\": \"*\"\n    }\n  ]\n}"
     }
 }
--->
+</details>
 
 El contenido de la política es difícil de ver por el formato, pero debe estar en el campo _Content_
