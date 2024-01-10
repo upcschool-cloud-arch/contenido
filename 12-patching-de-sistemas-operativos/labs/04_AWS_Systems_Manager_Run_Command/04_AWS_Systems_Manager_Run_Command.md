@@ -6,36 +6,25 @@ En este laboratorio vamos a realizar acciones sobre un grupo de instancias EC2 u
 
 - En esta ocasión no vamos a crear una instancia como en los labs anteriores sino que queremos ejecutar acciones sobre un grupo de instancias por lo que vamos a desplegar una plantilla de CloudFormation. 
 
-1.1 Lo primero que tenemos que hacer es crear un key pair para poder conectarnos a las instancias que vamos a lanzar. En la plantilla de CloudFormation hemos especificado que ese key pair tiene que llamarse `postgrado` así que vamos a crearlo.
-
-Vamos al servicio **EC2** y a mano izquierda, bajo el apartado **Network&Security** seleccionamos **Key Pairs**. 
-
-![](lab_images/01.png)
-
-Introduciremos el nombre de nuestra key pair (**postgrado**) y dejaremos todos los demás campos como están. Al crear la key pair nos aseguraremos de que el archivo .pem se ha bajado a nuestro equipo.
-
-1.2 Antes de proceder a crear nuestro stack tenemos que averiguar qué AMI queremos que usen nuestras instancias porque CloudFormation nos lo va a preguntar. Vamos a **EC2** >> **Launch Instance** . Es la forma más rápida de saber la AMI que queremos desplegar.
+1.1 Antes de proceder a crear nuestro stack tenemos que averiguar qué AMI queremos que usen nuestras instancias porque CloudFormation nos lo va a preguntar. Vamos a **EC2** >> **Launch Instance** . Es la forma más rápida de saber la AMI que queremos desplegar.
 
 ![](lab_images/03.png)
 
-1.3 Lo siguiente que vamos a hacer es ir al servicio **CloudFormation** y pulsaremos en *Create Stack*
+1.2 Lo siguiente que vamos a hacer es ir al servicio **CloudFormation** y pulsaremos en *Create Stack*
 
 ![](lab_images/02.png)
 
 Seleccionaremos el .yaml que previamente hemos guardado, de daremos un nombre a nuestro stack y rellenaremos los 3 campos que nos pedirá:
 1. la referencia a la AMI que acabamos de recopilar. 
 2. El número de instancias: indicaremos que queremos desplegar 2.
-3. El valor del tag Name (el nombre que van a tener las instancias)
+3. El valor del tag Name (el nombre que van a tener las instancias, Autoscaling group y los Security Groups asociados)
 
 Después de un rato nuestro stack estará desplegado y podemos seguir.
 
 ## Configuración de SSM en las instancias desplegadas
 
-- Por las limitaciones de AWS Academy no vamos a poder usar el **Quick Setup** de Systems Manager así que simplemente tendremos que cambiar el IAM role de nuestras instancias una por una por el de *LabInstanceProfile* para que las instancias puedan funcionar con Systems Manager.
-
-Ahora quedaría esperar unos 5 minutos hasta que la configuración se propague a nuestras instancias desplegadas.
-
-Antes de seguir vamos a conectarnos a alguna de nuestras instancias a través del Session Manager y comprobar qué versión de SSM Agent tienen corriendo ejecutando:
+Como ya hemos visto, la configuración general para esta cuenta está creada así que nuestras instancias deberían haberse levantado ya con el SSM configurado.
+Vamos a conectarnos a alguna de nuestras instancias a través del Session Manager y comprobar qué versión de SSM Agent tienen corriendo ejecutando:
 
 ` yum info amazon-ssm-agent `
 
