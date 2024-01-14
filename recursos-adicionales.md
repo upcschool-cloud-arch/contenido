@@ -12,3 +12,7 @@
 * File Storage: https://go.aws/3JVneTS
 * Storage Data Migration: https://go.aws/3JVneTS
 * Data Protection & Disaster Recovery: https://go.aws/3JVneTS
+
+## Juegos
+
+* AWS Card Clash: https://aws.amazon.com/es/training/digital/aws-card-clash/ (Gracias, Santos).
