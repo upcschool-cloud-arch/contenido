@@ -27,6 +27,7 @@ basadas en sql.
 ### Conceptos tratados
 
 - [x] Bases de datos no relacionales
+- [x] Mecanismos de representación de la información 
 - [x] Cachés
 - [x] Lazy loading pattern
 - [x] ElastiCache
@@ -35,6 +36,8 @@ basadas en sql.
 - [x] DynamoDB
 - [x] Particionado
 - [x] Costes de DynamoDB
+- [ ] Elastic y OpenSearch
+- [ ] Neptune
 
 ### Quizzes
 
@@ -62,3 +65,5 @@ Les sugerimos añadir una capa de caché a la aplicación, implementando
 el patrón conocido como [Lazy loading](https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/Strategies.html#Strategies.LazyLoading). De esta manera los
 cambios en la aplicación seran mínimos y el incremento de coste debería resultar
 mucho más asumible que sustituir el tipo de instancia por uno mayor.
+
+Por otro lado, en desarrollo se plantea una revisión del carrito de la compra: convertirlo en un microservicio que sea independiente y mucho más eficiente que el actual. Dado que los patrones de acceso son muy conocidos, pensamos que DynamoDB sería una buena opción de cara a almacenar los datos durante la parte transaccional del workflow.
