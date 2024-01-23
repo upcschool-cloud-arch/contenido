@@ -54,19 +54,6 @@ aws elasticache create-cache-cluster \
 
 ## Instance creation
 
-* Find the id of the profile created by AWSAcademy. It will be used to assign
-permissions to the operations instance. If you are running this lab in your own
-account, you will need to create a *role* and an instance profile the name
-`LabInstanceProfile` instead.
-
-```bash
-PROFILE=$(aws iam get-instance-profile \
-  --instance-profile-name LabInstanceProfile \
-  --query InstanceProfile.Arn \
-  --output text)
-```
-
-
 * Start the instance
 
 ```bash
