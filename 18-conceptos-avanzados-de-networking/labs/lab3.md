@@ -14,7 +14,8 @@ Si seleccionamos una máquina tipo Ubuntu, una vez desplegada nos conectamos a l
 ```
 sudo apt update
 sudo apt install docker.io
-sudo docker run --restart=always -d -p 3000:3000 --name juice-shop -e "NODE_ENV=ctf" bkimminich/juice-shop```
+sudo docker run --restart=always -d -p 3000:3000 --name juice-shop -e "NODE_ENV=ctf" bkimminich/juice-shop
+```
 
 Comprobamos que la aplicación se ha instalado correctamente usando su IP pública en un navegador:
 http://[IP AWS]
@@ -22,7 +23,8 @@ http://[IP AWS]
 Una vez dentro podemos probar de hacer un ataque de SQL injection, para ello vamos a la opción de "Account" que se encuentra en la parte superior derecha de la pantalla y ponemos como usuario:
 
 ```
-' or true --```
+' or true --
+```
 
 Y cualquier cosa en el password.
 
