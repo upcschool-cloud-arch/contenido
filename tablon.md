@@ -1,5 +1,22 @@
 # Tablón de anuncios
 
+## 2024-29-01: Tercer examen
+
+Fecha del examen: Miércoles 7 de Febrero
+Lugar: GatherTown o presencial.
+Formato: 10 preguntas tipo test
+Duración: 30 minutos
+
+Entrarán siguientes los topics:
+
+* 12, 13 - Patching de Sistemas Operativos y administración de servidores
+* 15 - Arquitectura de aplicaciones asíncronas
+* 16 - Control y gestión de costes
+* 17 - Gobernanza integral de infraestructura cloud
+* 19 - Conceptos avanzados de Networking
+* 20 - Bases de datos no-relacionales
+* 21 - Conceptos avanzados de Networking
+
 ## 2023-12-11: Segundo examen
 
 Fecha del examen: Miércoles 20 de Diciembre
