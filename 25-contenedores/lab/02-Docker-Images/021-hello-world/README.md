@@ -12,7 +12,7 @@ CMD ["/bin/echo", "Hello World!"]
 To build an image, you can use the docker cli:
 
 ```
-$ docker build v1 -t hello-world:v1
+docker build v1 -t hello-world:v1
 ```
 
 ```
@@ -126,10 +126,16 @@ docker inspect hello-world:v1
 ]
 ```
 
+We can now run the container image:
+
+```
+docker run hello-world:v1
+```
+
 ## Hello world v2 and v3
 
 ```
-$ docker build v2 -t hello-world:v2
+docker build v2 -t hello-world:v2
 ```
 
 ```
@@ -148,9 +154,8 @@ Successfully built 9a78c01b39bf
 Successfully tagged hello-world:v2
 ```
 
-
 ```
-$ docker build v3 -t hello-world:v3
+docker build v3 -t hello-world:v3
 ```
 
 ```
