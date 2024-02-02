@@ -13,9 +13,8 @@ Entrarán siguientes los topics:
 * 15 - Arquitectura de aplicaciones asíncronas
 * 16 - Control y gestión de costes
 * 17 - Gobernanza integral de infraestructura cloud
-* 19 - Conceptos avanzados de Networking
+* 19, 21 - Conceptos avanzados de Networking
 * 20 - Bases de datos no-relacionales
-* 21 - Conceptos avanzados de Networking
 
 ## 2023-12-11: Segundo examen
 
