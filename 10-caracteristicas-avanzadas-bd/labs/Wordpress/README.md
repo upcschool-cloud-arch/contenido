@@ -92,6 +92,7 @@ sudo nano wp-config.php
 
 ## Redis
 Instalación Elasticache - Redis - Demo
+Abrir en el puerto 6379 al SG de la EC2 que tiene el wordpress para que llegue a EC-Redis.
 
 ![](images/19.png)
 ![](images/18.png)
