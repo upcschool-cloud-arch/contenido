@@ -18,7 +18,7 @@ sudo mv ./kind /usr/local/bin/kind
 ## Deploy a cluster with kind
 
 ```
-$ kind create cluster
+kind create cluster
 ```
 
 ```
