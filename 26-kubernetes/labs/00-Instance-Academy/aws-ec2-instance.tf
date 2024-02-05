@@ -33,7 +33,7 @@ module "ec2" {
   source              = "./terraform/modules/aws/ec2-academy/instance"
   name                = "containers-lab"
   vpc                 = data.aws_vpc.default.id
-  subnet              = data.aws_subnets.default.ids[0]
+  subnet              = data.aws_subnets.default.ids[1]
   system_user         = var.github_user
   github_user         = var.github_user
   instance_type       = "t3a.large"
