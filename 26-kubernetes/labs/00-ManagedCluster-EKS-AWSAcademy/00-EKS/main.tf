@@ -24,7 +24,7 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "19.1.0"
 
-  cluster_name    = "test-1"
+  cluster_name    = "lab-eks"
   cluster_version = "1.29"
 
   # IAM
