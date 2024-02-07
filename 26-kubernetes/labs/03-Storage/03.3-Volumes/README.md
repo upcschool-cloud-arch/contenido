@@ -15,7 +15,7 @@ kubectl get pvc volumen-pvc
 ## Create the shell pod
 
 ```
-kubectl apply -f pod.yaml
+kubectl apply -f shell.yaml
 ```
 
 ## Attach to the pod and review the volumes
