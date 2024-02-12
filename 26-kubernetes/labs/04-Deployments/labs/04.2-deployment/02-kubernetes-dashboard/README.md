@@ -1,5 +1,6 @@
 ### Deploy the Kubernetes Dashboard
 
+Fetch all kubernetes yamls from Github and apply them
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
 ```

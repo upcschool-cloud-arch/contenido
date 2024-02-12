@@ -16,8 +16,8 @@
 
 # Usage:
 #   [VERSION=v3] [REGISTRY="staging-k8s.gcr.io"] make build
-VERSION?=latest
-REGISTRY?=raelga
+VERSION?=v2
+REGISTRY?=$(docker info | sed '/Username:/!d;s/.* //'); 
 
 release: clean build push clean
 

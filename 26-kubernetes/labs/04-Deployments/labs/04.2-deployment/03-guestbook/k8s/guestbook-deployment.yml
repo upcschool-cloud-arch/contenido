@@ -22,7 +22,8 @@ spec:
     spec:
       containers:
         - name: guestbook
-          image: raelga/guestbook:latest
+          image: raelga/guestbook:v1
+          imagePullPolicy: Always
           ports:
             - name: http-server
               containerPort: 3000
