@@ -28,3 +28,9 @@ kubectl exec -ti $(kubectl get pods -l app=hostname -o name --field-selector=sta
 ```
 
 Check /etc/podinfo folder.
+
+### Cleanup
+
+```
+kubectl delete -f .
+```

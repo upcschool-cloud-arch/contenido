@@ -1,5 +1,5 @@
 ```
-kubectl apply -f hello-node-selector-deployment.yaml
+kubectl apply -f hostname-node-selector-deployment.yaml
 ```
 
 ### Keep this shell visible
@@ -17,7 +17,7 @@ kubectl get nodes -o name
 ### Add the node name
 
 ```
-kubectl patch deployment hostname-node-selector -p '{"spec":{"template":{"spec":{"nodeName":"gke-k8s-gke-default-pool-4c243126-zvlt"}}}}'
+kubectl patch deployment hostname-node-selector -p '{"spec":{"template":{"spec":{"nodeName":"________________"}}}}'
 ```
 
 ### Test the node affinity
@@ -39,14 +39,14 @@ kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name
 ```
 
 ```
-NODE                                     NAME
-gke-k8s-gke-default-pool-e13d7a39-ws50   hostname-affinity-768cfc8fd9-cx645
-gke-k8s-gke-default-pool-e13d7a39-ws50   hostname-affinity-768cfc8fd9-mbrpn
-gke-k8s-gke-default-pool-e13d7a39-ws50   hostname-affinity-768cfc8fd9-xnl2w
-gke-k8s-gke-default-pool-e13d7a39-ptl9   hostname-anti-affinity-7694d88f87-84tpq
-gke-k8s-gke-default-pool-e13d7a39-74bs   hostname-anti-affinity-7694d88f87-8jplf
-gke-k8s-gke-default-pool-e13d7a39-ws50   hostname-anti-affinity-7694d88f87-hvprs
-gke-k8s-gke-default-pool-e13d7a39-74bs   hostname-node-selector-74b5f44c88-tmhr6
+NODE                         NAME
+ip-10-0-3-172.ec2.internal   hostname-affinity-699bffc99b-7gvnq
+ip-10-0-3-172.ec2.internal   hostname-affinity-699bffc99b-m8zjf
+ip-10-0-3-172.ec2.internal   hostname-affinity-699bffc99b-ngxqj
+ip-10-0-2-244.ec2.internal   hostname-anti-affinity-54dcf744b4-58frh
+ip-10-0-3-172.ec2.internal   hostname-anti-affinity-54dcf744b4-6jdlb
+ip-10-0-3-172.ec2.internal   hostname-anti-affinity-54dcf744b4-ltsz5
+ip-10-0-2-244.ec2.internal   hostname-node-selector-8668c8cb75-wk7n6
 ```
 
 ### Taints and tolerations
@@ -60,5 +60,11 @@ kubectl taint nodes ${TOP_NODE} area=vip:NoExecute
 ### Deploy a VIP deployment
 
 ```
-kubectl apply -f 26-Kubernetes/labs/06-Deployments/labs/07-affinity-and-antiaffinity/hostname-toleration-deployment.yaml
+kubectl apply -f hostname-toleration-deployment.yaml
+```
+
+### Cleanup
+
+```
+kubectl delete -f .
 ```

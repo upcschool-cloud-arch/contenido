@@ -31,3 +31,9 @@ kubectl apply -f wordpress-deployment.yaml
 ```
 kubectl get svc wordpress
 ```
+
+### Cleanup
+
+```
+kubectl delete -f .
+```

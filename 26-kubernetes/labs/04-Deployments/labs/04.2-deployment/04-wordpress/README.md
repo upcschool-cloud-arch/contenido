@@ -1,4 +1,4 @@
-### MySQL StatefulSet
+### MySQL Deployment
 
 ```
 kubectl apply -f mysql-deployment.yaml
@@ -32,4 +32,14 @@ kubectl get svc wordpress
 
 ```
 kubectl delete pod -l app=mysql
+```
+
+### Check the app
+
+(All MySQL backed data is gone)
+
+### Cleanup
+
+```
+kubectl delete -f .
 ```

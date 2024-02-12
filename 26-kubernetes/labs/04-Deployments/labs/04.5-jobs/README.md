@@ -34,3 +34,9 @@ kubectl get pods -l app=hello
 ````
 k logs -l app=hello --ignore-errors
 ```
+
+### Cleanup
+
+```
+kubectl delete -f .
+```
