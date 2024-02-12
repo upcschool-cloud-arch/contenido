@@ -11,6 +11,7 @@ resource "aws_subnet" "public_az_a" {
   cidr_block              = var.public_subnet_a
   availability_zone       = format("%sa", var.region)
   map_public_ip_on_launch = true
+  private_dns_hostname_type_on_launch = "ip-name"
 
   tags = {
     Name    = format("%s-public-az-a-net", aws_vpc.main.tags.Name)
@@ -24,6 +25,7 @@ resource "aws_subnet" "public_az_b" {
   cidr_block              = var.public_subnet_b
   availability_zone       = format("%sb", var.region)
   map_public_ip_on_launch = true
+  private_dns_hostname_type_on_launch = "ip-name"
 
   tags = {
     Name    = format("%s-public-az-b-net", aws_vpc.main.tags.Name)
@@ -37,6 +39,7 @@ resource "aws_subnet" "public_az_c" {
   cidr_block              = var.public_subnet_c
   availability_zone       = format("%sc", var.region)
   map_public_ip_on_launch = true
+  private_dns_hostname_type_on_launch = "ip-name"
 
   tags = {
     Name    = format("%s-public-az-c-net", aws_vpc.main.tags.Name)
@@ -49,6 +52,7 @@ resource "aws_subnet" "private_az_a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.private_subnet_a
   availability_zone = format("%sa", var.region)
+  private_dns_hostname_type_on_launch = "ip-name"
 
   tags = {
     Name    = format("%s-private-az-a-net", aws_vpc.main.tags.Name)
@@ -61,6 +65,7 @@ resource "aws_subnet" "private_az_b" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.private_subnet_b
   availability_zone = format("%sb", var.region)
+  private_dns_hostname_type_on_launch = "ip-name"
 
   tags = {
     Name    = format("%s-private-az-b-net", aws_vpc.main.tags.Name)
@@ -73,6 +78,7 @@ resource "aws_subnet" "private_az_c" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.private_subnet_c
   availability_zone = format("%sc", var.region)
+  private_dns_hostname_type_on_launch = "ip-name"
 
   tags = {
     Name    = format("%s-private-az-c-net", aws_vpc.main.tags.Name)

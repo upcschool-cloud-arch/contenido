@@ -8,6 +8,6 @@ output "public_ip" {
 
 output "ssh_cmd" {
   value = format(
-    "ssh -A %s@%s", var.github_user, aws_instance.this.public_ip
+    "ssh -A %s@%s", var.system_user, aws_instance.this.public_ip
   )
 }

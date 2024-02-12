@@ -15,13 +15,19 @@ data "aws_iam_role" "lab_role" {
   name = "LabRole"
 }
 
+data "aws_iam_role" "eks_ng_role" {
+  name = "AWSServiceRoleForAmazonEKSNodegroup"
+}
+
+
 data "aws_key_pair" "lab" {
   key_name           = "vockey"
   include_public_key = true
 }
 
 module "eks" {
-  source  = "terraform-aws-modules/eks/aws"
+  source = "terraform-aws-modules/eks/aws"
+  #  version = "20.2.1"
   version = "19.1.0"
 
   cluster_name    = "lab-eks"
@@ -32,6 +38,7 @@ module "eks" {
   create_iam_role = false
   iam_role_arn    = data.aws_iam_role.lab_role.arn
   enable_irsa     = false
+  #enable_cluster_creator_admin_permissions = true
 
   # Encryption
 

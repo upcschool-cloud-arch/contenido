@@ -13,6 +13,7 @@ variable "vpc" {
   description = "EC2 VPC"
   type        = string
 }
+
 variable "subnet" {
   description = "EC2 VPC Subnet"
   type        = string
@@ -45,16 +46,23 @@ variable "instance_role" {
 variable "system_default_user" {
   description = "EC2 instance default user"
   type        = string
-  default     = "ubuntu"
+  default     = "ec2-user"
 }
 
 variable "system_user" {
   description = "EC2 instance user"
   type        = string
-  default     = "rael"
+  default     = "ec2-user"
 }
+
 variable "github_user" {
   description = "GitHub user, to retrieve the public ssh keys"
   type        = string
   default     = "raelga"
+}
+
+variable "managed_ssh_key_name" {
+  description = "AWS Managed SSH key, optional"
+  type        = string
+  default     = ""
 }

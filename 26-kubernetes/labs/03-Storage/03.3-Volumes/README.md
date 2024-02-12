@@ -27,7 +27,7 @@ kubectl exec -ti shell-volumes -- /bin/bash
 ## Delete the shell pod
 
 ```
-kubectl delete -f pod.yaml
+kubectl delete -f shell.yaml
 ```
 
 ## Review PVC
