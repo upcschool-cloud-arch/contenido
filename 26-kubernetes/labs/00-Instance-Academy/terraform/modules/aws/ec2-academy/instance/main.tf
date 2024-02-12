@@ -61,9 +61,9 @@ data "aws_key_pair" "managed" {
 }
 
 resource "aws_instance" "this" {
-  ami                    = var.ami != "" ? var.ami : data.aws_ami.latest.id
-  instance_type          = var.instance_type
-  iam_instance_profile   = aws_iam_instance_profile.this.name
+  ami           = var.ami != "" ? var.ami : data.aws_ami.latest.id
+  instance_type = var.instance_type
+  #iam_instance_profile   = aws_iam_instance_profile.this.name
   subnet_id              = var.subnet
   vpc_security_group_ids = [aws_security_group.instance-sg.id]
 

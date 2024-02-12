@@ -8,6 +8,8 @@ https://us-east-1.console.aws.amazon.com/ec2/v2/home?region=us-east-1#Instances:
 tf init && tf apply --var "github_user=YOUR_GH_USER_ID"
 ```
 
+The instance doesn't uses the LabRole instance profile to avoid TLS issues with EKS.
+
 ## 1. Clone the repo
 
 ```
