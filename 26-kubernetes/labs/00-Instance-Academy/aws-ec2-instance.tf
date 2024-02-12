@@ -1,3 +1,7 @@
+resource "random_id" "id" {
+  byte_length = 8
+}
+
 provider "aws" {
   region = "us-east-1"
 }
@@ -30,30 +34,14 @@ variable "github_user" {
 }
 
 module "ec2" {
-  source              = "./terraform/modules/aws/ec2-academy/instance"
-  name                = "containers-lab"
-  vpc                 = data.aws_vpc.default.id
-  subnet              = data.aws_subnets.default.ids[1]
-  system_user         = var.github_user
-  github_user         = var.github_user
-  instance_type       = "t3a.large"
-  tcp_allowed_ingress = [22, 80, 81]
-}
-
-# module "ec2" {
-#   source              = "./terraform/modules/aws/ec2/spot-instance"
-#   name                = "scratch"
-#   vpc                 = module.vpc.vpc_id
-#   subnet              = module.vpc.subnet_az1_id
-#   system_user         = "rael"
-#   github_user         = "raelga"
-#   instance_type       = "t3a.2xlarge"
-#   spot_price          = "0.10"
-#   tcp_allowed_ingress = [22, 80]
-# }
-
-output "username" {
-  value = module.ec2.username
+  source               = "./terraform/modules/aws/ec2-academy/instance"
+  name                 = format("lab-%s", random_id.id.hex)
+  vpc                  = data.aws_vpc.default.id
+  subnet               = data.aws_subnets.default.ids[1]
+  github_user          = var.github_user
+  instance_type        = "t3a.large"
+  tcp_allowed_ingress  = [22, 80, 81]
+  managed_ssh_key_name = "vockey"
 }
 
 output "public_ip" {
