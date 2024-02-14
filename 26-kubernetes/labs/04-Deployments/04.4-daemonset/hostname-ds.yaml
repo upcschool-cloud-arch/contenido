@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: hostname
+  labels:
+    app: hostname
 spec:
   updateStrategy:
     type: RollingUpdate

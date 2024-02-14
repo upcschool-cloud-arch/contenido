@@ -35,4 +35,4 @@ To login, username: `admin`, password: `admin`.
 
 ### Fetch some dashboards
 
-https://grafana.com/grafana/dashboards/15175-kubernetes-monitoring/
+https://grafana.com/grafana/dashboards/7249-kubernetes-cluster/

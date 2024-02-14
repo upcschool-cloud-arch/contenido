@@ -53,6 +53,11 @@ data "aws_key_pair" "managed" {
   include_public_key = true
 }
 
+resource "aws_eip" "this" {
+  domain   = "vpc"
+  instance = aws_instance.this.id
+}
+
 resource "aws_instance" "this" {
   ami           = var.ami != "" ? var.ami : data.aws_ami.latest.id
   instance_type = var.instance_type

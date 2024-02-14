@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: hostname
+  labels:
+    app: hostname
 spec:
   updateStrategy:
     type: RollingUpdate
@@ -23,7 +25,7 @@ spec:
             - -c
             - >-
               while [ true ]; do
-              echo "DaemonSet running on $(hostname)" ;
+              echo "DaemonSet running on $(hostname) at $(date)" ;
               sleep 10 ;
               done
           resources:

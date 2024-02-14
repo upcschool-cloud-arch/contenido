@@ -46,18 +46,18 @@ helm install prometheus prometheus-community/prometheus \
     --create-namespace --namespace=monitoring
 ```
 
-### Install Grafana
+### Install Grafana (if required)
 
 ```
 helm upgrade -i grafana-operator oci://ghcr.io/grafana-operator/helm-charts/grafana-operator --namespace monitoring --version v5.0.0
 ```
 
-### Setup Grafana
+### Setup Grafana (if required)
 
 Now that Prometheus and Grafana are up and running, you can access Grafana:
 
 ```
-kubectl apply -f 00-monitoring --namespace monitoring
+kubectl apply -f 00-monitoring/grafana.yaml --namespace monitoring
 ```
 
 Wait for the load balancer to be provisioned:
@@ -72,6 +72,12 @@ echo "http://$(kubectl get svc -n monitoring grafana-service \
 ```
 
 To login, username: `admin`, password: `admin`.
+
+### Deploy the Grafana deployment Dashboard
+
+```
+kubectl apply -f 00-monitoring/deployments-dashboard.yaml --namespace monitoring
+```
 
 #### Example graph
 

@@ -81,7 +81,13 @@ kubectl rollout resume deploy my-app
 kubectl rollout undo deploy my-app
 ```
 
-### Cleanup
+### Cleanup deployments (if needed)
+
+```bash
+kubectl delete deployments -l app=my-app
+```
+
+### Cleanup everything else (if needed)
 
 ```bash
 kubectl delete all -l app=my-app

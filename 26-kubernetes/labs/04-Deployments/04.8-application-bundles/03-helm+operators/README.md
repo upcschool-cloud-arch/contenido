@@ -31,7 +31,13 @@ helm install prometheus prometheus-community/prometheus \
 ### Install NGINX
 
 ```
-helm install kops oci://ghcr.io/nginxinc/charts/nginx-ingress --version 0.18.0
+helm install bundles oci://ghcr.io/nginxinc/charts/nginx-ingress --version 0.18.0
+```
+
+### Deploy the Guestbook deployment
+
+```
+kubectl apply -f guestbook
 ```
 
 ### Deploy the Guestbook Nginx ingress
@@ -39,6 +45,8 @@ helm install kops oci://ghcr.io/nginxinc/charts/nginx-ingress --version 0.18.0
 ```
 kubectl apply -f guestbook-http-ingress.yaml
 ```
+
+Check the browser at https://plain.eks-lab.rael.io
 
 ### Fetch ExternalDNS
 
@@ -75,8 +83,8 @@ kubectl apply -f selfsigned-clusterissuer.yaml
 
 ```
 kubectl --timeout=10s wait --for=condition=Ready clusterissuers.cert-manager.io selfsigned
-kubectl --timeout=10s -n cert-manager wait --for=condition=Ready certificates.cert-manager.io kops-ca
-kubectl --timeout=10s wait --for=condition=Ready clusterissuers.cert-manager.io kops-ca
+kubectl --timeout=10s -n cert-manager wait --for=condition=Ready certificates.cert-manager.io rael-ca
+kubectl --timeout=10s wait --for=condition=Ready clusterissuers.cert-manager.io rael-ca
 ```
 
 
@@ -105,6 +113,30 @@ kubectl get clusterissuers
 ```
 kubectl get certificates,certificaterequests
 ```
+
+Check the browser at https://ssl.eks-lab.rael.io
+
+### Deploy hello
+
+```
+helm install hello cloudecho/hello --create-namespace --version=0.1.2 
+```
+
+### Add new app to the ingress
+
+```
+kubectl apply -f hello+guestbook-selfsigned-ingress.yaml
+```
+
+Check the browser at https://hello.eks-lab.rael.io
+
+### Add the hello app with SSL to the ingress
+
+```
+kubectl apply -f hello-selfsigned+guestbook-selfsigned-ingress.yaml 
+```
+
+Check the browser at https://hello-ssl.eks-lab.rael.io
 
 ### List helm installs
 

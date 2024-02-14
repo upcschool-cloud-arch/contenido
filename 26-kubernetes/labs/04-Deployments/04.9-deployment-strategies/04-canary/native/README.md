@@ -38,8 +38,11 @@ kubectl get svc -w
 ### Test if the deployment was successful
 
 ```
-curl "http://$(kubectl get svc my-app \
-    -o jsonpath="{.status.loadBalancer.ingress[*]['hostname']}")"
+export INGRESS_SVC_NAME=$(kubectl get svc -l app.kubernetes.io/name=nginx-ingress -o name)
+export MYAPP_URL=$(kubectl get ${INGRESS_SVC_NAME} \
+    -o jsonpath="{.status.loadBalancer.ingress[*]['hostname']}")
+
+curl -H "Host: my-app.com" "http://${MYAPP_URL}"
 ```
 
 ### To see the deployment in action, open a new terminal and run the following command
@@ -51,9 +54,7 @@ watch kubectl get pods
 ### Leave some requests to the service in the background
 
 ```
-export APP_URL=$(kubectl get svc my-app \
-    -o jsonpath="{.status.loadBalancer.ingress[*]['hostname']}");
-while sleep 0.5; do curl "http://${APP_URL}" --connect-timeout 5; done
+while sleep 0.5; do curl -H "Host: my-app.com" "http://${MYAPP_URL}" --connect-timeout 5; done
 ```
 
 ! Keep this shell visible all the time.

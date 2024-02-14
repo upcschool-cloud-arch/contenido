@@ -17,7 +17,8 @@ blue/green deployment strategy.
 ### Deploy the first application
 
 ```
-kubectl apply -f app-v1.yaml
+kubectl apply -f app-v1.yaml 
+kubectl apply -f service-v1.yaml
 kubectl get svc -w
 ```
 ### Test if the deployment was successful
@@ -64,13 +65,25 @@ deployment "my-app-v2" successfully rolled out
 # If necessary, you can manually test one of the pod by port-forwarding it to your local environment:
 
 ```
+export PUBLIC_IP=$(curl -sq http://checkip.amazonaws.com)
+echo "Visit http://${PUBLIC_IP}:8080 to use your application"
+```
+
+```
 kubectl port-forward <name of pod> 8080:8080
+```
+
+Or by creating an internal service
+
+```
+kubectl apply -f service-internal-v2.yaml
+kubectl port-forward service/my-app-internal --address=0.0.0.0 8080:80
 ```
 
 Or by creating a second load balancer
 
 ```
-kubectl apply -f svc-v2.yaml
+kubectl apply -f service-v2.yaml
 kubectl get svc -w
 ```
 

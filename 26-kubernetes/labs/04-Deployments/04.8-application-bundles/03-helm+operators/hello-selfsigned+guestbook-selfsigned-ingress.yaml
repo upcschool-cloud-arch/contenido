@@ -8,6 +8,26 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
+    - host: hello.eks-lab.rael.io
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: hello
+                port:
+                  number: 8080
+    - host: hello-ssl.eks-lab.rael.io
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: hello
+                port:
+                  number: 8080
     - host: plain.eks-lab.rael.io
       http:
         paths:
@@ -32,17 +52,6 @@ spec:
     - hosts:
         - ssl.eks-lab.rael.io
       secretName: ssl.eks-lab.rael.io-cert
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: guestbook-np
-  labels:
-    app: guestbook
-spec:
-  ports:
-    - port: 80
-      targetPort: http-server
-  selector:
-    app: guestbook
-  type: NodePort
+    - hosts:
+        - hello-ssl.eks-lab.rael.io
+      secretName: hello-ssl.eks-lab.rael.io-cert

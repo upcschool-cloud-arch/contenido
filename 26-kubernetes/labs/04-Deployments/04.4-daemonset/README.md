@@ -1,22 +1,31 @@
+## Hostname DaemonSet
 
-### Hostname DaemonSet
+### Deploy the initial DaemonSet
 
 ```
 kubectl apply -f hostname-ds.yaml
 ```
+
+### Check pods
 
 ```
 kubectl get pods -l app=hostname
 ```
 
 ```
+kubectl logs -f -l app=hostname
+```
+
+```
 kubectl get nodes
 ```
 
-Rollout a new version with the DownwardAPI volume
+The number of pods equals the number of nodes
+
+### Rollout a new version with the DownwardAPI volume
 
 ```
-kubectl apply -f hostname-dwapi-ds.yaml
+kubectl apply -f hostname-v2-ds.yaml
 ```
 
 ```
@@ -32,5 +41,5 @@ Check /etc/podinfo folder.
 ### Cleanup
 
 ```
-kubectl delete -f .
+kubectl delete all -l app=hostname
 ```

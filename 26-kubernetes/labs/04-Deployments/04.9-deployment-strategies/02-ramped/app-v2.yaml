@@ -18,7 +18,7 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 3
+      maxSurge: 2
       maxUnavailable: 0
 
   # The selector field tell the deployment which pod to update with
@@ -62,5 +62,5 @@ spec:
 
             # Intial delay is set to a high value to have a better
             # visibility of the ramped deployment
-            initialDelaySeconds: 15
+            initialDelaySeconds: 45
             periodSeconds: 5

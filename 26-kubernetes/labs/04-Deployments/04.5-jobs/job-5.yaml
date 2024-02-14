@@ -1,9 +1,11 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: hello-5-
+  name: hello-5
+  labels:
+    app: hello
 spec:
-  completions: 1
+  completions: 5
   template:
     metadata:
       labels:

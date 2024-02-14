@@ -52,7 +52,13 @@ watch kubectl get pods
 kubectl apply -f app-v2.yaml
 ```
 
-### Cleanup
+### Cleanup deployments (if needed)
+
+```bash
+kubectl delete deployments -l app=my-app
+```
+
+### Cleanup everything else (if needed)
 
 ```bash
 kubectl delete all -l app=my-app

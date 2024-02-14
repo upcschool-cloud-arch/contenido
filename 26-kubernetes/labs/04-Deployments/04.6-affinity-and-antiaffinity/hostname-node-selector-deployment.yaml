@@ -13,6 +13,7 @@ spec:
       labels:
         app: hostname-node-selector
     spec:
+      nodeName: ip-10-0-3-117.ec2.internal
       containers:
         - name: hostname
           image: ubuntu:trusty

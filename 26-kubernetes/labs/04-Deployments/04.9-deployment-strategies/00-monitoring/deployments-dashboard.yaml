@@ -41,8 +41,7 @@ spec:
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "33472041-346a-4350-8fd4-c0a94de6efb4"
+            "type": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -142,7 +141,7 @@ spec:
           "type": "timeseries"
         }
       ],
-      "refresh": false,
+      "refresh": "5s",
       "schemaVersion": 37,
       "style": "dark",
       "tags": [],
@@ -150,8 +149,8 @@ spec:
         "list": []
       },
       "time": {
-        "from": "2023-07-03T17:52:50.455Z",
-        "to": "2023-07-03T17:54:16.215Z"
+        "from": "now-15m",
+        "to": "now"
       },
       "timepicker": {},
       "timezone": "",

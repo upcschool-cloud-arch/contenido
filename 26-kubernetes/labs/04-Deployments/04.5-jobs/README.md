@@ -1,42 +1,49 @@
+## Hello Job
 
-### Hello Job
+### Deploy 1 jobs with 5 executions
 
 ```
-kubectl apply -f hello-5-job.yaml
+kubectl apply -f job-5.yaml
 ```
 
 ```
 kubectl get pods -l app=hello
 ```
+
+### Deploy manually job several times
 
 ! Check the Downward API implementation
 
 ```
-kubectl apply -f hello-5-generated-job.yaml
+kubectl apply -f job-manual.yaml
 ```
 
-```
-kubectl create -f hello-5-generated-job.yaml
-```
+Raises an error due to the `generateName` usage.
 
 ```
-kubectl get pods -l app=hello
-```
-
-```
-kubectl apply -f hello-cronjob.yaml
+kubectl create -f job-manual.yaml
 ```
 
 ```
 kubectl get pods -l app=hello
 ```
 
-````
+### Schedule a job
+
+```
+kubectl apply -f cronjob.yaml
+```
+
+```
+kubectl get pods -l app=hello -w
+```
+
+```
 k logs -l app=hello --ignore-errors
 ```
 
 ### Cleanup
 
 ```
-kubectl delete -f .
+kubectl delete all -l app=hello
 ```

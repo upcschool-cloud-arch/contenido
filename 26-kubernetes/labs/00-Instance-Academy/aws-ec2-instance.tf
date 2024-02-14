@@ -39,7 +39,7 @@ module "ec2" {
   vpc                  = data.aws_vpc.default.id
   subnet               = data.aws_subnets.default.ids[1]
   github_user          = var.github_user
-  instance_type        = "t3a.large"
+  instance_type        = "r7a.large"
   tcp_allowed_ingress  = [22, 80, 81, 8080, 9000]
   managed_ssh_key_name = "vockey"
 }
