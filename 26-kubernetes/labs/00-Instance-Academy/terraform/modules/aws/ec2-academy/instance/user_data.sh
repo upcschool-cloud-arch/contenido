@@ -2,7 +2,7 @@
 # User configuration
 curl -sq https://github.com/${github_user}.keys | tee -a /home/${system_user}/.ssh/authorized_keys
 # Package installation
-dnf install --refresh --assumeyes tree yum-utils git unzip nano vim
+dnf install --refresh --assumeyes tree yum-utils git unzip nano vim openssl
 # Terraform
 yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo &&
   dnf install --refresh --assumeyes terraform &&
@@ -18,5 +18,9 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 # kind
 curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.21.0/kind-linux-amd64 &&
   install -o root -g root -m 0755 kind /usr/local/bin/kind
+#
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 >/tmp/get_helm.sh &&
+  chmod 700 /tmp/get_helm.sh && /tmp/get_helm.sh && rm /tmp/get_helm.sh
+
 # Reboot
-shutdown --reboot
+shutdown -f now --reboot
