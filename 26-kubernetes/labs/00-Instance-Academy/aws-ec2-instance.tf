@@ -48,6 +48,15 @@ output "public_ip" {
   value = module.ec2.public_ip
 }
 
-output "ssh_cmd" {
-  value = module.ec2.ssh_cmd
+output "ssh" {
+  value = format(
+    "%s@%s", module.ec2.system_user, module.ec2.public_ip
+  )
 }
+
+output "ssh_cmd" {
+  value = format(
+    "ssh -A %s@%s", module.ec2.system_user, module.ec2.public_ip
+  )
+}
+

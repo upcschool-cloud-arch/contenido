@@ -1,35 +1,52 @@
-provider "aws" {
-  region = "eu-west-1"
+resource "random_id" "id" {
+  byte_length = 8
 }
 
-module "vpc" {
-  source = "./terraform/modules/aws/vpc/vpc"
-  name   = "scratch"
+provider "aws" {
+  region = "us-east-1"
+}
+
+data "aws_region" "current" {}
+
+data "aws_vpc" "default" {
+  default = true
+}
+
+data "aws_subnets" "default" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default.id]
+  }
+}
+
+data "aws_subnet" "default" {
+  for_each = toset(data.aws_subnets.default.ids)
+  id       = each.value
+}
+
+variable "github_user" {
+  description = "GitHub user ID for system account creation and SSH keys"
+  type        = string
+  default     = "raelga"
 }
 
 module "ec2" {
-  source              = "./terraform/modules/aws/ec2/instance"
-  name                = "scratch"
-  vpc                 = module.vpc.vpc_id
-  subnet              = module.vpc.subnet_az1_id
-  system_user         = "rael"
-  github_user         = "raelga"
-  instance_type       = "t3a.2xlarge"
-  tcp_allowed_ingress = [22, 80, 30172]
+  source               = "../00-Instance-Academy/terraform/modules/aws/ec2-academy/instance"
+  name                 = format("lab-%s", random_id.id.hex)
+  vpc                  = data.aws_vpc.default.id
+  subnet               = data.aws_subnets.default.ids[1]
+  github_user          = var.github_user
+  instance_type        = "r7a.large"
+  tcp_allowed_ingress  = [22, 80, 81, 8080, 9000]
+  managed_ssh_key_name = "vockey"
 }
-
-# module "ec2" {
-#   source              = "./terraform/modules/aws/ec2/spot-instance"
-#   name                = "scratch"
-#   vpc                 = module.vpc.vpc_id
-#   subnet              = module.vpc.subnet_az1_id
-#   system_user         = "rael"
-#   github_user         = "raelga"
-#   instance_type       = "t3a.2xlarge"
-#   spot_price          = "0.10"
-#   tcp_allowed_ingress = [22, 80]
-# }
 
 output "public_ip" {
   value = module.ec2.public_ip
+}
+
+output "ssh_host" {
+  value = format(
+    "%s@%s", module.ec2.system_user, module.ec2.public_ip
+  )
 }
