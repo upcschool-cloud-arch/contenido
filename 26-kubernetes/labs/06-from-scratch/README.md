@@ -20,9 +20,9 @@
   - [Create a ConfigMap](#create-a-configmap)
     - [Check existing `configmaps`](#check-existing-configmaps)
     - [Create a new `ConfigMap`](#create-a-new-configmap)
-    - [Check again the `ConfigMap` resources in the *default* `Namespace`](#check-again-the-configmap-resources-in-the-default-namespace)
+    - [Check again the `ConfigMap` resources in the _default_ `Namespace`](#check-again-the-configmap-resources-in-the-default-namespace)
   - [Setup `kubectl`](#setup-kubectl)
-    - [Define a the  `localhost:8080` cluster](#define-a-the--localhost8080-cluster)
+    - [Define a the `localhost:8080` cluster](#define-a-the--localhost8080-cluster)
     - [Define a `localhost` context](#define-a-localhost-context)
     - [Set the current context to `localhost`](#set-the-current-context-to-localhost)
     - [Check the cluster `ConfigMaps` with `kubectl`](#check-the-cluster-configmaps-with-kubectl)
@@ -71,25 +71,23 @@ tf init
 - Expected output:
 
 ```bash
-Initializing modules...
-- ec2 in terraform/modules/aws/ec2/spot-instance
-- vpc in terraform/modules/aws/vpc/vpc
 
 Initializing the backend...
+Initializing modules...
+- ec2 in ../00-Instance-Academy/terraform/modules/aws/ec2-academy/instance
 
 Initializing provider plugins...
-- Checking for available provider plugins...
-- Downloading plugin for provider "aws" (hashicorp/aws) 2.29.0...
+- Finding latest version of hashicorp/random...
+- Finding latest version of hashicorp/aws...
+- Installing hashicorp/random v3.6.0...
+- Installed hashicorp/random v3.6.0 (signed by HashiCorp)
+- Installing hashicorp/aws v5.36.0...
+- Installed hashicorp/aws v5.36.0 (signed by HashiCorp)
 
-The following providers do not have any version constraints in configuration,
-so the latest version was installed.
-
-To prevent automatic upgrades to new major versions that may contain breaking
-changes, it is recommended to add version = "..." constraints to the
-corresponding provider blocks in configuration, with the constraint strings
-suggested below.
-
-* provider.aws: version = "~> 2.29"
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
 
 Terraform has been successfully initialized!
 
@@ -113,23 +111,22 @@ tf apply -auto-approve
 - Expected output:
 
 ```bash
-Acquiring state lock. This may take a few moments...
-data.terraform_remote_state.aws_network: Refreshing state...
-module.ec2.data.aws_ami.ubuntu: Refreshing state...
-module.ec2.aws_security_group.instance-sg: Creating...
-module.ec2.aws_security_group.instance-sg: Creation complete after 3s [id=sg-02121de689503fe4d]
-module.ec2.aws_spot_instance_request.instance: Creating...
-module.ec2.aws_spot_instance_request.instance: Still creating... [10s elapsed]
-module.ec2.aws_spot_instance_request.instance: Still creating... [20s elapsed]
-module.ec2.aws_spot_instance_request.instance: Still creating... [30s elapsed]
-module.ec2.aws_spot_instance_request.instance: Creation complete after 37s [id=sir-thei5tin]
+data.aws_vpc.default: Reading...
+module.ec2.data.aws_key_pair.managed[0]: Reading...
+data.aws_region.current: Reading...
+module.ec2.data.aws_iam_role.this: Reading...
+module.ec2.data.aws_ami.latest: Reading...
+....
 
-Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
-Releasing state lock. This may take a few moments...
+module.ec2.aws_eip.this: Creating...
+module.ec2.aws_eip.this: Creation complete after 3s [id=eipalloc-062dcf3dd6a414a1b]
+
+Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-public_ip = 34.254.155.10
+public_ip = "34.202.212.85"
+ssh_cmd = "ssh -A ec2-user@34.202.212.85"
 ```
 
 SSH into the instance.
@@ -137,36 +134,35 @@ SSH into the instance.
 - Command in the `instance` terminal
 
 ```bash
-ssh $(tf output -raw public_ip)
+ssh $(tf output -raw ssh_host)
 ```
 
 - Expected output:
 
 ```bash
-
-Welcome to Ubuntu 18.04.6 LTS (GNU/Linux 5.4.0-1057-aws x86_64)
-
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-
-  System information as of Mon Oct 18 14:06:13 UTC 2021
-
-  System load:  0.0               Processes:              101
-  Usage of /:   32.7% of 7.69GB   Users logged in:        0
-  Memory usage: 4%                IP address for ens5:    10.0.1.69
-  Swap usage:   0%                IP address for docker0: 172.17.0.1
+...
+   ,     #_
+   ~\_  ####_        Amazon Linux 2
+  ~~  \_#####\
+  ~~     \###|       AL2 End of Life is 2025-06-30.
+  ~~       \#/ ___
+   ~~       V~' '->
+    ~~~         /    A newer version of Amazon Linux is available!
+      ~~._.   _/
+         _/ _/       Amazon Linux 2023, GA and supported until 2028-03-15.
+       _/m/'           https://aws.amazon.com/linux/amazon-linux-2023/
 ....
 ```
 
 ---
+
 ```
 ####################################################
 #############         storage           ############
 ####################################################
 ```
----
 
+---
 
 ## Before starting
 
@@ -183,7 +179,7 @@ To be easy to remember, we will use a shortlinks under the `go.rael.dev` domain.
 
 For example, `go.rael.dev/etcd-v35` points to the GitHub etcd-3.3013 tarball at `https://github.com/etcd-io/etcd/releases/download/v3.5.0/etcd-v3.5.0-linux-amd64.tar.gz`.
 
-Feel free to *resolve* the links by using `curl -I`
+Feel free to _resolve_ the links by using `curl -I`
 
 - Command in the `instance` terminal
 
@@ -231,7 +227,7 @@ This will be our `etcd` terminal.
 - Command in the `etcd` terminal
 
 ```bash
-ssh -L 2379:localhost:2379 $(tf output -raw public_ip)
+ssh -L 2379:localhost:2379 $(tf output -raw ssh_host)
 ```
 
 Download the a stable version of etcd v3, for this demo, v3.5.0.
@@ -254,7 +250,7 @@ etcd-v3.5.0-linux-amd64/Documentation/dev-guide/apispec/swagger/
 etcd-v3.5.0-linux-amd64/etcdutl
 etcd-v3.5.0-linux-amd64/etcdctl
 etcd-v3.5.0-linux-amd64/etcd
-  ```
+```
 
 ### Launch `etcd`
 
@@ -285,7 +281,7 @@ curl http://localhost:2379/health
 - Expected output
 
 ```json
-{"health":"true","reason":""}
+{ "health": "true", "reason": "" }
 ```
 
 - Expected log in the `etcd` server
@@ -295,23 +291,46 @@ curl http://localhost:2379/health
 {"level":"debug","ts":"2021-10-18T14:20:52.428Z","caller":"etcdhttp/metrics.go:83","msg":"/health OK","status-code":200}
 ```
 
-### Optional: etcdkeeper web interface
+### Optional: etcd web interface
 
 https://github.com/evildecay/etcdkeeper/tree/master
+
+```
+etcdkeeper
+```
+
+```
+2024-02-15 16:23:03.731343 I | listening on 0.0.0.0:52379
+2024-02-15 16:23:15.988588 I | POST v3 connect success.
+2024-02-15 16:23:16.624809 I | GET v3 /
+```
+
+Visit http://localhost:52379/etcdkeeper/
+
+Other options:
+
+- https://etcd.io/docs/v3.4/integrations/
 
 ### Check `etcd` content
 
 - Command in the `instance` terminal
 
 ```bash
-curl -L http://localhost:2379/v3/kv/put -X POST \
-  -d "{\"key\": \"$(echo -n /test | base64)\", \"value\": \"$(echo -n Hello world from cURL | base64)\"}"
+curl -sq -L http://localhost:2379/v3/kv/put -X POST \
+  -d "{\"key\": \"$(echo -n /test | base64)\", \"value\": \"$(echo -n Hello world from cURL | base64)\"}" | jq .
 ```
 
 - Expected output
 
 ```json
-{"header":{"cluster_id":"14841639068965178418","member_id":"10276657743932975437","revision":"2","raft_term":"2"}}
+{
+  "header": {
+    "cluster_id": "14841639068965178418",
+    "member_id": "10276657743932975437",
+    "revision": "2",
+    "raft_term": "2"
+  }
+}
 ```
 
 - Expected log in the `etcd` server
@@ -350,7 +369,21 @@ The expected output should be `/key` created in the previous step.
 - Expected log in the `etcd` server
 
 ```json
-{"level":"debug","ts":"2021-10-18T16:10:42.381Z","caller":"v3rpc/interceptor.go:182","msg":"request stats","start time":"2021-10-18T16:10:42.381Z","time spent":"136.291µs","remote":"127.0.0.1:33284","response type":"/etcdserverpb.KV/Range","request count":0,"request size":8,"response count":1,"response size":45,"request content":"key:\"/\" range_end:\"0\" keys_only:true "}
+{
+  "level": "debug",
+  "ts": "2021-10-18T16:10:42.381Z",
+  "caller": "v3rpc/interceptor.go:182",
+  "msg": "request stats",
+  "start time": "2021-10-18T16:10:42.381Z",
+  "time spent": "136.291µs",
+  "remote": "127.0.0.1:33284",
+  "response type": "/etcdserverpb.KV/Range",
+  "request count": 0,
+  "request size": 8,
+  "response count": 1,
+  "response size": 45,
+  "request content": "key:\"/\" range_end:\"0\" keys_only:true "
+}
 ```
 
 Retrieve `/test` content using `etcdctl`
@@ -371,7 +404,21 @@ Hello world from cURL
 - Server log
 
 ```json
-{"level":"debug","ts":"2021-10-18T16:12:43.545Z","caller":"v3rpc/interceptor.go:182","msg":"request stats","start time":"2021-10-18T16:12:43.545Z","time spent":"144.691µs","remote":"127.0.0.1:33286","response type":"/etcdserverpb.KV/Range","request count":0,"request size":7,"response count":1,"response size":68,"request content":"key:\"/test\" "}
+{
+  "level": "debug",
+  "ts": "2021-10-18T16:12:43.545Z",
+  "caller": "v3rpc/interceptor.go:182",
+  "msg": "request stats",
+  "start time": "2021-10-18T16:12:43.545Z",
+  "time spent": "144.691µs",
+  "remote": "127.0.0.1:33286",
+  "response type": "/etcdserverpb.KV/Range",
+  "request count": 0,
+  "request size": 7,
+  "response count": 1,
+  "response size": 68,
+  "request content": "key:\"/test\" "
+}
 ```
 
 Update `/test` content using `etcdctl`
@@ -406,11 +453,20 @@ etcdctl get /test
 Hello world from etcdctl
 ```
 
-Or from curl
+When using etcdtl, data is encoded in base64 automatically:
+
+```
+curl -sq -L http://localhost:2379/v3/kv/range \
+  -X POST -d '{"key": "AA==", "range_end": "AA=="}' | jq .
+```
+
+(`AA==` is `\0` in base64, full range of keys)
+
+We can still get the values from curl just encoding the key and decoding the value:
 
 ```bash
-curl -L http://localhost:2379/v3/kv/range \
- -X POST -d "{\"key\": \"$(echo -n /test | base64)\"}"
+curl -sq -L http://localhost:2379/v3/kv/range \
+ -X POST -d "{\"key\": \"$(echo -n /test | base64)\"}" | jq .
 ```
 
 ```json
@@ -420,7 +476,7 @@ curl -L http://localhost:2379/v3/kv/range \
 With the `base64` decoding
 
 ```bash
-echo -n $(curl -sqL http://localhost:2379/v3/kv/range -X POST -d "{\"key\": \"$(echo -n /test | base64)\"}" | jq -r '.kvs[0].value') | base64 -d
+echo -n $(curl -sqL http://localhost:2379/v3/kv/range -X POST -d "{\"key\": \"$(echo -n /test | base64)\"}" | jq -r '.kvs[0].value') | base64 -d && echo
 ```
 
 ```
@@ -428,11 +484,13 @@ Hello world from etcdctl
 ```
 
 ---
+
 ```
 ####################################################
 #############           API             ############
 ####################################################
 ```
+
 ---
 
 ## Download the Kubernetes Control Plane binaries
@@ -501,7 +559,7 @@ This will be our `api` terminal.
 - Command in the `api` terminal
 
 ```bash
-ssh -L 8080:localhost:8080 $(tf output -raw public_ip)
+ssh -L 8080:localhost:8080 $(tf output -raw ssh_host)
 ```
 
 ### Start the `kube-apiserver`
@@ -562,6 +620,13 @@ I0914 13:24:51.831600   13391 controller.go:130] OpenAPI AggregationController: 
 I0914 13:25:41.856486   13391 httplog.go:90] GET /api/v1/namespaces/default/endpoints/kubernetes: (816.858µs) 200 [kube-apiserver/v1.16.0 (linux/amd64) kubernetes/4cb51f0 [::1]:50188]
 ```
 
+And we can see a lot of new keys in etcd:
+
+```
+curl -sq -L http://localhost:2379/v3/kv/range \
+  -X POST -d '{"key": "AA==", "range_end": "AA=="}' | jq .
+```
+
 ### Check the `etcd` content
 
 During the start of the `kube-apiserver`, you probably noticed that the `etcd` logs started to show a lot of activity.
@@ -596,15 +661,31 @@ As you can see, now the `etcd` database has been populated with the Kubernetes A
 And in the `etcd` server logs, we can see that the key count is now 42: `response count = 42`.
 
 ```json
-{"level":"debug","ts":"2021-10-18T18:01:50.093Z","caller":"v3rpc/interceptor.go:182","msg":"request stats","start time":"2021-10-18T18:01:50.093Z","time spent":"203.912µs","remote":"127.0.0.1:33502","response type":"/etcdserverpb.KV/Range","request count":0,"request size":8,"response count":42,"response size":2889,"request content":"key:\"/\" range_end:\"0\" keys_only:true "}
+{
+  "level": "debug",
+  "ts": "2021-10-18T18:01:50.093Z",
+  "caller": "v3rpc/interceptor.go:182",
+  "msg": "request stats",
+  "start time": "2021-10-18T18:01:50.093Z",
+  "time spent": "203.912µs",
+  "remote": "127.0.0.1:33502",
+  "response type": "/etcdserverpb.KV/Range",
+  "request count": 0,
+  "request size": 8,
+  "response count": 42,
+  "response size": 2889,
+  "request content": "key:\"/\" range_end:\"0\" keys_only:true "
+}
 ```
 
 ---
+
 ```
 ####################################################
 #############   API Server URL schema   ############
 ####################################################
 ```
+
 ---
 
 ## Create a ConfigMap
@@ -686,7 +767,7 @@ curl -sq -v -X POST \
 }
 ```
 
-### Check again the `ConfigMap` resources in the *default* `Namespace`
+### Check again the `ConfigMap` resources in the _default_ `Namespace`
 
 - Command in the `local` terminal
 
@@ -759,7 +840,7 @@ etcdctl get /registry/configmaps/default/hello-cm -w fields
 
 The API Server was spawn on a shell with a SSH tunnel listening at localhost:8080.
 
-### Define a the  `localhost:8080` cluster
+### Define a the `localhost:8080` cluster
 
 - Command in the `local`
 
@@ -828,19 +909,19 @@ kubectl get ConfigMaps/hello-cm -o json
 
 ```json
 {
-    "apiVersion": "v1",
-    "data": {
-        "GREETING": "Hello folks"
-    },
-    "kind": "ConfigMap",
-    "metadata": {
-        "creationTimestamp": "2019-09-14T23:12:23Z",
-        "name": "hello-cm",
-        "namespace": "default",
-        "resourceVersion": "46",
-        "selfLink": "/api/v1/namespaces/default/configmaps/hello-cm",
-        "uid": "31eaa222-061a-4b5f-95cd-fe163a9eb2e7"
-    }
+  "apiVersion": "v1",
+  "data": {
+    "GREETING": "Hello folks"
+  },
+  "kind": "ConfigMap",
+  "metadata": {
+    "creationTimestamp": "2019-09-14T23:12:23Z",
+    "name": "hello-cm",
+    "namespace": "default",
+    "resourceVersion": "46",
+    "selfLink": "/api/v1/namespaces/default/configmaps/hello-cm",
+    "uid": "31eaa222-061a-4b5f-95cd-fe163a9eb2e7"
+  }
 }
 ```
 
@@ -892,6 +973,7 @@ service/kubernetes   ClusterIP   10.0.0.1     <none>        443/TCP   49m   <non
 This time, we will use a `json` file instead of adding the object spec inline:
 
 [hello-dep.json](hello-dep.json)
+
 ```json
 {
   "apiVersion": "apps/v1",
@@ -940,10 +1022,7 @@ This time, we will use a `json` file instead of adding the object spec inline:
           {
             "name": "echo",
             "image": "alpine",
-            "command": [
-              "/bin/sh",
-              "-c"
-            ],
+            "command": ["/bin/sh", "-c"],
             "args": [
               "while true; do echo $GREETING from $HOSTNAME at `date` | tee -a /var/www/html/index.html; sleep 10; done;"
             ],
@@ -1005,7 +1084,7 @@ curl -sqL \
   -X POST \
   -H "Content-Type: application/json" \
   -d @hello-manifests/hello-dep.json \
-  http://localhost:8080/api/v1/namespaces/defuault/deployments
+  http://localhost:8080/api/v1/namespaces/default/deployments
 ```
 
 - Expected output
@@ -1016,15 +1095,11 @@ The expected result is a `404 NotFound` as the `deployments` `Kind` is in the `a
 {
   "kind": "Status",
   "apiVersion": "v1",
-  "metadata": {
-
-  },
+  "metadata": {},
   "status": "Failure",
   "message": "the server could not find the requested resource",
   "reason": "NotFound",
-  "details": {
-
-  },
+  "details": {},
   "code": 404
 }
 ```
@@ -1338,11 +1413,13 @@ deployment.apps/hello-dep   0/3     0            0           12m   nginx,echo   
 **What is happening? Why the `ReplicaSets` are not being created?**
 
 ---
+
 ```
 ####################################################
 #############        controllers        ############
 ####################################################
 ```
+
 ---
 
 ## Third component: kube-controller-manager
@@ -1356,7 +1433,7 @@ SSH into the instance.
 - Command in the `controller` terminal
 
 ```bash
-ssh $(tf output -raw public_ip)
+ssh $(tf output -raw ssh_host)
 ```
 
 Before starting the `kube-controller-manager`, some certificates are required.
@@ -1390,7 +1467,7 @@ sudo ~/kubernetes/server/bin/kubeadm init phase certs all
 
 And now start the `kube-controller-manager` using the private key generated by `kubeadm`.
 
-- Command in the `controller` terminal
+- Command in the `controller` terminal. Ensure the watch console is visible.
 
 ```bash
 sudo ~/kubernetes/server/bin/kube-controller-manager --master localhost:8080 --service-account-private-key-file /etc/kubernetes/pki/sa.key --v 5
@@ -1484,7 +1561,6 @@ I0915 00:07:52.675658   31980 taint_manager.go:398] Noticed pod update: types.Na
 I0915 00:07:52.675568   31980 pvc_protection_controller.go:342] Enqueuing PVCs for Pod default/hello-dep-758fcd6b44-w8ctt (UID=ab578bcd-1fec-448c-bcbc-7c826324bec8)
 I0915 00:07:52.675494   31980 replica_set.go:275] Pod hello-dep-758fcd6b44-w8ctt created: &v1.Pod{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ObjectMeta:v1.ObjectMeta{Name:"hello-dep-758fcd6b44-w8ctt", GenerateName:"hello-dep-758fcd6b44-", Namespace:"default", SelfLink:"/api/v1/namespaces/default/pods/hello-dep-758fcd6b44-w8ctt", UID:"ab578bcd-1fec-448c-bcbc-7c826324bec8", ResourceVersion:"390", Generation:0, CreationTimestamp:v1.Time{Time:time.Time{wall:0x0, ext:63704102872, loc:(*time.Location)(0x7777000)}},...
 ```
-
 
 ### Review the status of the `hello-dep` `ReplicaSets` after starting the `kube-controller-manager`
 
@@ -1594,11 +1670,13 @@ Events:          <none>
 ```
 
 ---
+
 ```
 ####################################################
 #############          Scheduler        ############
 ####################################################
 ```
+
 ---
 
 ## Forth component: `kube-scheduler`
@@ -1610,7 +1688,7 @@ Leave this watch in the background.
 - Command in the `local` terminal
 
 ```bash
-kubectl -o wide -w pods
+kubectl get pods -o wide -w
 ```
 
 - Expected output
@@ -1631,7 +1709,7 @@ SSH into the instance.
 - Command in the `scheduler` terminal
 
 ```bash
-ssh $(tf output -raw public_ip)
+ssh $(tf output -raw ssh_host)
 ```
 
 - Command in the `scheduler` terminal
@@ -1752,11 +1830,13 @@ No resources found.
 ```
 
 ---
+
 ```
 ####################################################
 #############          kubelet          ############
 ####################################################
 ```
+
 ---
 
 ## Fifth component: `kubelet`
@@ -1768,7 +1848,7 @@ SSH into the instance.
 - Command in the `kubelet` terminal
 
 ```bash
-ssh $(tf output -raw public_ip)
+ssh $(tf output -raw ssh_host)
 ```
 
 ### Create a .kube/config file for kubelet
@@ -1808,18 +1888,30 @@ cat ~/.kube/config
 ```yaml
 apiVersion: v1
 clusters:
-- cluster:
-    server: localhost:8080
-  name: localhost
+  - cluster:
+      server: localhost:8080
+    name: localhost
 contexts:
-- context:
-    cluster: localhost
-    user: ""
-  name: localhost
+  - context:
+      cluster: localhost
+      user: ""
+    name: localhost
 current-context: localhost
 kind: Config
 preferences: {}
 users: []
+```
+
+- Command
+
+```bash
+sudo ~/kubernetes/server/bin/kubelet --register-node --kubeconfig ~/.kube/config
+```
+
+Something missing?
+
+```
+sudo service docker start
 ```
 
 - Command
@@ -1845,6 +1937,19 @@ I0915 00:54:20.856624   21441 kubelet.go:1822] Starting kubelet main sync loop.
 I0915 00:54:20.856691   21441 kubelet.go:1839] skipping pod synchronization - [container runtime status check may not have completed yet, PLEG is not healthy: pleg has yet to be successful]
 I0915 00:54:20.860228   21441 desired_state_of_world_populator.go:131] Desired state populator starts to run
 ...
+```
+
+If you see some errors like:
+
+```
+Failed to get system container stats
+```
+
+Use:
+
+```
+sudo ~/kubernetes/server/bin/kubelet --register-node --kubeconfig ~/.kube/config \
+ --runtime-cgroups=/systemd/system.slice --kubelet-cgroups=/systemd/system.slice
 ```
 
 - Expected output in the `kube-scheduler` logs
@@ -1955,6 +2060,7 @@ service/hello created
 ```
 kubectl get svc
 ```
+
 ```
 NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
 hello        ClusterIP   10.0.0.170   <none>        80/TCP    5s
@@ -2000,11 +2106,13 @@ curl: (28) Connection timed out after 5003 milliseconds
 ```
 
 ---
+
 ```
 ####################################################
 #############        Kube-proxy         ############
 ####################################################
 ```
+
 ---
 
 ## Sixth component: `kube-proxy`
@@ -2016,7 +2124,7 @@ SSH into the instance.
 - Command in the `kube-proxy` terminal to connect to the instance
 
 ```bash
-ssh $(tf output -raw public_ip)
+ssh $(tf output -raw ssh_host)
 ```
 
 - Command in the `instance` terminal
@@ -2110,7 +2218,7 @@ curl --connect-timeout 5 $(kubectl get svc hello -o=jsonpath='{.spec.clusterIP}'
 - Command in the `instance` terminal
 
 ```bash
-iptables -L -t nat
+sudo iptables -L -t nat
 ```
 
 - Expected output
@@ -2199,11 +2307,13 @@ export HELLO_URL="http://$(tf output -raw public_ip):$(kubectl get svc hello -o=
 ```
 
 ---
+
 ```
 ####################################################
 #############         Wrapping up       ############
 ####################################################
 ```
+
 ---
 
 ## Deployment rollout
@@ -2227,11 +2337,71 @@ export HELLO_URL="http://$(tf output -raw public_ip):$(kubectl get svc hello -o=
 ```
 
 ---
+
 ```
 ####################################################
-#############         Clean up         ############
+#############       More Deploys!       ############
 ####################################################
 ```
+
+## My App
+
+```
+kubectl apply -f my-app/service.yaml
+```
+
+```
+k apply -f my-app/deployment-v1.yaml
+```
+
+```
+export MYAPP_URL="http://$(tf output -raw public_ip):$(kubectl get svc my-app -o=jsonpath='{.spec.ports[?(@.port==80)].nodePort}')" \
+  && echo ${MYAPP_URL} \
+  && curl ${MYAPP_URL}
+```
+
+Leave this in a visible shell:
+
+```
+export MYAPP_URL="http://$(tf output -raw public_ip):$(kubectl get svc my-app -o=jsonpath='{.spec.ports[?(@.port==80)].nodePort}')" \
+  && while sleep 0.5; do curl "${MYAPP_URL}" --connect-timeout 5; done
+```
+
+```
+kubectl apply -f my-app/deployment-v2.yaml \
+  && kubectl get pods -w
+```
+
+####################################################
+############# Clean up ############
+####################################################
+
+````
+
+## Guestbook
+
+```
+kubectl apply -f guestbook
+```
+
+Expected output:
+
+```
+deployment.apps/guestbook created
+service/guestbook created
+deployment.apps/redis-master created
+service/redis-master created
+deployment.apps/redis-slave created
+service/redis-slave created
+```
+
+Review and use the Gestbook App:
+
+```
+export GUESTBOOK_URL="http://$(tf output -raw public_ip):$(kubectl get svc guestbook -o=jsonpath='{.spec.ports[?(@.port==80)].nodePort}')" \
+  && echo ${GUESTBOOK_URL}
+```
+
 ---
 
 ## Delete everything
@@ -2240,7 +2410,7 @@ export HELLO_URL="http://$(tf output -raw public_ip):$(kubectl get svc hello -o=
 
 ```bash
 tf destroy
-```
+````
 
 - Expected output
 

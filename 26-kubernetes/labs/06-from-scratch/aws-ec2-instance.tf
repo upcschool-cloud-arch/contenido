@@ -33,6 +33,7 @@ variable "github_user" {
 module "ec2" {
   source               = "../00-Instance-Academy/terraform/modules/aws/ec2-academy/instance"
   name                 = format("lab-%s", random_id.id.hex)
+  ami                  = "ami-0cf10cdf9fcd62d37"
   vpc                  = data.aws_vpc.default.id
   subnet               = data.aws_subnets.default.ids[1]
   github_user          = var.github_user

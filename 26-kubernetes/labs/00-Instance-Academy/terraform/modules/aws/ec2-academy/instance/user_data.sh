@@ -2,13 +2,13 @@
 # User configuration
 curl -sq https://github.com/${github_user}.keys | tee -a /home/${system_user}/.ssh/authorized_keys
 # Package installation
-dnf install --refresh --assumeyes tree yum-utils git unzip nano vim openssl
+yum install --assumeyes tree yum-utils git unzip nano vim openssl jq
 # Terraform
 yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo &&
-  dnf install --refresh --assumeyes terraform &&
+  yum install --assumeyes terraform &&
   echo 'alias tf=terraform' | tee -a /etc/profile.d/aliases.sh
 # Docker
-dnf install --refresh --assumeyes docker &&
+yum install --assumeyes docker &&
   service docker start &&
   usermod -aG docker ${system_user}
 # kubectl
