@@ -14,7 +14,7 @@ Usa el modo **Easy Create** y rellena los campos como aparecen en la imagen de a
 
 Nos saldrá un aviso diciendo que no podemos activar * Enhanced Monitoring* porque el usuario de Academy no tiene suficientes permisos pero podemos ignorarlo.
 
-Nuestra BD tardará un rato en crearse y pasará de estar en estado *creating* a 
+Nuestra BD tardará un rato en crearse y pasará de estar en estado *creating* a *running*
 
 2. Bucket S3: también vamos a crear un bucket S3 para volcar un reporte que realizaremos más adelante. A estas alturas ya sabemos de sobra cómo crear un bucket S3 así que ¡adelante! ponle un nombre identificativo y no hagas ninguna configuración extra.
 
