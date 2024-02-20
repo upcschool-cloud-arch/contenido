@@ -1,6 +1,21 @@
 # Tablón de anuncios
 
-## 2024-29-01: Tercer examen
+
+## 2024-02-20: Cuarto examen
+
+Fecha del examen: Miércoles 28 de Febrero
+Lugar: GatherTown o presencial.
+Formato: 10 preguntas tipo test
+Duración: 30 minutos
+
+Entrarán siguientes los topics:
+
+* 22: Gobernanza, Seguridad avanzada.
+* 23: Gobernanza, Diseño y ejecución de planes de migración.
+* 24, 25: Contenedores y Kubernetes.
+* 26: Aplicaciones cloud native, Implementación de planes DR.
+
+## 2024-01-29: Tercer examen
 
 Fecha del examen: Miércoles 7 de Febrero
 Lugar: GatherTown o presencial.
