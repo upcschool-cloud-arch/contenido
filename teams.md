@@ -2,7 +2,7 @@
 
 ## Gather Town
 
-* Link: https://app.gather.town/invite?token=p7dtUhAhSd6utLs9xcVt
+* Link: https://app.gather.town/app/tCcLOfxqaurjar6F/learning
 
 ## Semipresencial
 
