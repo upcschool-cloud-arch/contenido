@@ -1,17 +1,15 @@
-data "aws_ami" "ubuntu" {
+data "aws_ami" "latest" {
   most_recent = true
 
   filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    name   = "owner-alias"
+    values = ["amazon"]
   }
 
   filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
+    name   = "name"
+    values = ["al2023-ami-*"]
   }
-
-  owners = ["099720109477"] # Canonical
 }
 
 resource "aws_security_group" "instance-sg" {
@@ -28,10 +26,11 @@ resource "aws_security_group" "instance-sg" {
     }
   }
 
+  # Kubernetes NodePort ranges
   ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    from_port   = 30000
+    to_port     = 32767
+    protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -56,10 +55,21 @@ resource "aws_iam_instance_profile" "this" {
   role = data.aws_iam_role.this.name
 }
 
+data "aws_key_pair" "managed" {
+  count              = var.managed_ssh_key_name != "" ? 1 : 0
+  key_name           = var.managed_ssh_key_name
+  include_public_key = true
+}
+
+resource "aws_eip" "this" {
+  domain   = "vpc"
+  instance = aws_instance.this.id
+}
+
 resource "aws_instance" "this" {
-  ami                    = var.ami != "" ? var.ami : data.aws_ami.ubuntu.id
-  instance_type          = var.instance_type
-  iam_instance_profile   = aws_iam_instance_profile.this.name
+  ami           = var.ami != "" ? var.ami : data.aws_ami.latest.id
+  instance_type = var.instance_type
+  #iam_instance_profile   = aws_iam_instance_profile.this.name
   subnet_id              = var.subnet
   vpc_security_group_ids = [aws_security_group.instance-sg.id]
 
@@ -71,20 +81,15 @@ resource "aws_instance" "this" {
     }
   }
 
-  user_data = <<EOF
-#!/bin/bash
-# User configuration
-usermod -c ${var.system_user} -l ${var.system_user} -d /home/${var.system_user} -m ${var.system_default_user} && groupmod -n ${var.system_user} ${var.system_default_user};
-echo "${var.system_user} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/90-cloud-init-users
-curl -sq https://github.com/${var.github_user}.keys | tee -a /home/${var.system_user}/.ssh/authorized_keys
-# Package installation
-# Terraform Repository
-wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-sudo apt update
-sudo apt-get -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common jq docker.io cgroup-tools tree awscli terraform
-usermod -aG docker ${var.system_user}
-EOF
+  key_name = try(data.aws_key_pair.managed[0].key_name, null)
+
+  user_data = templatefile(
+    "${path.module}/user_data.sh",
+    {
+      system_user = var.system_user,
+      github_user = var.github_user
+    }
+  )
 
   tags = {
     Name = var.name
