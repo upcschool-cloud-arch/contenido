@@ -69,6 +69,8 @@ En este momento, **aún no se han establecido las rutas necesarias para poder ac
 30. En el panel _Route Tables_ seleccionamos Custom_main_route_table y clicamos a la pestaña _Subnet associations_
 31. Sobre el apartado _Explicit subnet associations_, clicamos en _Edit subnet associations_ y seleccionamos nuestra subnet pública, main_subnet_a y clicamos sobre _Save associations_.
 
+Nota: **es muy importante que realices esta asociaión explícita** para permitir la salida a internet. En caso de no hacer, los paquetes tomaran la route table por defecto de la VPC que NO tiene indicado el camino a hacia el Internet Gateway.
+
 ## Crear una EC2 simple
 Vamos a necesitar una instancia EC2 para verificar que nuestro entorno se ha creado correctamente. 
 
