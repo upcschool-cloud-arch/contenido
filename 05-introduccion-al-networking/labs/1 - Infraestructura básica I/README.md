@@ -51,7 +51,7 @@ En este punto veremos que ya tenemos creado nuestro Internet Gateway, pero no se
 Una vez creada la puerta de entrada y salida a internet, necesitaremos definir las rutas, para que nuestros "paquetes de datos" puedan llegar al destino.
 
 20. En el panel Your VPCs, clicamos sobre nuestra Main VPC.
-21. En la pestaña _details_, podemos ver que nuestra VPC ya tiene por defecto, una route table principal. Si clicamos sobre el identificador, podemos ver el detalle.
+21. Si navegamos por las diferentes pestañas, concretamente sobre _resource map_, podemos ver que la relación entre los diferentes elementos de nuestra red. En este caso, vemos que nuestra VPC tiene 3 subnets, que a su vez están relacionadas con una route table, que es la route table default, que se crea por defecto cuando hemos creado nuestra VPC y que tenemos asociada de forma implícita a todas las subnets dentro de la VPC. Si clicamos sobre la fechita a la derecha del identificador, podemos ver el detalle.
 22. Clicamos sobre la pestaña _Routes_ y vemos que tenemos la ruta local hacia nuestra VPC: 172.31.0.0/16. Las subnets que forman parte de esta VPC y no tienen una asociación explítica con otra route table, seguirán las routas de la principal (implícita).
 23. Si clicamos sobre la pestaña _Subnets_, veremos que las subnets que hemos creado en los puntos anteriores se encuentras asociadas de forma implícita a esta route table (Implícita = _Subnets without explicit association_).
 
