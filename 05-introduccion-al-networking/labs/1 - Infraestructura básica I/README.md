@@ -20,7 +20,7 @@ Nota: verificad que aparece el nombre asignado. En caso contrario, podéis intro
 
 Crearemos 3 subnets de igual tamaño, una para cada AZ disponible en la región. Dado que partimos de una VPC /16 (2^16 =65.536), podremos dividir cómo mínimo en rangos /18. 
 
-7. A través del menú de navegación de VPC (Izquierda), clicamos en _Subnets_
+7. A través del menú de navegación de VPC (Izquierda), clicamos en _Subnets_ . Veréis que aquí también nos encontramos algunas subnets ya creadas. Por el momento, no haremos uso de ellas.
 8. Clicamos sobre el botón, _Create subnet_. En el desplegable, seleccionamos la VPC creada en el apartado anterior: main_vpc_\*yourname\*
 9. AWS nos permite crear de una vez tantas subnets como necesitemos, siempre que no excedamos el rango marcado por la VPC. Escribimos en el cuadro
 _Subnet Name_: main_subnet_a y seleccionaremos la AZ correspondiente (región-1a)
