@@ -48,6 +48,7 @@ En este punto veremos que ya tenemos creado nuestro Internet Gateway, pero no se
 
 
 ## Creación de la route table
+Una vez creada la puerta de entrada y salida a internet, necesitaremos definir las rutas, para que nuestros "paquetes de datos" puedan llegar al destino.
 
 20. En el panel Your VPCs, clicamos sobre nuestra Main VPC.
 21. En la pestaña _details_, podemos ver que nuestra VPC ya tiene por defecto, una route table principal. Si clicamos sobre el identificador, podemos ver el detalle.
