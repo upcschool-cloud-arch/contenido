@@ -12,7 +12,7 @@ El objetivo de este primer laboratorio será familiarizarnos con la creación de
 3. De momento solo queremos crear nuestra VPC, por lo que seleccionaremos VPC only y escribimos el nombre de nuestra VPC en _Name tag_: main_vpc_\*yourname\* 
 4. Seleccionamos IPv4 CIDR manual input y tenancy _Default_. Introducimos el rango: 172.31.0.0/16
 5. En _add tag_ escribimos la key:Lab, value:1 y clicamos sobre _Create VPC_:
-6. Verificamos que se ha creado correctamente revisando el listado de VPCs.
+6. Verificamos que se ha creado correctamente revisando el listado de VPCs. Es posible que tengáis dos VPCs con el mismo CIDR. Una de ellas es la que viene por defecto en la propia cuenta de academy. Podéis diferenciar la que viene por defecto respecto a la que habéis creado o bien por el nombre (tag añadido en el punto 5) o bien identificando en la tabla de las VPCs, la columna _Default VPC_. La que se encuentre definida con un YES en esta columna, será LA que viene por defecto en el entorno y NO LA QUE ACABAIS CREAR.
 
 Nota: verificad que aparece el nombre asignado. En caso contrario, podéis introducirlo manualmente a través del lápiz que aparece cuando pasamos por encima del campo _Name_
 
