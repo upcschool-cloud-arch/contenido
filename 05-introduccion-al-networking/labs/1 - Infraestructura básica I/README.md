@@ -83,14 +83,6 @@ Vamos a necesitar una instancia EC2 para verificar que nuestro entorno se ha cre
   **IMPORTANTE**: Guardad bien este .pem ya que lo utilizaremos en otras EC2s más adelante.
 * _Networkin Settings_, seleccionamos el botón _Edit_ y escogemos nuestra VPC _main_vpc_yourname y la subnet _main_subnet_a. Dejamos el valor "Enable" el desplegable _Auto assign public IP_ .
        	* Creamos un nuevo SG vacío y lo llamaremos lab1. Quitad todos los checks de las reglas sugeridas.
-* Finalmente desplegamos _Advance Details_ y pegamos el siguiente código en _User Data_:
-```bash
-#!/bin/bash
-# Use this for your user data (script from top to bottom)
-sudo apt update
-sudo apt install apache2
-sudo echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
-```
 34. Dejamos el resto de campos tal como estan y clicamos sobre el botón _Launch instances_ .
 
 
@@ -124,24 +116,17 @@ A pesar de haber definido las route table, **recordad que no hemos añadido regl
 44. Guardamos las nuevas reglas desde el botón _Save rules_ .
 45. Comprobar que las reglas outbound permiten todo el tráfico hacia fuera. Clicamos sobre la pestaña Outbound rules y verificamos que en Type tenemos "All traffic".
 
-## Verificamos la salida y entrada a internet
-46. De nuevo desde el terminal, comprueba los resultados al hacer:
-```bash
-ping <Public_IP>
-curl http://<Public_IP>
-````
-¿Qué resultado obtienes ahora? También puedes copiar el siguiente comando en el navegador
-```bash
- http://<Public_IP>
- ```
- 
-47. Verificamos que podemos acceder a la instancia EC2 por SSH. Para ello, vamos a necesitar el fichero lab1.pem que hemos obtenido al crear la EC2.
+## Verificar el acceso por ssh 
+
+Vamos a verificar que hemos definido correctamente los security groups y para ello, vamos a acceder a nuestra EC2 para instalar un web server y así comprobar también al acceso desde internet a nuestro servicio web.
+
+46. Para acceder a la instancia EC2 por SSH, vamos a necesitar el fichero lab1.pem que hemos obtenido al crear la EC2.
 
 --> Para acceder a la instancia desde nuestro terminal:
 
 **Linux o Mac**
 
-48. Desde el terminal, escribimos el siguiente comando si usamos Linux:
+47a. Desde el terminal, escribimos el siguiente comando si usamos Linux:
 ```bash
 chmod 400 lab1.pem
 ```
@@ -153,11 +138,49 @@ ssh -i "lab1.pem" ubuntu@<Públic IP>
 
 **Windows**
 
-48.b Si utilizáis Windows, utilizad Putty para acceder a esta EC2. Podéis descargarlo en el siguiente enlace:
+47b. Si utilizáis Windows, utilizad Putty para acceder a esta EC2. Podéis descargarlo en el siguiente enlace:
 https://www.putty.org/
+Dado que hemos descargado la key en .pem, deberemos convertirlo a .ppk con PuttyGen, que podréis descargar del enlace anterior.
+Una vez convertido podréis acceder a través de Putty con la IP pública proporcionada por aws.
 
-49. Dado que hemos descargado la key en .pem, deberemos convertirlo a .ppk con PuttyGen, que podréis descargar del enlace anterior.
-50. Una vez convertido podréis acceder a través de Putty con la IP pública proporcionada por aws.
+48. Una vez dentro de la EC2, instalamos apache:
+
+```bash
+sudo dnf update -y 
+sudo dnf list | grep httpd 
+sudo dnf install -y httpd.x86_64 
+sudo systemctl start httpd.service 
+sudo systemctl status httpd.service 
+sudo systemctl enable httpd.service
+```
+49. Crearemos un fichero en la siguiente path
+
+```bash
+sudo nano /var/www/html/index.html
+```
+50. Y enganchamos el siguiente texto y guardamos el fichero
+
+```bash
+<!DOCTYPE html> 
+<html> <body> <h1>Hello World !!</h1> <p>Welcome to introducción al networking lab1</p> </body> </html
+```
+
+51. Para asegurarnos que el apache ha cogido los cambios, realizamos un restart del servicio:
+```bash
+sudo systemctl restart httpd.service
+```
+ 
+## Verificamos la salida y entrada a internet
+
+52. De nuevo desde el terminal, comprueba los resultados al hacer:
+```bash
+ping <Public_IP>
+curl http://<Public_IP>
+````
+¿Qué resultado obtienes ahora? También puedes copiar el siguiente comando en el navegador
+```bash
+ http://<Public_IP>
+ ```
 
 ## Bonus track 
 
