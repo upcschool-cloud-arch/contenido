@@ -122,8 +122,6 @@ Vamos a verificar que hemos definido correctamente los security groups y para el
 
 46. Para acceder a la instancia EC2 por SSH, vamos a necesitar el fichero lab1.pem que hemos obtenido al crear la EC2.
 
---> Para acceder a la instancia desde nuestro terminal:
-
 **Linux o Mac**
 
 47a. Desde el terminal, escribimos el siguiente comando si usamos Linux:
@@ -182,26 +180,28 @@ curl http://<Public_IP>
  http://<Public_IP>
  ```
 
+Nota: **Recuerda siempre parar las instancias para optimizar los créditos de los labs**
+
 ## Bonus track 
 
 Hemos visto la importancia de que todos los recursos estén configurados correctamente para poder acceder desde internet a nuestros recursos internos. Si no podemos acceder a las EC2, lo primero que pensamos es que los SG no están abiertos para el protocolo que queremos utilizar, pero, ¿qué ocurre si los SG están correctamente definidos? 
 
 En este apartado vamos a intentar hacer un poco de troubleshooting para determinar qué puede estar fallando.
 
-51. Accedemos de nuevo a la consola de AWS y accedemos al VPC dashboard.
-52. Generaremos una nueva VPC que llamarermos secondary_vpc.
+53. Accedemos de nuevo a la consola de AWS y accedemos al VPC dashboard.
+54. Generaremos una nueva VPC que llamarermos secondary_vpc.
     CIDR: 10.0.0.0/24
-53. Dentro de esta VPC generaremos 4 subnets:
+55. Dentro de esta VPC generaremos 4 subnets:
 * secondary_subnet_a: 10.0.0.0/26, AZ: us-east-1a
 * secondary_subnet_b: 10.0.0.64/26, AZ: us-east-1b
 * secondary_subnet_c: 10.0.0.128/26, AZ:us-east-1c
 * secondary_subnet_d: 10.0.0.192/26, AZ: us-east-1d
 
-54. Crearemos también un nuevo internet gateway que atacharemos a esta VPC secundaria, secondary_internet_gateway.
-55. Accedemos a la route table y generamos una route table custom (recordad que se recomienda no tocar la main route table). En esta nueva route table que llamaremos custom_secondary_route_table, añadiremos la ruta al Internet Gateway:
+56. Crearemos también un nuevo internet gateway que atacharemos a esta VPC secundaria, secondary_internet_gateway.
+57. Accedemos a la route table y generamos una route table custom (recordad que se recomienda no tocar la main route table). En esta nueva route table que llamaremos custom_secondary_route_table, añadiremos la ruta al Internet Gateway:
 * Destination: 0.0.0.0/0
 * Target: (secondary_internet_gateway)
-56. Finalmente crearemos una instancia EC2 en la subnet secondary_subnet_a
+58. Finalmente crearemos una instancia EC2 en la subnet secondary_subnet_a
 * Name: lab1_bonus_track
 * AMI: Amazon Linux
 * Instance type: t2.micro
