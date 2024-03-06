@@ -151,12 +151,12 @@ sudo systemctl start httpd.service
 sudo systemctl status httpd.service 
 sudo systemctl enable httpd.service
 ```
-49. Crearemos un fichero en la siguiente path
+49. Crearemos un fichero en la siguiente path:
 
 ```bash
 sudo nano /var/www/html/index.html
 ```
-50. Y enganchamos el siguiente texto y guardamos el fichero
+50. Enganchamos el siguiente texto y guardamos el fichero
 
 ```bash
 <!DOCTYPE html> 
