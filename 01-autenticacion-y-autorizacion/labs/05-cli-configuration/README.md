@@ -6,9 +6,9 @@ This laboratory is designed to provide hands-on experience with the AWS CLI tool
 Procedure
 
 * The trainer will provide each team with a unique URL that directs to a terminal. Each team will also receive a unique login.
-* Teams should familiarize themselves with the AWS documentation, particularly focusing on how to provide the required information (access key, user key, session token) in the AWS CLI configuration file (~/.aws/credentials).
-* After configuring the AWS CLI, teams should verify their setup by running the aws sts get-caller-identity command. This command returns details about the IAM user or role whose credentials are used to call the operation.
-* Once verified, teams should then remove the configuration file.
+* Teams should familiarize themselves with the AWS documentation, particularly focusing on how to provide the required information (access key, user key, session token) in the AWS CLI configuration file (~/.aws/credentials). Each team can use their preferred editor, like `nano` or `vim`.
+* After configuring the AWS CLI, teams should verify their setup by running the `aws sts get-caller-identity command`. This command returns details about the IAM user or role whose credentials are used to call the operation.
+* Once verified, teams should then remove the configuration file and check again that they don't have permissions for interacting with the API.
 * Finally, teams will reconfigure the AWS CLI access, but this time using environment variables to provide the same credentials.
 
 ## Expected Outcome
