@@ -47,3 +47,16 @@ llevar a cabo proyectos complejos, así que se ha marcado como primer objetivo e
 está organizada AWS y los mecanismos básicos de seguridad necesarios para poder interaccionar
 con el proveedor.*
 
+## Grabaciones
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/KHaQw4l-OpQ/0.jpg)](https://www.youtube.com/watch?v=KHaQw4l-OpQ)
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Oo91mbFcLbY/0.jpg)](https://www.youtube.com/watch?v=Oo91mbFcLbY)
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Y6Ccu9tenMg/0.jpg)](https://www.youtube.com/watch?v=Y6Ccu9tenMg)
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/uZFxMlBaAdg/0.jpg)](https://www.youtube.com/watch?v=uZFxMlBaAdg)
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/mmeDAVV1iHE/0.jpg)](https://www.youtube.com/watch?v=mmeDAVV1iHE)
+
+
