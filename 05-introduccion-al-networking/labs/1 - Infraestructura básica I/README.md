@@ -180,7 +180,7 @@ curl http://<Public_IP>
  http://<Public_IP>
  ```
 
-Nota: **Recuerda siempre parar las instancias para optimizar los créditos de los labs**
+Nota: **Recuerda siempre parar las instancias para optimizar los créditos de los labs**. Para ello, selecciona la EC2 que quieres parar. A la derecha encontrarás el botón _Instance State_, clica sobre él y selecciona la opción _Stop instance_.
 
 ## Bonus track 
 
