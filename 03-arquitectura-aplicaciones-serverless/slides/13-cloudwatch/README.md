@@ -1,4 +1,4 @@
-## Amazon CloudWatch 101
+# Amazon CloudWatch 101
 
 ## Observability
 

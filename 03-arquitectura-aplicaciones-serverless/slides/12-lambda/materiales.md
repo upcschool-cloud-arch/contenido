@@ -4,9 +4,10 @@
 - [Serverless 101: AWS Lambda (Español)](https://youtu.be/D6Lq3x2tVQw)
 - [Serverless 101: AWS Lambda (English)](https://youtu.be/GEABePyhFPA)
 - [AWS Lambda fundamentals - Guide](https://serverlessland.com/content/service/lambda/guides/aws-lambda-fundamentals/what-is-aws-lambda)
-- [AWS Lambda operators guide](https://serverlessland.com/content/service/lambda/guides/aws-lambda-operator-guide/intro) 
+- [AWS Lambda fundamentals - En español](https://www.youtube.com/playlist?list=PLQh2jfOGN_Ih2FYx_sy1Q_5SNNE1UBarR)
+- [AWS Lambda operators guide](https://serverlessland.com/content/service/lambda/guides/aws-lambda-operator-guide/intro)
 
-## Creando funciones con Infra como Código
+## Creando funciones con infraestructura como código
 
 - [🇪🇸 #2.08 - QUÉ ES INFRAESTRUCTURA COMO CÓDIGO? (Podcast de Charlas Técnicas de AWS)](https://youtu.be/QDftQknk5K4)
 - [🐿️ INTRODUCCION A AWS SAM - TUTORIAL DE INFRAESTRUCTURA COMO CODIGO PARA APLICACIONES SERVERLESS 🐿️](https://youtu.be/Z_GAa9WToMM)
@@ -20,6 +21,6 @@
 
 ## Funcionalidades extra de Lambda
 
-- [Choose the Right Storage Solution for your AWS Lambda Function](https://blog.marcia.dev/choose-the-right-storage-solution-for-your-aws-lambda-function)
+- [Choose the right storage solution for your AWS Lambda function](https://blog.marcia.dev/choose-the-right-storage-solution-for-your-aws-lambda-function)
 - [Functions URLS](https://youtu.be/e1hdvJckjy0)
 - [Event filtering](https://youtu.be/oY7vr0GMwjQ)

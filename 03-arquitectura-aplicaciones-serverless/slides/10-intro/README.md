@@ -7,8 +7,10 @@ Principal Developer Advocate, AWS Serverless
 
 ### Redes y donde encontrarla
 
-- [Podcast – Charlas Técnicas de AWS](https://bit.ly/aws-esp-yt)
+- [Podcast oficial de AWS – Charlas Técnicas de AWS](https://podcast.marcia.dev/)
+- [Canal de Youtube en Español](https://bit.ly/aws-esp-yt)
 - [FooBar Serverless YouTube Channel](https://youtube.com/foobar_codes)
+- [Blog](https://blog.marcia.dev/)
 - [Twitter](https://twitter.com/mavi888uy)
 - [LinkedIn](https://www.linkedin.com/in/marciavillalba/)
 

@@ -1,4 +1,4 @@
-## Introduction to Serverless
+## Introducción a Serverless
 
 [Quiz - What you understand when someone says Serverless?](https://www.menti.com/alc7zp5asbsx)
 
@@ -8,16 +8,16 @@
 
 ## The start of serverless
 
-- November 13, 2014 (8 years ago)
+- November 13, 2014
   AWS introduces the preview of AWS Lambda, an event-driven computing service for dynamic applications
 
 - April 9, 2015
   AWS Lambda becomes generally available for production use
 
-- March 14, 2006 (17 years ago)
+- March 14, 2006
   Amazon S3 launched as the first generally available AWS service
 
-- November 3, 2004 (18 years ago)
+- November 3, 2004
   Amazon Simple Queue Service (Amazon SQS) beta
   Production on July 13, 2006 (17 years ago)
 
@@ -36,12 +36,13 @@ A mindset, an approach, a practice, a culture, a way of working
 Focus on business value, rather than the enabling technology
 
 **Benefits:**
-Faster time to market from prototype to production
-Rapid, continuous experimentation and feedback
-React and deliver business changes with a product mindset
-Serverless = the best way to build and run modern applications
 
-“Serverless” architecture is an operational model
+- Faster time to market from prototype to production
+- Rapid, continuous experimentation and feedback
+- React and deliver business changes with a product mindset
+- Serverless = the best way to build and run modern applications
+
+**“Serverless” architecture is an operational model**
 Minimize taking on ongoing operational tasks, outsource system administration tasks
 Every non-serverless component = ongoing ops responsibility
 Optimize for long-term maintainability

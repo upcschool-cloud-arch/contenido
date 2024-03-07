@@ -1,4 +1,4 @@
-## Lambda 101
+# Lambda 101
 
 ## How we traditionally build a web app?
 
@@ -18,7 +18,7 @@ Now lets make it resistant to failures
 ... Sólo tenés qué subir tu código y Lambda se encarga de todo lo requerido para ejecutar y escalar tu código con alto disponibilidad.
 Podes configurar tu código para que automáticamente se ejecute desde otros Servicios de AWS o llamarlo directamente desde cualquier web o móvil app”
 
-AWS — Definición de Lambda
+**AWS — Definición de Lambda**
 
 ### Security
 
