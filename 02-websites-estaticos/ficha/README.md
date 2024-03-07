@@ -42,7 +42,7 @@ estática y la posterior publicación aprovechando las capacidades de S3.
 
 ### Introducción
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/qMG_LSWTVZe5dgF0/0.jpg)](https://www.youtube.com/watch?v=qMG_LSWTVZe5dgF0)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/XBeaIUCiEQg/0.jpg)](https://www.youtube.com/watch?v=XBeaIUCiEQg)
 
 ### Laboratorio
 
