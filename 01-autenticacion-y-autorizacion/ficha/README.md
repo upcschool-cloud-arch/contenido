@@ -29,10 +29,10 @@ No aplicable, dado que es el primer módulo que impartiremos.
 - [x] Grupos de usuarios
 - [x] Permission policies
 - [x] Usuarios
+- [x] Roles
 - [x] AK/SK
 - [x] Cloud shell
 - [x] Cloud shell metadata
-- [x] Credenciales en metadata asociadas al role
 - [x] CLI tool
 
 ### Storytelling
