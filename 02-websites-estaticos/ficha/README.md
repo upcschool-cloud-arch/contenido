@@ -37,3 +37,22 @@ Tras familiarizarnos con AWS, la empresa nos ha pedido migrar uno de los microsi
 Actualmente la aplicación se ejecuta en un Wordpress, al ser la plataforma con la que se tenía más experiencia. Pero hemos
 decidido intentar un enfoque más sencillo y el proyecto incluirá (por este orden) la conversión de la aplicación en una web
 estática y la posterior publicación aprovechando las capacidades de S3.
+
+## Grabaciones
+
+### Introducción
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/qMG_LSWTVZe5dgF0/0.jpg)](https://www.youtube.com/watch?v=qMG_LSWTVZe5dgF0)
+
+### Laboratorio
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/uctmZVBeobU/0.jpg)](https://www.youtube.com/watch?v=uctmZVBeobU)
+
+### S3 Avanzado
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/v2S-YymieGs/0.jpg)](https://www.youtube.com/watch?v=v2S-YymieGs)
+
+### Procesamiento serverless de ficheros
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/iJX1hJrDXH0/0.jpg)](https://www.youtube.com/watch?v=iJX1hJrDXH0)
+
