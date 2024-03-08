@@ -55,4 +55,13 @@ del vecindario. Tendremos que refrescar conceptos generales red y veremos como s
 manera puramente utilitaria mientras que las segundas suelen basar buena parte de sus prácticas de gobernanza y seguridad en una compleja arquitectura de red.
 Teniendo en cuenta esto definiremos nuestra arquitectura según nuestras necesidades.*
 
+## Grabaciones
+
+### Introducción al networking
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/pU4QE1YxoYM/0.jpg)](https://www.youtube.com/watch?v=pU4QE1YxoYM)
+
+
+
+
 
