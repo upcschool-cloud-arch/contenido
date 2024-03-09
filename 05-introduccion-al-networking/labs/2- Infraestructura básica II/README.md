@@ -44,7 +44,7 @@ Tened en cuenta que esta es la única manera de poder trabajar subnets públicas
 19. Desde el dashboard de EC2, creamos esta EC2:
 
 * Name: lab2
-* Desplegamos Application and OS Images y seleccionamos ubuntu
+* Desplegamos Application and OS Images y seleccionamos Amazon Linux
 * Instance type: t2.micro
 * Key Pair: usamos el mismo key pair del lab1
 * Networkin Settings, seleccionamos el botón _Edit_ y escogemos nuestra VPC _main_vpc_yourname y la subnet _main_subnet_b. 
@@ -73,7 +73,7 @@ chmod 400 lab1.pem
 ```
 
 ```bash
-ssh -i "lab1.pem" ubuntu@<ip publica>
+ssh -i "lab1.pem" ec2-user@<ip publica>
 ````
 Windows:
 A través de Putty
@@ -87,7 +87,7 @@ chmod 400 lab1.pem
 
 26. Desde el mismo directorio dónde hemos creado este fichero .pem accedemos a la instancia con el siguiente comando:
  ```bash
-ssh -i "lab1.pem" ubuntu@<ip_privada_lab2>
+ssh -i "lab1.pem" ec2-user@<ip_privada_lab2>
 ```
 
 Un vez dentro de una ec2 ubicada en una subnet privada y sin IP pública, podemos chequear si el nat gateway está funcionado:
