@@ -113,12 +113,12 @@ En esta segunda parte del lab, vamos a establecer una conexión por peering entr
 
 Recordad que la vpc default es 172.31.0.0/16, al igual que nuestra main VPC, con lo que estamos teniendo overlaping. AWS no nos permitirá hacer peering entre estas dos vpcs para evitar conflictos a la hora de comunicarse entre ellas.
 
-34. Seleccionad como VPC Accepter la secondary_vpc (creada en el _Bonus track_ del lab anterior). Si no llegastéis a hacer el bonus track, des_ 10.0.0.0/16.
+34. Seleccionad como VPC Accepter la secondary_vpc (creada en el _Bonus track_ del lab anterior). Si no llegastéis a hacer el bonus track, cread una nueva vpc con el CIDR 10.0.0.0/24.
 35. Añadimos el tag key: lab y value: 2 y clicamos sobre el boton _create peering connection_
-36. Como owners de la secondary VPC, nos llegará una notificación de aceptación del peering. La aceptamos y ya tendremos el peering creado.
+36. Como owners de la secondary VPC, nos llegará una notificación de aceptación del peering. La aceptamos y ya tendremos el peering creado. En cuanto creeis el peering, veréis en el botón _Actions_ en la esquina superior derecha de la consola. Clicais sobre _Accept request_.
 37. Si queremos establecer comunicación, deberemos crear las rutas correspondientes tanto en la vpc orígen, como destino.
 38. Accedemos al listado de route tables y clicamos sobre la main route table de la main_vpc_your_name. Agregamos una nueva ruta con destino: 10.0.0.0/24 a través del target peering_id.
-39. En la main route table de la secondary_vpc agregamos una nueva ruta con destino 172.31.0.0/16 a través del target peering_id.
+39. En la main route table de la secondary_vpc agregamos una nueva ruta con destino 172.31.0.0/16 a través del target peering_id. Si no has hecho el ejercicio del bonus track, coge la default route table de la VPC secundario y añadele el tag Main_route_table_secondary para que la puedas identificar fácilmente.
 
 Vamos a verificar que la comunicación entre instancias de estas VPCS funciona correctamente.
 
@@ -127,7 +127,7 @@ Vamos a verificar que la comunicación entre instancias de estas VPCS funciona c
 * Desplegamos Application and OS Images y seleccionamos ubuntu
 * Instance type: t2.micro
 * Key Pair: usamos el mismo key pair del lab1
-* Networkin Settings, seleccionamos el botón _Edit_ y escogemos nuestra VPC secondary_vpc y la subnet _secondary_b 
+* Networkin Settings, seleccionamos el botón _Edit_ y escogemos nuestra VPC secondary_vpc y la subnet _secondary_b. Si no hiciste el bonus track, tendrás que crear una subnet en la vpc secundaria. La CDIR de esta subnet debería ser:
 * Deshabilitamos _Auto-assign public IP_
 	* Creamos un nuevo SG vacío que llamaremos lab2.2 y habilitamos el inboud para conexión por ICMP desde la IP privada de la ec2 lab2.
 
