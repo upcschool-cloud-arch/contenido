@@ -103,7 +103,7 @@ Un vez dentro de una ec2 ubicada en una subnet privada y sin IP pública, podemo
 
 ## Peering Connection
 
-En esta segunda parte del lab, vamos a establecer una conexión por peering entre nuestras VPCs
+Si queremos comunicarnos de forma privada con instancias que están fuera de nuestra VPC, necesitaremos establecer una comunicación privada entre VPCs. Tal como hemos visto en la sesión, tenemos varias maneras de hacerlo, pero para este lab, vamos a optar por la opción del realizar un peering entre VPCs.
 
 29. A través de la consola, accede al dashboard de VPCs. En las opciones de la izquierda, encontraréis un apartado llamado _Peering Connections_ .
 30. Clicad sobre el botón _Create peering connection_
@@ -127,17 +127,18 @@ Vamos a verificar que la comunicación entre instancias de estas VPCS funciona c
 * Desplegamos Application and OS Images y seleccionamos ubuntu
 * Instance type: t2.micro
 * Key Pair: usamos el mismo key pair del lab1
-* Networkin Settings, seleccionamos el botón _Edit_ y escogemos nuestra VPC secondary_vpc y la subnet _secondary_b. Si no hiciste el bonus track, tendrás que crear una subnet en la vpc secundaria. La CDIR de esta subnet debería ser:
+* Networkin Settings, seleccionamos el botón _Edit_ y escogemos nuestra VPC secondary_vpc y la subnet _secondary_b. Si no hiciste el bonus track, tendrás que crear una subnet en la vpc secundaria. La CDIR de esta subnet debería ser: 10.0.0.64/26
 * Deshabilitamos _Auto-assign public IP_
 	* Creamos un nuevo SG vacío que llamaremos lab2.2 y habilitamos el inboud para conexión por ICMP desde la IP privada de la ec2 lab2.
 
-41. Un vez creada esta instancia, podemos hacer ping desde la ec2 lab2 hacia la ip privada de lab2_secondary
+41. Un vez creada esta instancia, podemos hacer ping desde la ec2 lab2 hacia la ip privada de lab2_secondary.
+42. Verificad que podéis hacer el ping.
 
-Tened en cuenta que si no hubieramos establecido el peering no sería posible comunicar dos instancias con IPd privadas en diferentes VPCs.
+Tened en cuenta que si no hubieramos establecido el peering no sería posible comunicar dos instancias con IP privadas en diferentes VPCs.
 
 ## Delete Nat Gateway
 
 Para evitar un exceso de gastos, vamos a eliminar el NAT Gateway hasta que volvamos a necesitarlo.
 
-42. A través del VPC dashboard, accedemos al apartado NAT Gateways y clicamos en el único que tenemos creado.
-43. Clicamos sobre el botón _Actions_ y seleccionamos Delete NAT Gateway. Escribimos delete en el cuadro y finalizamos.
+43. A través del VPC dashboard, accedemos al apartado NAT Gateways y clicamos en el único que tenemos creado.
+44. Clicamos sobre el botón _Actions_ y seleccionamos Delete NAT Gateway. Escribimos delete en el cuadro y finalizamos.
