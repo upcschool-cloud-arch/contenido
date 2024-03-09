@@ -4,7 +4,7 @@ EL objetivo de este laboratorio es preparar las subnets privadas para poder cone
 ## Creación de Nat Gateway
 
 1. En el panel de VPC, a la izquierda seleccionamos  Nat Gateway
-2. Clicamos sobre el botón crear Nat Gateway
+2. Clicamos sobre el botón _Create Nat Gateway_
 3. En el nombre del Nat Gateway, indicamos main_nat_gateway
 4. Recordemos que el nat gateway siempre debe ir asoiciado a una subnet pública. En este caso, deberemos asociarlo a la main_subnet_a
 5. Seleccionaremos conectividad pública y asignaremos una Elastic IP 
