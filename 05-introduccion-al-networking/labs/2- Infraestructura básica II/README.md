@@ -1,20 +1,30 @@
 # LAB 2: Infraestructura básica II
 EL objetivo de este laboratorio es preparar las subnets privadas para poder conectarse a internet en caso de que sea necesario
 
+## Creación de una Elasitc IP
+Antes de comenzar, vamos a ver cómo crear una Elastic IP, que utilizaremos posteriormente para nuestro Nat Gateway.
+
+1. En el panel de VPC, encontraremos la opción Elastic IP, en la lista de servicios de la izquierda de la pantalla. Clicamos sobre _Elastic IP_
+2. Clicamos sobre el botón _Allocate Elastic IP adress_
+3. Dejaremos por el Networ Border Group que aparece por defecto y en los tags añadiremos:
+   * Key: Name, Value: my_first_EIP
+   * Key: lab, Value: 2
+   Y crearemos la EIP con el botón _Allocate_
+   
 ## Creación de Nat Gateway
 
-1. En el panel de VPC, a la izquierda seleccionamos  Nat Gateway
-2. Clicamos sobre el botón _Create Nat Gateway_
-3. En el nombre del Nat Gateway, indicamos main_nat_gateway
-4. Recordemos que el **nat gateway siempre debe ir asociado a una subnet pública**. En este caso, deberemos asociarlo a la main_subnet_a
-5. Seleccionaremos conectividad pública y asignaremos una Elastic IP 
-6. En Tags, añadimos Key: lab , Value: 2
+4. En el panel de VPC, a la izquierda seleccionamos  Nat Gateway
+5. Clicamos sobre el botón _Create Nat Gateway_
+6. En el nombre del Nat Gateway, indicamos main_nat_gateway
+7. Recordemos que el **nat gateway siempre debe ir asociado a una subnet pública**. En este caso, deberemos asociarlo a la main_subnet_a
+8. Seleccionaremos conectividad pública y para la Elastic IP, seleccionaremos la que hemos creado en el primer apartado.
+9. En Tags, añadimos Key: lab , Value: 2
 
 
 ## Ajustes de Route Tables
-7. Agregaremos la routa hacia el nat-gateway en la route table principal. Desde el panel de VPC, seleccionamos "Route Tables"
-8. Seleccionamos la Main_Route_Table asociada a nuestra VPC (main_vpc_<your_name>) y seleccionamos la pestaña Routes.
-9. Clicamos sobre el botón _Edit Route Tables_ y añadimos:
+10. Agregaremos la routa hacia el nat-gateway en la route table principal. Desde el panel de VPC, seleccionamos "Route Tables"
+11. Seleccionamos la Main_Route_Table asociada a nuestra VPC (main_vpc_<your_name>) y seleccionamos la pestaña Routes.
+12. Clicamos sobre el botón _Edit Route Tables_ y añadimos:
 	• Destination: ¿Cual debería ser? , Target: Nat Gateway <id_nat-gateway>
 	
 Ahora todas las subnets privadas están asociadas implicitamente a este Route Table con la ruta hacia el NAT gateway. Recordad que la subnet pública (main_subnet_a) tenía una asociación explícita a la Custom_Route_Table que habíamos definido en el lab1, dónde teníamos la ruta hacía internet a través del Internet Gateway.
