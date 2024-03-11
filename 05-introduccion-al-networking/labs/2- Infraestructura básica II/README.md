@@ -69,8 +69,7 @@ Comprobaremos el correcto funcionamiento del nat gateway, saliendo a internet a 
 
 20. En el dashboard de EC2, buscamos la instancia lab1 y la iniciamos a través del botón _Instance State_--> _Start Instances_ en caso de estar parada.
 21. Copiamos la IP pública que se muestra en la pestaña _Details_ (esta IP habrá cambiado respecto a la que teníamos el lab1 por haber parado la EC2, recordad lo que hemos hablado en la sesión sobre las ENIs).
-22. Accedemos por ssh a la instancia lab1. Abrimos el terminal y utilizamos el siguiente comando si trabajamos con Linux:
-**Recordad, si no lo hicisteis en el lab anterior, lanzar el siguiente comando antes de hacer el ssh:
+22. Accedemos por ssh a la instancia lab1. Abrimos el terminal y utilizamos el siguiente comando si trabajamos con Linux. Recordad, si no lo hicisteis en el lab anterior, lanzar el siguiente comando antes de hacer el ssh:
 ```bash
 chmod 400 lab1.pem
 ```
@@ -93,7 +92,7 @@ chmod 400 lab1.pem
 ssh -i "lab1.pem" ec2-user@<ip_privada_lab2>
 ```
 
-Un vez dentro de una ec2 ubicada en una subnet privada y sin IP pública, podemos chequear si el nat gateway está funcionado:
+Un vez dentro de una EC2 ubicada en una subnet privada y sin IP pública, podemos chequear si el NAT gateway está funcionado:
 
 27. Hacemos ping
 ```bash
