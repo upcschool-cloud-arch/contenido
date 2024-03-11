@@ -27,7 +27,7 @@ Antes de comenzar, vamos a ver cómo crear una Elastic IP, que utilizaremos post
 12. Clicamos sobre el botón _Edit Route Tables_ y añadimos:
 	• Destination: ¿Cual debería ser? , Target: Nat Gateway <id_nat-gateway>
 	
-Con la configuración actual, todas las subnets privadas (main_subnet_b y main_subnet_C) de nuestra VPC, están asociadas implicitamente a Main Route Table (venía por defecto en la VPC) y con la ruta hacia el NAT gateway. Recordad que la subnet pública (main_subnet_a) tenía una asociación explícita a la Custom_Route_Table que habíamos definido en el lab1, dónde teníamos la ruta hacía internet a través del Internet Gateway.
+Con la configuración actua, todas las subnets privadas (main_subnet_b y main_subnet_C) de nuestra VPC, están asociadas implicitamente a Main Route Table (venía por defecto en la VPC) y con la ruta hacia el NAT gateway. Recordad que la subnet pública (main_subnet_a) tenía una asociación explícita a la Custom_Route_Table que habíamos definido en el lab1, dónde teníamos la ruta hacía internet a través del Internet Gateway.
 
 13. Recordad, que una de las best practices, es no tocar la route table que viene por defecto en la VPC. Por ello, vamos a intentar dejar todo en la Custom_Route_Table. En el dashboard de VPC, y selecciona la Main_Route_Table y eliminiamos la ruta al nat gateway.
 14. Nuevamente, volvemos al dashboard de las route table y clicamos sobre la Custom_route_table. Clicamos sobre la pestaña _Routes_ y añadimos la línea del nat gateway, definiendo el como destination: 0.0.0.0/0 y el Target: el ID del NAT Gateway creado
