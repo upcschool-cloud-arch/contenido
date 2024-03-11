@@ -43,7 +43,7 @@ A partir de aquí podemos aplicar dos estrategias:
 
 Vamos a optar por la segunda opción:
 
-16. En el dashboard de las route table, creamos una nueva llamada Custum2_Main_Route_Table y añadimos la ruta a nuestro nat gateway.
+16. En el dashboard de las route table, creamos una nueva llamada Custom2_Main_Route_Table y añadimos la ruta a nuestro nat gateway.
 17. Clicamos sobre subnet associations y en _Edit_subnet_associations_ y en la sección Explicit subnet associations, seleccionaremos las main subnets b y c.
    
 Tened en cuenta que esta es la única manera de poder trabajar subnets públicas y privadas dentro de la misma VPC. Si nuestra VPC fuera enteramente pública, podríamos en la Main Route Table, dejar una ruta a internet a través de Internet Gateway sin necesidad de realizar una asociación explícita. Aún así, se aconseja no tocar la main route table que viene por defecto en la VPC.
@@ -117,7 +117,7 @@ Recordad que la vpc default es 172.31.0.0/16, al igual que nuestra main VPC, con
 35. Añadimos el tag key: lab y value: 2 y clicamos sobre el boton _create peering connection_
 36. Como owners de la secondary VPC, nos llegará una notificación de aceptación del peering. La aceptamos y ya tendremos el peering creado. En cuanto creeis el peering, veréis en el botón _Actions_ en la esquina superior derecha de la consola. Clicais sobre _Accept request_.
 37. Si queremos establecer comunicación, deberemos crear las rutas correspondientes tanto en la vpc orígen, como destino.
-38. Accedemos al listado de route tables y clicamos sobre la main route table de la main_vpc_your_name. Agregamos una nueva ruta con destino: 10.0.0.0/24 a través del target peering_id.
+38. Accedemos al listado de route tables y clicamos sobre la Custom_Main_Route_Table table de la main_vpc_your_name. Agregamos una nueva ruta con destino: 10.0.0.0/24 a través del target peering_id.
 39. En la main route table de la secondary_vpc agregamos una nueva ruta con destino 172.31.0.0/16 a través del target peering_id. Si no has hecho el ejercicio del bonus track, coge la default route table de la VPC secundario y añadele el tag Main_route_table_secondary para que la puedas identificar fácilmente.
 
 Vamos a verificar que la comunicación entre instancias de estas VPCS funciona correctamente.
