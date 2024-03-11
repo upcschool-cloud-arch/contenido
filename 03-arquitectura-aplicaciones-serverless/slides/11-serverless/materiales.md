@@ -16,3 +16,8 @@
 
 - [Cómo Lego gestiona sus equipos de plataformas](https://youtu.be/Uf43M0Eh5no?si=9aLBCfzqOQlNB4NE)
 - [🇪🇸#4.20 - Serverless Devops (Podcast Charlas Técnicas de AWS)](https://youtu.be/8oRnCMnbQt8?si=aiXQmEglLylIA12P)
+
+## Calculo de costos
+
+- [7 TIPS FACILES PARA CONTROLAR TUS COSTOS EN AWS](https://youtu.be/yn1VsP65kOY?si=yRVeJRm4VywGZyEm)
+- [AWS Calculator](https://calculator.aws/)
