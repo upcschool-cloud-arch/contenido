@@ -25,3 +25,8 @@
 - [Choose the right storage solution for your AWS Lambda function](https://blog.marcia.dev/choose-the-right-storage-solution-for-your-aws-lambda-function)
 - [Functions URLS](https://youtu.be/e1hdvJckjy0)
 - [Event filtering](https://youtu.be/oY7vr0GMwjQ)
+
+## Videos más avanzados
+
+- [Cómo ejecutar una aplicación web en Lambda - end 2 end](https://serverlessland.com/content/paved-path/lift-and-shift-a-web-app-to-serverless/1-introduction)
+- [Test de carga para aplicaciones serverless](https://youtu.be/B0pDPSQcAf4?si=0-lbezWvI6PoGJRy)
