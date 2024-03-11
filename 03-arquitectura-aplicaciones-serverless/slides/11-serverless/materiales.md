@@ -11,3 +11,8 @@
 - [🇪🇸#3.16 - Cómo gestionar aplicaciones a gran escala (Charlas Técnicas de AWS)](https://youtu.be/IhQTD5TKDXE)
 - [🇪🇸#2.19 - Qué son las aplicaciones modernas? (Charlas Técnicas de AWS)](https://youtu.be/cev-JJSMKdM)
 - [🇪🇸#3.20 - Introducción a Arquitecturas Orientadas a Eventos (Charlas Técnicas de AWS)](https://youtu.be/UgDsKpGmNNE)
+
+## Equipos de plataformas y operaciones con serverless
+
+- [Cómo Lego gestiona sus equipos de plataformas](https://youtu.be/Uf43M0Eh5no?si=9aLBCfzqOQlNB4NE)
+- [🇪🇸#4.20 - Serverless Devops (Podcast Charlas Técnicas de AWS)](https://youtu.be/8oRnCMnbQt8?si=aiXQmEglLylIA12P)
