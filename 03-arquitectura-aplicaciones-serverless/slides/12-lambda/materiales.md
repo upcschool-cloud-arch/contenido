@@ -15,6 +15,7 @@
 
 ## Entorno de ejecución de Lambda
 
+- [How Lambda works?](https://youtu.be/OOGV81YbuEo?si=95IQZ9wYylYoOAT_)
 - [Lambda scaling and concurrency explained](https://youtu.be/wenqZqNOVZw)
 - [Provisioned concurrency](https://aws.amazon.com/blogs/aws/new-provisioned-concurrency-for-lambda-functions/)
 - [AWS Lambda: Resilience under-the-hood](https://aws.amazon.com/blogs/compute/aws-lambda-resilience-under-the-hood/)
