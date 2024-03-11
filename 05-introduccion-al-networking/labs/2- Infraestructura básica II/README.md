@@ -61,7 +61,7 @@ Para verificar que el nat gateway está correctamente configurado, vamos a crear
 * Key Pair: usamos el mismo key pair del lab1
 * Networkin Settings, seleccionamos el botón _Edit_ y escogemos nuestra VPC _main_vpc_yourname y la subnet _main_subnet_b. 
 * Deshabilitamos _Auto-assign public IP_
-	* Creamos un nuevo SG vacío que llamaremos lab2 y habilitamos el inboud para conexión ssh desde la IP privada de la ec2 lab1 (recordad que la EC2 lab1 será nuestra instancia de salto).
+	* Creamos un nuevo SG vacío que llamaremos lab2 y habilitamos el inboud para conexión ssh desde la IP privada de la  EC2 lab1 (recordad que la EC2 lab1 será nuestra instancia de salto).
 
 ## Chequeo del Nat Gateway
 
