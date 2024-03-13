@@ -102,7 +102,7 @@ Un vez dentro de una EC2 ubicada en una subnet privada y sin IP pública, podemo
 
 ## Peering Connection
 
-Si queremos comunicarnos de forma privada con instancias que están fuera de nuestra VPC, necesitaremos establecer una comunicación privada entre VPCs. Tal como hemos visto en la sesión, tenemos varias maneras de hacerlo, pero para este lab, vamos a optar por la opción del realizar un peering entre VPCs.
+Si queremos comunicarnos de forma privada con instancias que están fuera de nuestra VPC, necesitaremos establecer una comunicación privada entre VPCs. Tal como hemos visto en la sesión, tenemos varias maneras de hacerlo, pero para este lab, vamos a optar por la opción del peering.
 
 29. A través de la consola, accede al dashboard de VPCs. En las opciones de la izquierda, encontraréis un apartado llamado _Peering Connections_ .
 30. Clicad sobre el botón _Create peering connection_
