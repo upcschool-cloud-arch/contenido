@@ -46,3 +46,13 @@ Además, hay días en los que la carga de trabajo es superior a la media y esto 
 Por último, los usuarios finales de los ficheros están hartos de tener que ir comprobando si sus datos están disponibles manualmente, y han reclamado en varias ocasiones recibir una notificación cuando este hecho se produzca.
 
 Nos han pedido que busquemos una solución en el cloud que arregle todos estos inconvenientes y que sea suficientemente flexible para permitir evolucionarla fácilmente en el futuro.
+
+## Grabaciones
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/7niFTyvO-rI/0.jpg)](https://www.youtube.com/watch?v=7niFTyvO-rI)
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/LnQxPuo8C2U/0.jpg)](https://www.youtube.com/watch?v=LnQxPuo8C2U)
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Cqmoog00pqw/0.jpg)](https://www.youtube.com/watch?vCqmoog00pqw)
+
+
