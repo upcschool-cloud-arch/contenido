@@ -123,14 +123,14 @@ Vamos a verificar que la comunicación entre instancias de estas VPCS funciona c
 
 40. En la VPC secondary, creamos una EC2 llamada lab2_secondary, en la que **NO** tendremos IP pública.
 * Name: lab2_secondary
-* Desplegamos Application and OS Images y seleccionamos ubuntu
+* Desplegamos Application and OS Images y seleccionamos Amazon Linux
 * Instance type: t2.micro
 * Key Pair: usamos el mismo key pair del lab1
-* Networkin Settings, seleccionamos el botón _Edit_ y escogemos nuestra VPC secondary_vpc y la subnet _secondary_b. Si no hiciste el bonus track, tendrás que crear una subnet en la vpc secundaria. La CDIR de esta subnet debería ser: 10.0.0.64/26
+* Networkin Settings, seleccionamos el botón _Edit_ y escogemos nuestra VPC secondary_vpc y la subnet _secondary_b. Si no hiciste el bonus track, tendrás que crear una subnet en la VPC secundaria. La CIDR de esta subnet debería ser: 10.0.0.64/26
 * Deshabilitamos _Auto-assign public IP_
-	* Creamos un nuevo SG vacío que llamaremos lab2.2 y habilitamos el inboud para conexión por ICMP desde la IP privada de la ec2 lab2.
+	* Creamos un nuevo SG vacío que llamaremos lab2.2 y habilitamos el inboud para conexión por ICMP desde la IP privada de la EC2 lab2.
 
-41. Un vez creada esta instancia, podemos hacer ping desde la ec2 lab2 hacia la ip privada de lab2_secondary.
+41. Un vez creada esta instancia, podemos hacer ping desde la EC2 lab2 hacia la IP privada de lab2_secondary.
 42. Verificad que podéis hacer el ping.
 
 Tened en cuenta que si no hubieramos establecido el peering no sería posible comunicar dos instancias con IP privadas en diferentes VPCs.
@@ -141,3 +141,5 @@ Para evitar un exceso de gastos, vamos a eliminar el NAT Gateway hasta que volva
 
 43. A través del VPC dashboard, accedemos al apartado NAT Gateways y clicamos en el único que tenemos creado.
 44. Clicamos sobre el botón _Actions_ y seleccionamos Delete NAT Gateway. Escribimos delete en el cuadro y finalizamos.
+
+** Recordad**: parad todas las EC2 creadas para evitar gastos inecesarios. Podéis eliminar la EC2: lab2_secondary
