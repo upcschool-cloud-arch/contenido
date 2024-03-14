@@ -1,6 +1,6 @@
 # LAB 3: EC2 features
 
-En este lab, vamos a repasar algunas de las características principales que hemos visto en esta primera parte del módulo y retomarémos alguna parte de lo que vimos en el módulo de Introducción al networking.
+En este lab, vamos a repasar algunas de las características principales que hemos visto en esta primera parte del módulo y retomaremos parte de lo que vimos en el módulo de Introducción al networking.
 
 ## Cambios en frío sobre EC2
 
@@ -10,7 +10,7 @@ En esta primera parte del lab, vamos a ver qué cambios en frío (parada de EC2)
 2. En el dashboard principal de aws buscamos el servicio EC2 en la barra del buscador o bien a través del menu _Services_
 3. Clicamos sobre el botón _Launch instance_
 4. Nuestra nueva EC2 tendrá el nombre _lab3_
-5. En este caso, utilizaremos la AMI Amazon Linux
+5. En este caso, utilizaremos también la AMI Amazon Linux
 6. Selecciona el tipo de instancia más grande que encuentres en free-tier (gratuita). Tip: ayúdate de la opción _Compare Instance Type_ que te aparece a la derecha.
 7. En Key pair, clica sobre el menú desplegable y selecciona lab1 (creado en el módulo de Introducción al Networking). Si has perdido este fichero, crea un nuevo key pair con el mismo nombre _lab1_ y guárdalo.
 8. Editaremos los Networking settings para que nuestra nueva instancia se cree dentro de nuestra vpc <main_vpc_yourname>, en la subnet pública <main_subnet_a> y habilitar la IP pública.
