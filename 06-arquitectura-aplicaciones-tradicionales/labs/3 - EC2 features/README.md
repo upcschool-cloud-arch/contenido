@@ -51,19 +51,19 @@ ssh -i "lab1.pem" ec2-user@<IP publica>
 systemctl status httpd
 ```
 18. ¿Qué resultado obtienes?
-19. Vemos que ha habido algún problema con el arranque del servicio http. Vamos a ver dónde puede encontrarse el problema
-20. Seleccionamos sobre nuestra instancia EC2 _lab_ en el dashboard de EC2 y clicamos sobre el botón arriba a la derecha _Actions_ .
+19. Vemos que ha habido algún problema con el arranque del servicio http. En este punto, podemos forzar el arranque del webserver, pero cada vez que paremos e iniciemos la EC2, tendremos que arrancar el webserver de manera manual y esto no es óptimo, por lo que vamos a ver qué error tenemos en el User Data.
+20. Seleccionamos sobre nuestra instancia EC2 _lab3_ en el dashboard de EC2 y clicamos sobre el botón arriba a la derecha _Actions_ .
 21. Seleccionamos _Instance_Setting_ y buscamos la opción _Edit User Data_.
 22. ¿Detectas algún problema en el código del _User Data_?
 23. Si observamos con detenimiento, vemos que hay un error, ya que las líneas que inicializan httpd están comentadas/deshabilitadas con #.
-24. Si intentamos eliminar estas almohadillas del código, veremos que tenemos deshabilitado el cuadro del código. No podemos modificarlo si la instancia está **running**.
-25. Corregiremos este error más adelante, por el momento sigue adelante con lo siguientes pasos.
+24. Si intentamos eliminar estas almohadillas del código, veremos que tenemos deshabilitado el cuadro del código. No podemos modificarlo si la instancia está **running**. Recordad que algunos cambios en las EC2 solo se permiten cuando la máquina está parada.
+25. Antes de parar esta EC2 para poder corregir este error, vamos a aprovechar para realizar algún cambio más. Por el momento sigue adelante con lo siguientes pasos.
 
 Ahora volveremos al tipo de instancia. ¿Recuerdas que tipo de instancia has escogido para esta EC2?. Posiblemente, nuestra futura aplicación no podrá ejecutarse en una instancia tan pequeña. 
 
-25. ¿Recuerdas que tipo de escalado necesitaremos si queremos aumentar los recursos de nuestra EC2?
-26. Necesitaremos un escalado Vertical (aumento de recursos como CPU y/o RAM). Para ello tendremos que cambiar el tipo de instancia. 
-27. Busca una instancia de uso general que tenga el menor coste y 2 vCPU y 6 GiB de RAM. Ayúdate con los siguientes enlaces:
+26. ¿Recuerdas que tipo de escalado necesitaremos si queremos aumentar los recursos de nuestra EC2?
+27. Necesitaremos un escalado Vertical (aumento de recursos como CPU y/o RAM). Para ello tendremos que cambiar el tipo de instancia. 
+28. Busca una instancia de uso general que tenga el menor coste y 2 vCPU y 6 GiB de RAM. Ayúdate con los siguientes enlaces:
 ```
     https://calculator.aws/#/
     https://aws.amazon.com/es/ec2/instance-types
@@ -74,24 +74,24 @@ Ahora volveremos al tipo de instancia. ¿Recuerdas que tipo de instancia has esc
 
 Como ya hemos comentado, para poder realizar un cambio de tipo de instancia, es decir, escalado vertical, tenemos que parar la EC2. Este cambio **NO puede hacerse en caliente**, por lo que, si nuestro entorno fuese productivo, tendríamos que tener un ventana de mantenimiento con su correspondiente downtime.
 
-31. Apagamos _lab3_, seleccionando nuestra EC2 en el panel y arriba a la derecha clicamos sobre _Instance state_ --> _Stop Instance_.
-32. Volvemos a los pasos del punto 30. Y seleccionamos el tipo de instancia escogido en el punto 29 y aplicamos los cambios.
-33. Verificamos que se ha producido el cambio de tamaño en el panel de EC2. Como véis el cambio es rápido, pero necesitamos parar la EC2 para hacerlo.
-34. Aprovechamos que tenemos la EC2 parada, para realizar el cambio en el User Data
-35. Seguimos las instrucciones del punto 21 y eliminamos la almohadilla de las líneas:
+32. Apagamos _lab3_, seleccionando nuestra EC2 en el panel y arriba a la derecha clicamos sobre _Instance state_ --> _Stop Instance_.
+33. Volvemos a los pasos del punto 30. Y seleccionamos el tipo de instancia escogido en el punto 29 y aplicamos los cambios.
+34. Verificamos que se ha producido el cambio de tamaño en el panel de EC2. Como véis el cambio es rápido, pero necesitamos parar la EC2 para hacerlo.
+35. Aprovechamos que tenemos la EC2 parada, para realizar el cambio en el User Data
+36. Seguimos las instrucciones del punto 21 y eliminamos la almohadilla de las líneas:
 ```bash
 systemctl start httpd
 systemctl enable httpd
 ```
-36. Guardamos los cambios y levantamos de nueva la instancia desde _Instance state_ --> _Start instance_
-37. Cuando la instancia se encuentre ya arrancada y los dos checks ok,comprobamos de nuevo si el servicio httpd está funcionando. Prueba de nuevo
+37. Guardamos los cambios y levantamos de nueva la instancia desde _Instance state_ --> _Start instance_
+38. Cuando la instancia se encuentre ya arrancada y los dos checks ok,comprobamos de nuevo si el servicio httpd está funcionando. Prueba de nuevo
 ```bash
 curl http://<ip pública>
 ```
 Ojo con la IP, está habrá cambiando respecto al momento previo a parar la instancia.
 39. El servicio httpd sigue sin funcionar. El motivo es que el user data, por defecto, solo se ejecuta cuando la instancia se lanza. ¿Cómo arreglamos entonces está problema? Tenemos dos vías:
 
-40. La primera, será "forzar la ejecución con cada reinicio. Para ellos, paramos de nuevo la instancia y incluiremos el siguiente texto en el User Data:
+40. La primera, será "forzar la ejecución con cada reinicio. Para ello, paramos de nuevo la instancia y incluiremos el siguiente texto en el User Data:
 ```
 Content-Type: multipart/mixed; boundary="//"
 MIME-Version: 1.0
@@ -113,10 +113,9 @@ Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment; filename="userdata.txt"
 
 #!/bin/bash
-/bin/echo "Hello World" >> /tmp/testfile.txt
+/bin/echo "Hello I'm lab3 instance" >> /tmp/testfile.txt
 --//--
 ```
-
 41. Arranca de nuevo la EC2, verifica que han pasado los checks y realiza de nuevo el curl.
 42. La segunda opción, es modificar el User Data con lo comandos correctos y generar una AMI. A partir de esta AMI podemos crear las EC2 que necesitemos con el web server instalando y arrancado. Lo veremos en el próximo lab.
 43.  Cuando hayas finalizado el lab, puedes parar la EC2.
