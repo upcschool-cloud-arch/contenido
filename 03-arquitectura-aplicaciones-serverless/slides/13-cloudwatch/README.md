@@ -79,6 +79,10 @@ Concurrency metrics
 
 - Concurrent executions
 
+## Video de la clase (Marzo 2024)
+
+[Mira el video de este modulo](https://www.youtube.com/watch?v=Cqmoog00pqw)
+
 ## More information and material
 
 [Check this file](materiales.md)

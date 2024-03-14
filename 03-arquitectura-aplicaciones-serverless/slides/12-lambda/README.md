@@ -75,6 +75,10 @@ exports.handler = async (event, context) => {
 
 [Quiz – How we can know that the function run?](https://www.menti.com/alkjt1c7ewun)
 
+## Video de la clase (Marzo 2024)
+
+[Mira el video de este modulo](https://www.youtube.com/watch?v=LnQxPuo8C2U)
+
 ## More information and material
 
 [Check this file](materiales.md)

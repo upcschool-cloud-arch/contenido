@@ -76,6 +76,10 @@ Build “in” the cloud, not just “on” it
 
 [Quiz - What services can be serverless?](https://www.menti.com/al3zmcim2d7h)
 
+## Video de la clase (Marzo 2024)
+
+[Mira el video de este modulo](https://www.youtube.com/watch?v=7niFTyvO-rI)
+
 ## More information and material about serverles
 
 [Check this file](materiales.md)
