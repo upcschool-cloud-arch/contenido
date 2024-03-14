@@ -55,9 +55,9 @@ systemctl status httpd
 20. Seleccionamos sobre nuestra instancia EC2 _lab_ en el dashboard de EC2 y clicamos sobre el botón arriba a la derecha _Actions_ .
 21. Seleccionamos _Instance_Setting_ y buscamos la opción _Edit User Data_.
 22. ¿Detectas algún problema en el código del _User Data_?
-23. Si observamos con detenimiento, vemos que hay un error, ya que las líneas que inicializan httpd están comentadas/desahabilitadas con #.
+23. Si observamos con detenimiento, vemos que hay un error, ya que las líneas que inicializan httpd están comentadas/deshabilitadas con #.
 24. Si intentamos eliminar estas almohadillas del código, veremos que tenemos deshabilitado el cuadro del código. No podemos modificarlo si la instancia está **running**.
-25. Corregiremos este error más adelante en este lab. Por el momento sigue adelante con lo siguientes pasos.
+25. Corregiremos este error más adelante, por el momento sigue adelante con lo siguientes pasos.
 
 Ahora volveremos al tipo de instancia. ¿Recuerdas que tipo de instancia has escogido para esta EC2?. Posiblemente, nuestra futura aplicación no podrá ejecutarse en una instancia tan pequeña. 
 
@@ -69,7 +69,7 @@ Ahora volveremos al tipo de instancia. ¿Recuerdas que tipo de instancia has esc
     https://aws.amazon.com/es/ec2/instance-types
 ```
 29. ¿Qué instancia has escogido?
-30. Una vez claro a qué instancia vamos a ir, tendremos que proceder con el escalado vertical. Para ello, nos vamos al menú EC2, seleccionamos nuestra instancia _lab3_ y clicamos sobre el botón de arriba a la derecha _Actions_--> _Instance settings_ --> _Change instance type_ 
+30. Una vez tengamos decidido la nueva instancia que vamos a utilizar, tendremos que proceder con el escalado vertical. Para ello, nos vamos al menú EC2, seleccionamos nuestra instancia _lab3_ y clicamos sobre el botón de arriba a la derecha _Actions_--> _Instance settings_ --> _Change instance type_ 
 31. Vemos que esta opción está deshabilitada. ¿Sabes cuál es el motivo?
 
 Como ya hemos comentado, para poder realizar un cambio de tipo de instancia, es decir, escalado vertical, tenemos que parar la EC2. Este cambio **NO puede hacerse en caliente**, por lo que, si nuestro entorno fuese productivo, tendríamos que tener un ventana de mantenimiento con su correspondiente downtime.
