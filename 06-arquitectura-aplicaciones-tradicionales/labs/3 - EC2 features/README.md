@@ -119,35 +119,3 @@ Content-Disposition: attachment; filename="userdata.txt"
 41. Arranca de nuevo la EC2, verifica que han pasado los checks y realiza de nuevo el curl.
 42. La segunda opción, es modificar el User Data con lo comandos correctos y generar una AMI. A partir de esta AMI podemos crear las EC2 que necesitemos con el web server instalando y arrancado. Lo veremos en el próximo lab.
 43.  Cuando hayas finalizado el lab, puedes parar la EC2.
-
-## Creación de una Launch Template y creación de una ENI
-
-Vamos a dejar creado un launch template de nuestro web server, por si necesitamos levantar de forma ágil una instancia de estas características.
-
-44. Desde el dashboard de EC2, clica sobre _Launch Template_ y _Create Launch Template_
-45. Denominameramos a este template como my_webserver_template Y en template tags añadiremos: Key:Lab y value: 3
-46. Como AMI, seleccionaremos la que hemos estado utilizando hasta ahora: Amazon Linux 2 y el instance type de nuevo será la free tier t2.micro.
-47. Para el keypair, mantenemos el del lab1
-48. En el apartado Network Setting, escogemos nuestra VPC main_vpc_yourname y la subnet pública (recordad que era la main_subnet_a)
-49. Podemos utilizar el mismo SG del lab1 (aceso por SSH, HTTP y ICMP para hacer ping)
-50. Dentro del apartado _Advance Details_, añadiremos nuestro script para crear el web server:
-```
-#!/bin/bash
-# Use this for your user data (script from top to bottom)
-# install httpd (Linux 2 version)
-yum update -y
-yum install -y httpd
-systemctl start httpd
-systemctl enable httpd
-echo "<h1>Hello I'm lab3 instance from $(hostname -f) </h1>" > /var/www/html/index.html
-```
-
-51. Finalmente guardamos nuestra Launch Configuration.
-52. Ahora, podremos crear de forma rápida nuestro web server siempre que lo requeriamos, sin necesidad de completar los apartados de configuración. Veremos que este concepto, aparece de nuevo en los (ASG).
-53. Finalmente, prueba a crear una instancia con esta nueva Launch Configuractión, a través del botón  _Actions_ --> Create Instance from Launch Template.
-54. Selecciona la launch template que acabas de crear y observa, como los parámetros de Networking, AMI, Security, etc se han rellanado "automáticamente".
-55. Clica sobre Launch instance
-
-56. ¿Puedes ver el contenido de del web server con un curl?
-57. No lo podremos ver porqué la EC2 se ha creado sin IP pública. Vamos a solicionarlo atachando una ENI.
-
