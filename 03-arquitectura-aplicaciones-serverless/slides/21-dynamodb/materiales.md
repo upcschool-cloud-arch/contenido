@@ -28,3 +28,4 @@
 
 - [DynamoDB book](https://www.dynamodbbook.com/)
 - [Using DynamoDB to build Webapps - Guide to DynamoDB](https://serverlessland.com/content/service/dynamodb/guides/using-dynamodbto-build-webapps/introduction)
+- [DynamoDB under the hood](https://www.youtube.com/watch?v=ZhXqNcbR4n0)
