@@ -1,4 +1,4 @@
-# Edición 2 del Posgrado de Cloud Architecture
+# Edición 3 del Posgrado de Cloud Architecture
 
 * [Tablón de anuncios](tablon.md)
 * [Calendario](calendario.md)
