@@ -63,7 +63,7 @@ Teniendo en cuenta esto definiremos nuestra arquitectura según nuestras necesid
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/EkmsLyEqbH8/0.jpg)](https://www.youtube.com/watch?v=EkmsLyEqbH8)
 
-
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/uvN9oLGUKk8/0.jpg)](https://www.youtube.com/watch?v=uvN9oLGUKk8)
 
 
 
