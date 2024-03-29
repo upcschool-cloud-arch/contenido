@@ -32,7 +32,7 @@ http://<ip pública ec2>
 ````
 **Nota**: también podríamos monitorizar la EC2 a través de Cloudwatch.
 
-7. Vamos a proceder con el cambio de tamaño y tipo de EBS. Podéis hacerle desde dos puntos:
+7. Vamos a proceder con el cambio de tamaño y tipo de EBS. Podéis hacerlo desde dos puntos:
 * La primera opción es seleccionar el volumen EBS_lab3 y clicamos sobre el botón _Actions_ que encontraréis arriba a la derecha. Seguidamente clicais sobre _Modify volume_ .
 * La segunda opción, es desde el paso 4. Si estamos dentro de las características de nuestro volumen, veremos arriba a la derecha el botón _Modify_.
 8. Seleccionaremos el volumen de tipo io1 (recordad que era el más económico dentro de los Provisioned IOPs). Subimos el size a 10 GiB e indicamos 100 IOPS.
