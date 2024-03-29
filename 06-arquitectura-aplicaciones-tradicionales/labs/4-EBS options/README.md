@@ -104,7 +104,7 @@ En este apartado, vamos a trabajar con los snapshots. Recordad que por tema de p
 
 23. Sobre la misma EC2 que hemos trabajado en el punto anterior, vamos a installar la CLI de AWS. Para ello accedemos por ssh a esta instancia y lanzamos los siguientes comandos:
 ```bash
-$ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
 ```
