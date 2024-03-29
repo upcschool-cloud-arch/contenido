@@ -121,11 +121,11 @@ aws --version
 
 ## Creación de nuestra propia AMI 
 
-Como hemos comentado a lo largo de este módulo, podemos generar nuestras propias AMIs. En este laboratorio, crearemos uns plantilla que contendrá tanto la CLI de aws como un webserver ya configurado. Vamos a ver cómo:
+Como hemos comentado a lo largo de este módulo, podemos generar nuestras propias AMIs. En este laboratorio, crearemos una plantilla que contendrá tanto la CLI de aws como un webserver ya configurado. Vamos a ver cómo:
 
 29. Desde la consola de EC2, a la izquierda, buscamos dentro del apartado: Elastic Block Store, el punto snapshots y clicamos sobre este.
 30. Seleccionamos el snapshot creado en el punto anterior _lab4_ y clicamos sobre el botón _Create image from snapshot_
-31. Lo primero que indicaremos será el nombre de nuestra nueva AMI: myfirstAMI, y en la descripción indicaremos lo My first AMI
+31. Lo primero que indicaremos será el nombre de nuestra nueva AMI: myfirstAMI, y en la descripción indicaremos: WEBSERVER + AWS CLI para recordar que funciones/objetivo tiene este AMI.
 32. Dejaremos el resto de parámetros que vienen por defecto y clicaremos sobre el botón _Create Image_
 33. Ahora nos vamos al apartado _Images_ dentro de la consola EC2 y verificamos que nuestra imagen se ha creado.
 
