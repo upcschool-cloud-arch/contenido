@@ -55,12 +55,12 @@ xvda    202:0    0  16G  0 disk
 └─xvda1 202:1    0   8G  0 part /
 xvdf    202:80   0  24G  0 disk
 ```
-14. Veremos que nuestra partición, /xvda1 (8GB)  tiene un tamaño diferentes al volumen xvda, que tiene un tamaño de 10 GB y corresponde al cambio que hemos hecho en el paso 7.
+14. Veremos que nuestra partición, /xvda1 (8GB)  tiene un tamaño diferentes al volumen xvda, que tiene un tamaño de 10 GB y corresponde al cambio que hemos hecho en el paso 8.
 15. Extendemos la partición al nuevo tamaño del volumen (10GB) con el siguiente comando:
 ```bash 
 sudo growpart /dev/xvda 1
 ```
-16. Una vez extendido deberíamos ver que el volumen y la partición tiene el mismo tamaño (10GB). Lanza de nuevo el comando del paso 11:
+16. Una vez extendido deberíamos ver que el volumen y la partición tiene el mismo tamaño (10GB). Lanza de nuevo el comando del paso 13:
 ```bash
 [ec2-user ~]$ sudo lsblk               
 NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
