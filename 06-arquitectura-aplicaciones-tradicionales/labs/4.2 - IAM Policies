@@ -1,0 +1,87 @@
+# LAB 4.2: IAM Policies
+
+Debido a las limitaciones del entorno de laboratorio, las acciones que podemos realizar quedan un poco limitadas. En este lab, vamos a diseñar una policy de tipo resource-based para un bucket de S3 al que solo podremos acceder desde una dirección IP concreta.
+
+## Creación del bucket S3
+
+Lo primero que necesitaremos, será crear un bucket de s3 y subir diferentes fichero para realizar las posteriores verificaciones.
+
+1. En el dashboard de S3, dirígete a la _Bucket_ y clica sobre el botón _Create bucket_.
+2. Dejaremos por defecto las opciones _General Configurations_ y _Object Ownership_ y nombraremos este bucket como: "lab4yourname".
+3. En el apartado _Block Public Access setting for this bucket_ deshabilita el bloqueo para que el bucket pueda ser público. 
+**Nota**: recuerda que quitar este check hará que DESDE CUALQUIER LUGAR con los permisos adecuados pueda acceder a este bucket.
+
+4. Subiremos un .txt (con el texto que queráis, por ejemplo "test lab 4") a este bucket. Para ello clicamos sobre el bucket que acabamos de crear y clicamos en el botón _Upload_, seleccionando nuestro fichero .txt.
+5. Verificamos si podemos el contenido del bucket copiand la URL en el navegador. ¿Qué resultado obtienes?
+
+El resultado es que no podemos acceder al contenido porqué no hemos aplicado ninguna policy, a pesar de haber quitado el check block all: 
+```
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<Error>
+<Code>AccessDenied</Code>
+<Message>Access Denied</Message>
+<RequestId>FQRN39KBEZPTC71J</RequestId>
+<HostId>72e8ocd5F4nHDOwhGXaO9UXfAnWGPfQQToZeC4fhjZL710wFlk5F38T0vO+I4dRyivXZxAauqQo=</HostId>
+</Error>
+```
+
+## Creación de Policy respurce-based
+
+6. Vamos a crear una policy para aplicar a este bucket. Desde el proppio bucket clicamos en la pestaña _Permissions_.
+7. En el cuadro _Bucket Policy_ definiremos nuestro JSON según nuestras necesidades. Clicamos sobre el botón _Edit_.
+8. Para facilitarnos el trabajo de síntaxi y de estructura de la Policy, usaremos el asistente que nos ofrece AWS. Clica sobre el botón _Add new statement_. Aparecerá dentro del cuadro la estructura básica sobre la ue trabajaremos nuestra policy.
+9. Recuerda que en las policy de tipo Resource-based, tenemos la característica Principal, que nos indica sobre que recurso/s podemos aplicar esta politica. En este caso indicaremos que es para todos los recursos con un "*".
+10. El efecto en este caso será Allow, por lo que dejaremos lo que nos aparece por defecto. 
+11. El siguiente paso será incluir las acciones permitidas para este Policy. En este caso queremos básicamente permisos de lectura para ver los objetos de este bucket, por lo que nos situaremos sobre _Actions_ y en el desplegable que aparecerá en la derecha, seleccionaremos S3. Para este ejemplo, nos sirven las actions "ListBucket" y "GetObject". El aspecto debería ser parecido a este:
+
+```
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "Statement1",
+			"Principal": "*",
+			"Effect": "Allow",
+			"Action": [
+				"s3:ListBucket",
+				"s3:GetObject"
+			],
+
+  ```
+12. Una vez incluidas las acciones, debemos indicar sobre qué recursos van a aplicarse estas acciones. Indicaremos el bucket que hemos creado anteriormente y todos los objetos que se encuentren en él. Clicando sobre Resource, seleccionaremos S3 y bucket en los desplegables. En resource ARN indicaremos el ARN del bucket que acabamos de crear. Puedes abrir otra pestaña y clicar sobre el bucket para ver este ARN. 
+13. Finalmente, tendremos que añadir nuestras condiciones. En este caso requerimos que solamente la IP de nuestro PC/portatil pueda acceder a este bucket. Busca en el desplegable qué opción podría ser válida. **Pista**: la condición y el operador llevaran incluida la palabra IP.
+14. Por último solo nos queda guardar la Policy. 
+15. ¿Has podido guardarla?¿Que resultado obtienes?
+16. Es probable que te salga un error indicando que no nos estamos refiriendo a ningún resource. El motivo es que auque hemos indicado el bucket, no nos hemos referido explícitamente a todos los objetos incluidos en dicho bucket. Para ello, incluye una segunda línea con el mismo arn e incluye al final lo siguiente: /*. Quedado algo similar a esto:
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::lab4esterapbril032024",
+                "arn:aws:s3:::lab4esterapbril032024/*"
+            ],
+            "Condition": {
+                "IpAddress": {
+                    "aws:SourceIp": "79.156.190.153/32"
+                }
+            }
+        }
+    ]
+}
+
+```
+17. Guarda la policy y verifica que puedes acceder al contenido del bucket. Para ello copia la ULR del bucket (la encontrarás seleccionado el objeto dentro del bucket, en el botón "Copy URL")
+18. ¿Puedes acceder? 
+19. Ahora prueba lo mismo con la url del bucket de un compañero. Con esta Policy solo permitirás el acceso desde la IP que has indicado, por lo que si intentas aceder desde otro dispositivo o entrar a uno de los buckets creados por un compañero no será posible ver el contenido de ese bucket.
+
+ 
