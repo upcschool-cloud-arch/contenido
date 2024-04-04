@@ -63,11 +63,12 @@ sudo growpart /dev/xvda 1
 ```
 16. Una vez extendido deberíamos ver que el volumen y la partición tiene el mismo tamaño (10GB). Lanza de nuevo el comando del paso 13:
 ```bash
-[ec2-user ~]$ sudo lsblk               
-NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
-xvda    202:0    0  16G  0 disk
-└─xvda1 202:1    0  16G  0 part /
-xvdf    202:80   0  24G  0 disk
+[ec2-user@ip-172-31-0-133 ~]$ sudo lsblk
+NAME      MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS
+xvda      202:0    0  10G  0 disk 
+├─xvda1   202:1    0  10G  0 part /
+├─xvda127 259:0    0   1M  0 part 
+└─xvda128 259:1    0  10M  0 part /boot/efi
 ```
 Ahora deberíais ver que la partición y el volumen coinciden en tamaño tal como se muestra en el ejemplo anterior. El siguiente paso será proceder a la extensión del mount point.
 
@@ -78,10 +79,17 @@ Ahora deberíais ver que la partición y el volumen coinciden en tamaño tal com
 18. Con este comando, veremos un detalle similar al ejemplo siguiente:
 
 ```bash
-[ec2-user ~]$ df -hT
-Filesystem      Type   Size    Used   Avail   Use%   Mounted on
-/dev/xvda1      ext4   8.0G    1.9G   6.2G    24%    /
-/dev/xvdf1      xfs    24.0G   45M    8.0G    1%     /data
+ec2-user@ip-172-31-0-133 ~]$ df -hT
+Filesystem     Type      Size  Used Avail Use% Mounted on
+devtmpfs       devtmpfs  4.0M     0  4.0M   0% /dev
+tmpfs          tmpfs     475M     0  475M   0% /dev/shm
+tmpfs          tmpfs     190M  2.9M  188M   2% /run
+/dev/xvda1     xfs       8.0G  1.6G  6.4G  20% /
+tmpfs          tmpfs     475M     0  475M   0% /tmp
+/dev/xvda128   vfat       10M  1.3M  8.7M  13% /boot/efi
+tmpfs          tmpfs      95M     0   95M   0% /run/user/1000
+![image](https://github.com/upcschool-cloud-arch/contenido/assets/108825363/3e9f7fa4-374f-47df-b62f-0514df7fc4d6)
+
 ```
 Aquí vemos que /dev/xvda1  aún tiene el size anterior todavía, y que se encuentra montado sobre "/"
 
