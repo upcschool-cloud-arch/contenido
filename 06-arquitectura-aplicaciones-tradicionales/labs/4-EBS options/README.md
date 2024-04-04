@@ -49,11 +49,12 @@ sudo lsblk
 ```
 13. Este comando nos lista las particiones y volúmenes que tenemos en nuestra máquina. Obtendremos algo similar a la siguiente imagen:
 ```bash
-[ec2-user ~]$ sudo lsblk                
-NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
-xvda    202:0    0  16G  0 disk
-└─xvda1 202:1    0   8G  0 part /
-xvdf    202:80   0  24G  0 disk
+[ec2-user@ip-172-31-0-133 ~]$ sudo lsblk
+NAME      MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS
+xvda      202:0    0  10G  0 disk 
+├─xvda1   202:1    0   8G  0 part /
+├─xvda127 259:0    0   1M  0 part 
+└─xvda128 259:1    0  10M  0 part /boot/efi
 ```
 14. Veremos que nuestra partición, /xvda1 (8GB)  tiene un tamaño diferentes al volumen xvda, que tiene un tamaño de 10 GB y corresponde al cambio que hemos hecho en el paso 8.
 15. Extendemos la partición al nuevo tamaño del volumen (10GB) con el siguiente comando:
