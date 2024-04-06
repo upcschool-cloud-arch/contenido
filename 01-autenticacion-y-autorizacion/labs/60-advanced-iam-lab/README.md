@@ -28,7 +28,7 @@ Also, you will need to provide proper permissions to one application, linking a 
 ## Preparation
 
 
-* Choose a prefix to avoid collision between identifiers
+* Choose a prefix to avoid collision between identifiers. It must be in lowercase to avoid naming rules problems(for example: S3 only allow lowercase)
 
 ```bash
 export PREFIX=<your very own prefix, like "teamX">
@@ -247,7 +247,7 @@ aws sts get-caller-identity
 
 ```bash
 PROD_BUCKET_NAME=$PREFIX-prod-bucket-$RANDOM
-echo Your production bucket will be $DEV_BUCKET_NAME
+echo Your production bucket will be $PROD_BUCKET_NAME
 
 aws s3 ▒▒ s3://$PROD_BUCKET_NAME
 ```
