@@ -47,3 +47,8 @@ proyecto anterior,  trabajando los recursos desplegables en la red anteriormente
 de computación basada en dos servidores y una base de datos relacional como mecanismo de almacenamiento principal. Es importante explicar el concepto de
 single point of failure, y cómo estamos aplicando alta disponibilidad en cada una de las capas aunque de momento sea de forma sencilla.*
 
+## Grabaciones
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/t88aH2KjAcA/0.jpg)](https://www.youtube.com/watch?v=t88aH2KjAcA)
+
+
