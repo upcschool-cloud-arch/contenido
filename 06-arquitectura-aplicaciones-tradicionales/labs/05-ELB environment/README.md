@@ -68,7 +68,7 @@ terraform apply
 * En default action, veréis que el desplegable está vacío. Aún no hemos creado ningún TG, por lo que no podemos asociar el destino hacía el que balancer nuestra peticiones. Vamos a crearlo, clicando sobre el enlace _Create target group_
 14. Selecciona _Instances_ como tipo de Target Group y en el nombre indicamos lab5. En el apartado Protocol:Port, de nuevo indicaremos el puerto 80 con el protocolo TCP.
 15. En el apartado de Networking, seleccionaremos nuestra vpc main.
-16. En el apartado _Health check_ dejaremos por defecto HTTP y / como path. Si clicais sobre _Advance health check settings_ veréis que podemos modificar los parámetros que hemos visto en clase. Vamos a modificar el timeout a 5 segundos, y clicamos sobre el botón _Next_.
+16. En el apartado _Health check_ dejaremos por defecto HTTP y / como path. Si clicais sobre _Advance health check settings_ veréis que podemos modificar los parámetros que hemos visto en clase. Vamos a modificar el timeout a 5 segundos y el success code a 200 y clicamos sobre el botón _Next_.
 17. En la siguiente pantalla, deberemos escoger las 3 instancias que hemos creado en los puntos anteriores y clicamos sobre el botón _include pendings below_ y clicamos _create target group_
 
 Volvemos a la plantalla de creación del balanceador y en el desplegable Target Group ya deberíamos poder ver nuestro recién creado TG lab5.
