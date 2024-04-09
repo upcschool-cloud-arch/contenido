@@ -972,7 +972,7 @@ service/kubernetes   ClusterIP   10.0.0.1     <none>        443/TCP   49m   <non
 
 This time, we will use a `json` file instead of adding the object spec inline:
 
-[hello-dep.json](hello-dep.json)
+[hello-dep.json](hello-manifests/hello-dep.json)
 
 ```json
 {
