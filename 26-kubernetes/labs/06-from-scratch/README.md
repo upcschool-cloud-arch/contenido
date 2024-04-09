@@ -720,7 +720,7 @@ The expected result is an empty list of `ConfigMapList`.
 
 - Command in the `local` terminal
 
-For demo purposes, we will write the `json` inline, but you can check the unfurled version in [hello-cm.json](hello-cm.json):
+For demo purposes, we will write the `json` inline, but you can check the unfurled version in [hello-cm.json](hello-manifests/hello-cm.json):
 
 ```bash
 curl -sq -v -X POST \
