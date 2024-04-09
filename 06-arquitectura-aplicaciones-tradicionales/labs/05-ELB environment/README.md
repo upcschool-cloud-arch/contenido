@@ -5,7 +5,7 @@ En este lab, crearemos una pequeña arquitectura basada el un ELB que nos permit
 
 ## Creación de Network Load Balancer
 
-En primer lugar, vamos a familiarizarnos con el concepto del Network Load Balancer. Antes de lanzar el NLB, procederemos a crear el target group al cual asociaremos. Este Target group va a consistir en un conjunto de 3 EC2 de iguales características
+En primer lugar, vamos a familiarizarnos con el concepto del Network Load Balancer. Antes de lanzar el NLB, procederemos a crear el target group al cual asociaremos después. Este Target group va a consistir en un conjunto de 3 EC2 de iguales características
 
 1. Levantaremos nuestra EC2 Workstation
 2. Un vez levantada nuestra EC2, accederemos al Terminal a través del enlace: https://yourname-workstation.aprender.cloud/vscode
@@ -55,7 +55,7 @@ terraform init
 terraform plan
 terraform apply
 ```
-**Nota**: podeís lanzar también estás 3 instancias a través de la consola si os funciona con terraform. Utilizad como base la ami generada en el laboratorio anterior, y en lugar de crear 1 sola instancia, cread las 3 a la vez. No necesitáis habilitar la IP pública!.
+**Nota**: podeís lanzar también estás 3 instancias a través de la consola si no os funciona con terraform. Utilizad como base la AMI generada en el laboratorio anterior, y en lugar de crear 1 sola instancia, cread las 3 a la vez. No necesitáis habilitar la IP pública!.
 
 7. Comprobamos que nuestras 3 EC2 se han levantado correctamente desde el dashboard de AWS.
 8. Dentro del panel de EC2, en el panel izquierdo, clicaremos sobre Load Balancers
