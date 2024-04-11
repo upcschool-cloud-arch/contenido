@@ -1,5 +1,18 @@
 # Tablón de anuncios
 
+## 2024-04-11: Primer examen
+
+Fecha: Lunes 15 de Abril
+Formato: 10 preguntas tipo test
+Duración: 30 minutos
+
+Entrarán los siguientes topics:
+
+* 1, Autenticación y autorización básica
+* 2, Arquitectura de aplicaciones web estáticas
+* 3, Arquitectura de aplicaciones Serverless
+* 4, Introducción al Networking
+* 5, Arquitectura de aplicaciones tradicionales
 
 ## 2024-02-20: Cuarto examen
 
