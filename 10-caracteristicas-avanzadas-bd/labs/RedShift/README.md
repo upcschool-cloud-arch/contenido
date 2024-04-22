@@ -26,7 +26,7 @@ En Roles de IAM asociados, haz clic en Rol de IAM asociado y selecciona LabRole 
 
 Haz clic en Roles de IAM asociados.
 
-El rol concede permiso a Amazon Redshift para leer datos de Amazon S3.
+Elige LabRole, que es el que podemo usar en AWS Academy.
 
 En la sección Configuraciones adicionales, ten seleccionada la opción de Usar valores predeterminados.
 
