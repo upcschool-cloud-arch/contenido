@@ -95,7 +95,7 @@ CREDENTIALS 'aws_iam_role=YOUR-ROLE'
 DELIMITER '|';
 ```
 
-Crea un bucket en la región de AWS Acadmy Nort Virginia con el nombre midemobucketxxxxxx siendo xxxxx cualquier combinación de números y letras.
+Crea un bucket en la región de AWS Acadmy North Virginia con el nombre midemobucketxxxxxx siendo xxxxx cualquier combinación de números y letras.
 
 Copia el valor de Rol de LabRole desde IAM en la cuenta de AWS Academ. Empieza así: arn:aws:iam::
 
