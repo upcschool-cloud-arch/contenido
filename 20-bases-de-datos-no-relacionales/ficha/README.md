@@ -41,7 +41,7 @@ basadas en sql.
 
 ### Quizzes
 
-* TBD
+* https://quizizz.com/admin/quiz/5e6a174b113059001b88623c
 
 ### Storytelling
 
