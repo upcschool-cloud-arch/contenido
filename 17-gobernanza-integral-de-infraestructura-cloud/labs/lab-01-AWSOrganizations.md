@@ -48,7 +48,7 @@ Debe aparecer el primer nivel de OUs:
 
 Ejecutando la siguiente instrucción:
 ```
-aws organizations list-accounts-for-parent --parent-id ou-v4qm-206b74z1
+aws organizations list-accounts-for-parent --parent-id ou-v4qm-6pyk2oib
 ```
 Debe aparecer las cuentas dentro de la OU _Costes_ (si no se sabe la OU se debe iterar hasta encontrar la cuenta):
 <details>
