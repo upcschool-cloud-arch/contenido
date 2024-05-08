@@ -23,9 +23,9 @@
 |29-Apr|lunes|3|10|Alta disponibilidad y elasticidad en computación clásica|Aplicaciones cloud native|Santos|
 |2-May|jueves|3|11|Charla Pau|Aplicaciones cloud native|Pau|
 |6-May|lunes|3|10|Alta disponibilidad y elasticidad en computación clásica|Aplicaciones cloud native|Santos|
-|8-May|miércoles|3|8|Introducción a la infraestructura como código y GitOps|Delivery engineering, DevOps y observabilidad|Javi|
+|8-May|miércoles|3|9|Introducción a la infraestructura como código y GitOps|Delivery engineering, DevOps y observabilidad|Javi|
 |13-May|lunes|3|19|Conceptos avanzados de Networking|Aplicaciones cloud native|René|
-|15-May|miércoles|3|8|Introducción a la infraestructura como código y GitOps|Delivery engineering, DevOps y observabilidad|Javi|
+|15-May|miércoles|3|9|Introducción a la infraestructura como código y GitOps|Delivery engineering, DevOps y observabilidad|Javi|
 |22-May|miércoles|3|21|Conceptos avanzados de Networking|Aplicaciones cloud native|René|
 |23-May|jueves|3|14|Introducción a Terraform|Delivery engineering, DevOps y observabilidad|Marc Catrisse|
 |27-May|lunes|3|13|Patching de Sistemas Operativos y administración de servidores|Delivery engineering, DevOps y observabilidad|Tasia|
@@ -38,11 +38,11 @@
 |17-Jun|lunes|3|16|Control y gestión de costes|Gobernanza|Samu|
 |19-Jun|miércoles|3|24|Contenedores|Contenerización y Kubernetes|Rael|
 |26-Jun|miércoles|3|23|Diseño y ejecución de planes de migración|Gobernanza|Samu|
-|27-Jun|jueves|3|7|Observabilidad de infraestructuras y aplicaciones|Delivery engineering, DevOps y observabilidad|Marc Catrisse|
+|27-Jun|jueves|3|8|Observabilidad de infraestructuras y aplicaciones|Delivery engineering, DevOps y observabilidad|Marc Catrisse|
 |1-Jul|lunes|3|25|Contenedores|Contenerización y Kubernetes|Rael|
-|3-Jul|miércoles|3|7|Observabilidad de infraestructuras y aplicaciones|Delivery engineering, DevOps y observabilidad|Marc Catrisse|
+|3-Jul|miércoles|3|8|Observabilidad de infraestructuras y aplicaciones|Delivery engineering, DevOps y observabilidad|Marc Catrisse|
 |4-Jul|jueves|3|25|Contenedores|Contenerización y Kubernetes|Rael|
-|8-Jul|lunes|3|7|Observabilidad de infraestructuras y aplicaciones|Delivery engineering, DevOps y observabilidad|Marc Catrisse|
+|8-Jul|lunes|3|8|Observabilidad de infraestructuras y aplicaciones|Delivery engineering, DevOps y observabilidad|Marc Catrisse|
 |10-Jul|miércoles|3|25|Contenedores|Contenerización y Kubernetes|Rael|
 |15-Jul|lunes|3|25|Charla Tasia|Delivery engineering, DevOps y observabilidad|Tasia|
 |17-Jul|miércoles|3|25|Contenedores|Contenerización y Kubernetes|Rael|
