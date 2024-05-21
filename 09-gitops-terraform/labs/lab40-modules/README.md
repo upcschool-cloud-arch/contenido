@@ -34,5 +34,5 @@ by the great [Anton Babenko](https://www.youtube.com/@AntonBabenkoLive/videos).
 * Set the VPC range, the environment and the owner as an input variable.
 * Find a way to easily tag every single resource with the environment and owner.
 * Add three different security groups, chained between them: one for load balancers, one for web servers and one for Postgres databases.
-    * Internet -> Load Balancer(80/443) -> Web Server (80/443) -> Potgresql (5432)
+    * `Internet -> Load Balancer(80/443) -> Web Server (80/443) -> Potgresql (5432)`
 * Export the id of the vpc and the security groups as outputs.
