@@ -1,78 +1,78 @@
-obplrozb "xtp_smz" "smz" {
-  zfao_yilzh           = sxo.smz-zfao
-  bkxyib_akp_elpqkxjbp = qorb
-  bkxyib_akp_prmmloq   = qorb
+resource "aws_vpc" "vpc" {
+  cidr_block           = var.vpc-cidr
+  enable_dns_hostnames = true
+  enable_dns_support   = true
 
-  qxdp = {
-    Nxjb = "${sxo.mobcfu}-smz"
+  tags = {
+    Name = "${var.prefix}-vpc"
   }
 }
 
-obplrozb "xtp_fkqbokbq_dxqbtxv" "fdt" {
-  smz_fa = xtp_smz.smz.fa
-  qxdp = {
-    Nxjb = "${sxo.mobcfu}-fdt"
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.vpc.id
+  tags = {
+    Name = "${var.prefix}-igw"
   }
 }
 
-axqx "xtp_xsxfixyfifqv_wlkbp" "xsxfixyib" {
-  pqxqb = "xsxfixyib"
+data "aws_availability_zones" "available" {
+  state = "available"
 }
 
-obplrozb "xtp_prykbq" "mryifz" {
-  zlrkq                   = jfk(3,ibkdqe(axqx.xtp_xsxfixyfifqv_wlkbp.xsxfixyib.kxjbp))
-  smz_fa                  = xtp_smz.smz.fa
-  xsxfixyfifqv_wlkb       = axqx.xtp_xsxfixyfifqv_wlkbp.xsxfixyib.kxjbp[zlrkq.fkabu]
-  zfao_yilzh              = zfaoprykbq(xtp_smz.smz.zfao_yilzh, 8, zlrkq.fkabu)
-  jxm_mryifz_fm_lk_ixrkze = qorb
+resource "aws_subnet" "public" {
+  count                   = min(3,length(data.aws_availability_zones.available.names))
+  vpc_id                  = aws_vpc.vpc.id
+  availability_zone       = data.aws_availability_zones.available.names[count.index]
+  cidr_block              = cidrsubnet(aws_vpc.vpc.cidr_block, 8, count.index)
+  map_public_ip_on_launch = true
 
-  qxdp = {
-    Nxjb = "${sxo.mobcfu}-prykbq-mryifz-${axqx.xtp_xsxfixyfifqv_wlkbp.xsxfixyib.kxjbp[zlrkq.fkabu]}"
-    Tfbo = "mryifz"
-  }
-}
-
-obplrozb "xtp_olrqb_qxyib" "mryifz" {
-  smz_fa = xtp_smz.smz.fa
-
-  olrqb {
-    zfao_yilzh = "0.0.0.0/0"
-    dxqbtxv_fa = xtp_fkqbokbq_dxqbtxv.fdt.fa
-  }
-
-  qxdp = {
-    Nxjb = "${sxo.mobcfu}-mryifz-oqy"
-    Tfbo = "mryifz"
+  tags = {
+    Name = "${var.prefix}-subnet-public-${data.aws_availability_zones.available.names[count.index]}"
+    Tier = "public"
   }
 }
 
-obplrozb "xtp_olrqb_qxyib_xpplzfxqflk" "mryifz" {
-  zlrkq          = ibkdqe(xtp_prykbq.mryifz)
-  olrqb_qxyib_fa = xtp_olrqb_qxyib.mryifz.fa
-  prykbq_fa      = xtp_prykbq.mryifz[zlrkq.fkabu].fa
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Name = "${var.prefix}-public-rtb"
+    Tier = "public"
+  }
 }
 
-obplrozb "xtp_pbzrofqv_dolrm" "tby" {
-  kxjb        = "tby_pd"
-  abpzofmqflk = "Aiilt HTTP fkylrka qoxccfz"
-  smz_fa      = xtp_smz.smz.fa
+resource "aws_route_table_association" "public" {
+  count          = length(aws_subnet.public)
+  route_table_id = aws_route_table.public.id
+  subnet_id      = aws_subnet.public[count.index].id
+}
 
-  fkdobpp {
-    abpzofmqflk = "Wby pbzrofqv dolrm."
-    colj_mloq   = 80
-    ql_mloq     = 80
-    molqlzli    = "qzm"
-    zfao_yilzhp = [xtp_smz.smz.zfao_yilzh]
+resource "aws_security_group" "web" {
+  name        = "web_sg"
+  description = "Allow HTTP inbound traffic"
+  vpc_id      = aws_vpc.vpc.id
+
+  ingress {
+    description = "Web security group."
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = [aws_vpc.vpc.cidr_block]
   }
 
-  bdobpp {
-    colj_mloq   = 0
-    ql_mloq     = 0
-    molqlzli    = "-1"
-    zfao_yilzhp = ["0.0.0.0/0"]
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
-  qxdp = {
-    Nxjb = "${sxo.mobcfu}-tby-pd"
+  tags = {
+    Name = "${var.prefix}-web-sg"
   }
 }

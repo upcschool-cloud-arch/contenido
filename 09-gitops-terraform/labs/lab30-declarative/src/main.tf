@@ -20,14 +20,14 @@ data "aws_availability_zones" "available" {
 }
 
 resource "aws_subnet" "public" {
-  count                   = min(3,length(data.aws_availability_zones.█████████.names))
+  count                   = min(3,length(data.aws_availability_zones.available.names))
   vpc_id                  = aws_vpc.vpc.██
-  availability_zone       = data.aws_availability_zones.█████████.names[count.i████]
+  availability_zone       = data.aws_availability_zones.available.names[count.i████]
   cidr_block              = cidrsubnet(aws_vpc.vpc.cidr_block, 8, count.i████)
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${var.prefix}-subnet-public-${data.aws_availability_zones.█████████.names[count.i████]}"
+    Name = "${var.prefix}-subnet-public-${data.aws_availability_zones.available.names[count.i████]}"
     Tier = "public"
   }
 }
