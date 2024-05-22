@@ -5,7 +5,14 @@ also will point some of its limitations.
 
 ## Preparations
 
-* Ensure you are using version 2 of the AWS CLI
+* Ensure you are using version 2 of the AWS CLI. **If you are using the Workstation, you should already have awscli2 installed*
+
+```bash
+$ aws --version
+aws-cli/2.15.55 Python/3.11.8 Linux/6.5.0-1020-aws exe/x86_64.ubuntu.22
+```
+
+- Otherwise, you should install awscliv2 using the following commands
 
 ```bash
 sudo apt update
@@ -21,6 +28,7 @@ sudo ./aws/install \
 
 aws --version
 ```
+Check the awscli installation guide if required: (https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
 ## Fixing the script
 

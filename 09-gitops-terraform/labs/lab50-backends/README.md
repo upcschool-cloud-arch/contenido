@@ -27,3 +27,32 @@ the *backend* configuration portion so it points to the resources initialized in
 * Delete the local state (`*tfstate*` files).
 
 * Use `terraform output` to check how the state is still safely stored in S3
+
+## Cleanup
+
+- Remove the network resources deployed
+
+```bash
+cd 10-src-network
+terraform destroy
+```
+
+- Remove the state
+
+```bash
+cd 00-src-init-backend
+```
+
+- Empty the S3 Bucket (`tf-remote-state**`) before deletion (check how to recover the output value from the state)
+
+```bash
+aws s3 rm s3://bucket-name --recursive
+```
+
+- Remove the DynamoDB table, AWS KMS key and S3 bucket
+
+```bash
+terraform destroy
+```
+
+
