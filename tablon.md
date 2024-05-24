@@ -1,5 +1,20 @@
 # Tablón de anuncios
 
+## 2024-05-24: Segundo examen
+
+Fecha: Lunes 3 de Junio
+Formato: 10 preguntas tipo test
+Duración: 30 minutos
+
+Entrarán los siguientes topics:
+
+9 	Características avanzadas de bases de datos relacionales
+20 	Bases de datos no-relacionales
+11 	Alta disponibilidad y elasticidad en computación clásica
+15 	Arquitectura de aplicaciones asíncronas
+19 	Conceptos avanzados de Networking
+
+
 ## 2024-04-11: Primer examen
 
 Fecha: Lunes 15 de Abril
