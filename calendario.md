@@ -16,7 +16,7 @@
 |4-Apr|jueves|3|5|Arquitectura de aplicaciones tradicionales|Aplicaciones cloud native|Ester|
 |8-Apr|lunes|3|3|Arquitectura de aplicaciones Serverless|Aplicaciones cloud native|Marcia|
 |10-Apr|miércoles|3|6|Arquitectura de aplicaciones tradicionales|Aplicaciones cloud native|Ester|
-|15-Apr|lunes|3|9|Características avanzadas de bases de datos relacionales|Aplicaciones cloud native|Santos|
+|15-Apr|lunes|3|10|Características avanzadas de bases de datos relacionales|Aplicaciones cloud native|Santos|
 |17-Apr|miércoles|3|20|Bases de datos no-relacionales|Aplicaciones cloud native|Javi|
 |22-Apr|lunes|3|10|Alta disponibilidad y elasticidad en computación clásica|Aplicaciones cloud native|Santos|
 |24-Apr|miércoles|3|15|Arquitectura de aplicaciones asíncronas|Aplicaciones cloud native|Javi|
