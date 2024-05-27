@@ -192,7 +192,7 @@ echo "https://github.com/$GH_USER/poc-actions-terraform/actions"
 mkdir -p .github/workflows
 ```
 
-```bash
+```yaml
 name: Github Actions Terraform
 on: [push]
 jobs:
@@ -253,7 +253,7 @@ Any error?
 
 6.1- Now, add a new Job to the workflow called `plan` that depends on the job already defined (`format_check`). This job should peform the `init` and `plan` terraform commands
 
-```yml
+```yaml
   plan:
     name: Terraform Plan
     needs: format_check
@@ -295,7 +295,11 @@ Any error?
 
 ## Set the triggers
 
-7.2- The workflow is only being triggered whenever someone pushes a commit to the repository. Check the [Github Actions Documentation](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on) and allow the workflow to run on the following events:
+7.2- The workflow is only being triggered whenever someone pushes a commit to the repository. Check the following documentation
+- [Github Actions Workflow Documentation](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on)
+- [Events that trigger workflows list](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows) 
+
+Introduce the required changes to allow the workflow to run on the following events:
 - push on any branch
 - A new pull_request is opened, targeting the master branch
 
@@ -305,7 +309,7 @@ Any error?
 8.1- Now, we would like to decorate the `pull requests` with the output of the workflow. To do so, we are defining a new step in the job `plan`
 
 ```yml
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         if: github.event_name == 'pull_request'
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
@@ -363,6 +367,8 @@ Any error?
               })
             }
 ```
+*Source code:* (https://thomasthornton.cloud/2024/01/11/displaying-terraform-plans-in-github-prs-with-github-actions/)
+
 
 This step makes use of the `Actions Github_TOKEN` to publish the comment, although, by default, the token hasn't enough privileges to perform the action. Modify the Workflow permissions via `Settings > Actions > General > Workflow permissions` and set `Read and write permissions`.
 

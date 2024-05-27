@@ -18,6 +18,7 @@ more interesting if you use your editor to visually explore the directories.
 ```bash
 sudo apt update
 sudo apt install openjdk-17-jdk jq -y 
+java --version
 ```
 
 ## Application building
@@ -110,7 +111,7 @@ ls target/*.jar -lh
 
 ## Application execution
 
-* Time to take a look a the application. Run it with
+* Time to take a look at the application. Run it with
 
 ```bash
 java -jar target/spring-petclinic*.jar
