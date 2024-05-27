@@ -20,3 +20,4 @@
 ## Juegos
 
 * AWS Card Clash: https://aws.amazon.com/es/training/digital/aws-card-clash/ (Gracias, Santos).
+* Architecture game: http://awsarchquiz.s3-website-eu-west-1.amazonaws.com/
