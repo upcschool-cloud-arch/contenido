@@ -23,7 +23,7 @@ Following GitOps best practises, we will initialize a Terraform remote backend, 
 and a DynamoDB table to avoid simultaneous manipulation of the infrastructure from two different runners.
 
 1.2- `validate`, `init` and `apply` the configuration stored in [00-src-init-backend](../../../09-gitops-terraform/labs/lab50-backends/00-src-init-backend/),
-and **take note of the output**.
+and **take note of the output**; we will need it in the near future!
 
 1.3- Make sure the S3 Bucket and DynamoDB table have been created correctly
 
@@ -74,14 +74,24 @@ terraform.rc
 # Configuration files
 *.conf
 ```
-2.5- Check the ./00-src-network/providers.tf and add the required parameters to the `backend` annotation, as stated in [Lab50 Module 09-gitops-terraform](../../../09-gitops-terraform/labs/lab50-backends/00-src-init-backend/) to use the s3 bucket and dynamodb table deployed before.
 
-2.6- Copy the source code you will find in [./00-src-network/](./00-src-network/) and take the opportinity to look at the code, and commit all the files.
+2.5- Copy the source code you will find in [./00-src-network/](./00-src-network/). Take the opportunity to look at the code, make sure you understand the content and commit the files.
 
 ```bash
 git add --all
 git commit -m "first commit"
 ```
+Your repo should have the following structure:
+
+```txt
+.
+├── .gitignore
+├── main.tf
+├── outputs.tf
+├── providers.tf
+└── variables.tf
+```
+
 
 ## Github Repository initialization
 
@@ -99,9 +109,17 @@ gh auth login
 gh repo create poc-actions-terraform --public --source .
 ```
 
+3.4- Now, push the code to the newly created repo
+
+```bash
+git push origin main
+```
+
 ## Local Terraform Run
 
 3.1- Set your AWS credentials (**replace the portion of text in the diamon with the actual values**)
+
+Note: You should already have the AWS Credentials configured, take a look just in case.
 
 ```bash
 export AWS_ACCESS_KEY_ID=<access_key>
@@ -119,16 +137,21 @@ aws sts get-caller-identity
 This time, we are providing a configuration file with the backend configuration `backend.conf`
 
 ```bash
+export BUCKET_S3_NAME="<S3 BUCKET NAME>"
+export DYNAMODB_TABLE="<DYNAMODB TABLE NAME>"
+```
+
+```bash
 cat << EOF > backend.conf
-bucket = "--- your bucket name ---"
+bucket = "$BUCKET_S3_NAME"
 key    = "terraform.tfstate"
-dynamodb_table = "--- your DynamoDB table --"
+dynamodb_table = "$DYNAMODB_TABLE"
 region = "us-east-1"
 EOF
 ```
 
 ```bash
-$ terraform init -backend-config=backend.conf
+terraform init -backend-config=backend.conf
 ```
 
 3.4- Make sure the source code is correct using `terraform validate`
@@ -166,8 +189,8 @@ gh secret set AWS_SESSION_TOKEN \
 4.3- We don't consider the Terraform Backend configuration of the bucket as sensible information, so we set the `s3 bucket name` together with the `dynamodb table name` as a repository variable instead.
 
 ```bash
-gh variable set s3_bucket --body "<S3 BUCKET NAME>" --repo $GH_USER/poc-actions-terraform
-gh variable set dynamodb_table --body "<DYNAMODB TABLE>" --repo $GH_USER/poc-actions-terraform
+gh variable set s3_bucket --body "$BUCKET_S3_NAME" --repo $GH_USER/poc-actions-terraform
+gh variable set dynamodb_table --body "$DYNAMODB_TABLE" --repo $GH_USER/poc-actions-terraform
 ```
 
 4.4- Use the Github UI to check that the secrets together with the variable are set correctly.
@@ -180,7 +203,7 @@ Notice that secrets can not be visualized, thus can only be updated or deleted
 
 ## Configure the base workflow
 
-5.1- First, check the `Actions` functionality is enabled in your repository, and that you can access to the correspoding tab.
+5.1- First, make sure the `Actions` functionality is enabled in your repository, and you can access to the correspoding tab.
 
 ```bash
 echo "https://github.com/$GH_USER/poc-actions-terraform/actions"
@@ -222,8 +245,8 @@ jobs:
 
       - name: Terraform fmt
         id: fmt
-        run: terraform fmt -check
-        continue-on-error: true
+        run: terraform fmt -check -diff -recursive -no-color
+        continue-on-error: false
 
       - name: Terraform Init
         id: init
@@ -243,11 +266,18 @@ jobs:
 ```bash
 git add --all
 git commit -m "add workflow"
-git push origin master #or main!
+git push origin main
 echo "Check the workflow run! -> https://github.com/$GH_USER/poc-actions-terraform/actions"
 ```
-Any error?
+Does it run correctly?
 
+5.4- It shouldn't! The code is not well formatted, which causes the `fmt` step to fail. Run the `fmt` command and push the changes
+
+```bash
+terraform fmt
+git commit -m "Run fmt" -a
+git push origin main
+```
 
 ## Add the planning definition
 
@@ -309,7 +339,7 @@ Introduce the required changes to allow the workflow to run on the following eve
 8.1- Now, we would like to decorate the `pull requests` with the output of the workflow. To do so, we are defining a new step in the job `plan`
 
 ```yml
-      - uses: actions/github-script@v7
+      - uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
@@ -392,6 +422,8 @@ Using the current worflow as a template, **create a new one**, in a separated fi
 - terraform validate
 - terraform apply -auto-approve
 
+Commit and push this file to the `main` branch
+
 9.2- Merge the Pull request defined in 8.2 and publish a new release (v0.0.1). Are the changes applied correctly?
 
 
@@ -405,4 +437,4 @@ terraform destroy
 Don't forget the S3 bucket together with the DynamoDB table instantiated in `1.1`!
 
 ## Solution
-The solution to this lab is located [here](./solution_workflows/). Please try yout best, and only use the solution as last resource :)
+The solution to this lab is located [here](./solution_workflows/). Please try your best, and only use the solution as a last resort :)

@@ -7,7 +7,7 @@ on:
     types:
       - opened
     branches:
-      - 'master'
+      - 'main'
 jobs:
   format_check:
     name: Terraform Validation Check
@@ -34,9 +34,9 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
 
       - name: Terraform fmt
-        run: terraform fmt -check
+        run: terraform fmt -check -diff -recursive -no-color
         id: fmt
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Terraform Init
         run: terraform init -backend-config=backend.conf
