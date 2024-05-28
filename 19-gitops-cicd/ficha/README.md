@@ -52,12 +52,12 @@ gestión de infraestructura con el AWS CLI y, sobre todo, al uso de Terraform.
     - [x] Artifact publishing
     - [x] Deployment
     - [x] End to end testing (E2E)
-- [X] GitOps
+- [x] GitOps
     - [x] Repositorio único
     - [x] Repositorio de infraestructura separado
-- [X] Estrategias de despliegue
+- [x] Estrategias de despliegue
     - [x] In-place replacement
-    - [x] Immutable infraestructure
+    - [ ] Immutable infraestructure
     - [x] Rolling deployment
     - [x] Blue/green
     - [x] Canary
