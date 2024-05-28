@@ -32,6 +32,7 @@ mkdir github-actions-demo
 cd github-actions-demo
 git config --global init.defaultBranch main
 git init
+# Set the current System User name or your real info! Whichever you prefer
 git config user.name $USER
 git config user.email $USER@random.org
 ```
@@ -64,12 +65,12 @@ jobs:
     steps:
     
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: 'spring-projects/spring-petclinic'
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
@@ -82,7 +83,7 @@ jobs:
         run: mkdir artifacts && cp target/spring-petclinic*.jar* artifacts/
 
       - name: Publish to packages
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: spring-petclinic-artifacts
           path: target/spring-petclinic*.jar*
@@ -170,7 +171,7 @@ gh secret set AWS_SESSION_TOKEN \
   --repo $GH_USER/github-actions-demo
 ```
 
-* We don't consider the name of the bucket as a sensible information, so we set it as
+* We don't consider the name of the bucket as sensible information, so we set it as
 a repository variable instead
 
 ```bash
@@ -203,11 +204,12 @@ echo Open https://s3.console.aws.amazon.com/s3/buckets/$BUCKET_NAME
 
 The [previous lab](../lab10-app-exploration/README.md) provides many more actions available
 to you for increasing the quality of the pipeline, by adding additional phases (like doc generation)
-or different reports (tests results, code coverage, etc...).
+or different reports (tests results, code coverage, etc...). You could add this documentation as a [pipeline artifact](https://docs.github.com/es/actions/using-workflows/storing-workflow-data-as-artifacts).
 
 Add an additional [Job](https://docs.github.com/en/actions/using-jobs) for generating the documentation.
 All jobs are executed by default in parallel, so avoiding adding documentation generation in the build
 step can improve the overall performance of the pipeline.
+
 
 ## Challenge: additional steps for the build job
 

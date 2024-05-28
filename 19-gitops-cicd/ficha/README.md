@@ -57,7 +57,7 @@ gestión de infraestructura con el AWS CLI y, sobre todo, al uso de Terraform.
     - [x] Repositorio de infraestructura separado
 - [x] Estrategias de despliegue
     - [x] In-place replacement
-    - [x] Immutable infraestructure
+    - [ ] Immutable infraestructure
     - [x] Rolling deployment
     - [x] Blue/green
     - [x] Canary
@@ -76,9 +76,9 @@ en infraestructura se han convertido en algo habitual.
 
 Por su parte, los equipos de desarrollo también han hecho un esfuerzo importante de renovación,
 creando proyectos basados en aplicaciones más pequeñas con ciclos de vida independiente y pasando
-el código a producción de maneara mucho más agresiva.
+el código a producción de manera mucho más agresiva.
 
-Sin embargo, esta acelaración ha venido acompañada de algunos desafíos. En particular, errores
+Sin embargo, esta aceleración ha venido acompañada de algunos desafíos. En particular, errores
 en la actualización tanto de la infraestructura como en las aplicaciones han generado interrupciones
 de servicio que empiezan a suponer un problema para los usuarios de la plataforma.
 
