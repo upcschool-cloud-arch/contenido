@@ -30,12 +30,12 @@ Resources:
     Properties: 
       VpcId: 'vpc-083e28986645f5eb3'
       GroupDescription: 'Enable SSH access to Bastion via port 22'
-      SecurityGroupIngress:
-        IpProtocol: tcp
-        FromPort: '22'
-        ToPort: '22'
-        CidrIp: '0.0.0.0/0'
-        Description: 'SSH Access to the instance from everywhere'
+      # SecurityGroupIngress:
+      #   IpProtocol: tcp
+      #   FromPort: '22'
+      #   ToPort: '22'
+      #   CidrIp: '0.0.0.0/0'
+      #   Description: 'SSH Access to the instance from everywhere'
       Tags: 
       - Key: 'Name'
         Value: !Join [ '-', [ 'CCAPost', 'ec2', !Ref 'IDTag', 'sg' ] ]
@@ -68,7 +68,7 @@ Resources:
   AutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
-      VPCZoneIdentifier: [ 'subnet-025d2d862bcd71800', 'subnet-08cd4003beb6a4f08' ]
+      VPCZoneIdentifier: [ 'subnet-033ab11aefc4719d5' ]
       LaunchConfigurationName: !Ref 'LaunchConfiguration'
       MinSize: !Ref 'NumberOfInstances'
       MaxSize: !Ref 'NumberOfInstances'
