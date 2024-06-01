@@ -28,7 +28,7 @@ Resources:
   Ec2SecurityGroup: 
     Type: 'AWS::EC2::SecurityGroup'
     Properties: 
-      VpcId: 'vpc-083e28986645f5eb3'
+      VpcId: 'vpc-0877a1f892a48d5f3'
       GroupDescription: 'Enable SSH access to Bastion via port 22'
       # SecurityGroupIngress:
       #   IpProtocol: tcp
