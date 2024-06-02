@@ -8,11 +8,11 @@ Duración: 30 minutos
 
 Entrarán los siguientes topics:
 
-10 	Características avanzadas de bases de datos relacionales
-20 	Bases de datos no-relacionales
-11 	Alta disponibilidad y elasticidad en computación clásica
-16 	Arquitectura de aplicaciones asíncronas
-18 	Conceptos avanzados de Networking
+* 10 	Características avanzadas de bases de datos relacionales
+* 20 	Bases de datos no-relacionales
+* 11 	Alta disponibilidad y elasticidad en computación clásica
+* 16 	Arquitectura de aplicaciones asíncronas
+* 18 	Conceptos avanzados de Networking
 
 
 ## 2024-04-11: Primer examen
