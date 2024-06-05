@@ -21,25 +21,20 @@ Debe aparecer el primer nivel de OUs:
 {
     "OrganizationalUnits": [
         {
-            "Id": "ou-v4qm-6q1v2twm",
-            "Arn": "arn:aws:organizations::985384044367:ou/o-a6vlecb0l8/ou-v4qm-6q1v2twm",
-            "Name": "trainers"
+            "Id": "ou-v4qm-tm8ib7mm",
+            "Arn": "arn:aws:organizations::985384044367:ou/o-a6vlecb0l8/ou-v4qm-tm8ib7mm",
+            "Name": "attic"
         },
         {
-            "Id": "ou-v4qm-206b74z1",
-            "Arn": "arn:aws:organizations::985384044367:ou/o-a6vlecb0l8/ou-v4qm-206b74z1",
+            "Id": "ou-v4qm-6pyk2oib",
+            "Arn": "arn:aws:organizations::985384044367:ou/o-a6vlecb0l8/ou-v4qm-6pyk2oib",
             "Name": "Costes"
-        },
-        {
-            "Id": "ou-v4qm-cugsrcft",
-            "Arn": "arn:aws:organizations::985384044367:ou/o-a6vlecb0l8/ou-v4qm-cugsrcft",
-            "Name": "labs"
         }
     ]
 }
 </details>
 
-3. Ubicar la cuenta labs-costes. Apretar la flecha delante de la OU "Costes" para desplegarla
+3. Ubicar la cuenta labs-costes-3aed. Apretar la flecha delante de la OU "Costes" para desplegarla
 </br>
 
 ![imagen](images/AWSORganizationsAccountsCostesshighlight.png)
@@ -55,13 +50,13 @@ Debe aparecer las cuentas dentro de la OU _Costes_ (si no se sabe la OU se debe 
 {
     "Accounts": [
         {
-            "Id": "985384044367",
-            "Arn": "arn:aws:organizations::985384044367:account/o-a6vlecb0l8/985384044367",
-            "Email": "email+upcschool@javier-moreno.com",
-            "Name": "upcschool",
+            "Id": "975050065457",
+            "Arn": "arn:aws:organizations::985384044367:account/o-a6vlecb0l8/975050065457",
+            "Email": "samu60+labcostes3@gmail.com",
+            "Name": "labs-costes-3aed",
             "Status": "ACTIVE",
-            "JoinedMethod": "INVITED",
-            "JoinedTimestamp": "2023-11-27T16:09:02.290000+00:00"
+            "JoinedMethod": "CREATED",
+            "JoinedTimestamp": "2024-05-28T07:42:31.171000+00:00"
         }
     ]
 }
