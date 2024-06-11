@@ -28,7 +28,7 @@
 |15-May|miércoles|3|9|Introducción a la infraestructura como código y GitOps|Delivery engineering, DevOps y observabilidad|Javi|
 |22-May|miércoles|3|21|Conceptos avanzados de Networking|Aplicaciones cloud native|René|
 |23-May|jueves|3|14|Introducción a Terraform|Delivery engineering, DevOps y observabilidad|Marc Catrisse|
-|27-May|lunes|3|13|Patching de Sistemas Operativos y administración de servidores|Delivery engineering, DevOps y observabilidad|Tasia|
+|27-May|lunes|3|12|Patching de Sistemas Operativos y administración de servidores|Delivery engineering, DevOps y observabilidad|Tasia|
 |29-May|miércoles|3|18|Diseño y creación de pipelines de CI/CD para infraestructura clásica|Delivery engineering, DevOps y observabilidad|Marc Catrisse|
 |3-Jun|lunes|3|12|Patching de Sistemas Operativos y administración de servidores|Delivery engineering, DevOps y observabilidad|Tasia|
 |5-Jun|miércoles|3|17|Gobernanza integral de infraestructura cloud|Gobernanza|Samu|
