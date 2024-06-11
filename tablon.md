@@ -1,6 +1,6 @@
 # Tablón de anuncios
 
-## 2024-05-24: Segundo examen
+## 2024-05-24: Tercer examen
 
 Fecha: Lunes 26 de Junio
 Formato: 10 preguntas tipo test
