@@ -2,6 +2,21 @@
 
 ## 2024-05-24: Segundo examen
 
+Fecha: Lunes 26 de Junio
+Formato: 10 preguntas tipo test
+Duración: 30 minutos
+
+Entrarán los siguientes topics:
+
+9 Introducción a la infraestructura como código y GitOps
+14 Introducción a Terraform
+18 Diseño y creación de pipelines de CI/CD para infraestructura clásica
+12 Patching de Sistemas Operativos y administración de servidores
+22 Seguridad avanzada
+26 Implementación de planes de Disaster Recovery
+
+## 2024-05-24: Segundo examen
+
 Fecha: Lunes 3 de Junio
 Formato: 10 preguntas tipo test
 Duración: 30 minutos
