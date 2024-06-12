@@ -71,6 +71,7 @@ Al seleccionar el bucket nos dará la opción de redirigirnos directamente a él
     ]
 }
 
+Importante: cambia el nombre del bucket por uno que tengas o hayas creado para esto 
 
 Una vez que lo validemos todo veremos que aparecerá un **Report Plan** en el apartado **Reports** dentro de **Backup Audit Manager** del menú de la izquierda.
 
