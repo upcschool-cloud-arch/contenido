@@ -33,7 +33,7 @@ Vamos a modificar los valores de las tres acciones y vamos a decirle que se apli
 
 En cuanto al apartado de Target, vamos a asegurarnos que el experimento solo va a aplicar a **nuestra instancia**. Lo haremos o bien a través de una tag identificativa que le pongamos a nuestra instancia (este sería el momento de ir a EC2 y hacerlo), o bien seleccionando nuestra instancia de la lista por su nombre.
 
-Para la ejecución del experimento seleccionaremos el rol *fis-role*
+Para la ejecución del experimento seleccionaremos el rol *postgrado-backup*
 
 Vamos a hacer que se guarden los logs de la ejecución del experimento en un bucket que ya existe en esta cuenta llamado : *super-public-bucket-upc* pero también le añadiremos un prefijo personal para identificar posteriormente nuestros logs.
 
