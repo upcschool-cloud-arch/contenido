@@ -58,3 +58,9 @@ variable "github_user" {
   type        = string
   default     = "raelga"
 }
+
+variable "managed_ssh_key_name" {
+  description = "AWS Managed SSH key, optional"
+  type        = string
+  default     = ""
+}

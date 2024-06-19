@@ -84,7 +84,7 @@ sudo sh -c 'echo 25000000 >  /sys/fs/cgroup/memory/upc/memory.limit_in_bytes'
 Spawn a terminal:
 
 ```
-$ sudo cgexec -g memory:upc bash
+sudo cgexec -g memory:upc bash
 ```
 
 Run some memory intense program in the terminal:

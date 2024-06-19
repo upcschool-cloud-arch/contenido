@@ -20,7 +20,7 @@ docker build -t ${REPOSITORY}:${TAG} -f Dockerfile ctx
 Run the container and attach your terminal:
 
 ```
-docker run --rm -p 8080:8080 ${REPOSITORY}:${TAG}
+docker build -t ${REPOSITORY}:${TAG} -f Dockerfile ctx
 ```
 
 Run the container in the background:
