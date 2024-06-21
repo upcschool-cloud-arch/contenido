@@ -1,3 +1,3 @@
 # Slides
 
-bit.ly/upc-cca23-k8s-kubernetes
+https://go.rael.dev/k8s-course
