@@ -1,4 +1,3 @@
 # Slides
 
-bit.ly/upc-cca23-k8s-containers
-
+https://go.rael.dev/k8s-course
