@@ -2,16 +2,16 @@
 
 ## Storytelling
 
-A raíz del boom de Pokemon Go, nuestra empresa ha decidido publicar un servicio web que ofrece información relativa a la Pokedex. De esta manera, el CEO puede publicitar su empresa dentro de los círculos de jugadores de Pokemon. 
+Las modas son cíclicas, y actualmente se está percibiendo un nuevo boom de Pokemon Go, nuestra empresa ha decidido publicar un servicio web que ofrece información relativa a la Pokedex. De esta manera, el CEO puede publicitar su empresa dentro de los círculos de jugadores de Pokemon. 
 
 Resulta que la aplicación está gustando, aunque algunas personas se quejan de errores puntuales. Dado que no tenemos ningún sistema de monitorización activado no podemos encontrar la causa de estos errores.
 
-Dada la situación, el CTO nos ha pedido implementar mecanismos para monitorizar y detectar los errores de nuestra aplicación. 
+Dada la situación, el equipo de infraestructura, del que somos parte, ha decidido implementar mecanismos para monitorizar y detectar los errores de nuestra aplicación. 
 
 
-## Objetivos
-Es esta práctica, aprenderemos a monitorizar aplicaciones e infraestructura, utilizando las herramientas SaaS que nos ofrece AWS. 
-Aprenderemos los principios básicos de Cloudwatch para el análisis de métricas y logs. También veremos las posibilidades que nos ofrece CloudWatch Alarms junto con EventBridge para el tratamiento de eventos inesperados.
+## Objetivo
+Es esta práctica, aprenderemos a monitorizar aplicaciones e infraestructura utilizando las herramientas SaaS que nos ofrece AWS. 
+Conoceremos los principios básicos de CloudWatch para el análisis de métricas y logs. También veremos las posibilidades que nos ofrece CloudWatch Alarms junto con EventBridge para el tratamiento de eventos inesperados.
 
 ## Creación del entorno
 
@@ -30,6 +30,8 @@ Desplegamos nuestra aplicación con Terraform
 $ terraform init && terraform apply
 ```
 Si todo ha ido bien, el script de Terraform nos devolverá el host de nuestra aplicación, desplegada en una nueva instancia EC2.
+
+> Nota: La aplicación se expone en el puerto 80 (http)
 
 Accediendo vía web, deberíamos ver algo parecido a esto:
 
@@ -53,7 +55,9 @@ Navegaremos hacia **CloudWatch > Metrics > All metrics**. Dónde podemos hacer u
 
 ![Screenshot metrics explorer](./img/cloudwatch_metrics.png)
 
-Hacer una revisión de las métricas disponibles, ¿echáis en falta alguna?
+> Al seleccionar una métrica podéis modificar la visualización en el apartado `Graphed metrics`. Tened en cuenta que por defecto utiliza un período de `5 minutos`
+
+Echar un vistazo de las métricas disponibles, ¿echáis en falta alguna?
 Como podéis ver, aquí faltan métricas importantes. En concreto, todas aquellas que nos podemos encontrar a nivel de sistema operativo, 
 como por ejemplo, el espacio disponible de disco. 
 Para ello, tenemos que instalar **CloudWatch Agent**
@@ -204,6 +208,7 @@ Nuestra aplicación tiene una parte que no acaba de funcionar bien, parece que s
 Para poder ver los logs en tiempo real, accede a `CloudWatch > Live Tail` y configura el filtro para obtener los errores 500 del `NginxAccessLog`, tal y como se muestra a continuación
 ![Agent Access Logs](./img/nginx_live_tail.png)
 
+> Haz algunas peticiones más a `/digimon`, aparecen los errores?
 
 
 ### Métricas derivadas de logs
@@ -214,6 +219,8 @@ A continuación, crearemos una métrica que nos indique el número de errores 50
 
 A continuación, introducimos el patrón a utilizar, en nuestro caso será `[ip, id, user, timestamp, request, status_code=5*, size]`, de manera que solo se contabilizaran las entradas con error `5XX`, añadiendo un valor de 1 a la métrica, tal como se muestra a continuación:
 ![Crear filtro metricas 2](./img/crear_filtro_2.PNG)
+
+> Haz click en la opción `Test Pattern` para verificar que el filtro funciona correctamente
 
 ![Crear filtro metricas 3](./img/crear_filtro_3.PNG)
 
@@ -236,6 +243,7 @@ aws logs put-metric-filter \
 5.4 - 
 
 Si accedemos al apartado de consultas de métricas `CloudWatch > Metrics > All metrics`, podremos observar que la métrica captura correctamente el número de errores 500.
+> Nota: La métrica no aparecerá si aún no hay datos
 
 ![Observar_valor_metrica](./img/visualizacion_metrica_custom.PNG)
 
@@ -284,6 +292,40 @@ En este se deberan reflejar las siguientes métricas:
 * **Errors**: Número de errores 500
 
 Es recomendable utilizar un **periodo de 1 minuto** para visualizar las métricas
+
+### Generación de tráfico sintético
+
+Podéis utilizar la herramienta `k6` (**Es opcional!**) para generar tráfico sintético. Podéis descargar el binario directamente de GitHub
+
+```bash
+wget -O- https://github.com/grafana/k6/releases/download/v0.52.0/k6-v0.52.0-linux-amd64.tar.gz | tar -zxvf - --strip-components=1 --wildcards '*/k6' && chmod +x k6
+```
+
+Para utilizar esta herramienta debeis diseñar un escenario, como el siguiente.
+En este se instancia 50 usuarios de pico. Todos ellos haran una petición a `/digimon`
+
+```bash
+cat << EOF > load_test.js
+import http from 'k6/http';
+import { sleep, check } from 'k6';
+
+const URL = 'http://<DNS PokeApp>';
+
+export let options = {
+  stages: [
+    { duration: '1m', target: 50 }, // simulate ramp-up of traffic from 0 to 50 users over 1 minute
+    { duration: '30m', target: 20 }, // stay at 20 users for 30 minutes
+  ],
+};
+
+export default function () {
+  let response = http.get(URL+'/digimon');
+  sleep(1);
+  response = http.get(URL);
+  sleep(1);
+}
+EOF
+```
 
 ## Bonus 2 (opcional)
 
