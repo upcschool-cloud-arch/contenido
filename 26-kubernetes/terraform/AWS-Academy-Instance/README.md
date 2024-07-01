@@ -27,7 +27,7 @@ git clone --depth 1 git@github.com:raelga/kubernetes-talks.git
 If you don't have SSH access to GitHub, use this:
 
 ```sh
-git clone --depth 1 https://github.com/upcschool-cloud-arch/contenido.git
+git clone --depth 1 https://github.com/raelga/kubernetes-talks.git
 ```
 
 ## 2. Configure AWS credentials
