@@ -83,7 +83,7 @@ Cada una de estas peticiones se está guardando en una tabla de `DynamoDB` Si ac
 
 ![X-Ray](./img/xray-traces-menu.png)
 
-> A fecha de 02/07/2024, los permisos del usuario de la consola de AWSAcademy no tiene permiso para acceder al dashboard. De hecho, el servicio X-Ray no aparece como servicio soportado en este entorno. Para salir del paso, desplegaremos una instancia de Grafana con Terraform e instalaremos el plugin de X-Ray
+> A fecha de 02/07/2024, los permisos del usuario de la consola de AWSAcademy no incluyen privilegios para acceder al dashboard de X-Ray. De hecho, el servicio X-Ray no aparece como servicio soportado en este entorno. Para salir del paso, desplegaremos una instancia de Grafana, para visualizar las trazas, con Terraform e instalaremos el plugin de X-Ray
 
 ### Despligue Grafana
 
