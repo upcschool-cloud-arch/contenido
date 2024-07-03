@@ -90,7 +90,7 @@ Cada una de estas peticiones se está guardando en una tabla de `DynamoDB` Si ac
 1.1.1 - Clonamos el proyecto de GitHub con los ficheros de Terraform para desplegar Grafana
 
 ```bash
-git clone https://github.com/TheMatrix97/Grafana-Base-TF.git
+cd .. && git clone https://github.com/TheMatrix97/Grafana-Base-TF.git
 ```
 
 1.1.2 - Inicializamos el proyecto de Terraform y aplicamos los cambios
@@ -114,7 +114,7 @@ Las credenciales son: `admin / cloud2024`
 
 1.1.5 - Una vez instalado haremos click en la opción `add datasource` para añadir una fuente de datos nueva que utilice la `SDK de AWS` por defecto
 
-1.1.6 - Introducimos la región `eu-east-1` y hacemos click en `Save and Test`
+1.1.6 - Introducimos la región `us-east-1` y hacemos click en `Save and Test`
 
 > Tardará aproximadamente 5 minutos en validar el datasource. ¡Paciencia, tarda un poco pero funciona bien! Podéis continuar la práctica mientras hace las validaciones...
 
@@ -129,7 +129,7 @@ Podéis consultar la documentación de la SDK de X-Ray para más información (h
 2.1 - Primero, pararemos la aplicación e importaremos la SDK de X-Ray para Node.
 
 ```bash
-$ npm install --save aws-xray-sdk@^3.4.1
+$ cd ../cool-cat-dog-api && npm install --save aws-xray-sdk@^3.4.1
 ```
 
 2.1 - Añadiremos 2 middleware, al principio y final de las definiciones de las rutas. Se tratan de funciones que se ejecutan para todas las peticiones.
@@ -178,7 +178,7 @@ Si en algún momento queremos parar el Daemon de X-Ray podemos ejecutar el coman
 $ pkill xray
 ```
 
-2.4 - Generamos un poco de tráfico para mandar datos a X-Ray, donde, después de actualizar el dashboard, deberíamos de ver el siguiente `ServiceMap`, junto a las trazas de las peticiones que hemos hecho
+2.4 - Accederemos a la vista del explorador del Datasource que hemos creado anteriormente. Generaremos un poco de tráfico para mandar datos a X-Ray, donde, después de actualizar el dashboard, deberíamos de ver el siguiente `ServiceMap`, junto a las trazas de las peticiones que hemos hecho
 
 ![SVMap](./img/update_service_map.png)
 
