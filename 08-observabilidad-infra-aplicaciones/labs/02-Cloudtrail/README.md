@@ -8,7 +8,7 @@ Aprenderemos los principios básicos de CloudTrail y herramientas asociadas para
 En el equipo de la empresa se ha detectado un gran número de bajas por depresión y estrés. A raíz de este hecho, el departamento de RRHH ha pedido instalar una pantalla en la oficina que proyecte imágenes aleatorias de gatitos 24/7. Según un estudio de la Universidad de Leeds, ver videos e imágenes de animales puede ayudar a reducir el estrés hasta un 50% (https://biologicalsciences.leeds.ac.uk/school-biomedical-sciences/news/article/273/what-are-the-health-benefits-of-watching-cute-animals).
 Para este caso de uso, se ha manifestado la necesidad de desplegar una API que nos proporcione imágenes de gatitos aleatorias. 
 
-Nuestro compañero Juan ha encontrado una API en GitHub que parece que cumple con el caso de uso (https://github.com/TheMatrix97/suspicious-api-js). La despliegan y pasado unos meses, descubren que el coste operativo de AWS se ha duplicado. ¿De quién ha sido la culpa? ¿Está relacionado con la API que desplegó Juan? No lo sabemos. ¿Cómo podemos prepararnos para estas situaciones y evitar que se vuelvan a repetir? En esta práctica aprenderemos como utilizar CloudTrail para poder monitorizar el uso que hacen usuarios y aplicaciones de nuestro entorno de AWS.
+Nuestro compañero Juan ha encontrado una API en GitHub que parece que cumple con el caso de uso (https://github.com/TheMatrix97/suspicious-api-js). La han desplegado sin problemas, pero pasado unos meses, descubren que el coste operativo de AWS se ha duplicado. **¿De quién ha sido la culpa?** ¿Está relacionado con la API que desplegó Juan? No lo sabemos. ¿Cómo podemos abordar estas situaciones y evitar que se vuelvan a repetir? En esta práctica aprenderemos a utilizar CloudTrail para monitorizar el uso que hacen usuarios y aplicaciones de nuestro entorno de AWS.
 
 ## Lab
 
@@ -24,7 +24,7 @@ Nuestro compañero Juan ha encontrado una API en GitHub que parece que cumple co
 
 ![Panel Cloudtrail](./img/cloudtrail_panel.PNG)
 
-1.3 - En el panel, podremos observar el historial de eventos recientes registrados por CloudTrail, estos no se guardan y se pierden pasados 90 días. Si queremos almacenar los eventos y poder acceder a estos pasado el límite de días, debemos crear un registro o `trail`. Haremos click a la opción `Create trail` para crear uno.
+1.3 - En el panel, podremos observar el historial de eventos recientes registrados por CloudTrail, estos no se guardan y se pierden pasados 90 días. Si queremos almacenar los eventos y poder acceder a los datos históricos sin restricciones, debemos crear un registro o `trail`. Hacemos click en la opción `Create trail` para crear uno.
 
 ![Panel Cloudtrail 2](./img/cloudtrail_panel_2.PNG)
 
@@ -33,7 +33,7 @@ Nuestro compañero Juan ha encontrado una API en GitHub que parece que cumple co
 
 ![Crear traza 1](./img/crear_traza_1.PNG)
 
-1.5 - Seguidamente, indicaremos que solo queremos almacenar los eventos de administración, de tipo lectura y escritura. Hacemos click a siguiente, revisamos los datos y finalmente crearemos el `trail`
+1.5 - Seguidamente, indicaremos que solo queremos almacenar los eventos de administración (`Management events`), de tipo lectura y escritura. Hacemos click a siguiente, revisamos los datos y finalmente crearemos el `trail`
 
 ![Crear traza 2](./img/crear_traza_2.PNG)
 
@@ -75,15 +75,27 @@ aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,Attribut
 ```
 </details>
 
-Debería de como mínimo aparecer el S3 Bucket que hemos creado para almacenar el `trail` que hemos creado anteriormente.
+Debería de, como mínimo, aparecer el Bucket S3 que hemos creado para almacenar el `trail` que hemos creado anteriormente.
+
+```json
+{
+    [
+        "user2044444=Marc_Catrisse",
+        "2024-07-02T18:44:10+01:00",
+        [
+            "aws-cloudtrail-logs-150028816798-6db45766"
+        ]
+    ]
+}
+```
 
 ### Consultas via Athena
 
-Hacer consultas de CloudTrail vía CLI nos puede servir para un momento determinado, pero como habéis visto, la información es difícil de procesar, además de estar limitada a 90 días.
+Hacer consultas de CloudTrail vía CLI nos puede ser útil en un momento determinado, pero como habéis visto, la información es difícil de procesar, además de estar limitada a 90 días.
 
 Si os acordáis, anteriormente hemos creado una traza de CloudTrail que guarda datos en un Bucket en formato comprimido `.gz`. Con Athena podemos consultar estos datos utilizando SQL.
 
-3.1 - Primero, crearemos una tabla de Athena a partir de la traza.
+3.1 - Primero, crearemos una tabla de Athena a partir de la traza (`CloudTrail > Event history > Create Athena Table`).
 
 ![Crear_tabla_athena](./img/create_tabla_athena1.PNG)
 
@@ -93,12 +105,12 @@ Si os acordáis, anteriormente hemos creado una traza de CloudTrail que guarda d
 
 ![Consulta_athena](./img/consulta_athena.PNG)
 
-3.3 - Accedemos al Editor de consultas (`Query Editor`), pero antes, debemos configurar el Bucket de resultados.
+3.3 - Accedemos al Editor de consultas (`Athena > Query Editor`), pero antes, debemos configurar el Bucket de resultados.
 
 ![Consulta_athena](./img/consulta_athena_3.PNG)
 
-3.4 - Ahora, ya podemos consultar las trazas con SQL básico des del editor de consultas (`Amazon Athena > Query editor`). Puedes crear una consulta que devuelva los intentos de login a la consola de AWS (`ConsoleLogin`), incluyendo los campos:
- * Cuenta
+3.4 - Ahora, ya podemos consultar la información utilizando SQL básico des del editor de consultas (`Amazon Athena > Query editor`). Puedes crear una consulta que devuelva los intentos de login a la consola de AWS (`ConsoleLogin`), incluyendo los campos:
+ * Entidad que ha efectuado la llamada (PrincipalId)
  * Información del navegador
  * IP de origen
  * Timestamp
@@ -106,6 +118,8 @@ Si os acordáis, anteriormente hemos creado una traza de CloudTrail que guarda d
 Ordenado por Timestamp, de mayor a menor. Recuerda que puedes acceder a la información de las columnas de la tabla
 
 ![Consulta_athena](./img/info_add_athena.PNG)
+
+> Puede que la consulta no devuelva ningún valor si no habéis hecho login desde que se activó el `Trail`. Podéis intentar volver a hacer login o filtrar por el evento `CreateBucket` para obtener los eventos de creación de buckets S3
 
 <details><summary>Solución</summary>
 
@@ -133,7 +147,7 @@ $ git clone https://github.com/TheMatrix97/suspicious-api-tf
 $ cd ./suspicious-api-tf/src
 $ terraform init && terraform apply
 ```
-Podremos ver el DNS público de esta instancia en la salida del Terraform: `instance_public_dns = "ecx-x-xxx-xx-xxx.compute-1.amazonaws.com"`
+Podemos obtener el DNS público de esta instancia en la salida de la ejecución de  Terraform: `instance_public_dns = "ecx-x-xxx-xx-xxx.compute-1.amazonaws.com"`
 
 4.3 - Esperamos un minuto a que se acabe de desplegar y accedemos vía web. Deberíamos obtener el siguiente mensaje:
 ```txt
@@ -144,6 +158,11 @@ Hello World! Try /cat to receive a cool kitty image
 ![neko_img_1](./img/cat_1.PNG)
 
 4.5 - La aplicación ha hecho algo más sin darnos cuenta? Revisa las llamadas a la API con CloudTrail utilizando Athena para identificar un comportamiento indebido. Enumera la actividad inusual generada por la aplicación
+
+> Pista: Puedes acceder a la información de los eventos ordenada por fecha de la siguiente manera:
+```sql
+select useridentity.arn, eventtime, eventname, requestparameters from '<cloudtrail table>' order by from_iso8601_timestamp(eventtime) desc;
+```
 
 <details><summary>Solución</summary>
 
@@ -179,7 +198,7 @@ Crea una VM EC2, con el nombre de `CryptoMiner` junto a un Bucket S3 que contien
 
 #### **Notificaciones con EventBridge**
 
-5.1 - El CEO está **muy enfadado**, no entiende como se nos puede haber escapado esto, y nos ha pedido crear algún mecanismo para detectar y avisar cada vez que se despliegue una VM EC2, evento que ocurre poco en nuestra empresa. Para ello, hemos propuesto crear una regla de **EventBridge** que detecte los cambios de estado en EC2 y nos reporte al momento vía Slack, ya que nuestro servidor de mail no acaba de funcionar bien.
+5.1 - El CISO está **muy enfadado**, no entiende como se nos puede haber escapado esto, y nos ha pedido crear algún mecanismo para detectar y avisar cada vez que se despliegue una VM EC2, evento que ocurre poco en nuestra empresa. Para ello, hemos propuesto crear una regla de **EventBridge** que detecte los cambios de estado en EC2 y nos reporte al momento vía Slack, ya que nuestro servidor de mail no acaba de funcionar bien.
 
 A continuación, se muestra un ejemplo del pipeline que se propone. (*Soy consciente de que se puede hacer de forma más eficiente, quiero que os peléis un poco con los servicios...*).
 
@@ -188,10 +207,10 @@ A continuación, se muestra un ejemplo del pipeline que se propone. (*Soy consci
 El envío de los mensajes se hace mediante un webhook que he preconfigurado para vosotros. [¿Qué es un webhook?](https://www.redhat.com/es/topics/automation/what-is-a-webhook).
 He creado una aplicación de Slack con múltiples webhooks, uno para cada equipo, siguiendo la [documentación de Slack](https://api.slack.com/messaging/webhooks).
 
-**Podéis consultar la URL del webhook en un canal que he creado específicamente para mandar notificaciones para cada equipo (`2023q1-team-x-notis`)**
+**Podéis consultar la URL del webhook en un canal que he creado específicamente para mandar notificaciones para cada equipo (`2023q2-team-x-notis`)**
 
 
-5.2 Primero, crearemos la funcion lambda que mandará el mensaje a Slack utilizando un `Webhook`.
+5.2 Primero, crearemos la función lambda que mandará el mensaje a Slack utilizando un `Webhook`.
 Esta función debe contener este [código](./lambda_function.py). Como podéis ver, hace los siguientes pasos:
 - Procesa el evento de `EventBridge` que se manda vía `SNS`
 - Consulta en la API de AWS el nombre y tipo de la instancia
@@ -241,15 +260,24 @@ De esta manera, `EventBridge` estará a la escucha de eventos de arranque y para
 
 5.9 Si todo ha ido bien, ahora deberíamos recibir un mensaje en el canal `team-x-notis` cada vez que paremos o iniciemos una máquina EC2
 
-5.10 Podemos volver a la API de Gatos que hemos levantado antes, y consultar el endpoint `/cat`, ahora deberíamos recibir un aviso del despliegue de la VM `crypto-miner`.
+5.11 Podemos volver a la API de Gatos que hemos levantado antes, y consultar el endpoint `/enough` para deshacer los cambios. Espera unos segundo a que finalice la instancia `crypto-miner`.  
+
+5.10 Seguidamente, volvemos a consultar el endpoint `/cat`. Esta vez, deberíamos recibir un aviso del despliegue de la VM `crypto-miner` vía slack.
 
 ![Notis](./img/slack_noti.png)
 
-5.11 Consulta el endpoint `/enough` para deshacer los cambios de la API y revisa que los recursos se eliminan correctamente.
+5.11 Para finalizar, vuelve a consultar el endpoint `/enough` para deshacer los cambios y ejecuta los pasos de cleanup
+
 
 
 ### Cleanup
-Limpia el entorno de AWS con el comando `terraform destroy` para eliminar la VM y recursos asociados que hemos creado para desplegar la API.
+1. Limpia el entorno de AWS con el comando `terraform destroy` para eliminar la VM y recursos asociados que hemos creado para desplegar la API.
+
+2. Elimina la función `lambda` que has creado
+
+3. Elimina el Topic `SNS` que has creado
+
+4. Elimina la regla de `EventBridge` que has creado
 
 
 

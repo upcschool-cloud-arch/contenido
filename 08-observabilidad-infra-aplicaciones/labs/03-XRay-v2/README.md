@@ -1,10 +1,4 @@
-# Lab 8.3 - X-Ray
-
-# README - Ojo!
-
-Esta práctica ya no se puede hacer... A fecha de 02/07/2024 parece que AWS ha cambiado las políticas del entorno academy y x-ray ya no aparece listado en la lista de servicios disponibles..
-Esta limitación solo afecta al Usuario de la consola de AWS, por lo que no se puede cargar el dashboard de X-Ray correctamente
-
+# Lab 8.3 - X-Ray V2
 
 ## Objetivos
 En esta práctica, aprenderemos los principios básicos de la monitorización de aplicaciones con trazas utilizando el servicio de AWS X-Ray.
@@ -85,11 +79,46 @@ Cada una de estas peticiones se está guardando en una tabla de `DynamoDB` Si ac
     }
 ]
 ```
-1.7 - Seguidamente, accederemos al apartado de `X-Ray` dentro del menú de `CloudWatch` (*`CloudWatch > X-Ray Traces > Service Map`*)
+1.7 - Seguidamente, accederemos al apartado de `X-Ray` dentro del menú de `CloudWatch` (*`CloudWatch > X-Ray Traces > Trace Map`*)
 
 ![X-Ray](./img/xray-traces-menu.png)
 
-Como podemos observar, está vacío, nuestra aplicación aún no ha mandado ninguna información al servicio. A continuación, vamos a instrumentalizar la aplicación para mandar las trazas.
+> A fecha de 02/07/2024, los permisos del usuario de la consola de AWSAcademy no tiene permiso para acceder al dashboard. De hecho, el servicio X-Ray no aparece como servicio soportado en este entorno. Para salir del paso, desplegaremos una instancia de Grafana con Terraform e instalaremos el plugin de X-Ray
+
+### Despligue Grafana
+
+1.1.1 - Clonamos el proyecto de GitHub con los ficheros de Terraform para desplegar Grafana
+
+```bash
+git clone https://github.com/TheMatrix97/Grafana-Base-TF.git
+```
+
+1.1.2 - Inicializamos el proyecto de Terraform y aplicamos los cambios
+
+```bash
+cd Grafana-Base-TF/src
+terraform init && terraform apply
+```
+
+1.1.3 - Accedemos al servicio vía navegador web
+
+`https://ec2-<IP>.compute-1.amazonaws.com:3000`
+
+Las credenciales son: `admin / cloud2024`
+
+![Grafana Login](./img/grafana_login.png)
+
+1.1.4 - Una vez dentro, instalaremos el plugin de [`xray`](https://grafana.com/grafana/plugins/grafana-x-ray-datasource/?tab=overview). `Administration > Plugins and Data > Plugins`
+
+![xray](./img/plugin_xray.png)
+
+1.1.5 - Una vez instalado haremos click en la opción `add datasource` para añadir una fuente de datos nueva que utilice la `SDK de AWS` por defecto
+
+1.1.6 - Introducimos la región `eu-east-1` y hacemos click en `Save and Test`
+
+> Tardará aproximadamente 5 minutos en validar el datasource. ¡Paciencia, tarda un poco pero funciona bien! Podéis continuar la práctica mientras hace las validaciones...
+
+![xray create ds](./img/create_datasource_grafana.png)
 
 ### Instrumentalización
 
@@ -122,7 +151,7 @@ app.use(AWSXRay.express.closeSegment());
 
 2.2 - Si en este punto iniciamos la aplicación con `npm run start`, veremos que sigue sin aparecer ninguna información en el dashboard de X-Ray. Esto es debido a que la SDK de Node no manda directamente las trazas a X-Ray, en vez de eso, delega el trabajo a un `Daemon de X-Ray` que se expone en el puerto 2000. (https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon.html).
 
-Nos descargaremos el Daemon de X-Ray para ejecutarlo a la vez que el programa
+Nos descargaremos el `Daemon de X-Ray` para ejecutarlo a la vez que el programa
 
 ```bash
 $ mkdir xray && cd xray
@@ -153,7 +182,7 @@ $ pkill xray
 
 ![SVMap](./img/update_service_map.png)
 
-Si hacemos click sobre el id de la traza, accederemos a una vista donde podremos ver en detalle todos los segmentos asociados junto al Service Map
+Si listamos todas las trazas y hacemos click sobre el id de la misma, accederemos a una vista donde podremos ver en detalle todos los segmentos asociados junto al Service Map
 
 ![trazas](./img/trazas_awsxray.png)
 
