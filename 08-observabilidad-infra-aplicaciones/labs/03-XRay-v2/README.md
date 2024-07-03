@@ -102,7 +102,7 @@ terraform init && terraform apply
 
 1.1.3 - Accedemos al servicio vía navegador web
 
-`https://ec2-<IP>.compute-1.amazonaws.com:3000`
+`http://ec2-<IP>.compute-1.amazonaws.com:3000`
 
 Las credenciales son: `admin / cloud2024`
 
