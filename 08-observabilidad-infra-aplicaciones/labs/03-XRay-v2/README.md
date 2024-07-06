@@ -102,7 +102,7 @@ terraform init && terraform apply
 
 1.1.3 - Accedemos al servicio vía navegador web
 
-`http://ec2-<IP>.compute-1.amazonaws.com:3000`
+`http://<Instance_Public_DNS>:3000`
 
 Las credenciales son: `admin / cloud2024`
 
@@ -115,8 +115,6 @@ Las credenciales son: `admin / cloud2024`
 1.1.5 - Una vez instalado haremos click en la opción `add datasource` para añadir una fuente de datos nueva que utilice la `SDK de AWS` por defecto
 
 1.1.6 - Introducimos la región `us-east-1` y hacemos click en `Save and Test`
-
-> Tardará aproximadamente 5 minutos en validar el datasource. ¡Paciencia, tarda un poco pero funciona bien! Podéis continuar la práctica mientras hace las validaciones...
 
 ![xray create ds](./img/create_datasource_grafana.png)
 
