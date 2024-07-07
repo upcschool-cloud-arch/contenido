@@ -1,6 +1,6 @@
 # Lab 8.4 - Introducción a Grafana
 
-> Este laboratorio es opcional. Está basado en el tutorial [Grafana fundamentals](https://grafana.com/tutorials/grafana-fundamentals/) con algunas modificaciones
+> Este laboratorio está basado en el tutorial [Grafana fundamentals](https://grafana.com/tutorials/grafana-fundamentals/) con algunas modificaciones
 
 ## Objetivos
 En esta práctica, aprenderemos conceptos básicos de Grafana, Loki y Prometheus. Aportando la base para la monitorización de Métricas y Logs en Grafana y los mecanismos de alarmas que nos proporciona.
@@ -47,7 +47,7 @@ Podremos ver el DNS público de la instancia en la salida del Terraform: instanc
 
 4- Accede a `Grafana` en el puerto 3000 con `HTTPS` (https://ecx-x-xxx-xx-xxx.compute-1.amazonaws.com:3000) y haz login con las siguientes credenciales:
 - **Username**: admin
-- **Password**: cloud2023
+- **Password**: cloud2024
 
 Si todo ha ido bien, deberíamos de ver la pantalla inicial de Grafana
 
@@ -72,7 +72,7 @@ Si hacemos la búsqueda, nos deberia devolver datos parecidos a este:
 ```promql
 tns_request_duration_seconds_count{instance="app:80", job="tns_app", method="GET", route="other", status_code="404", ws="false"}
 ````
-Cada una de las lineas que nos devuelve es una serie, si te fijas, prometheus crea una serie para cada conjunto de metadatos que recolecta. De manera que tendremos una serie para por ejemplo las peticiones `GET de /vote` y otra para las `GET de /other`.
+Cada una de las líneas que nos devuelve es una serie, si te fijas, `Prometheus` crea una serie para cada conjunto de metadatos que recolecta. De manera que tendremos una serie para por ejemplo las peticiones `GET de /vote` y otra para las `GET de /other`.
 
 6.1- Modifica la consulta por `rate(tns_request_duration_seconds_count[5m])`. Utilizando la función `rate` obtendrás el ratio de incremento de peticiones por segundo, en base a los datos obtenidos durante los últimos 5 minutos. Genera trafico en la aplicación `Grafana news` para observar el incremento en el número de peticiones por segundo.
 
@@ -137,7 +137,7 @@ Los dashboards están formados por paneles, cada uno formado por una `consulta` 
 9.1 - Para ello accederemos al Menu `Dashboards` y crearemos una visualización a partir del datasource `Prometheus`
 ![Create dashboard](./img/create_dashboard.png)
 
-9.2 - En esta visualización, mostraremos una gráfica del número de peticiones recibidas por segundo, agregando por cada ruta
+9.2 - En esta visualización, mostraremos una gráfica del número de peticiones recibidas por segundo, agregando por cada ruta. Incluye la gráfica en el dashboard haciendo click al botón `apply`.
 
 ```promql
 sum(rate(tns_request_duration_seconds_count[$__rate_interval])) by(route)
@@ -156,11 +156,11 @@ sum(rate(tns_request_duration_seconds_sum[$__rate_interval])) by (route) / sum(r
 
 </details>
 
-9.4 - También podemos añadir anotaciones en los gráficos, guarda el dashboard haciendo click al icono de guardado y haz doble click sobre cualquier gráfico para añadir una anotación. También puedes seleccionar intervalos de tiempo manteniendo pulsado el `CTRL`
+9.4 - También podemos añadir anotaciones en los gráficos. Guarda el dashboard haciendo click al icono de guardado y haz doble click sobre cualquier punto del gráfico para añadir una anotación. También puedes seleccionar intervalos de tiempo manteniendo pulsado el `CTRL`
 
 ![Annotations 1](./img/annotacions_1.png)
 
-9.5 - Hacer anotaciones manuales nos puede servir para eventos puntuales. Grafana nos permite añadir anotaciones automàticas basadas en consultas a otras bases de datos. A continuacion, vamos a añadir una anotación por cada error que registre Loki 
+9.5 - Hacer anotaciones manuales nos puede servir para eventos puntuales. Grafana nos permite añadir anotaciones automáticas basadas en consultas a otras bases de datos. A continuación, vamos a añadir una anotación por cada error que registre Loki 
 
 Seleccionamos el engranaje del menú superior para entrar a la configuración del dashboard y nos vamos al submenú `Annotations` para crear una nueva anotación. Seleccionamos el datasource de Loki e introducimos la query que hemos visto anteriormente para obtener los errores. Finalmente haremos click en `Apply` para guardar los cambios
 
@@ -179,26 +179,30 @@ Si volvemos al dashboard y provocamos algunos errores en la web de `Grafana news
 
 En este apartado, crearemos una alarma que nos avise cuando el número de peticiones por segundo de cualquier endpoint supere un valor determinado (0,25)
 
-10.1 - Para ello, accederemos al Menu `Home > Alerting > Alert Rules > New Rule` y definiremos una alerta `Traffic Alert` a partir de la consulta que hemos visto anteriormente
+10.1 - Para ello, accederemos al Menu `Home > Alerting > Alert Rules > New Alert Rule` y definiremos una alerta `Traffic Alert` a partir de la consulta que hemos visto anteriormente
 
 ```promql
 sum(rate(tns_request_duration_seconds_count[5m])) by(route)
 ```
-10.2 - Borraremos los puntos `B` / `C` y crearemos una única expresión de tipo `classic condition` que lanzará la alarma en caso de que exista un TimeSeries con valor `0,25` o superior. Tal y como se muestra en la siguiente imagen
+10.2 - Borraremos los puntos `B` / `C` y crearemos una única expresión de tipo `classic condition` que lanzará la alarma en caso de que exista un TimeSeries con valor `0,25` o superior. Tal y como se muestra en la siguiente imagen. *No te olvides de marcarla como `Alert Condition`*
 
 ![Alt text](./img/alert_1.png)
 
-10.3 - Indicaremos el comportamiento que deseamos, definiendo la carpeta donde se guardará esta alerta (*Si no tienes ninguna, tienes que escribir el nombre en el selector y darle a la tecla ENTER*) y el grupo de evaluación (*lo tendrás que crear de la misma forma*). Indicando que todas las alarmas del grupo `traffic` se van a evaluar cada minuto `Evaluate query = 1m` y que se deberá lanzar la alarma nada más se viole la condición definida, indicando `for = 0m`.
+10.3 - Indicaremos el comportamiento que deseamos, definiendo la carpeta donde se guardará esta alerta (*Si no tienes ninguna, tienes que utilizar la opción New folder*) y el grupo de evaluación (*lo tendrás que crear de la misma forma*). Indicando que todas las alarmas del grupo `traffic` se van a evaluar cada minuto `Evaluate query = 1m` y que se deberá lanzar la alarma nada más se viole la condición definida, indicando `Pending Period = 0m`.
 
 ![Alt text](./img/alert_2.png)
+
+10.3.1 - Finalmente, indicaremos que la alarma deberá seguir la política de notificaciones definida en Grafana, que modificaremos más adelante.
+
+![alt text](./img/set_contact_point_grafana.png)
 
 Dejaremos el resto de atributos por defecto y guardaremos la alarma con el botón del margen superior derecho (`Save Rule and Exit`).
 
 10.4 - A continuación crearemos el `contact point`, indicando como lanzar la acción de notificación cuando salte la alarma
 (`Home > Alerting > Contact Points > Add contact point`).
-Podemos utilizar la integración de Slack y lanzar la notificación por el webhook que hemos creado en el lab 2 o crear un webhook public nuevo con <https://requestbin.com/> haciendo click al link `public bin` para generar la url del webhook. 
+Podemos crear un webhook público nuevo con <https://requestbin.com/> haciendo click al link `public bin` para generar la url del webhook. 
 
-En este ejemplo, utilizaremos el webhook de Slack que ya tenemos precreado.
+En este ejemplo, utilizaremos el webhook de Slack que ya tenemos precreado del laboratorio 2.
 
 ![Alt text](./img/contact_point_1.png)
 
