@@ -46,5 +46,5 @@
 |10-Jul|miércoles|3|25|Contenedores|Contenerización y Kubernetes|Rael|
 |15-Jul|lunes|3|25|Charla Tasia|Delivery engineering, DevOps y observabilidad|Tasia|
 |17-Jul|miércoles|3|25|Contenedores|Contenerización y Kubernetes|Rael|
-|22-Jul|lunes|3|27|Proyecto final|Proyecto final|René, Javi|
+|22-Jul|lunes|3|25|Contenedores|Contenerización y Kubernetes|Rael|
 |24-Jul|miércoles|3|27|Proyecto final|Proyecto final|René, Javi|
