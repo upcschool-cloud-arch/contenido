@@ -1,5 +1,19 @@
 # Tablón de anuncios
 
+## 2024-07-14: Cuarto examen
+
+Fecha: Lunes 22 de Julio
+Formato: 4 preguntas sobre gobernanza, 4 preguntas sobre delivery engineering y 8 preguntas sobre K8s
+Duración: 45 minutos
+
+Entrarán los siguientes topics:
+
+* 17 	Gobernanza integral de infraestructura cloud
+* 16 	Control y gestión de costes
+* 23 	Diseño y ejecución de planes de migración
+* 24 	Contenedores
+* 8 	Observabilidad de infraestructuras y aplicaciones
+
 ## 2024-05-24: Tercer examen
 
 Fecha: Lunes 26 de Junio
