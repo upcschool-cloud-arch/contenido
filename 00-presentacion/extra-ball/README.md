@@ -12,6 +12,10 @@ https://www.youtube.com/watch?v=ZtqBQ68cfJc
 
 Durante el curso vamos a utilizar bastante la terminal para ejecutar aplicaciones, configurar elementos, etc. Si no tienes experiencia previa con ella, este curso de la gente de FreeCodeCamp es un muy buen primer contacto. Asegúrate de practicar mientras lo sigues, ya que es la única forma de asegurarte de que interiorizas el funcionamiento. Pero no te obsesiones con los detalles de los comandos que presenta, porque al fin y al cabo siempre podrás contar con la documentación.
 
+https://overthewire.org/wargames/bandit/
+
+Este otro recurso plantea el aprendizaje como un juego, en el que tendrás que resolver una serie de retos cada vez más difíciles. Si quieres una excusa para practicar lo que has visto en el vídeo, no dejes de probarlo.
+
 ## Introducción a Git y GitHub
 https://www.youtube.com/watch?v=RGOj5yH7evk
 
